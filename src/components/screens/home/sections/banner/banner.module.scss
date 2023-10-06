@@ -20,12 +20,39 @@
         color: $color_gold;
         font-size: 70px;
         line-height: 55px;
+        font-weight: 500;
+      }
+
+      hr{
+        // height: 20px;
+        height: 2px;
+        width: 100px;
+        // background-color: ;
+        background-image: linear-gradient(to right, $color_gold, rgb(255, 236, 210), $color_gold);
+
+        // color: red;
+        opacity: 1;
+        margin:10px  auto;
+        // margin: ;
+      }
+
+      h3{
+        font-weight: 200;
+        // margin-bottom: 16px;
+        font-size: 20px;
       }
       @include respond-below(sm) {
         h1 {
           font-size: 50px;
           line-height: 44px;
         }
+      }
+    }
+
+    .text {
+      p {
+        // font-size: 14px;
+        color: rgb(214, 214, 214);
       }
     }
   }
@@ -49,6 +76,19 @@
         rgb(249, 223, 190),
         $color_gold
       );
+      -webkit-border: 2px solid;
+      -webkit-border-image-slice: 1;
+      -webkit-border-width: 8px;
+      // border-radius: 10px;
+      -webkit-background-origin: border-box;
+      -webkit-background-clip: content-box, border-box;
+      -webkit-border-image-source: linear-gradient(
+        to right,
+        $color_gold,
+        rgb(249, 223, 190),
+        $color_gold
+      );
+
       //   box-shadow: 8px 8px 5px 0px gray;
       //   @include respond-above(md){
       // transform: rotate(4deg);

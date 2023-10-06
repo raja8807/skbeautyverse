@@ -7,6 +7,24 @@ import styles from "./banner.module.scss";
 import SimpleImageSlider from "react-simple-image-slider";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 
+import {Lora  as HeadFont } from "next/font/google";
+import {Petit_Formal_Script  as SubFont } from "next/font/google";
+
+// Kaushan_Script
+
+const headFont = HeadFont({
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: [  "400"],
+  // weight: ["400"],
+  subsets: ["latin"],
+});
+const subFont = SubFont({
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: [  "400"],
+  // weight: ["400"],
+  subsets: ["latin"],
+});
+
 const src =
   "https://image.wedmegood.com/resized-nw/600X/wp-content/uploads/2019/03/1539960377_BBB_MG_6768_WCI_copy.jpg";
 
@@ -50,11 +68,12 @@ const Banner = () => {
     <CustomContainer className={styles.banner}>
       <div className={styles.left}>
         <div className={styles.head}>
-          <h1>SUSHMITHA KARTHIK</h1>
-          <h3>Makeup Artist & Cosmotologist</h3>
+          <h1 className={headFont.className}>SUSHMITHA KARTHIK</h1>
+          <h3 className={subFont.className}>Makeup Artist & Cosmotologist</h3>
+        <hr/>
         </div>
-        <div>
-          <p>
+        <div className={styles.text}>
+          <p >
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id eum
             sed, natus accusantium dicta alias. Consequatur cum magni assumenda
             soluta laborum quibusdam voluptatum reiciendis maxime sunt! Eius non
