@@ -1,0 +1,78 @@
+.banner {
+  // border:  1px solid red;
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  .left {
+    width: 50%;
+    @include flexCenter;
+    flex-direction: column;
+    text-align: center;
+    // padding: 40px 0px;
+    @include respond-below(md) {
+      padding: 40px 20px;
+    }
+
+    .head {
+      h1 {
+        color: $color_gold;
+        font-size: 70px;
+        line-height: 55px;
+      }
+      @include respond-below(sm) {
+        h1 {
+          font-size: 50px;
+          line-height: 44px;
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 40%;
+    // border: 1px solid red;
+
+    .image {
+      width: fit-content;
+      height: fit-content;
+      border: 2px solid;
+      border-image-slice: 1;
+      border-width: 8px;
+      // border-radius: 10px;
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      border-image-source: linear-gradient(
+        to right,
+        $color_gold,
+        rgb(249, 223, 190),
+        $color_gold
+      );
+      //   box-shadow: 8px 8px 5px 0px gray;
+      //   @include respond-above(md){
+      // transform: rotate(4deg);
+      //   }
+    }
+
+    // div[class*="rsis-image"]{
+    //     border-radius: 5px !important;
+    // }
+  }
+
+  @include respond-below(md) {
+    flex-direction: column-reverse;
+    align-items: center;
+    // justify-content: center;
+
+    .left {
+      width: 100%;
+    }
+
+    .right {
+      width: 100%;
+
+      @include flexCenter;
+    }
+  }
+}
