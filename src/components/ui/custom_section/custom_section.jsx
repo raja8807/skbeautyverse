@@ -6,8 +6,8 @@ const CustomSection = (props) => {
   return (
     <section className={`${styles.customContainer} ${styles[bg]}`}>
       <div className={styles.head}>
-        <h2>{head}</h2>
-        <p>
+        <h2 data-aos='fade-up'>{head}</h2>
+        <p data-aos='zoom-in'>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt dolores
           vero corrupti sequi deleniti esse impedit, alias in sapiente quia,
           fugiat obcaecati maiores aliquam asperiores ipsa facilis magni

@@ -68,8 +68,8 @@ const Banner = () => {
     <CustomContainer className={styles.banner}>
       <div className={styles.left}>
         <div className={styles.head}>
-          <h1 className={headFont.className}>SUSHMITHA KARTHIK</h1>
-          <h3 className={subFont.className}>Makeup Artist & Cosmotologist</h3>
+          <h1 className={headFont.className}  data-aos='fade-left'>SUSHMITHA KARTHIK</h1>
+          <h3 className={subFont.className} data-aos='fade-right'>Makeup Artist & Cosmotologist</h3>
         <hr/>
         </div>
         <div className={styles.text}>
