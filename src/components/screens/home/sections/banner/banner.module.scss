@@ -4,6 +4,8 @@
 
   display: flex;
   justify-content: space-between;
+  width: 100vw;
+  overflow: hidden;
 
   .left {
     width: 50%;
