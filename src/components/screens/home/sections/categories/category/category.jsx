@@ -4,7 +4,7 @@ import styles from "./category.module.scss";
 
 const Category = () => {
   return (
-    <Col xs={6} sm={6} lg={3}>
+    <Col xs={12} sm={6} lg={3}>
       <div className={styles.category_box}>
         <div className={styles.overlay}>
           <div>

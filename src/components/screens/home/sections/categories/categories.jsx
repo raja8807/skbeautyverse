@@ -5,6 +5,7 @@ import CustomSection from "@/components/ui/custom_section/custom_section";
 import styles from "./categories.module.scss";
 import { Col, Row } from "react-bootstrap";
 import Category from "./category/category";
+import CustomButton from "@/components/ui/custom_button/custom_button";
 
 const Categories = () => {
   return (
@@ -16,6 +17,9 @@ const Categories = () => {
           <Category />
           <Category />
         </Row>
+        <div className={styles.btn}>
+          <CustomButton type="black">View Our Gallery</CustomButton>
+        </div>
       </CustomContainer>
     </CustomSection>
   );

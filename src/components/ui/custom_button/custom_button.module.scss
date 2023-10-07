@@ -1,6 +1,7 @@
 .custom_button {
   // background-color: red;
   padding: 8px 16px;
+  border: none;
 
   &.primary {
     background-color: transparent;
@@ -18,11 +19,30 @@
     //   $color_gold
     // );
 
-    &:hover{
-        // background-image: linear-gradient(to left, $color_gold,rgb(251, 207, 161), $color_gold);
-        color: $color_black;
-        background-color: $color_gold;
-        // border: 2px solid $color_black;
+    &:hover {
+      // background-image: linear-gradient(to left, $color_gold,rgb(251, 207, 161), $color_gold);
+      color: $color_black;
+      background-color: $color_gold;
+      // border: 2px solid $color_black;
     }
+  }
+  &.black {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    &:hover{
+      background-color: white;
+      border-color: transparent;
+    }
+    // background-color: $color_black;
+    // color: $color_gold;
+    // border: 2px solid $color_gold;
+    // // background-color: white;
+    // &:hover {
+    //   background-color: $color_gold;
+    //   border: 2px solid $color_black;
+    //   color: $color_black;
+    // }
   }
 }

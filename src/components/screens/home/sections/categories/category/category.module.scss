@@ -4,6 +4,8 @@
   padding: 10px;
   position: relative;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+// box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   //   overflow: hidden;
 
   img {
@@ -32,7 +34,7 @@
       border-radius: 50%;
       background-color: rgba(0, 0, 0, 0.2);
       margin: 0px 10px;
-      // gap: 10px;
+      // gcategoryap: 10px;
       * {
         color: white;
       }
