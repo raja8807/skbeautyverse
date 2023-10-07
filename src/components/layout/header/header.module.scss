@@ -1,6 +1,6 @@
 .header {
   // background-color: white;
-//   width: 100vw;
+  //   width: 100vw;
 
   .container {
     display: flex;
@@ -11,60 +11,58 @@
     // width: 100%;
     // border: 1px solid red;
 
-    .logo{
+    .logo {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
 
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
+      img {
+        // height: 70px;
+        width: auto;
+      }
 
-        img{
-            // height: 70px;
-            width: auto;  
+      .sk {
+        height: 70px;
+        width: auto;
+      }
+
+      .name {
+        height: 35px;
+        margin-bottom: 4px;
+        margin-left: -25px;
+      }
+
+      @include respond-below(md) {
+        .sk {
+          height: 50px;
         }
 
-        .sk{
-            height: 70px;
-            width: auto;
+        .name {
+          height: 20px;
+          margin-bottom: 8px;
         }
-
-        .name{
-            height: 35px;
-            margin-bottom: 4px;
-            margin-left: -25px;
-        }
-
-        @include respond-below(md){
-            .sk{
-                height: 50px;
-            }
-
-            .name{
-                height: 20px;
-                margin-bottom: 8px;
-            }
-        }
+      }
     }
 
     nav {
-        border-radius: 2px;
-        overflow: hidden;
+      border-radius: 2px;
+      overflow: hidden;
 
-        @include respond-below(md){
-            display: none;
-        }
+      @include respond-below(md) {
+        display: none;
+      }
       ul {
-        border: 2px solid;
-        border-image-slice: 1;
         border-width: 2px;
-        border-radius: 10px;
-        background-origin: border-box;
-        background-clip: content-box, border-box;
-        border-image-source: linear-gradient(
-          to left,
-          $color_gold,
-          rgb(249, 223, 190),
-          $color_gold
-        );
+        border-style: solid;
+        border-image: linear-gradient(
+            to right,
+            $color_gold,
+            rgb(249, 223, 190),
+            $color_gold,
+            rgb(249, 223, 190),
+            $color_gold
+          )
+          1;
         padding: 7px 50px;
         display: flex;
         align-items: center;
@@ -85,20 +83,20 @@
       }
     }
 
-    .menu{
-        display: none;
-        color: $color_gold !important;
-        height: 38px;
-        width: 38px;
-        cursor: pointer;
+    .menu {
+      display: none;
+      color: $color_gold !important;
+      height: 38px;
+      width: 38px;
+      cursor: pointer;
 
-        &:hover{
-           transform: scale(1.1);
-        }
+      &:hover {
+        transform: scale(1.1);
+      }
 
-        @include respond-below(md){
-            display: initial;
-        }
+      @include respond-below(md) {
+        display: initial;
+      }
     }
   }
 }

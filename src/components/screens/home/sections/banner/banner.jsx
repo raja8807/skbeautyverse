@@ -82,7 +82,7 @@ const Banner = () => {
             distinctio quam repellat harum.
           </p>
           <br/>
-          <CustomButton>Know More</CustomButton>
+          <CustomButton>Book Now</CustomButton>
         </div>
       </div>
       <div className={styles.right}>

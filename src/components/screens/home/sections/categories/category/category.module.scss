@@ -1,0 +1,61 @@
+.category_box {
+  background-color: white;
+  margin: 10px 0;
+  padding: 10px ;
+  position: relative;
+  border-radius: 5px;
+  //   overflow: hidden;
+  
+  img{
+      border-radius: 5px;
+
+  }
+
+  .overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    // opacity: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    @include flexCenter;
+    color: white;
+    transform: scaleY(0);
+    transform-origin: bottom;
+
+    > div {
+      border: 1px solid white;
+      height: 38px;
+      width: 38px;
+      @include flexCenter;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.2);
+      margin: 0px 10px;
+      cursor: pointer;
+      * {
+        color: white;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &:hover {
+    .overlay {
+      transform: scaleY(1);
+      z-index: 10;
+    }
+  }
+
+  p {
+    color: $color_black;
+    text-align: center;
+    margin: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    // margin-bottom: 10px;
+  }
+}
