@@ -23,20 +23,25 @@
         font-weight: 500;
       }
 
-      hr{
+      hr {
         // height: 20px;
         height: 2px;
         width: 100px;
         // background-color: ;
-        background-image: linear-gradient(to right, $color_gold, rgb(255, 236, 210), $color_gold);
+        background-image: linear-gradient(
+          to right,
+          $color_gold,
+          rgb(255, 236, 210),
+          $color_gold
+        );
 
         // color: red;
         opacity: 1;
-        margin:10px  auto;
+        margin: 10px auto;
         // margin: ;
       }
 
-      h3{
+      h3 {
         font-weight: 200;
         // margin-bottom: 16px;
         font-size: 20px;
@@ -64,40 +69,17 @@
     .image {
       width: fit-content;
       height: fit-content;
-      border: 2px solid;
-      border-image-slice: 1;
+    //   border-radius: 10px;
       border-width: 8px;
-      // border-radius: 10px;
-      background-origin: border-box;
-      background-clip: content-box, border-box;
-      border-image-source: linear-gradient(
-        to right,
-        $color_gold,
-        rgb(249, 223, 190),
-        $color_gold
-      );
-      -webkit-border: 2px solid;
-      -webkit-border-image-slice: 1;
-      -webkit-border-width: 8px;
-      // border-radius: 10px;
-      -webkit-background-origin: border-box;
-      -webkit-background-clip: content-box, border-box;
-      -webkit-border-image-source: linear-gradient(
-        to right,
-        $color_gold,
-        rgb(249, 223, 190),
-        $color_gold
-      );
-
-      //   box-shadow: 8px 8px 5px 0px gray;
-      //   @include respond-above(md){
-      // transform: rotate(4deg);
-      //   }
+      border-style: solid;
+      border-image: linear-gradient(
+          to right,
+          $color_gold,
+          rgb(249, 223, 190),
+          $color_gold
+        )
+        1;
     }
-
-    // div[class*="rsis-image"]{
-    //     border-radius: 5px !important;
-    // }
   }
 
   @include respond-below(md) {
