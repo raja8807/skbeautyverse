@@ -16,7 +16,24 @@
     @include respond-below(md) {
       padding: 40px 20px;
     }
+    .bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
 
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        p {
+          color: $color_gold;
+        }
+        img {
+          width: 100px;
+          filter: invert(1);
+        }
+      }
+    }
     .head {
       h1 {
         color: $color_gold;
@@ -71,7 +88,7 @@
     .image {
       width: fit-content;
       height: fit-content;
-    //   border-radius: 10px;
+      //   border-radius: 10px;
       border-width: 8px;
       border-style: solid;
       border-image: linear-gradient(

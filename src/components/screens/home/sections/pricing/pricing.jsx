@@ -51,10 +51,14 @@ const Pricing = () => {
   ];
 
   return (
-    <CustomSection bg="white" head="Packages">
+    <CustomSection
+      bg="white"
+      head="Packages"
+      caption="Book a Complete Engagement, Marriage, Reception Makeup With Us"
+    >
       <CustomContainer>
         <div className={styles.packWrap}>
-          {packages.map((p,i) => {
+          {packages.map((p, i) => {
             return (
               <Package
                 key={p.head}
