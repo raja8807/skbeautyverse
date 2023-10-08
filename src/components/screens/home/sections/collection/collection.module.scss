@@ -6,15 +6,36 @@
   .left {
     padding: 150px 0;
     width: 55%;
+
     > div {
-      height: 300px;
+      //   height: 300px;
       background-color: $color_gold;
       width: 100%;
       padding: 0 0 0 18%;
 
-      @include respond-below(xxl){
+      @include respond-below(xxl) {
         //   background-color: red;
-          padding: 0 0 0 10px;
+        padding: 0 0 0 10px;
+      }
+
+      > div {
+        padding: 40px 0;
+        @include flexCenter;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        * {
+          color: black;
+        }
+
+        .head {
+          font-size: 20px;
+          letter-spacing: 5px;
+        }
+        h5 {
+          font-weight: 100;
+          font-size: 50px;
+        }
       }
     }
   }
@@ -41,13 +62,29 @@
   @include respond-below(md) {
     flex-direction: column-reverse;
     align-items: center;
-    padding: 100px 0;
+    padding: 100px 0 0 0;
     .left {
       width: 100%;
       padding: 0;
       > div {
-        padding: 220px 0;
+        padding: 50px 10px 0px 10px;
         text-align: center;
+
+        > div {
+          p {
+            text-align: center;
+            width: 100%;
+          }
+
+          h5 {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        button {
+          margin: auto;
+        }
       }
     }
 
@@ -57,18 +94,17 @@
 
       > div {
         // background-color: transparent;
+        // background-color: red !important;
         position: initial;
         @include flexCenter;
         // background-color: red;
 
-
-
         img {
-        //   bottom: -200px;
+          //   bottom: -200px;
           position: initial;
           z-index: 120;
-        //   left: 25%;
-        //   transform: translate(-8%, 0);
+          //   left: 25%;
+          //   transform: translate(-8%, 0);
           width: 300px;
           height: auto;
         }

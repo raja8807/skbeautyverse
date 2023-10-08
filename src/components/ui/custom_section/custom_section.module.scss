@@ -8,6 +8,9 @@
     text-align: center;
     h2 {
       margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      
     }
 
     p {
@@ -35,5 +38,14 @@
     // hr{
     //     background-color: $color_black;
     // }
+  }
+
+  &.white {
+    background-color: transparent;
+    .head {
+      * {
+        // color: $color_black;
+      }
+    }
   }
 }

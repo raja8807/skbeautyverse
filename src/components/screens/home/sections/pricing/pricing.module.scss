@@ -1,0 +1,11 @@
+.packWrap {
+  display: flex;
+    justify-content: center;
+  align-items: center;
+  
+  @include respond-below(md){
+      flex-direction: column;
+      gap: 24px;
+
+}
+}

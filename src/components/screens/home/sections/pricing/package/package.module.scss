@@ -1,0 +1,44 @@
+.package {
+  background-color: rgba(0, 0, 0, 0.6);
+  // height: 500px;
+  width: 300px;
+  border: 2px solid $color_gold;
+  border-radius: 14px;
+
+  @include flexCenter;
+  flex-direction: column;
+  gap: 10px;
+
+  .top,
+  .bottom {
+    color: $color_gold;
+    width: 100%;
+    font-size: 20px;
+    // font-size: 800;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid $color_gold;
+    font-weight: 600;
+  }
+
+  .top {
+    letter-spacing: 3px;
+  }
+
+  .bottom {
+    border-bottom: none;
+    border-top: 2px solid $color_gold;
+    // font-weight: 600;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &.center {
+      gap: 10px;
+      z-index: 100;
+      // background-color: red !important;
+    }
+  }
+}
