@@ -4,7 +4,7 @@ const Package = (props) => {
   const { head, price, body, idx } = props;
 
   return (
-    <div className={styles.package}>
+    <div className={styles.package} data-aos="flip-left">
       <div className={styles.top}>
         <p>{head}</p>
       </div>
