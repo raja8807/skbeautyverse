@@ -1,5 +1,12 @@
-.custom_container{
-    max-width: 1280px;
-    margin: auto;
-    // height: 200vh;
+
+
+.wrap{
+    max-width: 100vw;
+    overflow: hidden;
+
+    .custom_container{
+        max-width: 1280px;
+        margin: auto;
+        // height: 200vh;
+    }
 }

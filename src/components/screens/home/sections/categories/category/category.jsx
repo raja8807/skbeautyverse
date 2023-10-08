@@ -5,8 +5,15 @@ import styles from "./category.module.scss";
 const Category = (props) => {
   const { data, index } = props;
 
+  const animations = {
+    a_0 : "fade-down-right",
+    a_1 : "fade-down-left",
+    a_2 : "fade-up-right",
+    a_3 : "fade-up-left",
+  }
+
   return (
-    <Col xs={12} sm={6} lg={3} data-aos={index % 2 === 0 ? "fade-right" : 'fade-left'}>
+    <Col xs={6} sm={6} lg={3} data-aos={animations[`a_${index}`]}>
       <div className={styles.category_box}>
         <div className={styles.overlay}>
           <div>

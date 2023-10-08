@@ -5,9 +5,11 @@ const CustomContainer = (props) => {
   const { children, className } = props;
 
   return (
-    <Container className={`${className} ${styles.custom_container}`}>
+  <div className={styles.wrap}>
+      <Container className={`${className} ${styles.custom_container}`}>
       {children}
     </Container>
+  </div>
   );
 };
 
