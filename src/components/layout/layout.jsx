@@ -1,3 +1,5 @@
+import Footer from "./footer/footer";
+
 const { default: Header } = require("./header/header");
 
 const Layout = (props) => {
@@ -6,6 +8,7 @@ const Layout = (props) => {
     <>
       <Header />
       {children}
+      <Footer/>
     </>
   );
 };

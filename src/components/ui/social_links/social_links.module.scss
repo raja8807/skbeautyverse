@@ -1,0 +1,28 @@
+.social {
+  display: flex;
+  align-items: center;
+  // border: 1px solid red;
+
+  width: fit-content;
+  gap: 10px;
+
+  > div {
+    border: 1px solid white;
+    height: 32px;
+    width: 32px;
+    @include flexCenter;
+    border-radius: 50%;
+    opacity: 0.7;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      path {
+        color: $color_gold;
+      }
+      border-color: $color_gold;
+    }
+  }
+}
