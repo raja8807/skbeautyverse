@@ -1,0 +1,70 @@
+.fullView {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+
+  .top {
+    // background-color: red;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    // background-color: red;
+
+    svg {
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+    }
+  }
+  .img {
+    // height: 100%;
+    // @include flexCenter;
+    // margin-top: 40px;
+    height: 100%;
+    width: 100%;
+    // @include flexCenter;
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    position: relative;
+
+    svg {
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      cursor: pointer;
+      top: 40%;
+
+      &.left {
+        left: 100px;
+        @include respond-below(sm) {
+          left: 10px;
+        }
+      }
+
+      &.right {
+        right: 100px;
+        @include respond-below(sm) {
+          right: 10px;
+        }
+      }
+    }
+
+    img {
+      width: auto;
+      height: 90%;
+      padding: 10px;
+      @include respond-below(sm) {
+        width: 90%;
+        height: fit-content;
+        padding: 0;
+      }
+    }
+  }
+}
