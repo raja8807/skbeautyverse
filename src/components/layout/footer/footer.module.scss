@@ -19,6 +19,16 @@
       img {
         width: 100px;
       }
+
+      @include respond-below(sm) {
+        gap: 16px;
+        img {
+          width: 70px;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
     }
   }
 
@@ -47,6 +57,9 @@
 
         p {
           margin-top: -5px;
+          @include respond-below(sm) {
+            font-size: 14px;
+          }
         }
       }
 
@@ -60,12 +73,32 @@
           // background-color: red;
           text-decoration: none;
           color: white;
+          @include respond-below(sm) {
+            font-size: 14px;
+          }
 
           &:hover {
             color: $color_gold;
           }
         }
       }
+    }
+    small {
+      font-size: 13px;
+      opacity: 0.7;
+      color: $color_gold;
+      a {
+        color: white;
+        margin-left: 5px;
+        font-size: 14px;
+    }
+    &:hover{
+        color:white;
+
+        a{
+            color: $color_gold;
+        }
+    }
     }
   }
 }

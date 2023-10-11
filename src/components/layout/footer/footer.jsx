@@ -30,7 +30,7 @@ const Footer = () => {
           </Col>
           <Col lg={7}>
             <div className={styles.right}>
-              <Row >
+              <Row>
                 <Col xs={12} md={6} className={styles.box}>
                   <h2 className={fonts.lora}>Contact US</h2>
                   <div>
@@ -92,8 +92,13 @@ const Footer = () => {
                     ></iframe>
                   </div>
                 </Col>
-              <hr/>
-              <p style={{textAlign:'center'}}>Lorem ipsum, dolor sit amet </p>
+                <hr />
+                <small style={{ textAlign: "center" }}>
+                  Developed And Maintianed By{" "}
+                  <Link href="https://www.nammaoorudev.online" target="_blank">
+                    www.nammoorudev.online
+                  </Link>{" "}
+                </small>
               </Row>
             </div>
           </Col>
