@@ -1,0 +1,61 @@
+.form {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  margin: 10px;
+
+  p {
+    text-align: center;
+    color: gold;
+    font-size: 20px;
+    // margin: 10px;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    svg {
+        cursor: pointer;
+      path {
+        color: red;
+      }
+    }
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    small {
+      display: block;
+      width: 100px;
+      font-size: 16px;
+    }
+    input {
+      color: black;
+      padding: 2px 10px;
+      width: 100%;
+    }
+
+    svg {
+      font-size: 20px;
+      cursor: pointer;
+      path {
+        color: red;
+      }
+    }
+  }
+  .add {
+    margin: auto;
+    font-size: 24px;
+    // background-color: red;
+    cursor: pointer;
+    path {
+      color: $color_gold;
+    }
+  }
+}

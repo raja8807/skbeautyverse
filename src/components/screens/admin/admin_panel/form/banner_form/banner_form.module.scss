@@ -1,0 +1,29 @@
+.imgWrap {
+  position: relative;
+
+  svg {
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .trash {
+    right: 20px;
+    top: 10px;
+  }
+
+  .left{
+    top: 40%;
+    left: 10px;
+  }
+
+  .right{
+    top: 40%;
+    right: 10px;
+  }
+}
+
+.upload{
+    @include flexCenter;
+    flex-direction: column;
+}
