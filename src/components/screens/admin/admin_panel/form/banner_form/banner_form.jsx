@@ -153,12 +153,12 @@ const BannerForm = () => {
               ))}
         </Row>
         <br />
-        <CustomButton>Save</CustomButton>
+        <CustomButton type="gold">Save</CustomButton>
         <br />
         <br />
       </div>
-      <hr/>
-      <PackageForm/>
+      <hr />
+      <PackageForm />
     </div>
   );
 };

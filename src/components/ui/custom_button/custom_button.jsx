@@ -1,7 +1,7 @@
 import styles from "./custom_button.module.scss";
 
 const CustomButton = (props) => {
-  const { children, type = "primary", clickHandler = () => {} } = props;
+  const { children, type = "primary", clickHandler = () => {} ,disabled} = props;
 
   return (
     <button
@@ -9,6 +9,7 @@ const CustomButton = (props) => {
       onClick={(e) => {
         clickHandler(e);
       }}
+      disabled={disabled}
     >
       {children}
     </button>

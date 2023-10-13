@@ -127,7 +127,7 @@ const PackageForm = () => {
                 <div>
                   <small>Price</small>
                   <input
-                    placeholder="Circle"
+                    placeholder="Price"
                     value={pack.price}
                     onChange={(e) => {
                       const { value } = e.target;
@@ -153,6 +153,7 @@ const PackageForm = () => {
         clickHandler={() => {
           //   setPackages((prev) => [...prev, { head: "", body: [""], price: "" }]);
         }}
+        type="gold"
       >
         Save
       </CustomButton>

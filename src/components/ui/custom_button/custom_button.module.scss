@@ -3,6 +3,10 @@
   padding: 8px 16px;
   border: none;
 
+  &:disabled{
+    opacity: 0.7;
+  }
+
   &.primary {
     background-color: transparent;
     border: 2px solid $color_gold;
@@ -31,7 +35,7 @@
     border: 1px solid black;
     border-radius: 3px;
 
-    &:hover{
+    &:hover {
       background-color: white;
       border-color: transparent;
     }
@@ -44,5 +48,18 @@
     //   border: 2px solid $color_black;
     //   color: $color_black;
     // }
+  }
+
+  &.gold {
+    background-color: $color_gold;
+    color: $color_black;
+    border: 2px solid transparent;
+    &:not(:disabled) {
+      &:hover {
+        background-color: transparent;
+        color: $color_gold;
+        border: 2px solid $color_gold;
+      }
+    }
   }
 }

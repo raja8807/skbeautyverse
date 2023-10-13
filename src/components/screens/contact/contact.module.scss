@@ -1,0 +1,46 @@
+.top {
+  display: flex;
+  justify-content: center;
+  @include respond-below(md) {
+    flex-direction: column;
+    align-items: center;
+  }
+  //   width: 100%;
+}
+
+.info {
+  // background-color: red;
+  //   height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 20px 50px;
+  width: 300px;
+  //   gap: 10px;
+
+  .icon {
+    background-color: $color_gold;
+    height: 80px;
+    width: 80px;
+    @include flexCenter;
+    border-radius: 50%;
+
+    svg {
+      font-size: 25px;
+      path {
+        color: $color_black;
+      }
+    }
+  }
+
+  h4 {
+    color: $color_gold;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  p {
+    line-height: 20px;
+  }
+}

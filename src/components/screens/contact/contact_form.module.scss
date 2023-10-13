@@ -1,0 +1,31 @@
+.contactForm {
+  background-color: $color_black;
+  width: 700px;
+//   height: 200px;
+  padding: 20px;
+  margin: auto;
+  @include flexCenter;
+  flex-direction: column;
+  gap: 16px;
+
+  @include respond-below(md){
+    width: 100%;
+  }
+
+  p{
+    color: $color_gold;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  input,textarea{
+    background-color: $color_grey;
+    border: none !important;
+    color: white;
+    outline-color: $color_gold;
+    // outline-width: 10;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+  }
+}

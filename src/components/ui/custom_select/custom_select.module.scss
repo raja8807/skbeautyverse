@@ -1,0 +1,10 @@
+.customSelect {
+  background-color: transparent;
+  border: 2px solid $color_gold;
+  padding: 10px 20px;
+
+  option {
+    color: $color_black;
+    cursor: pointer;
+  }
+}

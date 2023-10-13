@@ -5,6 +5,8 @@ import FullViewImage from "./full_view/full_view";
 import { useState } from "react";
 import CustomSection from "@/components/ui/custom_section/custom_section";
 import { Eye } from "react-bootstrap-icons";
+import CustomSelect from "@/components/ui/custom_select/custom_select";
+import categories from "@/components/constants/categories";
 
 const GalleryScreen = () => {
   const allImages = [];
@@ -24,7 +26,9 @@ const GalleryScreen = () => {
       <CustomContainer>
         <br />
         <CustomSection head="Our Gallery" noPadding />
-
+        <CustomSelect options={categories.map((c) => ({ text: c.name }))} />
+        <br />
+        <br />
         <div className={styles.wrapper}>
           {allImages?.map((src, i) => (
             <div key={i} className={styles.img_holder}>
