@@ -7,8 +7,10 @@ const {
   default: CustomSection,
 } = require("@/components/ui/custom_section/custom_section");
 
-const Pricing = () => {
-  const packages = [
+const Pricing = (props) => {
+  const { packages } = props;
+
+  const tempPackages = [
     {
       head: "BEAUTY-WORLD",
       price: "5,999",
@@ -58,17 +60,29 @@ const Pricing = () => {
     >
       <CustomContainer>
         <div className={styles.packWrap}>
-          {packages.map((p, i) => {
-            return (
-              <Package
-                key={p.head}
-                price={p.price}
-                head={p.head}
-                body={p.body}
-                idx={i}
-              />
-            );
-          })}
+          {packages
+            ? packages.map((p, i) => {
+                return (
+                  <Package
+                    key={p.head}
+                    price={p.price}
+                    head={p.head}
+                    body={p.body}
+                    idx={i}
+                  />
+                );
+              })
+            : tempPackages.map((p, i) => {
+                return (
+                  <Package
+                    key={p.head}
+                    price={p.price}
+                    head={p.head}
+                    body={p.body}
+                    idx={i}
+                  />
+                );
+              })}
         </div>
       </CustomContainer>
     </CustomSection>

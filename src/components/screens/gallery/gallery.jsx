@@ -7,26 +7,46 @@ import CustomSection from "@/components/ui/custom_section/custom_section";
 import { Eye } from "react-bootstrap-icons";
 import CustomSelect from "@/components/ui/custom_select/custom_select";
 import categories from "@/components/constants/categories";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const GalleryScreen = () => {
-  const allImages = [];
-
-  for (var i = 1; i <= 42; i++) {
-    const img = `images/gallery/1 (${i}).jpg`;
-    allImages.push(img);
-  }
+const GalleryScreen = (props) => {
+  const { images } = props;
+  const [allImages, setAllImages] = useState([]);
+  // const [isLoading,setIsLoading] = useState(false)
+  
+  
+  useEffect(() => {
+    setAllImages(images.map((img) => img.download_url));
+  }, [images]);
+  
+  const router = useRouter();
 
   const [currentFullViewImageIndex, SetCurrentFullViewImageIndex] =
     useState(null);
 
-  // console.log(currentFullViewImageIndex);
+  const allCategories = [
+    { text: "All", value: "all" },
+    ...categories.map((c) => ({ text: c.name, value: c.id })),
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    router?.query?.category || allCategories[0].text
+  );
 
   return (
     <>
       <CustomContainer>
         <br />
         <CustomSection head="Our Gallery" noPadding />
-        <CustomSelect options={categories.map((c) => ({ text: c.name }))} />
+        <CustomSelect
+          value={selectedCategory}
+          options={allCategories}
+          onChange={(v) => {
+            router.push(`/gallery/${v}`);
+            setSelectedCategory(v);
+          }}
+        />
         <br />
         <br />
         <div className={styles.wrapper}>

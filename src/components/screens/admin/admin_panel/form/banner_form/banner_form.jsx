@@ -1,39 +1,49 @@
 import { useState } from "react";
 import styles from "./banner_form.module.scss";
-import { Col, Image, Row } from "react-bootstrap";
+import { Col, Image, Row, Spinner } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import { ChevronLeft, ChevronRight, Trash3 } from "react-bootstrap-icons";
-import PackageForm from "./package_form/package_form";
 
-const BannerForm = () => {
-  const src =
-    "https://image.wedmegood.com/resized-nw/600X/wp-content/uploads/2019/03/1539960377_BBB_MG_6768_WCI_copy.jpg";
-
-  const [images, setImages] = useState([
-    {
-      _id: "1",
-      url: src,
-      index: 0,
-    },
-    {
-      _id: "2",
-      url: "https://i.pinimg.com/originals/a0/39/85/a039857f6cbff84f489b14f2d2d031fb.jpg",
-      index: 1,
-    },
-    {
-      _id: "3",
-      url: src,
-      index: 2,
-    },
-    {
-      _id: "4",
-      url: "https://i.pinimg.com/originals/a0/39/85/a039857f6cbff84f489b14f2d2d031fb.jpg",
-      index: 3,
-    },
-  ]);
-
+const BannerForm = ({ bannerImages }) => {
+  const [images, setImages] = useState(bannerImages);
   const [newImage, setNewImage] = useState(null);
   const [error, setError] = useState();
+  const [isSaveLoading, setIsSaveLoading] = useState(false);
+
+  // ===============================================
+  const initialArray = [
+    { id: 1, name: "John", age: 30 },
+    { id: 2, name: "Jane", age: 25 },
+    { id: 3, name: "Bob", age: 40 },
+  ];
+
+  const modifiedArray = [
+    { id: 1, name: "Joh", age: 30 },
+    { id: 2, name: "Jane", age: 26 },
+    { id: 3, name: "Bob", age: 40 },
+  ];
+
+  // Define a function to check if objects have changed values
+  function hasObjectChanged(initialObj, modifiedObj) {
+    for (const key in initialObj) {
+      if (initialObj[key] !== modifiedObj[key]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Use the filter method to get objects with changed values
+  const changedObjects = modifiedArray.filter((modifiedObj) => {
+    const correspondingInitialObj = initialArray.find(
+      (initialObj) => initialObj.id === modifiedObj.id
+    );
+    return hasObjectChanged(correspondingInitialObj, modifiedObj);
+  });
+
+  console.log(changedObjects);
+
+  // ===============================================
 
   const deleteImage = (id) => {
     setImages((prev) => {
@@ -42,22 +52,56 @@ const BannerForm = () => {
     });
   };
 
-  const uploadImage = (file) => {
-    setImages((prev) => {
-      const imgs = [...prev];
-      const newImgs = imgs.map((i) => ({ ...i, index: i.index + 1 }));
-      return [
-        { _id: Math.random(), url: URL.createObjectURL(file), index: 0 },
-        ...newImgs,
-      ];
-    });
-    setNewImage(null);
+  const saveImages = async (imagesData) => {
+    setIsSaveLoading(true);
+    try {
+      const saveRes = await fetch("/api/bannerImage", {
+        method: "POST",
+        body: JSON.stringify(imagesData),
+      });
+      await saveRes.json();
+      setImages(imagesData);
+      // console.log(saveData);
+      // return saveDa;
+    } catch (error) {
+      console.log(error);
+    }
+    setIsSaveLoading(false);
   };
 
-  const maxImages = 4;
+  const uploadImage = async (file) => {
+    setIsSaveLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "banner_image");
+      const uploadRes = await fetch(
+        "https://api.cloudinary.com/v1_1/dm0mza7qt/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const uploadData = await uploadRes.json();
+      const newImgs = images.map((i) => ({ ...i, index: i.index + 1 }));
+      const toSave = [{ url: uploadData.url, index: 0 }, ...newImgs];
+      await saveImages(toSave);
+      setNewImage(null);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsSaveLoading(false);
+  };
+
+  const maxImages = 5;
 
   return (
     <div className={styles.bannerForm}>
+      {isSaveLoading && (
+        <div className={styles.loading}>
+          <Spinner />
+        </div>
+      )}
       {error}
       {images.length < maxImages && (
         <div className={styles.upload}>
@@ -73,8 +117,8 @@ const BannerForm = () => {
                   setError("Not Valid File");
                   return;
                 }
-                if (file.size > 512000) {
-                  setError("File Size More Than 500kb");
+                if (file.size > 512000 * 4) {
+                  setError("File Size More Than 2MB");
                   return;
                 }
                 setNewImage(file);
@@ -113,8 +157,7 @@ const BannerForm = () => {
                 return a.index - b.index;
               })
               .map((image, i) => (
-                <Col key={image.id} xs={6} md={3} className={styles.imgWrap}>
-                  {/* {image.index} */}
+                <div key={image.id} xs={6} md={3} className={styles.imgWrap}>
                   <Trash3
                     className={styles.trash}
                     onClick={() => {
@@ -148,17 +191,27 @@ const BannerForm = () => {
                       }}
                     />
                   )}
-                  <Image src={image.url} alt="xx" fluid />
-                </Col>
+                  <Image
+                    src={image.url.replace("upload", "upload/w_200,f_auto")}
+                    alt="xx"
+                    fluid
+                  />
+                </div>
               ))}
         </Row>
         <br />
-        <CustomButton type="gold">Save</CustomButton>
+        <CustomButton
+          type="gold"
+          clickHandler={async () => {
+            await saveImages(images);
+          }}
+        >
+          Save
+        </CustomButton>
         <br />
         <br />
       </div>
       <hr />
-      <PackageForm />
     </div>
   );
 };

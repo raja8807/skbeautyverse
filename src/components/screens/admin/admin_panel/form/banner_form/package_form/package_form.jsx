@@ -1,53 +1,59 @@
 import CustomSection from "@/components/ui/custom_section/custom_section";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import styles from "./package_form.module.scss";
 import { PlusCircle, Trash, TrashFill, XCircle } from "react-bootstrap-icons";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 
 const { useState } = require("react");
 
-const PackageForm = () => {
-  const [packages, setPackages] = useState([
-    {
-      head: "BEAUTY-WORLD",
-      price: "5,999",
-      body: [
-        "BASIC MAKEUP",
-        "BASIC HAIRSTYLES",
-        "1 SAREE DRAPPING",
-        "MAKEUP FOR GROOM",
-        "SINGLE SESSION",
-      ],
-    },
-    {
-      head: "BEAUTY-VERSE",
-      price: "19,999",
-      body: [
-        "UHD MAKEUP",
-        "SWEAT PROOF",
-        "WATER PROOF",
-        "ADVANCE HAIRSTYLES",
-        "SAREE DRAPPING",
-        "MEHANDHI",
-        "MAKEUP FOR GROOM",
-        "JEWELS FOR 2 SESSION",
-        "MAKEUP FOR SIBLING",
-        "GUEST MAKEUP",
-      ],
-    },
-    {
-      head: "BEAUTY-PLANET",
-      price: "11,999",
-      body: [
-        "HD MAKEUP",
-        "HAIRSTYLES",
-        "JEWELS",
-        "2 SESSION",
-        "SAREE DRAPPING",
-        "MAKEUP FOR GROOM",
-      ],
-    },
-  ]);
+const PackageForm = ({ packages: packagesData }) => {
+  const [packages, setPackages] = useState(
+    packagesData || []
+
+    //   [
+    //   {
+    //     head: "BEAUTY-WORLD",
+    //     price: "5,999",
+    //     body: [
+    //       "BASIC MAKEUP",
+    //       "BASIC HAIRSTYLES",
+    //       "1 SAREE DRAPPING",
+    //       "MAKEUP FOR GROOM",
+    //       "SINGLE SESSION",
+    //     ],
+    //   },
+    //   {
+    //     head: "BEAUTY-VERSE",
+    //     price: "19,999",
+    //     body: [
+    //       "UHD MAKEUP",
+    //       "SWEAT PROOF",
+    //       "WATER PROOF",
+    //       "ADVANCE HAIRSTYLES",
+    //       "SAREE DRAPPING",
+    //       "MEHANDHI",
+    //       "MAKEUP FOR GROOM",
+    //       "JEWELS FOR 2 SESSION",
+    //       "MAKEUP FOR SIBLING",
+    //       "GUEST MAKEUP",
+    //     ],
+    //   },
+    //   {
+    //     head: "BEAUTY-PLANET",
+    //     price: "11,999",
+    //     body: [
+    //       "HD MAKEUP",
+    //       "HAIRSTYLES",
+    //       "JEWELS",
+    //       "2 SESSION",
+    //       "SAREE DRAPPING",
+    //       "MAKEUP FOR GROOM",
+    //     ],
+    //   },
+    // ]
+  );
+
+  // console.log(packagesData);
 
   const setPackValue = (index, key, value) => {
     setPackages((prev) => {
@@ -55,6 +61,23 @@ const PackageForm = () => {
       prevPaks[index][key] = value;
       return prevPaks;
     });
+  };
+
+  const [loadingIdx, setLoadingIdx] = useState(null);
+
+  const savePackage = async (pack, index) => {
+    // console.log(pack);
+    setLoadingIdx(index);
+    try {
+      const res = await fetch("/api/package", {
+        method: "PUT",
+        body: JSON.stringify(pack),
+      });
+      const dataa = await res.json();
+      setLoadingIdx(null);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -66,15 +89,6 @@ const PackageForm = () => {
               <div className={styles.form}>
                 <section>
                   <p>Package {pi + 1}</p>
-                  <XCircle
-                    onClick={() => {
-                      setPackages((prev) => {
-                        return prev.filter((f, fid) => {
-                          return fid !== pi;
-                        });
-                      });
-                    }}
-                  />
                 </section>
                 <div className={styles.field}>
                   <small>Heading</small>
@@ -135,28 +149,21 @@ const PackageForm = () => {
                     }}
                   />
                 </div>
+                <br />
+                <CustomButton
+                  clickHandler={async () => {
+                    await savePackage(pack, pi);
+                  }}
+                  type="gold"
+                  disabled={loadingIdx !== null}
+                >
+                  {loadingIdx === pi ? <Spinner /> : "Save"}
+                </CustomButton>
               </div>
             </Col>
           );
         })}
       </Row>
-      <CustomButton
-        clickHandler={() => {
-          setPackages((prev) => [...prev, { head: "", body: [""], price: "" }]);
-        }}
-      >
-        Add Package
-      </CustomButton>
-      <br />
-      <br />
-      <CustomButton
-        clickHandler={() => {
-          //   setPackages((prev) => [...prev, { head: "", body: [""], price: "" }]);
-        }}
-        type="gold"
-      >
-        Save
-      </CustomButton>
     </CustomSection>
   );
 };

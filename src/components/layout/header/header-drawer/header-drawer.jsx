@@ -29,12 +29,20 @@ const HeaderDrawer = (props) => {
         <Offcanvas.Body className={styles.body}>
           <ul>
             {pagesList.map((page) => {
+              const getIsActive = () => {
+                if (page.name !== "Gallery") {
+                  return router.asPath === page.href;
+                } else {
+                  return router.asPath.includes("gallery");
+                }
+              };
+              const isActive = getIsActive();
               return (
                 <li
                   key={page.name}
-                  className={router.pathname === page.href ? styles.active : ""}
-                  onClick={()=>{
-                    handleClose()
+                  className={isActive ? styles.active : ""}
+                  onClick={() => {
+                    handleClose();
                   }}
                 >
                   <Link href={page.href}>{page.name}</Link>

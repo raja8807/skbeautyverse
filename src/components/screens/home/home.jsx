@@ -4,12 +4,15 @@ import Banner from "./sections/banner/banner";
 import Categories from "./sections/categories/categories";
 import Pricing from "./sections/pricing/pricing";
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
+  const {packages,bannerImages} = props
+
+
   return (
     <>
-      <Banner />
+      <Banner bannerImages={bannerImages}/>
       <Categories />
-      <Pricing/>
+      <Pricing packages={packages}/>
       <Collection />
     </>
   );

@@ -1,5 +1,6 @@
 .imgWrap {
   position: relative;
+  width: fit-content;
 
   svg {
     position: absolute;
@@ -12,18 +13,29 @@
     top: 10px;
   }
 
-  .left{
+  .left {
     top: 40%;
     left: 10px;
   }
 
-  .right{
+  .right {
     top: 40%;
     right: 10px;
   }
 }
 
-.upload{
-    @include flexCenter;
-    flex-direction: column;
+.upload {
+  @include flexCenter;
+  flex-direction: column;
+}
+
+.loading {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flexCenter;
+  z-index: 200;
 }

@@ -1,9 +1,11 @@
 import BannerForm from "./form/banner_form/banner_form";
+import PackageForm from "./form/banner_form/package_form/package_form";
 
-const AdminPanel = () => {
+const AdminPanel = ({homeData}) => {
   return (
     <div>
-      <BannerForm />
+      <BannerForm bannerImages={homeData?.bannerImages}/>
+      <PackageForm packages={homeData?.packages}/>
     </div>
   );
 };

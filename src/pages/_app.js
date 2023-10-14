@@ -5,6 +5,8 @@ import "aos/dist/aos.css";
 import Layout from "@/components/layout/layout";
 
 import { Outfit as BaseFont } from "next/font/google";
+import { useRouter } from "next/router";
+import { Spinner } from "react-bootstrap";
 
 // Kaushan_Script
 
@@ -17,6 +19,8 @@ const roboto = BaseFont({
 
 export default function App({ Component, pageProps }) {
   const [load, setLoad] = useState(true);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     Aos.init({
       // easing: "ease-out-cubic",
@@ -29,10 +33,32 @@ export default function App({ Component, pageProps }) {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    const handleChangeStart = (url) => {
+      if (url === "/" || url.includes("gallery")) {
+        console.log(url, "adeaefef------------>>");
+        setIsLoading(true);
+      }
+    };
+
+    const handleChangeEnd = (url) => {
+      if (url === "/" || url.includes("gallery")) {
+        setIsLoading(false);
+      }
+    };
+
+    router.events.on("routeChangeStart", handleChangeStart);
+    router.events.on("routeChangeComplete", handleChangeEnd);
+    router.events.on("routeChangeError", handleChangeEnd);
+  }, [router.events]);
+
   return (
     <>
-      {load ? (
-        <div className="ov">Loading..</div>
+      {load && <div className="loading">Loading..</div>}
+      {isLoading ? (
+        <div className="loading">
+          <Spinner />
+        </div>
       ) : (
         <main className={roboto.className}>
           <Layout>

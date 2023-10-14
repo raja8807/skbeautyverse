@@ -2,36 +2,24 @@ const {
   default: CustomContainer,
 } = require("@/components/ui/custom_container/custom_container");
 import { useEffect, useState } from "react";
-// import { Image } from "react-bootstrap";
 import styles from "./banner.module.scss";
 import SimpleImageSlider from "react-simple-image-slider";
 import CustomButton from "@/components/ui/custom_button/custom_button";
-
-// import {Lora  as HeadFont } from "next/font/google";
 import fonts from "@/components/fonts/fonts";
 import { Image } from "react-bootstrap";
 
-// Lakme-Logo
+const Banner = ({bannerImages=[]}) => {
 
-const src =
-  "https://image.wedmegood.com/resized-nw/600X/wp-content/uploads/2019/03/1539960377_BBB_MG_6768_WCI_copy.jpg";
-
-const Banner = () => {
-  const images = [
-    {
-      url: src,
-    },
-    {
-      url: "https://i.pinimg.com/originals/a0/39/85/a039857f6cbff84f489b14f2d2d031fb.jpg",
-    },
-    {
-      url: src,
-    },
-  ];
+  const images = bannerImages.map((image)=> (
+    {...image,url : 
+    image.url.replace('upload','upload/w_500,f_auto')
+    }
+  )).sort((a, b) => {
+    return a.index - b.index;
+  })
 
   const [width, setShowWidth] = useState(400);
   useEffect(() => {
-    // console.log(width);
     if (window) {
       if (window.innerWidth < 420) {
         setShowWidth(300);
@@ -39,7 +27,6 @@ const Banner = () => {
         setShowWidth(400);
       }
       window.addEventListener("resize", () => {
-        // alert()
         if (window.innerWidth < 420) {
           setShowWidth(300);
         } else {

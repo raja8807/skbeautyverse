@@ -18,7 +18,7 @@ const Header = () => {
 
   useEffect(() => {
     const getIsScrolled = () => {
-      setScrolled(window.scrollY > 0)
+      setScrolled(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", getIsScrolled);
@@ -46,13 +46,19 @@ const Header = () => {
         <nav>
           <ul>
             {pagesList.map((page) => {
+              const getIsActive = () => {
+                if (page.name !== "Gallery") {
+                  return router.asPath === page.href;
+                } else {
+                  return router.asPath.includes("gallery");
+                }
+              };
+              const isActive = getIsActive();
               return (
                 <li key={page.name}>
                   <Link
                     href={page.href}
-                    className={
-                      router.pathname === page.href ? styles.active : ""
-                    }
+                    className={isActive ? styles.active : ""}
                   >
                     {page.name}
                   </Link>
