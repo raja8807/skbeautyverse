@@ -1,18 +1,20 @@
 import { useState } from "react";
-import styles from "./banner_form.module.scss";
+import styles from "./gallery_form.module.scss";
 import { Col, Image, Row, Spinner } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import { ChevronLeft, ChevronRight, Trash3 } from "react-bootstrap-icons";
-import { useEffect } from "react";
+import { useRouter } from "next/router";
+import CustomSelect from "@/components/ui/custom_select/custom_select";
+import categories from "@/components/constants/categories";
 
-const BannerForm = ({ bannerImages }) => {
-  const [images, setImages] = useState(bannerImages);
+const BannerForm = ({ galleryImages = [] }) => {
+  const [images, setImages] = useState(galleryImages);
   const [newImage, setNewImage] = useState(null);
   const [error, setError] = useState();
   const [isSaveLoading, setIsSaveLoading] = useState(false);
+  const [initialImages, setInitialImages] = useState(galleryImages);
 
-  const [initialImages, setInitialImages] = useState(bannerImages);
-
+  const router = useRouter();
   const deleteImage = (id) => {
     setImages((prev) => {
       const newImages = prev.filter((i) => i._id !== id);
@@ -59,10 +61,13 @@ const BannerForm = ({ bannerImages }) => {
     if (isModified) {
       setIsSaveLoading(true);
       try {
-        const saveRes = await fetch("/api/bannerImage", {
-          method: "POST",
-          body: JSON.stringify(imagesData),
-        });
+        const saveRes = await fetch(
+          `/api/galleryImage?q=${router?.query?.category}`,
+          {
+            method: "POST",
+            body: JSON.stringify(imagesData),
+          }
+        );
         await saveRes.json();
         setImages(imagesData);
         setInitialImages(imagesData);
@@ -78,7 +83,7 @@ const BannerForm = ({ bannerImages }) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "banner_image");
+      formData.append("upload_preset", "gallery_image");
       const uploadRes = await fetch(
         "https://api.cloudinary.com/v1_1/dm0mza7qt/image/upload",
         {
@@ -88,7 +93,10 @@ const BannerForm = ({ bannerImages }) => {
       );
       const uploadData = await uploadRes.json();
       const newImgs = images.map((i) => ({ ...i, index: i.index + 1 }));
-      const toSave = [{ url: uploadData.url, index: 0 }, ...newImgs];
+      const toSave = [
+        { url: uploadData.url, index: 0, category: router.query.category },
+        ...newImgs,
+      ];
       await saveImages(toSave);
       setNewImage(null);
     } catch (err) {
@@ -99,36 +107,52 @@ const BannerForm = ({ bannerImages }) => {
 
   const maxImages = 5;
 
+  const allCategories = [
+    ...categories.map((c) => ({ text: c.name, value: c.id })),
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    router?.query?.category || allCategories[0].text
+  );
+
   return (
     <div className={styles.bannerForm}>
+      <CustomSelect
+        value={selectedCategory}
+        options={allCategories}
+        onChange={(v) => {
+          router.push(`/admin/g/${v}`);
+          setSelectedCategory(v);
+        }}
+      />
       {isSaveLoading && (
         <div className={styles.loading}>
           <Spinner />
         </div>
       )}
       {error}
-      <input
-        type="file"
-        max="1"
-        onChange={(e) => {
-          setError(null);
-          setNewImage(null);
-          const file = e.target.files[0];
-          if (file) {
-            if (!file.type.includes("image")) {
-              setError("Not Valid File");
-              return;
-            }
-            if (file.size > 512000 * 4) {
-              setError("File Size More Than 2MB");
-              return;
-            }
-            setNewImage(file);
-          }
-        }}
-      />
-      {images.length < maxImages && (
+      {images?.length < maxImages && (
         <div className={styles.upload}>
+          <input
+            type="file"
+            max="1"
+            onChange={(e) => {
+              setError(null);
+              setNewImage(null);
+              const file = e.target.files[0];
+              if (file) {
+                if (!file.type.includes("image")) {
+                  setError("Not Valid File");
+                  return;
+                }
+                if (file.size > 512000 * 4) {
+                  setError("File Size More Than 2MB");
+                  return;
+                }
+                setNewImage(file);
+              }
+            }}
+          />
           {newImage && (
             <Image
               src={URL.createObjectURL(newImage)}
@@ -197,6 +221,7 @@ const BannerForm = ({ bannerImages }) => {
                 />
               </div>
             ))}
+        <br />
       </div>
       <br />
       <CustomButton
@@ -207,7 +232,8 @@ const BannerForm = ({ bannerImages }) => {
       >
         Save
       </CustomButton>
-      <hr />
+      <br />
+      <br />
     </div>
   );
 };

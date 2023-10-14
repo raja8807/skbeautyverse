@@ -14,9 +14,9 @@ const Footer = () => {
         <Row>
           <Col lg={5}>
             <div className={styles.img}>
-              <Image src="images/categories/1.jpg" alt="bg" fluid />
+              <Image src="/images/categories/1.jpg" alt="bg" fluid />
               <div className={styles.overlay}>
-                <Image src="images/logo/logo.png" fluid alt="logo" />
+                <Image src="/images/logo/logo.png" fluid alt="logo" />
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Maxime error doloremque accusantium dolor iste ipsa quod

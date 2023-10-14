@@ -4,9 +4,12 @@ const {
   default: CustomContainer,
 } = require("@/components/ui/custom_container/custom_container");
 
+import Link from 'next/link'
+
 const Admin = ({homeData}) => {
   return (
     <CustomContainer>
+      <Link href='admin/g/bridal'>Edit Galley</Link>
       <AdminPanel homeData={homeData}/>
     </CustomContainer>
   );

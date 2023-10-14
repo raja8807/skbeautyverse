@@ -3,25 +3,21 @@ const {
 } = require("@/components/screens/gallery/gallery");
 
 const Gallery = ({ images }) => {
-  // console.log(images);
   return <GalleryScreen images={images} />;
 };
 
 export default Gallery;
 
-export async function getServerSideProps() {
-  //   console.log("aeoaen-------------------------->>>>");
-  const limit = Math.floor(Math.random() * 40);
+export async function getServerSideProps(context) {
   try {
+    const q = context.query.category
     const res = await fetch(
-      " https://picsum.photos/v2/list?page=2&limit=" + limit
+      `http://${context.req.headers.host}/api/galleryImage?q=${q}`
     );
-    const images = await res.json();
-    return { props: { images } };
+    const homeData = await res.json();
+    return { props: { images:homeData } };
   } catch (err) {
-    console.log(err);
-    return { props: { images: [] } };
+    console.log('errr--->',err);
+    return { props: { images: 'errr-->'+err.message } };
   }
-
-  // Pass data to the page via props
 }

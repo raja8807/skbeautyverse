@@ -9,7 +9,7 @@ const pagesList = [
     },
     {
         name:'Gallery',
-        href:'/gallery/all'
+        href:'/gallery/bridal'
     },
     {
         name:'Reviews',

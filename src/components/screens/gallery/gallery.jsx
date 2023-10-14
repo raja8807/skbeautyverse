@@ -12,21 +12,14 @@ import { useEffect } from "react";
 
 const GalleryScreen = (props) => {
   const { images } = props;
-  const [allImages, setAllImages] = useState([]);
-  // const [isLoading,setIsLoading] = useState(false)
-  
-  
-  useEffect(() => {
-    setAllImages(images.map((img) => img.download_url));
-  }, [images]);
-  
+  const [allImages, setAllImages] = useState(images || []);
+
   const router = useRouter();
 
   const [currentFullViewImageIndex, SetCurrentFullViewImageIndex] =
     useState(null);
 
   const allCategories = [
-    { text: "All", value: "all" },
     ...categories.map((c) => ({ text: c.name, value: c.id })),
   ];
 
@@ -50,18 +43,22 @@ const GalleryScreen = (props) => {
         <br />
         <br />
         <div className={styles.wrapper}>
-          {allImages?.map((src, i) => (
-            <div key={i} className={styles.img_holder}>
-              <div
-                onClick={() => {
-                  SetCurrentFullViewImageIndex(i);
-                }}
-              >
-                <Eye />
+          {allImages
+            ?.sort((a, b) => {
+              return a.index - b.index;
+            })
+            ?.map((img, i) => (
+              <div key={i} className={styles.img_holder}>
+                <div
+                  onClick={() => {
+                    SetCurrentFullViewImageIndex(i);
+                  }}
+                >
+                  <Eye />
+                </div>
+                <Image src={img.url.replace("upload", "upload/w_400,f_auto")} alt="a" fluid />
               </div>
-              <Image src={src} alt="a" fluid />
-            </div>
-          ))}
+            ))}
         </div>
       </CustomContainer>
       {currentFullViewImageIndex !== null && (

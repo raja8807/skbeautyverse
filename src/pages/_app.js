@@ -35,14 +35,14 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     const handleChangeStart = (url) => {
-      if (url === "/" || url.includes("gallery")) {
+      if (url === "/" || url.includes("gallery")|| url.includes("admin")) {
         console.log(url, "adeaefef------------>>");
         setIsLoading(true);
       }
     };
 
     const handleChangeEnd = (url) => {
-      if (url === "/" || url.includes("gallery")) {
+      if (url === "/" || url.includes("gallery") || url.includes("admin")) {
         setIsLoading(false);
       }
     };
