@@ -54,7 +54,22 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      {load && <div className="loading">Loading..</div>}
+      {load && (
+        <div className="loading">
+          <div class="bg"></div>
+          <div class="star-field">
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <Image
+              className="logo"
+              src="/images/logo/logo.png"
+              width={100}
+              alt="logo"
+            />
+          </div>
+        </div>
+      )}
       {isLoading ? (
         <div className="loading">
           <div class="bg"></div>
@@ -63,7 +78,12 @@ export default function App({ Component, pageProps }) {
             <div class="layer"></div>
             <div class="layer"></div>
             <div class="layer"></div>
-            <Image className="logo" src="/images/logo/logo.png" width={100} alt="logo" />
+            <Image
+              className="logo"
+              src="/images/logo/logo.png"
+              width={100}
+              alt="logo"
+            />
           </div>
         </div>
       ) : (
