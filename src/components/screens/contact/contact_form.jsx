@@ -2,6 +2,10 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 import styles from "./contact_form.module.scss";
 import fonts from "@/components/fonts/fonts";
 import { useState } from "react";
+import axios from "axios";
+import { useRef } from "react";
+import Link from "next/link";
+// import {useRouter} from 'next/router'
 // import { Spinner } from "react-bootstrap";
 
 const ContactForm = ({
@@ -15,19 +19,31 @@ const ContactForm = ({
     message: initialMessage,
   });
 
+  const linkRef = useRef(null);
+
   const [status, setStatus] = useState("idle");
 
-  const sendMessage = ()=>{
-    setStatus('loading')
-    try{
-      setStatus('success')
-    }catch(err){
-      setStatus('error')
+  const sendMessage = async () => {
+    setStatus("loading");
+    try {
+      await axios.post("https://formspree.io/f/myyqlnel", {
+        email: values.email,
+        message: values,
+      });
+      linkRef.current.click();
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
     }
-  }
+  };
 
   return (
-    <form className={`${styles.contactForm} ${styles[type]}`}>
+    <form className={`${styles.contactForm} ${styles[type]}`}
+    onSubmit={async (e)=>{
+      e.preventDefault()
+      await sendMessage()
+    }}
+    >
       <p className={fonts.lora}>Get In Touch</p>
       <input
         placeholder="Your Name"
@@ -36,6 +52,7 @@ const ContactForm = ({
           const { value } = e.target;
           setValues((prev) => ({ ...prev, name: value }));
         }}
+        required
       />
       <input
         placeholder="Your Phone Number"
@@ -44,6 +61,7 @@ const ContactForm = ({
           const { value } = e.target;
           setValues((prev) => ({ ...prev, phone: value }));
         }}
+        required
       />
       <input
         placeholder="Your Email"
@@ -52,6 +70,8 @@ const ContactForm = ({
           const { value } = e.target;
           setValues((prev) => ({ ...prev, email: value }));
         }}
+        required
+        type="email"
       />
       <textarea
         placeholder="Your Message"
@@ -61,18 +81,17 @@ const ContactForm = ({
           const { value } = e.target;
           setValues((prev) => ({ ...prev, message: value }));
         }}
+        required
       />
       {status !== "success" && status !== "error" && (
-        <CustomButton
-          type={type === "black" ? "gold" : "black2"}
-          clickHandler={(e) => {
-            e.preventDefault();
-            sendMessage()
-          }}
-          // disabled
-        >
-          {status === "loading" ? "Please Wait.." : "Send Message"}
-        </CustomButton>
+        <>
+        <input type="submit" disabled={status === "loading"} value={status === "loading" ? "Please Wait.." : "Send Message"}/>
+          <Link
+            ref={linkRef}
+            target="_blank"
+            href={`https://wa.me/918610030499?text=${values.message}`}
+          />
+        </>
       )}
 
       {status === "success" && (

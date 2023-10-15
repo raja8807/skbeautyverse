@@ -15,10 +15,20 @@
     border: none !important;
     color: white;
     outline-color: $color_gold;
-    // outline-width: 10;
     width: 100%;
     padding: 10px 10px;
     border-radius: 5px;
+
+    &:disabled {
+      opacity: 0.7;
+    }
+
+    &[type="submit"] {
+      &:hover {
+        background-color: $color_gold;
+        color: black;
+      }
+    }
   }
 
   &.black {
@@ -28,7 +38,7 @@
     @include respond-below(md) {
       width: 100%;
     }
-    
+
     p {
       color: $color_gold;
     }
@@ -51,11 +61,11 @@
     //   color: rgb(157, 102, 0);
     // }
 
-    &.error{
+    &.error {
       background-color: rgba(255, 0, 0, 0.5);
       color: rgb(186, 0, 0);
     }
-    &.success{
+    &.success {
       background-color: rgba(0, 128, 0, 0.485);
       color: rgb(0, 68, 0);
     }

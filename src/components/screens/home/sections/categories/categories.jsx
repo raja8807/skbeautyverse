@@ -7,18 +7,17 @@ import { Col, Row } from "react-bootstrap";
 import Category from "./category/category";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import categories from "@/components/constants/categories";
+import {useRouter} from 'next/router'
 
 const Categories = () => {
 
+  const router = useRouter()
 
   return (
     <CustomSection
       head="Categories"
       bg="gold"
-      caption="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt dolores
-    vero corrupti sequi deleniti esse impedit, alias in sapiente quia,
-    fugiat obcaecati maiores aliquam asperiores ipsa facilis magni
-    dignissimos. Quis?"
+      caption="Explore our beauty realms! From enchanting bridal transformations to glamorous evening looks, discover the perfect makeup artistry for every occasion. Dive into elegance today!"
     >
       <CustomContainer>
         <Row>
@@ -27,7 +26,11 @@ const Categories = () => {
           ))}
         </Row>
         <div className={styles.btn}>
-          <CustomButton type="black">View Our Gallery</CustomButton>
+          <CustomButton type="black"
+          clickHandler={()=>{
+            router.push('/gallery/bridal')
+          }}
+          >View Our Gallery</CustomButton>
         </div>
       </CustomContainer>
     </CustomSection>

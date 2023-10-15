@@ -16,6 +16,12 @@
     @include respond-below(md) {
       padding: 40px 20px;
     }
+
+    p {
+      b {
+        color: $color_gold;
+      }
+    }
     .bottom {
       width: 100%;
       display: flex;
@@ -30,7 +36,6 @@
         }
         img {
           width: 100px;
-          filter: invert(1);
         }
       }
     }

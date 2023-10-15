@@ -50,12 +50,13 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
         </div>
         <div data-aos="zoom-in" className={styles.text}>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id eum
-            sed, natus accusantium dicta alias. Consequatur cum magni assumenda
-            soluta laborum quibusdam voluptatum reiciendis maxime sunt! Eius non
-            quis aut. Ullam quaerat eligendi error sint possimus adipisci,
-            temporibus ea suscipit id unde consequuntur vero impedit nihil
-            distinctio quam repellat harum.
+            Welcome to SK Beautyverse, where Sushmitha Karthik crafts a <b>universe
+            of beauty! </b> Immerse yourself in a world where artistry meets
+            elegance. With a passion for perfection, we specialize in creating
+            enchanting bridal makeup experiences. Our brushes weave dreams,
+            enhancing your natural beauty for your special day. Trust us to make
+            you look and feel like a celestial bride. Enter our Beautyverse,
+            where dreams blend seamlessly with reality.
           </p>
           <br />
           <div className={styles.bottom}>

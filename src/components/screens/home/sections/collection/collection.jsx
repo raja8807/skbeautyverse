@@ -9,15 +9,16 @@ const Collection = () => {
       <div className={styles.left}>
         <div>
           <div>
-            <p className={`${styles.head} ${fonts.lora}`}>LOOKING FOR THE LATEST</p>
-            <h5 className={fonts.petit}>Trending Collection</h5>
-            <p>
-              Earring ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-              ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
-              accumsan lacus vel facilisis.
+            <p className={`${styles.head} ${fonts.lora}`}>
+              LOOKING FOR THE LATEST
             </p>
-<CustomButton type='black'>Enquire Now</CustomButton>
+            <h5 className={fonts.petit}>Bridal Makeover</h5>
+            <p>
+              Your wedding day is as unique as you are. Trust us to make you
+              look and feel like royalty on your special day. Our bridal
+              packages are tailored to match your dreams.
+            </p>
+            <CustomButton type="black">Enquire Now</CustomButton>
           </div>
         </div>
       </div>

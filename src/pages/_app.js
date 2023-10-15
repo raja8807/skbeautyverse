@@ -6,7 +6,7 @@ import Layout from "@/components/layout/layout";
 
 import { Outfit as BaseFont } from "next/font/google";
 import { useRouter } from "next/router";
-import { Spinner } from "react-bootstrap";
+import { Image, Spinner } from "react-bootstrap";
 
 // Kaushan_Script
 
@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     const handleChangeStart = (url) => {
-      if (url === "/" || url.includes("gallery")|| url.includes("admin")) {
+      if (url === "/" || url.includes("gallery") || url.includes("admin")) {
         console.log(url, "adeaefef------------>>");
         setIsLoading(true);
       }
@@ -57,7 +57,14 @@ export default function App({ Component, pageProps }) {
       {load && <div className="loading">Loading..</div>}
       {isLoading ? (
         <div className="loading">
-          <Spinner />
+          <div class="bg"></div>
+
+          <div class="star-field">
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <Image className="logo" src="/images/logo/logo.png" width={100} alt="logo" />
+          </div>
         </div>
       ) : (
         <main className={roboto.className}>
