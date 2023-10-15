@@ -27,6 +27,8 @@ const GalleryScreen = (props) => {
     router?.query?.category || allCategories[0].text
   );
 
+  // Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident culpa vel ipsum dignissimos aliquam animi quos deleniti veritatis voluptatibus beatae quas, rem dolorem quo soluta, odit at inventore ratione consequuntur labore, repudiandae eum. Eaque, minima quidem. Magnam aut architecto velit doloremque, odit alias fugiat magni eos laudantium totam deserunt error, cum rerum! Eligendi in impedit accusantium fuga adipisci distinctio incidunt nemo ea, amet rem laborum a blanditiis assumenda ut. Expedita natus amet, voluptate totam minima beatae fuga, id explicabo officia itaque odio iste adipisci perspiciatis at omnis consequuntur? Commodi saepe reiciendis odit assumenda suscipit quae! Officiis nesciunt nisi animi ipsa.
+
   return (
     <>
       <CustomContainer>

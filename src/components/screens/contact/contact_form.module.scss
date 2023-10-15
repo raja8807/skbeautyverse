@@ -1,24 +1,16 @@
 .contactForm {
-  background-color: $color_black;
-  width: 700px;
-//   height: 200px;
   padding: 20px;
   margin: auto;
   @include flexCenter;
   flex-direction: column;
   gap: 16px;
-
-  @include respond-below(md){
-    width: 100%;
-  }
-
-  p{
-    color: $color_gold;
+  p {
     font-weight: 600;
     font-size: 24px;
   }
 
-  input,textarea{
+  input,
+  textarea {
     background-color: $color_grey;
     border: none !important;
     color: white;
@@ -27,5 +19,45 @@
     width: 100%;
     padding: 10px 10px;
     border-radius: 5px;
+  }
+
+  &.black {
+    background-color: $color_black;
+    width: 700px;
+
+    @include respond-below(md) {
+      width: 100%;
+    }
+    
+    p {
+      color: $color_gold;
+    }
+  }
+
+  &.gold {
+    background-color: $color_gold;
+    p {
+      color: $color_black;
+    }
+  }
+
+  .status {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+
+    // &.loading {
+    //   background-color: rgba(255, 166, 0, 0.5);
+    //   color: rgb(157, 102, 0);
+    // }
+
+    &.error{
+      background-color: rgba(255, 0, 0, 0.5);
+      color: rgb(186, 0, 0);
+    }
+    &.success{
+      background-color: rgba(0, 128, 0, 0.485);
+      color: rgb(0, 68, 0);
+    }
   }
 }

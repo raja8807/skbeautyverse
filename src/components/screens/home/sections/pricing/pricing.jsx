@@ -1,7 +1,8 @@
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import styles from "./pricing.module.scss";
-import { Col, Row } from "react-bootstrap";
 import Package from "./package/package";
+import { useState } from "react";
+import EnquirePopup from "@/components/enquire_popup/enquire_popup";
 
 const {
   default: CustomSection,
@@ -52,12 +53,15 @@ const Pricing = (props) => {
     },
   ];
 
+  const [showPopup,setShowPopup]=useState('')
+
   return (
     <CustomSection
       bg="white"
       head="Packages"
       caption="Book a Complete Engagement, Marriage, Reception Makeup With Us"
     >
+      <EnquirePopup show={!!showPopup} setShow={setShowPopup} initialMessage={showPopup}/>
       <CustomContainer>
         <div className={styles.packWrap}>
           {packages
@@ -69,6 +73,7 @@ const Pricing = (props) => {
                     head={p.head}
                     body={p.body}
                     idx={i}
+                    setShowPopup={setShowPopup}
                   />
                 );
               })
@@ -80,6 +85,7 @@ const Pricing = (props) => {
                     head={p.head}
                     body={p.body}
                     idx={i}
+                    setShowPopup={setShowPopup}
                   />
                 );
               })}

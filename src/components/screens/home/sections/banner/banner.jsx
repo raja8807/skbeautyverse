@@ -8,15 +8,15 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 import fonts from "@/components/fonts/fonts";
 import { Image } from "react-bootstrap";
 
-const Banner = ({bannerImages=[]}) => {
-
-  const images = bannerImages.map((image)=> (
-    {...image,url : 
-    image.url.replace('upload','upload/w_500,f_auto')
-    }
-  )).sort((a, b) => {
-    return a.index - b.index;
-  })
+const Banner = ({ bannerImages = [], setShowPopup }) => {
+  const images = bannerImages
+    .map((image) => ({
+      ...image,
+      url: image.url.replace("upload", "upload/w_500,f_auto"),
+    }))
+    .sort((a, b) => {
+      return a.index - b.index;
+    });
 
   const [width, setShowWidth] = useState(400);
   useEffect(() => {
@@ -63,7 +63,13 @@ const Banner = ({bannerImages=[]}) => {
               <p>Trained By</p>
               <Image fluid alt="lakme" src="/images/logo/Lakme-Logo.png" />
             </div>
-            <CustomButton>Book Now</CustomButton>
+            <CustomButton
+              clickHandler={() => {
+                setShowPopup(true);
+              }}
+            >
+              Book Now
+            </CustomButton>
           </div>
         </div>
       </div>

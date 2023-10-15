@@ -1,0 +1,23 @@
+.popup {
+  div[class="modal-content"] {
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .box {
+    position: relative;
+
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 40px;
+      cursor: pointer;
+
+      path {
+        color: black;
+      }
+    }
+  }
+}

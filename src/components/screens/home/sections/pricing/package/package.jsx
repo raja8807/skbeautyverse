@@ -1,7 +1,7 @@
 import styles from "./package.module.scss";
 
 const Package = (props) => {
-  const { head, price, body, idx } = props;
+  const { head, price, body, idx ,setShowPopup} = props;
 
   return (
     <div className={styles.package} data-aos="flip-left">
@@ -15,7 +15,11 @@ const Package = (props) => {
       </div>
       <div className={styles.bottom}>
         <p className={styles.price}>Rs. {price}/-</p>
-        <p className={styles.enq}>Enquire Now</p>
+        <p className={styles.enq}
+        onClick={()=>{
+          setShowPopup('I want to know more')
+        }}
+        >Enquire Now</p>
       </div>
     </div>
   );
