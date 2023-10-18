@@ -1,0 +1,18 @@
+.newReview {
+  input {
+    color: $color_black;
+  }
+
+  .star {
+    &:hover {
+      path {
+        color: $color_gold;
+      }
+    }
+    &.rated {
+      path {
+        color: $color_gold;
+      }
+    }
+  }
+}

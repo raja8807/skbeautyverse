@@ -1,0 +1,40 @@
+.review {
+  background-color: #141414d6;
+  margin: 20px 0;
+  padding: 16px;
+  border-radius: 10px;
+
+  .top {
+    display: flex;
+    margin-bottom: 16px;
+
+    .initial {
+      background-color: $color_gold;
+      text-align: center;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      margin-right: 10px;
+      font-size: 20px;
+      display: block;
+      @include flexCenter;
+      color: $color_black;
+      font-weight: 800;
+    }
+
+    .star {
+      margin-right: 4px;
+      &.rated {
+        path {
+          color: $color_gold;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    span {
+      font-size: 14px;
+    }
+  }
+}
