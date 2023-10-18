@@ -7,50 +7,44 @@ const {
 import { Row } from "react-bootstrap";
 import Review from "./review/review";
 import NewReviewForm from "./new_review/new_review";
+import { useState } from "react";
 
-const ReviewsScreen = () => {
-  const reviews = [
-    {
-      _id: "snkaen",
-      firstName: "John",
-      lastName: "Doe",
-      rating: 3,
-      comment:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad vel autem blanditiis libero eveniet laborum nemo facere quo, iste possimus velit omnis labore! Similique ratione ipsam, quam perspiciatis totam mollitia.",
-    },
-    {
-      _id: "aepfma",
-      firstName: "Aohn",
-      lastName: "Boe",
-      rating: 3,
-      comment:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad vel autem blanditiis libero eveniet laborum nemo facere quo, iste possimus velit omnis labore! Similique ratione ipsam, quam perspiciatis totam mollitia.",
-    },
-    {
-      _id: "pqekpqe",
-      firstName: "Qohn",
-      lastName: "Loe",
-      rating: 3,
-      comment:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad vel autem blanditiis libero eveniet laborum nemo facere quo, iste possimus velit omnis labore! Similique ratione ipsam, quam perspiciatis totam mollitia.",
-    },
-    {
-      _id: "zdvldml",
-      firstName: "Pohn",
-      lastName: "Yoe",
-      rating: 3,
-      comment:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad vel autem blanditiis libero eveniet laborum nemo facere quo, iste possimus velit omnis labore! Similique ratione ipsam, quam perspiciatis totam mollitia.",
-    },
-  ];
+const ReviewsScreen = ({ reviews: reviewsData = [] }) => {
+  const [reviews, setReviews] = useState(reviewsData);
+
+  const [isSubmitted, setIsSubmitted] = useState(
+    localStorage.getItem("reviewId") || false
+  );
+
+  const deleteReview = async (id) => {
+    // console.log(id);
+    const res = await fetch(`/api/review?q=${id}`, {
+      method: "DELETE",
+    });
+
+    setReviews((prev) => prev.filter((r) => r._id !== id));
+    localStorage.removeItem('reviewId')
+    setIsSubmitted(false);
+  };
 
   return (
     <CustomContainer>
       <CustomSection head="Reviews" caption="Look what our customer says">
-        <NewReviewForm />
+        {!isSubmitted && (
+          <NewReviewForm
+            setIsSubmitted={setIsSubmitted}
+            setReviews={setReviews}
+          />
+        )}
         <Row>
           {reviews.map((review) => {
-            return <Review key={review._id} review={review} />;
+            return (
+              <Review
+                key={review._id}
+                review={review}
+                deleteReview={deleteReview}
+              />
+            );
           })}
         </Row>
       </CustomSection>

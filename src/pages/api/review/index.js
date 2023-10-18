@@ -8,8 +8,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       await connectMongoDB();
-      const newReview = JSON.parse(req.body);
-      await ReviewModal.create(newReview);
+      const newReview = await ReviewModal.create(JSON.parse(req.body));
       res.status(200).send(newReview);
     } catch (err) {
       console.log(err.message);
@@ -21,6 +20,17 @@ export default async function handler(req, res) {
     try {
       await connectMongoDB();
       const reviews = await ReviewModal.find();
+      res.status(200).send(reviews);
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send({ err: err.message });
+    }
+  }
+  if (req.method === "DELETE") {
+    const { q } = req.query;
+    try {
+      await connectMongoDB();
+      const reviews = await ReviewModal.deleteOne({_id:q});
       res.status(200).send(reviews);
     } catch (err) {
       console.log(err.message);

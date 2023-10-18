@@ -1,9 +1,57 @@
 .newReview {
-  input {
+  background-color: $color_black;
+  padding: 16px;
+  border-radius: 10px;
+  width: 600px;
+  h2 {
+    text-align: center;
+    color: $color_gold;
+  }
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: auto;
+
+  @include respond-below(sm) {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    background-color: $color_grey;
+    outline: none;
+    border: none;
+    color: $color_white;
+    padding: 5px 10px;
+    width: 50%;
+
+    &:active,
+    &:focus {
+      border: 1px solid $color_gold;
+    }
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    margin: auto;
+    background-color: $color_gold;
     color: $color_black;
+    &:disabled {
+      opacity: 0.7;
+    }
+  }
+
+  .name {
+    display: flex;
+    gap: 10px;
   }
 
   .star {
+    margin: 0 3px;
+    cursor: pointer;
     &:hover {
       path {
         color: $color_gold;
@@ -14,5 +62,11 @@
         color: $color_gold;
       }
     }
+  }
+
+  small {
+    margin-top: -20px;
+    font-size: 10px;
+    color: rgb(150, 150, 150);
   }
 }

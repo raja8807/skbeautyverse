@@ -1,9 +1,16 @@
 import { Col } from "react-bootstrap";
 import styles from "./review.module.scss";
-import { StarFill } from "react-bootstrap-icons";
+import { StarFill, Trash3 } from "react-bootstrap-icons";
+import { useEffect, useState } from "react";
 
-const Review = ({ review }) => {
-  const ratings = [ 1, 2, 3, 4,5];
+const Review = ({ review, deleteReview }) => {
+  const ratings = [1, 2, 3, 4, 5];
+
+  const [isUserComment, setIsUserComment] = useState(false);
+
+  useEffect(() => {
+    setIsUserComment(localStorage.getItem("reviewId") === review._id);
+  }, []);
 
   return (
     <Col xs={12} md={6}>
@@ -27,6 +34,14 @@ const Review = ({ review }) => {
               );
             })}
           </div>
+          {/* {isUserComment && ( */}
+            <Trash3
+              className={styles.trash}
+              onClick={async () => {
+                await deleteReview(review._id);
+              }}
+            />
+          {/* )} */}
         </div>
         <div className={styles.bottom}>
           <span>{review.comment}</span>

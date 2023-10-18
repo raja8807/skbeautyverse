@@ -7,6 +7,13 @@
   .top {
     display: flex;
     margin-bottom: 16px;
+    position: relative;
+
+    .trash {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+    }
 
     .initial {
       background-color: $color_gold;
