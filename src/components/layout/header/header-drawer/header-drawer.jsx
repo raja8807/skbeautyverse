@@ -3,6 +3,8 @@ import pagesList from "@/components/constants/pages";
 import styles from "./header-drawer.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signOut, useSession } from "next-auth/react";
+import CustomButton from "@/components/ui/custom_button/custom_button";
 
 const HeaderDrawer = (props) => {
   const { show, setShow } = props;
@@ -10,8 +12,7 @@ const HeaderDrawer = (props) => {
   const handleClose = () => setShow(false);
 
   const router = useRouter();
-
-  //   console.log();
+  const session = useSession();
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement="end">
@@ -45,11 +46,24 @@ const HeaderDrawer = (props) => {
                     handleClose();
                   }}
                 >
-                  <Link href={page.href}>{page.name}</Link>
+                  <Link href={page.href}>
+                    {page.name === "Login" && session?.data
+                      ? "Admin"
+                      : page.name}
+                  </Link>
                 </li>
               );
             })}
           </ul>
+          {session?.data && (
+            <CustomButton
+              clickHandler={() => {
+                signOut();
+              }}
+            >
+              Logout
+            </CustomButton>
+          )}
         </Offcanvas.Body>
       </div>
     </Offcanvas>

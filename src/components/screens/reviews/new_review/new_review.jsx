@@ -69,7 +69,7 @@ const NewReviewForm = ({ setIsSubmitted, setReviews }) => {
         value={newReview.comment}
         onChange={(e) => {
           const { value } = e.target;
-          if (value.length <= 260) {
+          if (value.length <= 200) {
             setNewReview((prev) => ({ ...prev, comment: value }));
           }
         }}

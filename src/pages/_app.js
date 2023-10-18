@@ -7,6 +7,7 @@ import Layout from "@/components/layout/layout";
 import { Outfit as BaseFont } from "next/font/google";
 import { useRouter } from "next/router";
 import { Image, Spinner } from "react-bootstrap";
+import { SessionProvider } from "next-auth/react";
 
 // Kaushan_Script
 
@@ -42,7 +43,7 @@ export default function App({ Component, pageProps }) {
     };
 
     const handleChangeEnd = (url) => {
-      if (url === "/" || url.includes("gallery") || url.includes("admin")) {
+      if (url && (url === "/" || url.includes("gallery") || url.includes("admin"))) {
         setIsLoading(false);
       }
     };
@@ -53,7 +54,7 @@ export default function App({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <>
+    <SessionProvider session={pageProps.session}>
       {load && (
         <div className="loading">
           <div class="bg"></div>
@@ -93,6 +94,6 @@ export default function App({ Component, pageProps }) {
           </Layout>
         </main>
       )}
-    </>
+    </SessionProvider>
   );
 }

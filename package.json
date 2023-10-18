@@ -17,7 +17,7 @@
     "formik": "^2.4.1",
     "mongoose": "^7.2.2",
     "next": "13.3.0",
-    "next-auth": "^4.22.1",
+    "next-auth": "^4.24.3",
     "react": "18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-bootstrap-icons": "^1.10.3",

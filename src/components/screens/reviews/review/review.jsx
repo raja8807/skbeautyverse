@@ -2,6 +2,7 @@ import { Col } from "react-bootstrap";
 import styles from "./review.module.scss";
 import { StarFill, Trash3 } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const Review = ({ review, deleteReview }) => {
   const ratings = [1, 2, 3, 4, 5];
@@ -11,6 +12,9 @@ const Review = ({ review, deleteReview }) => {
   useEffect(() => {
     setIsUserComment(localStorage.getItem("reviewId") === review._id);
   }, []);
+
+
+  const session = useSession();
 
   return (
     <Col xs={12} md={6}>
@@ -34,14 +38,14 @@ const Review = ({ review, deleteReview }) => {
               );
             })}
           </div>
-          {/* {isUserComment && ( */}
+          {(isUserComment || session?.data) && (
             <Trash3
               className={styles.trash}
               onClick={async () => {
                 await deleteReview(review._id);
               }}
             />
-          {/* )} */}
+          )}
         </div>
         <div className={styles.bottom}>
           <span>{review.comment}</span>
