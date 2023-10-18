@@ -23,7 +23,7 @@ const ReviewsScreen = ({ reviews: reviewsData = [] }) => {
     });
 
     setReviews((prev) => prev.filter((r) => r._id !== id));
-    localStorage.removeItem('reviewId')
+    localStorage.removeItem("reviewId");
     setIsSubmitted(false);
   };
 
@@ -37,15 +37,22 @@ const ReviewsScreen = ({ reviews: reviewsData = [] }) => {
           />
         )}
         <Row>
-          {reviews.map((review) => {
-            return (
-              <Review
-                key={review._id}
-                review={review}
-                deleteReview={deleteReview}
-              />
-            );
-          })}
+          {reviews
+            .sort(function (a, b) {
+              // Turn your strings into dates, and then subtract them
+              // to get a value that is either negative, positive, or zero.
+              return new Date(b.createdAt) - new Date(a.createdAt);
+            })
+            .map((review) => {
+              return (
+                <Review
+                  key={review._id}
+                  review={review}
+                  deleteReview={deleteReview}
+                  reviews={reviews}
+                />
+              );
+            })}
         </Row>
       </CustomSection>
     </CustomContainer>

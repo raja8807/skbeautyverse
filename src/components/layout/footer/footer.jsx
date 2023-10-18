@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import pagesList from "@/components/constants/pages";
 import contactDetails from "@/components/constants/contact";
+import categories from "@/components/constants/categories";
 
 const Footer = () => {
   return (
@@ -73,10 +74,13 @@ const Footer = () => {
                 <Col xs={12} md={4} className={styles.box}>
                   <h2 className={fonts.lora}>Categories</h2>
                   <div className={styles.links}>
-                    <Link href="/">Categore name 1</Link>
-                    <Link href="/">Categore name 1</Link>
-                    <Link href="/">Categore name 1</Link>
-                    <Link href="/">Categore name 1</Link>
+                    {categories.map((c) => {
+                      return (
+                        <Link key={c.id} href={`/gallery/${c.id}`}>
+                          {c.name}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </Col>
 

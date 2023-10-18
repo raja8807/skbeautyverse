@@ -7,6 +7,8 @@ import { List } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import HeaderDrawer from "./header-drawer/header-drawer";
 import { useRouter } from "next/router";
+import { signOut, useSession } from "next-auth/react";
+import CustomButton from "@/components/ui/custom_button/custom_button";
 // import Image from "next/image";
 
 const Header = () => {
@@ -23,6 +25,8 @@ const Header = () => {
 
     window.addEventListener("scroll", getIsScrolled);
   }, []);
+
+  const session = useSession();
 
   return (
     <header className={`${styles.header} ${scrolled && styles.scrolled}`}>
@@ -60,11 +64,24 @@ const Header = () => {
                     href={page.href}
                     className={isActive ? styles.active : ""}
                   >
-                    {page.name}
+                    {page.name === "Login" && session?.data
+                      ? "Admin"
+                      : page.name}
                   </Link>
                 </li>
               );
             })}
+            {session?.data && (
+              <li>
+                <CustomButton
+                  clickHandler={() => {
+                    signOut();
+                  }}
+                >
+                  Logout
+                </CustomButton>
+              </li>
+            )}
           </ul>
         </nav>
 

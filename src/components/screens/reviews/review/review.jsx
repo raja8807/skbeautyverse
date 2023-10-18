@@ -4,7 +4,7 @@ import { StarFill, Trash3 } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
-const Review = ({ review, deleteReview }) => {
+const Review = ({ review, deleteReview, reviews }) => {
   const ratings = [1, 2, 3, 4, 5];
 
   const [isUserComment, setIsUserComment] = useState(false);
@@ -12,7 +12,6 @@ const Review = ({ review, deleteReview }) => {
   useEffect(() => {
     setIsUserComment(localStorage.getItem("reviewId") === review._id);
   }, []);
-
 
   const session = useSession();
 

@@ -12,27 +12,27 @@ import contactDetails from "@/components/constants/contact";
 const SocialLinks = () => {
   return (
     <div className={styles.social}>
-      <Link href={contactDetails.facabook}>
+      <Link target="_blank" href={contactDetails.facabook}>
         <div className={styles.item}>
           <Facebook />
         </div>
       </Link>
-      <Link href={contactDetails.instagram}>
+      <Link target="_blank" href={contactDetails.instagram}>
         <div className={styles.item}>
           <Instagram />
         </div>
       </Link>
-      <Link href={contactDetails.youtube}>
+      <Link target="_blank" href={contactDetails.youtube}>
         <div className={styles.item}>
           <Youtube />
         </div>
       </Link>
-      <Link href={contactDetails.whatsapp}>
+      <Link target="_blank" href={contactDetails.whatsappLink}>
         <div className={styles.item}>
           <Whatsapp />
         </div>
       </Link>
-      <Link href={contactDetails.whatsapp}>
+      <Link target="_blank" href={contactDetails.whatsappLink}>
         <div className={styles.item}>
           <Linkedin />
         </div>
