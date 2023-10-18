@@ -14,7 +14,7 @@
     text-align: center;
     // padding: 40px 0px;
     @include respond-below(md) {
-      padding: 40px 20px;
+      padding: 40px 20px 0px 20px;
     }
 
     p {
@@ -22,10 +22,24 @@
         color: $color_gold;
       }
     }
+    .x {
+      margin-top: 16px;
+      text-align: left;
+      font-size: 15px;
+
+      svg{
+        font-size: 20px;
+      }
+
+      path {
+        color: $color_gold;
+      }
+    }
     .bottom {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       > div {
         display: flex;

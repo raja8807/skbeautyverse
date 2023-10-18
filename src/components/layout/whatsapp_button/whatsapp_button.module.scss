@@ -1,9 +1,22 @@
-.whatsapp_btn{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    
-    .icon{
-        width: 50px;
-    }
+.quick {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  //   @include flexCenter;
+  //   flex-direction: column;
+  //   gap: 0px;
+  //   height: 100px;
+
+  
+
+//   img {
+//     margin-left: 5px;
+//     margin-top: 5px;
+//   }
+
+  //   background-color: red;
+
+  .icon {
+    width: 50px;
+  }
 }

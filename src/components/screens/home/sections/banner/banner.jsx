@@ -7,6 +7,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import fonts from "@/components/fonts/fonts";
 import { Image } from "react-bootstrap";
+import { GeoAlt, GeoAltFill } from "react-bootstrap-icons";
 
 const Banner = ({ bannerImages = [], setShowPopup }) => {
   const images = bannerImages
@@ -50,13 +51,13 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
         </div>
         <div data-aos="zoom-in" className={styles.text}>
           <p>
-            Welcome to SK Beautyverse, where Sushmitha Karthik crafts a <b>universe
-            of beauty! </b> Immerse yourself in a world where artistry meets
-            elegance. With a passion for perfection, we specialize in creating
-            enchanting bridal makeup experiences. Our brushes weave dreams,
-            enhancing your natural beauty for your special day. Trust us to make
-            you look and feel like a celestial bride. Enter our Beautyverse,
-            where dreams blend seamlessly with reality.
+            Welcome to SK Beautyverse, where Sushmitha Karthik crafts a{" "}
+            <b>universe of beauty! </b> Immerse yourself in a world where
+            artistry meets elegance. With a passion for perfection, we
+            specialize in creating enchanting bridal makeup experiences. Our
+            brushes weave dreams, enhancing your natural beauty for your special
+            day. Trust us to make you look and feel like a celestial bride.
+            Enter our Beautyverse, where dreams blend seamlessly with reality.
           </p>
           <br />
           <div className={styles.bottom}>
@@ -71,6 +72,9 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
             >
               Book Now
             </CustomButton>
+          </div>
+          <div className={styles.x}>
+            <GeoAltFill /> All Over Tamilnadu
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@
   width: fit-content;
   gap: 10px;
 
-  > div {
+  .item {
     border: 1px solid white;
     height: 32px;
     width: 32px;
@@ -15,6 +15,7 @@
     opacity: 0.7;
     background-color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
+    
 
     &:hover {
       opacity: 1;

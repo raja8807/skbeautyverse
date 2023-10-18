@@ -70,7 +70,7 @@ export default function App({ Component, pageProps }) {
           </div>
         </div>
       )}
-      {isLoading ? (
+      {isLoading || load ? (
         <div className="loading">
           <div class="bg"></div>
 

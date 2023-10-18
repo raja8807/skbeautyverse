@@ -3,9 +3,16 @@ import styles from "./footer.module.scss";
 import { Col, Image, Row } from "react-bootstrap";
 import SocialLinks from "@/components/ui/social_links/social_links";
 import fonts from "@/components/fonts/fonts";
-import { Envelope, EnvelopeAt, Geo, Telephone } from "react-bootstrap-icons";
+import {
+  Envelope,
+  EnvelopeAt,
+  Geo,
+  Telephone,
+  Whatsapp,
+} from "react-bootstrap-icons";
 import Link from "next/link";
 import pagesList from "@/components/constants/pages";
+import contactDetails from "@/components/constants/contact";
 
 const Footer = () => {
   return (
@@ -35,24 +42,20 @@ const Footer = () => {
                   <h2 className={fonts.lora}>Contact US</h2>
                   <div>
                     <Geo />
-                    <p>
-                      No 30, acbded,
-                      <br />
-                      aeubauef aeofboae,
-                      <br />
-                      aeibafi, aeioafe,
-                      <br />
-                      338r49
-                    </p>
+                    <p>{contactDetails.address}</p>
                   </div>
 
                   <div>
                     <Telephone />
-                    <p>+91 1234567890</p>
+                    <p>{contactDetails.mobile}</p>
+                  </div>
+                  <div>
+                    <Whatsapp />
+                    <p>{contactDetails.whatsapp}</p>
                   </div>
                   <div>
                     <EnvelopeAt />
-                    <p>abcd@skbeautyverse.com</p>
+                    <p>{contactDetails.email}</p>
                   </div>
                 </Col>
 
