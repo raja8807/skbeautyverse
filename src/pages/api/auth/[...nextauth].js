@@ -11,8 +11,8 @@ export const authOptions = {
       async authorize(credentials, req) {
         const { email, password } = credentials;
         if (
-          email === "1" &&
-          password === "2"
+          email === "karthik@skbeautyverse.com" &&
+          password === "admin@skb3121"
         //   user.email === "karthik@skbeautyverse.com" &&
         //   user.password === "123"
         ) {
