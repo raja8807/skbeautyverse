@@ -16,6 +16,7 @@ export default function Document() {
       <Head />
       <title>SK BeautyVerse</title>
       <meta name="google-site-verification" content="your verification string"/>
+      <meta name="google-site-verification" content="EtiaVHchwxdgY4Yjyls8SzpUMeiIzGVw-1a4ChPzfxY" />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=AW-11384016350"
@@ -30,7 +31,6 @@ export default function Document() {
           `,
         }}
       />
-      <meta name="google-site-verification" content="EtiaVHchwxdgY4Yjyls8SzpUMeiIzGVw-1a4ChPzfxY" />
       <body>
         <Main />
         <NextScript />
