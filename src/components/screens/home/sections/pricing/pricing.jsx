@@ -57,7 +57,7 @@ const Pricing = (props) => {
 
   return (
     <CustomSection
-      bg="white"
+      bg="textGold"
       head="Packages"
       caption="Book a Complete Engagement, Marriage, Reception Makeup With Us"
     >

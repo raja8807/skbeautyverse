@@ -17,7 +17,7 @@ const HomeScreen = (props) => {
       <Banner bannerImages={bannerImages} setShowPopup={setShowPopup}/>
       <Categories />
       <Pricing packages={packages} />
-      <Collection />
+      <Collection setShowPopup={setShowPopup}/>
     </>
   );
 };

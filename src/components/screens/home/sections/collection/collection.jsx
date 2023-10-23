@@ -3,7 +3,7 @@ import styles from "./collection.module.scss";
 import fonts from "@/components/fonts/fonts";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 
-const Collection = () => {
+const Collection = ({setShowPopup}) => {
   return (
     <div className={styles.about_section}>
       <div className={styles.left}>
@@ -18,7 +18,11 @@ const Collection = () => {
               look and feel like royalty on your special day. Our bridal
               packages are tailored to match your dreams.
             </p>
-            <CustomButton type="black">Enquire Now</CustomButton>
+            <CustomButton type="black"
+            clickHandler={()=>{
+              setShowPopup('adin')
+            }}
+            >Enquire Now</CustomButton>
           </div>
         </div>
       </div>

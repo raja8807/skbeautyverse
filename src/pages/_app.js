@@ -82,7 +82,7 @@ export default function App({ Component, pageProps }) {
             <Image
               className="logo"
               src="/images/logo/logo.png"
-              width={100}
+              width={120}
               alt="logo"
             />
           </div>

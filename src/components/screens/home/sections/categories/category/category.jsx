@@ -25,12 +25,6 @@ const Category = (props) => {
           >
             <Eye />
           </div>
-          {/* <div>
-            <Eye />
-          </div>
-          <div>
-            <Eye />
-          </div> */}
         </div>
         <Image src={data.imgSrc} alt="xx" fluid />
         <p>{data.name}</p>

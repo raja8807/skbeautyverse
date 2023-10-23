@@ -17,7 +17,7 @@ const Package = (props) => {
         <p className={styles.price}>Rs. {price}/-</p>
         <p className={styles.enq}
         onClick={()=>{
-          setShowPopup('I want to know more')
+          setShowPopup(`I want to know more about ${head}`)
         }}
         >Enquire Now</p>
       </div>

@@ -6,8 +6,8 @@
 } */
 
 body {
-  background-image: url("/images/bg/bg2.jpg");
-  background-size: 1000px 1000px;
+  background-image: url("/images/bg/1 (2).jpg");
+  background-size: 100vw auto;
   /* max-width: 100; */
   /* overflow-x: hidden; */
   /* width: 100vw;
@@ -27,7 +27,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-image: url('/images/bg/load_bg.jpg'); */
+  background-image: url('/images/bg/loading.jpg');
+  background-size: 1500px 1000px;
 }
 
 .logo {

@@ -1,23 +1,23 @@
 const categories = [
   {
-    id: "bridal",
-    name: "Bridal Makeover",
+    id: "makeup",
+    name: "Makeup",
     imgSrc: "/images/categories/bridal.PNG",
   },
   {
     id: "skin",
-    name: "Skin Glow Up",
+    name: "Skin",
     imgSrc: "/images/categories/skin.PNG",
   },
   {
     id: "hair",
-    name: "Hairdressing",
+    name: "Hair",
     imgSrc: "/images/categories/hair.jpg",
   },
   {
-    id: "makeup",
-    name: "Make Up",
-    imgSrc: "/images/categories/makeup.png",
+    id: "products",
+    name: "Products",
+    imgSrc: "/images/categories/products.jpg",
   },
 ];
 

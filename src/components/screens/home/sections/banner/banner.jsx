@@ -41,7 +41,7 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
     <CustomContainer className={styles.banner}>
       <div className={styles.left}>
         <div className={styles.head}>
-          <h1 className={fonts.lora} data-aos="fade-left">
+          <h1 className={fonts.head} data-aos="fade-left">
             SUSHMITHA KARTHIK
           </h1>
           <h3 className={fonts.petit} data-aos="fade-right">
@@ -62,13 +62,14 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
           <br />
           <div className={styles.bottom}>
             <div>
-              <p>Trained By</p>
+              <p>Certified By</p>
               <Image fluid alt="lakme" src="/images/logo/Lakme-Logo.png" />
             </div>
             <CustomButton
               clickHandler={() => {
                 setShowPopup(true);
               }}
+              type='gold'
             >
               Book Now
             </CustomButton>
