@@ -22,15 +22,16 @@ const Footer = () => {
         <Row>
           <Col lg={5}>
             <div className={styles.img}>
-              <Image src="/images/categories/1.jpg" alt="bg" fluid />
+              <Image src="/images/categories/bg.jpeg" alt="bg" fluid />
               <div className={styles.overlay}>
                 <Image src="/images/logo/logo.png" fluid alt="logo" />
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime error doloremque accusantium dolor iste ipsa quod
-                  commodi rerum, culpa nemo voluptate fugit ad expedita eum esse
-                  quis distinctio est totam? Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Nesciunt, nobis!
+                  I am Sushmitha Karthik, your dedicated makeup artist,
+                  Certified by &quot;Lakme Academy&quot; specializing in hair,
+                  skin, and bridal makeup. Discover personalized beauty
+                  experiences crafted with premium products, which does not
+                  cause damage to skin & hair. &quot;Make your beautyful day,
+                  More Beutiful with our Makup Services!&quot;
                 </p>
                 <SocialLinks />
               </div>
@@ -48,11 +49,11 @@ const Footer = () => {
 
                   <div>
                     <Telephone />
-                    <p>{contactDetails.mobile}</p>
+                    <p>{contactDetails.whatsapp}</p>
                   </div>
                   <div>
                     <Whatsapp />
-                    <p>{contactDetails.whatsapp}</p>
+                    <p>{contactDetails.mobile}</p>
                   </div>
                   <div>
                     <EnvelopeAt />
@@ -86,7 +87,7 @@ const Footer = () => {
 
                 <Col xs={12} md={8} className={styles.box}>
                   <h2 className={fonts.lora}>Locate Us</h2>
-                  {/* <div className="google-map-code">
+                  <div className="google-map-code">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15282225.79979123!2d73.7250245393691!3d20.750301298393563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1587818542745!5m2!1sen!2sin"
                       width="100%"
@@ -97,9 +98,17 @@ const Footer = () => {
                       aria-hidden="false"
                       tabindex="0"
                     ></iframe>
-                  </div> */}
+                  </div>
                 </Col>
-                <hr />
+                {/* <hr /> */}
+                <div className={styles.bar}>
+                  <p>GST : 33LEVPS8977N1ZR</p>
+                  <p>
+                    UDYAM-TN-02-0245303
+                    <br />
+                    <span>(Government Registered)</span>
+                  </p>
+                </div>
                 <small style={{ textAlign: "center" }}>
                   Developed And Maintianed By{" "}
                   <Link href="https://www.nammaoorudev.online" target="_blank">

@@ -12,7 +12,7 @@ export const authOptions = {
         const { email, password } = credentials;
         if (
           email === "karthik@skbeautyverse.com" &&
-          password === "admin@skb3121"
+          password === "skbeautyverse-1"
         //   user.email === "karthik@skbeautyverse.com" &&
         //   user.password === "123"
         ) {

@@ -5,7 +5,7 @@ const {
   default: CustomSection,
 } = require("@/components/ui/custom_section/custom_section");
 
-import { Image } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 import styles from "./about.module.scss";
 
 import fonts from "@/components/fonts/fonts";
@@ -15,9 +15,48 @@ const AboutScreen = () => {
   return (
     <CustomContainer>
       <CustomSection head="About Us" noPadding>
-        <div className={styles.top}  data-aos="fade-up">
+        <div className={styles.top} data-aos="fade-up">
           <h2 className={fonts.lora}>Welcome To Sk Beautyverse</h2>
           <p>More Than Just Makeup &quot;A Universe of Beauty&quot;</p>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.img} data-aos="fade-up">
+            <Image src="/images/categories/img.jpeg" alt="logo" />
+          </div>
+          <div className={styles.text}>
+            <h2 data-aos="fade-up">Who Am I?</h2>
+            <hr data-aos="fade-up" />
+            <div className={styles.detail}>
+              <p className={fonts.montserrat} data-aos="fade-up">
+                Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :{" "}
+                <span>Sushmitha Karthik</span>
+              </p>
+              <p className={fonts.montserrat} data-aos="fade-up">
+              Designation :{" "}
+                <span>proprietor & Senior Makeup Artist</span>
+              </p>
+              <p className={fonts.montserrat} data-aos="fade-up">
+                Certifed By &nbsp;&nbsp;: <span>Lakme Academy & Scissors</span>
+              </p>
+              <p className={fonts.montserrat} data-aos="fade-up">
+                Experience &nbsp;&nbsp;: <span>7 Years</span>
+              </p>
+            </div>
+            <br />
+            <p className={fonts.montserrat}>
+              I am a passionate Makeup artist, who specialized in Skin, Hair and
+              Bridal Makeup. I am the creative force behind SK Beautyverse. With
+              a passion for transforming faces, I specialize in hair, skin, and
+              bridal makeup. With years of expertise and a keen eye for detail,
+              I bring out your natural beauty. Let us make your special moments
+              truly unforgettable, one brushstroke at a time.
+            </p>
+
+            {/* <br /> */}
+            {/* <div data-aos="fade-up">
+              <CustomButton>View Our Customer&apos;s Reviews</CustomButton>
+            </div> */}
+          </div>
         </div>
         <div className={styles.content}>
           <div className={styles.img} data-aos="fade-up">
@@ -38,6 +77,51 @@ const AboutScreen = () => {
             <div data-aos="fade-up">
               <CustomButton>View Our Customer&apos;s Reviews</CustomButton>
             </div>
+          </div>
+        </div>
+
+        <div className={styles.content}>
+          {/* <div className={styles.img} data-aos="fade-up">
+            <Image src="/images/logo/Lakme-Logo.png" alt="logo" />
+          </div> */}
+          <div className={styles.text}>
+            <h2 data-aos="fade-up">Our Team</h2>
+            <hr data-aos="fade-up" />
+            <div className={styles.teamItem}>
+              <Row>
+                <Col xs={12} md={4}>
+                  <Image src="/images/categories/team1.jpeg" alt="logo" fluid />
+                </Col>
+                <Col xs={12} style={{ padding: "10px" }} md={8}>
+                  <div className={styles.detail}>
+                    <div className={fonts.montserrat}>
+                      <p>Name : </p>
+                      <span>Karthik (founder)</span>
+                    </div>
+                    <div className={fonts.montserrat}>
+                      <p>Designation : </p>
+                      <span>Digital Marketer & Cosmetologist</span>
+                    </div>
+                    <div className={fonts.montserrat}>
+                      <p>Experience : </p>
+                      <span>2 Years</span>
+                    </div>
+                    <br />
+                  </div>
+                  <p className={fonts.montserrat}>
+                    Meet Karthik, the dynamic force shaping digital marketing
+                    and cosmetology at SK Beautyverse. With a keen eye for
+                    market trends and a flair for beauty, I seamlessly blend
+                    expertise in online strategies with the art of cosmetology.
+                    Dedicated to enhancing your online presence and your natural
+                    charm, I transform businesses and faces with passion and
+                    precision. Let us elevate your brand and beauty to new
+                    heights.
+                  </p>
+                </Col>
+              </Row>
+            </div>
+        
           </div>
         </div>
 
@@ -64,9 +148,9 @@ const AboutScreen = () => {
           <div className={styles.img} data-aos="fade-up">
             <Image src="/images/gallery/1 (1).jpg" alt="image" />
           </div>
-          <div className={styles.text} >
+          <div className={styles.text}>
             <h2 data-aos="fade-up">Your Special Day, Our Expertise</h2>
-            <hr  data-aos="fade-up"/>
+            <hr data-aos="fade-up" />
             <p className={fonts.montserrat} data-aos="fade-up">
               We specialize in <span className={fonts.petit}>bridal</span>
               makeup and have the expertise to bring out the natural beauty of
@@ -80,7 +164,9 @@ const AboutScreen = () => {
             <CustomButton>View Our Gallery</CustomButton>
             <br />
             <br />
-            <h2 data-aos="fade-up">More Than Just Makeup - A Universe of Beauty</h2>
+            <h2 data-aos="fade-up">
+              More Than Just Makeup - A Universe of Beauty
+            </h2>
             <hr />
             <p className={fonts.montserrat} data-aos="fade-up">
               SK Beautyverse is not just a makeup service; it is an experience.

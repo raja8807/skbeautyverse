@@ -26,7 +26,7 @@ const ContactForm = ({
   const sendMessage = async () => {
     setStatus("loading");
     try {
-      await axios.post("https://formspree.io/f/myyqlnel", {
+      await axios.post("https://formspree.io/f/xleyzzwa", {
         email: values.email,
         message: values,
       });

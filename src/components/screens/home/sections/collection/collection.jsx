@@ -29,7 +29,7 @@ const Collection = ({setShowPopup}) => {
       <div className={styles.right}>
         <div>
           <Image
-            src="https://image.wedmegood.com/resized-nw/600X/wp-content/uploads/2019/03/1539960377_BBB_MG_6768_WCI_copy.jpg"
+            src="/images/categories/bg.jpeg"
             alt="xxx"
           />
         </div>

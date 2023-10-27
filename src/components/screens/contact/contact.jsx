@@ -10,6 +10,7 @@ import {
 import styles from "./contact.module.scss";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import ContactForm from "./contact_form";
+import contactDetails from "@/components/constants/contact";
 
 const Info = (props) => {
   const { icon, text, head } = props;
@@ -30,25 +31,24 @@ const ContactScreen = () => {
       <CustomSection head="Contact Us">
         <div className={styles.top}>
           <Info
-            head="Address"
+            head="Loaction"
             text={
               <p>
-                address line 1, <br />
-                address line 2, <br />
-                address line 3, <br />
-                address line 4
+                Chennai, <br />
+                Tamilnadu <br />
+            
               </p>
             }
             icon={<GeoAltFill />}
           />
           <Info
             head="Phone"
-            text={<p>+91 98765 41230</p>}
+            text={<p>{contactDetails.whatsapp}</p>}
             icon={<TelephoneFill />}
           />
           <Info
             head="Email"
-            text={<p>admin@skbeautyvers.com</p>}
+            text={<p>{contactDetails.email}</p>}
             icon={<EnvelopeAtFill />}
           />
         </div>
