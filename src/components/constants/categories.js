@@ -1,6 +1,6 @@
 const categories = [
   {
-    id: "makeup",
+    id: "bridal",
     name: "Makeup",
     imgSrc: "/images/categories/bridal.PNG",
   },
