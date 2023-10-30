@@ -24,7 +24,7 @@ const FullViewImage = ({
             }}
           />
         }
-        <Image src={allImages[currentFullViewImageIndex].url.replace("upload", "upload/w_600,f_auto")} alt="xx" fluid />
+        <Image src={allImages[currentFullViewImageIndex].url.replace("upload", "upload")} alt="xx" fluid />
         {
             currentFullViewImageIndex !== allImages.length - 1 && <ChevronRight
             className={styles.right}
