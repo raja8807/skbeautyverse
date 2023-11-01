@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('/images/bg/loading.jpg');
+  background-image: url("/images/bg/loading.jpg");
   background-size: 1500px 1000px;
 }
 
@@ -170,3 +170,4 @@ p {
   scroll-behavior: smooth !important;
   color: white;
 }
+

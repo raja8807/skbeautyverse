@@ -4,16 +4,13 @@ import styles from "./gallery.module.scss";
 import FullViewImage from "./full_view/full_view";
 import { useState } from "react";
 import CustomSection from "@/components/ui/custom_section/custom_section";
-import { Eye } from "react-bootstrap-icons";
+import { Eye} from "react-bootstrap-icons";
 import CustomSelect from "@/components/ui/custom_select/custom_select";
 import categories from "@/components/constants/categories";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const GalleryScreen = (props) => {
-  const { images } = props;
-  const [allImages, setAllImages] = useState(images || []);
-
+  const { images=[] } = props;
   const router = useRouter();
 
   const [currentFullViewImageIndex, SetCurrentFullViewImageIndex] =
@@ -27,7 +24,7 @@ const GalleryScreen = (props) => {
     router?.query?.category || allCategories[0].text
   );
 
-  // Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident culpa vel ipsum dignissimos aliquam animi quos deleniti veritatis voluptatibus beatae quas, rem dolorem quo soluta, odit at inventore ratione consequuntur labore, repudiandae eum. Eaque, minima quidem. Magnam aut architecto velit doloremque, odit alias fugiat magni eos laudantium totam deserunt error, cum rerum! Eligendi in impedit accusantium fuga adipisci distinctio incidunt nemo ea, amet rem laborum a blanditiis assumenda ut. Expedita natus amet, voluptate totam minima beatae fuga, id explicabo officia itaque odio iste adipisci perspiciatis at omnis consequuntur? Commodi saepe reiciendis odit assumenda suscipit quae! Officiis nesciunt nisi animi ipsa.
+  
 
   return (
     <>
@@ -45,7 +42,7 @@ const GalleryScreen = (props) => {
         <br />
         <br />
         <div className={styles.wrapper}>
-          {allImages
+          {images
             ?.sort((a, b) => {
               return a.index - b.index;
             })
@@ -67,7 +64,7 @@ const GalleryScreen = (props) => {
         <FullViewImage
           currentFullViewImageIndex={currentFullViewImageIndex}
           SetCurrentFullViewImageIndex={SetCurrentFullViewImageIndex}
-          allImages={allImages}
+          allImages={images}
         />
       )}
     </>
