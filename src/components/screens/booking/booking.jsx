@@ -155,6 +155,8 @@ const BookingScreen = () => {
           .map((date) => {
             // console.log();
 
+            // console.log(new Date(date.date).getMonth());
+
             if (date.slots.every((d) => d.booked)) {
               const splittedDate = date.date.replace(",", "").split(" ");
               // console.log(splittedDate);
@@ -169,6 +171,8 @@ const BookingScreen = () => {
               );
 
               const label = `${splittedDate[monthIndex]} ${splittedDate[dateIndex]}, ${splittedDate[yearIndex]}`;
+
+              alert(label);
 
               return `button:has(abbr[aria-label="${label}"]){
                         background-color:red;
