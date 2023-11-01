@@ -51,7 +51,7 @@ const BookingScreen = () => {
   const bookedDates = [
     {
       id: "3828042",
-      date: "November 16, 2023",
+      date: "11/16/2023",
       slots: [
         {
           id: 1,
@@ -69,7 +69,7 @@ const BookingScreen = () => {
     },
     {
       id: "jeooefooe",
-      date: "November 17, 2023",
+      date: "11/12/2023",
       slots: [
         {
           id: 1,
@@ -77,7 +77,7 @@ const BookingScreen = () => {
         },
         {
           id: 2,
-          booked: null,
+          booked:null,
         },
         {
           id: 3,
@@ -101,9 +101,6 @@ const BookingScreen = () => {
       (d) => new Date(d.date).toDateString() === new Date(date).toDateString()
     );
 
-    alert(new Date(date).toDateString())
-
-    // console.log(new Date(date));
 
     if (bookedObj) {
       if (bookedObj.slots.some((s) => !s.booked)) {
@@ -130,7 +127,6 @@ const BookingScreen = () => {
     }
   };
 
-  const months = ["October", "November", "December"];
 
   return (
     <>
@@ -148,6 +144,13 @@ const BookingScreen = () => {
           minDate={new Date()}
           maxDate={new Date(new Date().getTime() + 86400000 * (365 / 2))}
           minDetail="month"
+          formatLongDate={(locale, date) =>
+            new Intl.DateTimeFormat(locale, {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            }).format(date)
+          }
           //   formatLongDate={(locale,date)=>formatLongDate(date,'dd MM YYYY')}
         />
       </div>
@@ -155,29 +158,9 @@ const BookingScreen = () => {
       <style>
         {bookedDates
           .map((date) => {
-            // console.log();
-
-            // console.log(new Date(date.date).getMonth());
-
+            // console.log(date.date);
             if (date.slots.every((d) => d.booked)) {
-              const splittedDate = date.date.replace(",", "").split(" ");
-              // console.log(splittedDate);
-              const monthIndex = splittedDate.findIndex((e) =>
-                months.includes(e)
-              );
-              const dateIndex = splittedDate.findIndex(
-                (e) => parseInt(e) <= 31
-              );
-              const yearIndex = splittedDate.findIndex(
-                (e) => parseInt(e) > 2000
-              );
-
-              const label = `${splittedDate[monthIndex]} ${splittedDate[dateIndex]}, ${splittedDate[yearIndex]}`;
-
-            //   alert
-            //   (label);
-
-              return `button:has(abbr[aria-label="November 17, 2023"]){
+              return `button:has(abbr[aria-label="${date.date}"]){
                         background-color:red;
                         opacity:0.7;
                           }`;
