@@ -61,7 +61,7 @@ const BookPopup = (props) => {
                 );
               })}
             </div>
-            {selected && (
+            {selected ? (
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -72,6 +72,8 @@ const BookPopup = (props) => {
                 <input placeholder="Location" />
                 <input type="submit" value={`Book Slot ${selected.id}`} />
               </form>
+            ) : (
+              <p className={styles.message}>Please Select a slot</p>
             )}
           </div>
         </div>

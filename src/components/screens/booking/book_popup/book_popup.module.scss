@@ -23,7 +23,7 @@
     }
 
     .bottom {
-      padding:  10px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -35,7 +35,7 @@
           display: flex;
           align-items: center;
           flex-direction: column;
-        //   margin: 10px 0;
+          //   margin: 10px 0;
           padding: 10px 14px;
           border-radius: 10px;
           width: fit-content;
@@ -81,13 +81,18 @@
             opacity: 0.7;
           }
 
-          &[type="submit"] {
-            &:hover {
-            //   background-color: $color_gold;
-            //   color: black;
-            }
-          }
+        //   &[type="submit"] {
+        //     &:hover {
+        //       //   background-color: $color_gold;
+        //       //   color: black;
+        //     }
+        //   }
         }
+      }
+
+      .message {
+        text-align: center;
+        color: black;
       }
     }
   }
