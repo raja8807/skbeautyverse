@@ -98,8 +98,7 @@ const BookingScreen = () => {
     }
 
     const bookedObj = bookedDates.find(
-      (d) =>
-        new Date(d.date).toDateString()=== new Date(date).toDateString()
+      (d) => new Date(d.date).toDateString() === new Date(date).toDateString()
     );
 
     // console.log(new Date(date));
@@ -129,6 +128,8 @@ const BookingScreen = () => {
     }
   };
 
+  const months = ["October", "November", "December"];
+
   return (
     <>
       {showPopupFor && (
@@ -152,8 +153,24 @@ const BookingScreen = () => {
       <style>
         {bookedDates
           .map((date) => {
+            // console.log();
+
             if (date.slots.every((d) => d.booked)) {
-              return `button:has(abbr[aria-label="${date.date}"]){
+              const splittedDate = date.date.replace(",", "").split(" ");
+              // console.log(splittedDate);
+              const monthIndex = splittedDate.findIndex((e) =>
+                months.includes(e)
+              );
+              const dateIndex = splittedDate.findIndex(
+                (e) => parseInt(e) <= 31
+              );
+              const yearIndex = splittedDate.findIndex(
+                (e) => parseInt(e) > 2000
+              );
+
+              const label = `${splittedDate[monthIndex]} ${splittedDate[dateIndex]}, ${splittedDate[yearIndex]}`;
+
+              return `button:has(abbr[aria-label="${label}"]){
                         background-color:red;
                         opacity:0.7;
                           }`;
