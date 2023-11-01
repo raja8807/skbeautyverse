@@ -40,25 +40,36 @@
           border-radius: 10px;
           width: fit-content;
           cursor: pointer;
+          *{
+            color: black;
+          }
 
           &.booked {
             background-color: rgba(167, 18, 18, 0.912);
             opacity: 0.8;
             cursor: no-drop;
-          }
-
-          background-color: rgb(28, 95, 28);
-
-          &:not(.booked) {
-            &:hover {
-              background-color: rgb(20, 50, 20);
+            *{
+                color: white;
             }
           }
 
+          background-color: rgb(234, 234, 234);
+          
+
+        //   &:not(.booked) {
+        //     &:hover {
+        //       background-color: rgb(20, 50, 20);
+        //     }
+        //   }
+
           // border: 1px solid black;
           &.selected {
-            background-color: rgb(20, 50, 20);
+            background-color: rgb(0, 100, 20);
+            // background-color: red;
             transform: scale(1.1);
+            *{
+                color: white;
+            }
           }
         }
       }

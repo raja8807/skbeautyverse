@@ -98,6 +98,8 @@ const bookedDates = [
 
     const bookedObj = bookedDates.find((d) => d.date === date);
 
+    alert(bookedObj)
+
     if (bookedObj) {
       if (bookedObj.slots.some((s) => !s.booked)) {
         setShowPopupFor(bookedObj);
