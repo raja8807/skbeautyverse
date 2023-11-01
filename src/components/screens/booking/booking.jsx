@@ -101,7 +101,7 @@ const BookingScreen = () => {
       (d) => new Date(d.date).toDateString() === new Date(date).toDateString()
     );
 
-    alert(date)
+    alert(new Date(date).toDateString())
 
     // console.log(new Date(date));
 
