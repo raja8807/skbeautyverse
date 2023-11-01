@@ -1,25 +1,28 @@
-.x {
-  background-color: rgba(0, 0, 0, 0.5) !important;
+.booking {
+  @include flexCenter;
+  padding: 40px 0;
+  .calander {
+    background-color: rgba(0, 0, 0, 0.5) !important;
 
-
-  button {
-    &:disabled {
-      background-color: rgba(0, 0, 0, 0.5) !important;
-      opacity: 0.5;
+    button {
+      &:disabled {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        opacity: 0.5;
+      }
     }
-  }
 
-  button[class*="react-calendar__navigation"] {
-    &:disabled {
-      opacity: 1;
+    button[class*="react-calendar__navigation"] {
+      &:disabled {
+        opacity: 1;
+      }
     }
-  }
-  button[class="react-calendar__navigation__arrow react-calendar__navigation__prev2-button"],
-  button[class="react-calendar__navigation__arrow react-calendar__navigation__prev-button"],
-  button[class="react-calendar__navigation__arrow react-calendar__navigation__next-button"],
-  button[class="react-calendar__navigation__arrow react-calendar__navigation__next2-button"] {
-    &:disabled {
-      opacity: 0;
+    button[class="react-calendar__navigation__arrow react-calendar__navigation__prev2-button"],
+    button[class="react-calendar__navigation__arrow react-calendar__navigation__prev-button"],
+    button[class="react-calendar__navigation__arrow react-calendar__navigation__next-button"],
+    button[class="react-calendar__navigation__arrow react-calendar__navigation__next2-button"] {
+      &:disabled {
+        opacity: 0;
+      }
     }
   }
 }

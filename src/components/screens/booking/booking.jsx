@@ -97,9 +97,9 @@ const BookingScreen = () => {
           setShowPopupFor={setShowPopupFor}
         />
       )}
-      <div>
+      <div className={styles.booking}>
         <Calendar
-          className={styles.x}
+          className={styles.calander}
           onChange={onChange}
           value={value}
           minDate={new Date()}
@@ -113,7 +113,7 @@ const BookingScreen = () => {
           .map((date) => {
             if (date.slots.every((d) => d.booked)) {
               return `button:has(abbr[aria-label="${date.date}"]){
-                        background-color:red !important;
+                        background-color:red;
                         opacity:0.7;
                           }`;
             }
