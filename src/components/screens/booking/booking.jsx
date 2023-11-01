@@ -1,5 +1,6 @@
 const { useState } = require("react");
 const { default: Calendar } = require("react-calendar");
+// import {formatLongDate} from "react-calendar/dist/cjs/shared/dateFormatter";
 import BookPopup from "./book_popup/book_popup";
 import styles from "./booking.module.scss";
 import "react-calendar/dist/Calendar.css";
@@ -8,46 +9,46 @@ const BookingScreen = () => {
   const [value, setValue] = useState(new Date());
   const [showPopupFor, setShowPopupFor] = useState(null);
 
-//   const [bookedDates, setBookedDates] = useState([
-//     {
-//       id: "3828042",
-//       date: "November 16, 2023",
-//       slots: [
-//         {
-//           id: 1,
-//           booked: "user 1",
-//         },
-//         {
-//           id: 2,
-//           booked: "user 2",
-//         },
-//         {
-//           id: 3,
-//           booked: "user 3",
-//         },
-//       ],
-//     },
-//     {
-//       id: "jeooefooe",
-//       date: "November 17, 2023",
-//       slots: [
-//         {
-//           id: 1,
-//           booked: "user 4",
-//         },
-//         {
-//           id: 2,
-//           booked: null,
-//         },
-//         {
-//           id: 3,
-//           booked: null,
-//         },
-//       ],
-//     },
-//   ]);
+  //   const [bookedDates, setBookedDates] = useState([
+  //     {
+  //       id: "3828042",
+  //       date: "November 16, 2023",
+  //       slots: [
+  //         {
+  //           id: 1,
+  //           booked: "user 1",
+  //         },
+  //         {
+  //           id: 2,
+  //           booked: "user 2",
+  //         },
+  //         {
+  //           id: 3,
+  //           booked: "user 3",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       id: "jeooefooe",
+  //       date: "November 17, 2023",
+  //       slots: [
+  //         {
+  //           id: 1,
+  //           booked: "user 4",
+  //         },
+  //         {
+  //           id: 2,
+  //           booked: null,
+  //         },
+  //         {
+  //           id: 3,
+  //           booked: null,
+  //         },
+  //       ],
+  //     },
+  //   ]);
 
-const bookedDates = [
+  const bookedDates = [
     {
       id: "3828042",
       date: "November 16, 2023",
@@ -84,7 +85,7 @@ const bookedDates = [
         },
       ],
     },
-  ]
+  ];
 
   const onChange = (x, y) => {
     setValue(x, y);
@@ -96,9 +97,12 @@ const bookedDates = [
       date = e.getAttribute("aria-label");
     }
 
-    const bookedObj = bookedDates.find((d) => d.date === date);
+    const bookedObj = bookedDates.find(
+      (d) =>
+        new Date(d.date).toDateString()=== new Date(date).toDateString()
+    );
 
-    alert(date)
+    // console.log(new Date(date));
 
     if (bookedObj) {
       if (bookedObj.slots.some((s) => !s.booked)) {
@@ -141,6 +145,7 @@ const bookedDates = [
           minDate={new Date()}
           maxDate={new Date(new Date().getTime() + 86400000 * (365 / 2))}
           minDetail="month"
+          //   formatLongDate={(locale,date)=>formatLongDate(date,'dd MM YYYY')}
         />
       </div>
 
