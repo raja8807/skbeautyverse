@@ -98,7 +98,7 @@ const bookedDates = [
 
     const bookedObj = bookedDates.find((d) => d.date === date);
 
-    alert(bookedObj)
+    alert(bookedDates[0].date)
 
     if (bookedObj) {
       if (bookedObj.slots.some((s) => !s.booked)) {
