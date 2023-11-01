@@ -101,6 +101,8 @@ const BookingScreen = () => {
       (d) => new Date(d.date).toDateString() === new Date(date).toDateString()
     );
 
+    alert(date)
+
     // console.log(new Date(date));
 
     if (bookedObj) {
