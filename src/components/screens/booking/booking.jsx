@@ -1,6 +1,4 @@
 const { useState } = require("react");
-const { Modal } = require("react-bootstrap");
-const { X } = require("react-bootstrap-icons");
 const { default: Calendar } = require("react-calendar");
 import BookPopup from "./book_popup/book_popup";
 import styles from "./booking.module.scss";
@@ -8,12 +6,48 @@ import "react-calendar/dist/Calendar.css";
 
 const BookingScreen = () => {
   const [value, setValue] = useState(new Date());
-
-  const [dates, setDates] = useState([]);
-
   const [showPopupFor, setShowPopupFor] = useState(null);
 
-  const [bookedDates, setBookedDates] = useState([
+//   const [bookedDates, setBookedDates] = useState([
+//     {
+//       id: "3828042",
+//       date: "November 16, 2023",
+//       slots: [
+//         {
+//           id: 1,
+//           booked: "user 1",
+//         },
+//         {
+//           id: 2,
+//           booked: "user 2",
+//         },
+//         {
+//           id: 3,
+//           booked: "user 3",
+//         },
+//       ],
+//     },
+//     {
+//       id: "jeooefooe",
+//       date: "November 17, 2023",
+//       slots: [
+//         {
+//           id: 1,
+//           booked: "user 4",
+//         },
+//         {
+//           id: 2,
+//           booked: null,
+//         },
+//         {
+//           id: 3,
+//           booked: null,
+//         },
+//       ],
+//     },
+//   ]);
+
+const bookedDates = [
     {
       id: "3828042",
       date: "November 16, 2023",
@@ -50,7 +84,7 @@ const BookingScreen = () => {
         },
       ],
     },
-  ]);
+  ]
 
   const onChange = (x, y) => {
     setValue(x, y);
