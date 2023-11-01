@@ -172,9 +172,10 @@ const BookingScreen = () => {
 
               const label = `${splittedDate[monthIndex]} ${splittedDate[dateIndex]}, ${splittedDate[yearIndex]}`;
 
-              alert(label);
+            //   alert
+            //   (label);
 
-              return `button:has(abbr[aria-label="${label}"]){
+              return `button:has(abbr[aria-label="November 17, 2023"]){
                         background-color:red;
                         opacity:0.7;
                           }`;
