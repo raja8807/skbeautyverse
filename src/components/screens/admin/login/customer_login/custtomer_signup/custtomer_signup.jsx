@@ -15,7 +15,9 @@ const CustomerSinup = (props) => {
     customer,
     error,
     setError,
-    reloadUser={reloadUser}
+    reloadUser,
+    isLoginPage,
+    setIsAdminLogin,
   } = props;
 
   const [values, setValues] = useState({
@@ -87,8 +89,18 @@ const CustomerSinup = (props) => {
 
         {!customer && (
           <small>
-            <span>Admin Login</span>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            {isLoginPage && (
+              <>
+                <span
+                  onClick={() => {
+                    setIsAdminLogin(true);
+                  }}
+                >
+                  Admin Login
+                </span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              </>
+            )}
             <span
               onClick={() => {
                 setError(false);

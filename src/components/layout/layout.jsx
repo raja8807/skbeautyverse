@@ -4,10 +4,10 @@ import WhatsappButton from "./whatsapp_button/whatsapp_button";
 const { default: Header } = require("./header/header");
 
 const Layout = (props) => {
-  const { children } = props;
+  const { children,customer } = props;
   return (
     <>
-      <Header />
+      <Header customer={customer}/>
       {children}
       <Footer/>
       <WhatsappButton/>

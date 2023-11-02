@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import CustomButton from "@/components/ui/custom_button/custom_button";
+import fireBaseCustomerAuth from "@/components/constants/firebase_config";
 
 const HeaderDrawer = (props) => {
-  const { show, setShow } = props;
+  const { show, setShow, customer } = props;
 
   const handleClose = () => setShow(false);
 
@@ -47,8 +48,8 @@ const HeaderDrawer = (props) => {
                   }}
                 >
                   <Link href={page.href}>
-                    {page.name === "Login" && session?.data
-                      ? "Admin"
+                    {page.name === "Login" && (session?.data || customer)
+                      ? "My Account"
                       : page.name}
                   </Link>
                 </li>
@@ -59,6 +60,16 @@ const HeaderDrawer = (props) => {
             <CustomButton
               clickHandler={() => {
                 signOut();
+              }}
+            >
+              Logout
+            </CustomButton>
+          )}
+
+          {customer && (
+            <CustomButton
+              clickHandler={() => {
+                fireBaseCustomerAuth.signOut();
               }}
             >
               Logout

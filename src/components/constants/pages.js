@@ -21,7 +21,7 @@ const pagesList = [
     },
     {
         name:'Login',
-        href:'/admin'
+        href:'/account'
     },
 ]
 

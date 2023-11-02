@@ -43,7 +43,10 @@ export default function App({ Component, pageProps }) {
     };
 
     const handleChangeEnd = (url) => {
-      if (url && (url === "/" || url.includes("gallery") || url.includes("admin"))) {
+      if (
+        typeof url === "string" &&
+        (url === "/" || url.includes("gallery") || url.includes("account"))
+      ) {
         setIsLoading(false);
       }
     };
@@ -53,7 +56,7 @@ export default function App({ Component, pageProps }) {
     router.events.on("routeChangeError", handleChangeEnd);
   }, [router.events]);
 
-  const [customer,setCustomer] = useState(null)
+  const [customer, setCustomer] = useState(null);
 
   // console.log(customer);
 
@@ -93,8 +96,12 @@ export default function App({ Component, pageProps }) {
         </div>
       ) : (
         <main className={roboto.className}>
-          <Layout>
-            <Component {...pageProps} customer={customer} setCustomer={setCustomer}/>
+          <Layout customer={customer}>
+            <Component
+              {...pageProps}
+              customer={customer}
+              setCustomer={setCustomer}
+            />
           </Layout>
         </main>
       )}

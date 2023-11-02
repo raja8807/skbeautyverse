@@ -11,7 +11,7 @@ import { signOut, useSession } from "next-auth/react";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 // import Image from "next/image";
 
-const Header = () => {
+const Header = ({ customer }) => {
   const [ShowHeaer, setShowHeader] = useState(false);
 
   const router = useRouter();
@@ -64,24 +64,13 @@ const Header = () => {
                     href={page.href}
                     className={isActive ? styles.active : ""}
                   >
-                    {page.name === "Login" && session?.data
-                      ? "Admin"
+                    {page.name === "Login" && (session?.data || customer)
+                      ? "My Account"
                       : page.name}
                   </Link>
                 </li>
               );
             })}
-            {session?.data && (
-              <li>
-                <CustomButton
-                  clickHandler={() => {
-                    signOut();
-                  }}
-                >
-                  Logout
-                </CustomButton>
-              </li>
-            )}
           </ul>
         </nav>
 
@@ -93,7 +82,7 @@ const Header = () => {
         />
       </CustomContainer>
 
-      <HeaderDrawer show={ShowHeaer} setShow={setShowHeader} />
+      <HeaderDrawer show={ShowHeaer} setShow={setShowHeader} customer={customer}/>
     </header>
   );
 };

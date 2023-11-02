@@ -17,39 +17,23 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import EmailVerification from "./email_verification/email_verification";
 
+import fireBaseCustomerAuth from "@/components/constants/firebase_config";
+
 const CustomerLogin = (props) => {
-  const { setIsAdminLogin, setCustomer, customer } = props;
+  const { setIsAdminLogin, setCustomer, customer, isLoginPage } = props;
 
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
+  const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAsIZTUloiZFea0cZiYQ_vfjAR6oHhNOHQ",
-    authDomain: "sk-beautyverse.firebaseapp.com",
-    projectId: "sk-beautyverse",
-    storageBucket: "sk-beautyverse.appspot.com",
-    messagingSenderId: "342587440251",
-    appId: "1:342587440251:web:451622967160003137b6de",
-    measurementId: "G-XZZCW7NNP5",
-  };
-
-  let firebase_app =
-    getApps().length === 0
-      ? firebase.initializeApp(firebaseConfig)
-      : getApps()[0];
-
-  const auth = getAuth(firebase_app);
-
-  const [verified, setVerified] = useState(false);
-
   const signOut = () => {
     setVerified(null);
-    auth.signOut();
+    fireBaseCustomerAuth.signOut();
   };
 
   const updateCustomer = async (displayName, phoneNumber) => {
@@ -71,7 +55,7 @@ const CustomerLogin = (props) => {
   async function signIn(email, password) {
     try {
       result = await signInWithEmailAndPassword(
-        auth,
+        fireBaseCustomerAuth,
         values,
         email,
         values.password
@@ -95,7 +79,11 @@ const CustomerLogin = (props) => {
     setError(false);
 
     try {
-      result = await createUserWithEmailAndPassword(auth, email, password);
+      result = await createUserWithEmailAndPassword(
+        fireBaseCustomerAuth,
+        email,
+        password
+      );
       await sendVerificationEmail();
       setIsLoading(false);
     } catch (e) {
@@ -108,6 +96,10 @@ const CustomerLogin = (props) => {
     setIsLoading(true);
     await customer.reload();
     setCustomer(firebase.auth().currentUser);
+    if (customer.emailVerified) {
+      setVerified(true);
+      setIsLogin(true);
+    }
     setIsLoading(false);
   };
 
@@ -126,7 +118,11 @@ const CustomerLogin = (props) => {
     setIsLoading(true);
     setError(false);
     try {
-      result = await signInWithEmailAndPassword(auth, email, password);
+      result = await signInWithEmailAndPassword(
+        fireBaseCustomerAuth,
+        email,
+        password
+      );
       setIsLoading(false);
     } catch (e) {
       console.log("err--> ", e);
@@ -259,16 +255,20 @@ const CustomerLogin = (props) => {
 
         {!customer && (
           <small>
-            <span
-              onClick={() => {
-                setError(false);
+            {isLoginPage && (
+              <>
+                <span
+                  onClick={() => {
+                    setError(false);
 
-                setIsAdminLogin(true);
-              }}
-            >
-              Admin Login
-            </span>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    setIsAdminLogin(true);
+                  }}
+                >
+                  Admin Login
+                </span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              </>
+            )}
             <span
               onClick={() => {
                 setError(false);
@@ -294,6 +294,8 @@ const CustomerLogin = (props) => {
       error={error}
       setError={setError}
       reloadUser={reloadUser}
+      isLoginPage={isLoginPage}
+      setIsAdminLogin={setIsAdminLogin}
     />
   );
 };

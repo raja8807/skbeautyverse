@@ -4,7 +4,7 @@ import styles from "./login.module.scss";
 import { signIn } from "next-auth/react";
 import CustomerLogin from "./customer_login/customer_login";
 
-const LoginBox = ({setCustomer,customer}) => {
+const LoginBox = ({ setCustomer, customer }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -79,7 +79,12 @@ const LoginBox = ({setCustomer,customer}) => {
           {/* <p>Admin Login</p> */}
         </div>
       ) : (
-        <CustomerLogin setIsAdminLogin={setIsAdminLogin} setCustomer={setCustomer} customer={customer}/>
+        <CustomerLogin
+          setIsAdminLogin={setIsAdminLogin}
+          setCustomer={setCustomer}
+          customer={customer}
+          isLoginPage
+        />
       )}
     </>
   );

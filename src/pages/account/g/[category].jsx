@@ -13,7 +13,7 @@ const GalleryAdmin = ({ galleyImages }) => {
 
   useEffect(() => {
     if (!session?.data) {
-      router.push("/admin");
+      router.push("/account");
     }
   }, [session]);
 

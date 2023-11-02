@@ -121,7 +121,7 @@ const BannerForm = ({ galleryImages = [] }) => {
         value={selectedCategory}
         options={allCategories}
         onChange={(v) => {
-          router.push(`/admin/g/${v}`);
+          router.push(`/account/g/${v}`);
           setSelectedCategory(v);
         }}
       />
