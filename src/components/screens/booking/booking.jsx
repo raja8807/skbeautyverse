@@ -51,7 +51,7 @@ const BookingScreen = () => {
   const bookedDates = [
     {
       id: "3828042",
-      date: "11/16/2023",
+      date: "11/11/2023",
       slots: [
         {
           id: 1,
@@ -69,7 +69,7 @@ const BookingScreen = () => {
     },
     {
       id: "jeooefooe",
-      date: "11/12/2023",
+      date: "10/11/2023",
       slots: [
         {
           id: 1,
@@ -77,7 +77,7 @@ const BookingScreen = () => {
         },
         {
           id: 2,
-          booked:null,
+          booked: null,
         },
         {
           id: 3,
@@ -97,10 +97,7 @@ const BookingScreen = () => {
       date = e.getAttribute("aria-label");
     }
 
-    const bookedObj = bookedDates.find(
-      (d) => new Date(d.date).toDateString() === new Date(date).toDateString()
-    );
-
+    const bookedObj = bookedDates.find((d) => d.date === date);
 
     if (bookedObj) {
       if (bookedObj.slots.some((s) => !s.booked)) {
@@ -127,7 +124,6 @@ const BookingScreen = () => {
     }
   };
 
-
   return (
     <>
       {showPopupFor && (
@@ -144,13 +140,14 @@ const BookingScreen = () => {
           minDate={new Date()}
           maxDate={new Date(new Date().getTime() + 86400000 * (365 / 2))}
           minDetail="month"
-          formatLongDate={(locale, date) =>
-            new Intl.DateTimeFormat(locale, {
+          formatLongDate={(locale, date) => {
+            
+            return new Intl.DateTimeFormat("en-IN", {
               year: "numeric",
               month: "2-digit",
               day: "2-digit",
-            }).format(date)
-          }
+            }).format(date);
+          }}
           //   formatLongDate={(locale,date)=>formatLongDate(date,'dd MM YYYY')}
         />
       </div>
@@ -158,7 +155,6 @@ const BookingScreen = () => {
       <style>
         {bookedDates
           .map((date) => {
-            // console.log(date.date);
             if (date.slots.every((d) => d.booked)) {
               return `button:has(abbr[aria-label="${date.date}"]){
                         background-color:red;
