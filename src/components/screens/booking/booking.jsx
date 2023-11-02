@@ -9,45 +9,6 @@ const BookingScreen = () => {
   const [value, setValue] = useState(new Date());
   const [showPopupFor, setShowPopupFor] = useState(null);
 
-  //   const [bookedDates, setBookedDates] = useState([
-  //     {
-  //       id: "3828042",
-  //       date: "November 16, 2023",
-  //       slots: [
-  //         {
-  //           id: 1,
-  //           booked: "user 1",
-  //         },
-  //         {
-  //           id: 2,
-  //           booked: "user 2",
-  //         },
-  //         {
-  //           id: 3,
-  //           booked: "user 3",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       id: "jeooefooe",
-  //       date: "November 17, 2023",
-  //       slots: [
-  //         {
-  //           id: 1,
-  //           booked: "user 4",
-  //         },
-  //         {
-  //           id: 2,
-  //           booked: null,
-  //         },
-  //         {
-  //           id: 3,
-  //           booked: null,
-  //         },
-  //       ],
-  //     },
-  //   ]);
-
   const bookedDates = [
     {
       id: "3828042",
@@ -89,6 +50,7 @@ const BookingScreen = () => {
 
   const onChange = (x, y) => {
     setValue(x, y);
+    
     let date;
     if (y.target.tagName.toLowerCase() === "abbr") {
       date = y.target.getAttribute("aria-label");
@@ -140,15 +102,14 @@ const BookingScreen = () => {
           minDate={new Date()}
           maxDate={new Date(new Date().getTime() + 86400000 * (365 / 2))}
           minDetail="month"
-          formatLongDate={(locale, date) => {
-            
+          
+          formatLongDate={(locale, date) => {     
             return new Intl.DateTimeFormat("en-IN", {
               year: "numeric",
               month: "2-digit",
               day: "2-digit",
             }).format(date);
           }}
-          //   formatLongDate={(locale,date)=>formatLongDate(date,'dd MM YYYY')}
         />
       </div>
 

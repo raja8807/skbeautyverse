@@ -2,7 +2,7 @@
   div[class="modal-content"] {
     border-radius: 0;
     margin: 0;
-    width: fit-content;
+    // width: fit-content;
     margin: auto;
   }
 
@@ -28,6 +28,8 @@
       flex-direction: column;
       gap: 16px;
       .slots {
+        align-items: center;
+        justify-content: center;
         display: flex;
         gap: 10px;
 
@@ -35,12 +37,11 @@
           display: flex;
           align-items: center;
           flex-direction: column;
-          //   margin: 10px 0;
           padding: 10px 14px;
           border-radius: 10px;
           width: fit-content;
           cursor: pointer;
-          *{
+          * {
             color: black;
           }
 
@@ -48,27 +49,19 @@
             background-color: rgba(167, 18, 18, 0.912);
             opacity: 0.8;
             cursor: no-drop;
-            *{
-                color: white;
+            * {
+              color: white;
             }
           }
 
           background-color: rgb(234, 234, 234);
-          
 
-        //   &:not(.booked) {
-        //     &:hover {
-        //       background-color: rgb(20, 50, 20);
-        //     }
-        //   }
-
-          // border: 1px solid black;
           &.selected {
             background-color: rgb(0, 100, 20);
             // background-color: red;
             transform: scale(1.1);
-            *{
-                color: white;
+            * {
+              color: white;
             }
           }
         }
@@ -79,7 +72,8 @@
         flex-direction: column;
         gap: 10px;
         input,
-        textarea {
+        textarea,
+        select {
           background-color: $color_grey;
           border: none !important;
           color: white;
@@ -92,12 +86,12 @@
             opacity: 0.7;
           }
 
-        //   &[type="submit"] {
-        //     &:hover {
-        //       //   background-color: $color_gold;
-        //       //   color: black;
-        //     }
-        //   }
+          //   &[type="submit"] {
+          //     &:hover {
+          //       //   background-color: $color_gold;
+          //       //   color: black;
+          //     }
+          //   }
         }
       }
 

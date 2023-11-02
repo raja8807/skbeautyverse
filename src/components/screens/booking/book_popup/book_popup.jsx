@@ -5,6 +5,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { X } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
+import categories from "@/components/constants/categories";
 
 const BookPopup = (props) => {
   const { showPopupFor, setShowPopupFor } = props;
@@ -67,13 +68,37 @@ const BookPopup = (props) => {
                   e.preventDefault();
                 }}
               >
+                <select >
+                    <option value={null} >Select Package</option>
+                  {categories.map((c, i) => {
+                    if (i !== 3) {
+                      return (
+                        <option key={c.id} value={c.name}>
+                          {c.name}
+                        </option>
+                      );
+                    }
+                  })}
+                </select>
+                <select >
+                    <option value={null} >Select Category</option>
+                  {categories.map((c, i) => {
+                    if (i !== 3) {
+                      return (
+                        <option key={c.id} value={c.name}>
+                          {c.name}
+                        </option>
+                      );
+                    }
+                  })}
+                </select>
                 <input placeholder="Name" />
                 <input placeholder="Phone" />
                 <input placeholder="Location" />
                 <input type="submit" value={`Book Slot ${selected.id}`} />
               </form>
             ) : (
-              <p className={styles.message}>Please Select a slot</p>
+              <p className={styles.message}>Please select a slot</p>
             )}
           </div>
         </div>
