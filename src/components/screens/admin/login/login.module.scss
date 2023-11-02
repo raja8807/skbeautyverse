@@ -11,6 +11,17 @@
     gap: 16px;
     border-radius: 5px;
 
+    small {
+      text-align: center;
+      cursor: pointer;
+
+      span {
+        &:hover {
+          color: $color_gold;
+        }
+      }
+    }
+
     p {
       text-align: center;
       color: $color_gold;
@@ -27,7 +38,8 @@
       &.error {
         border: 2px solid red;
       }
-      &[type="submit"] {
+      &[type="submit"],
+      &[type="button"] {
         background-color: $color_gold;
         color: $color_black;
       }

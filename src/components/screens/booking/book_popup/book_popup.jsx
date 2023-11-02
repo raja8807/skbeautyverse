@@ -1,10 +1,9 @@
 "use client";
 import styles from "./book_popup.module.scss";
-import { Image, Modal } from "react-bootstrap";
-import firebase from "firebase/compat/app";
+import {  Modal } from "react-bootstrap";
 import "firebase/compat/auth";
 import { X } from "react-bootstrap-icons";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import categories from "@/components/constants/categories";
 
 const BookPopup = (props) => {

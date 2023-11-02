@@ -8,8 +8,10 @@ const {
 
 import Link from "next/link";
 
-const Admin = ({ homeData }) => {
+const Admin = ({ homeData ,setCustomer,customer}) => {
   const session = useSession();
+
+  // console.log(setCustomer);
 
   return (
     <CustomContainer>
@@ -19,7 +21,7 @@ const Admin = ({ homeData }) => {
           <AdminPanel homeData={homeData} />
         </>
       ) : (
-        <LoginBox />
+        <LoginBox setCustomer={setCustomer} customer={customer}/>
       )}
     </CustomContainer>
   );

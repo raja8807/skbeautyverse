@@ -53,6 +53,10 @@ export default function App({ Component, pageProps }) {
     router.events.on("routeChangeError", handleChangeEnd);
   }, [router.events]);
 
+  const [customer,setCustomer] = useState(null)
+
+  // console.log(customer);
+
   return (
     <SessionProvider session={pageProps.session}>
       {load && (
@@ -90,7 +94,7 @@ export default function App({ Component, pageProps }) {
       ) : (
         <main className={roboto.className}>
           <Layout>
-            <Component {...pageProps} />
+            <Component {...pageProps} customer={customer} setCustomer={setCustomer}/>
           </Layout>
         </main>
       )}
