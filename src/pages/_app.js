@@ -59,11 +59,11 @@ export default function App({ Component, pageProps }) {
 
   const [customer, setCustomer] = useState(null);
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (user) => {
-      setCustomer(user);
-    });
-  }, [setCustomer]);
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged(async (user) => {
+  //     setCustomer(user);
+  //   });
+  // }, [setCustomer]);
 
   // console.log(customer);
 

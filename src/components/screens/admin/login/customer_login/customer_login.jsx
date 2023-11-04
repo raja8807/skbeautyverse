@@ -124,11 +124,11 @@ const CustomerLogin = (props) => {
     }
   }, [customer]);
 
-//   useEffect(() => {
-//     firebase.auth().onAuthStateChanged(async (user) => {
-//       setCustomer(user);
-//     });
-//   }, [setCustomer]);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      setCustomer(user);
+    });
+  }, [setCustomer]);
 
   async function signIn(email, password) {
     setIsLoading(true);
