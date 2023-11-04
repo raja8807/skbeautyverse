@@ -8,6 +8,7 @@ import { Outfit as BaseFont } from "next/font/google";
 import { useRouter } from "next/router";
 import { Image, Spinner } from "react-bootstrap";
 import { SessionProvider } from "next-auth/react";
+import firebase from "firebase/compat/app";
 
 // Kaushan_Script
 
@@ -57,6 +58,12 @@ export default function App({ Component, pageProps }) {
   }, [router.events]);
 
   const [customer, setCustomer] = useState(null);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      setCustomer(user);
+    });
+  }, [setCustomer]);
 
   // console.log(customer);
 

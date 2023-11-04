@@ -2,6 +2,7 @@ import GalleryForm from "@/components/screens/admin/gallery_admin/gallery_form";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 
 const {
   default: CustomContainer,
@@ -15,11 +16,11 @@ const GalleryAdmin = ({ galleyImages }) => {
     if (!session?.data) {
       router.push("/account");
     }
-  }, [session]);
+  }, [router, session]);
 
   return (
     <CustomContainer>
-      <GalleryForm galleryImages={galleyImages} />
+      {galleyImages && <GalleryForm galleryImages={galleyImages} />}
     </CustomContainer>
   );
 };
@@ -28,14 +29,18 @@ export default GalleryAdmin;
 
 export async function getServerSideProps(context) {
   //   console.log("aeoaen-------------------------->>>>");
+  const session = await getSession(context);
 
   try {
-    const q = context.query.category;
-    const res = await fetch(
-      `http://${context.req.headers.host}/api/galleryImage?q=${q}`
-    );
-    const galleyImages = await res.json();
-    return { props: { galleyImages } };
+    if (session) {
+      const q = context.query.category;
+      const res = await fetch(
+        `http://${context.req.headers.host}/api/galleryImage?q=${q}`
+      );
+      const galleyImages = await res.json();
+      return { props: { galleyImages } };
+    }
+    return { props: { galleyImages: null } };
   } catch (err) {
     console.log("errr--->", err);
     return { props: { images: "errr-->" + err.message } };

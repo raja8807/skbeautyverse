@@ -19,8 +19,6 @@ export const authOptions = {
           return  true
           
         }
-        
-
         return null;
       },
     }),

@@ -4,24 +4,22 @@ import styles from "../login.module.scss";
 // import { signIn } from "next-auth/react";
 import CustomerSignup from "./custtomer_signup/custtomer_signup";
 
-import { getApps } from "firebase/app";
+// import { getApps } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
-  //   updatePhoneNumber,
-  //   sendEmailVerification,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-// import { getAnalytics } from "firebase/analytics";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import EmailVerification from "./email_verification/email_verification";
 
 import fireBaseCustomerAuth from "@/components/constants/firebase_config";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { Google } from "react-bootstrap-icons";
 
 const CustomerLogin = (props) => {
   const { setIsAdminLogin, setCustomer, customer, isLoginPage } = props;
-
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -36,6 +34,7 @@ const CustomerLogin = (props) => {
     fireBaseCustomerAuth.signOut();
   };
 
+  const router = useRouter();
   const updateCustomer = async (displayName, phoneNumber) => {
     setIsLoading(true);
     setError(false);
@@ -44,8 +43,24 @@ const CustomerLogin = (props) => {
         displayName,
         photoURL: phoneNumber,
       });
+      const res = await axios.post("/api/customer", {
+        name: displayName,
+        phoneNumber,
+        email: customer.email,
+        customerId: customer.uid,
+      });
+      //   console.log(res);
       setError(false);
       setIsLoading(false);
+      if (isLoginPage) {
+        router.reload();
+      } else {
+        setCustomer((prev) => ({
+          ...prev,
+          displayName,
+          photoURL: phoneNumber,
+        }));
+      }
     } catch (err) {
       setIsLoading(false);
       setError(true);
@@ -104,15 +119,16 @@ const CustomerLogin = (props) => {
   };
 
   useEffect(() => {
-    setError(false);
-    console.log("ok");
-    firebase.auth().onAuthStateChanged(async (user) => {
-      setCustomer(user);
-      if (user && !user.emailVerified) {
-        setVerified("no");
-      }
-    });
-  }, [setCustomer]);
+    if (customer && !customer.emailVerified) {
+      setVerified("no");
+    }
+  }, [customer]);
+
+//   useEffect(() => {
+//     firebase.auth().onAuthStateChanged(async (user) => {
+//       setCustomer(user);
+//     });
+//   }, [setCustomer]);
 
   async function signIn(email, password) {
     setIsLoading(true);
@@ -125,7 +141,7 @@ const CustomerLogin = (props) => {
       );
       setIsLoading(false);
     } catch (e) {
-      console.log("err--> ", e);
+      //   console.log("err--> ", e);
       setIsLoading(false);
       setError(true);
     }
@@ -137,6 +153,19 @@ const CustomerLogin = (props) => {
     name: "",
     phoneNumber: "",
   });
+
+  const auth = firebase.auth();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    auth
+      .signInWithPopup(googleProvider)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return isLogin ? (
     <div className={styles.loginBox}>
@@ -248,6 +277,22 @@ const CustomerLogin = (props) => {
                 ) : (
                   <input type="submit" value="login" />
                 )}
+                <button type="button" onClick={signInWithGoogle}>
+                  <Google /> &nbsp; Login With Google{" "}
+                </button>
+                {/* <div className="login-buttons">
+                  <button
+                    className="login-provider-button"
+                    onClick={signInWithGoogle}
+                    type="button"
+                  >
+                    <img
+                      src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
+                      alt="google icon"
+                    />
+                    <span> Continue with Google</span>
+                  </button>
+                </div> */}
               </>
             )}
           </>

@@ -1,7 +1,7 @@
 .loginBox {
   width: 100%;
   @include flexCenter;
-  height: 80vh;
+  // height: 80vh;
   form {
     background-color: rgba(0, 0, 0, 0.745);
     display: flex;
@@ -28,20 +28,22 @@
       font-size: 30px;
     }
 
-    input {
+    input,
+    button {
       padding: 5px 10px;
       color: $color_white;
       background-color: $color_grey;
       border: none;
       outline: none;
       height: 40px;
+
       &.error {
         border: 2px solid red;
       }
-      &[type="submit"],
-      &[type="button"] {
-        background-color: $color_gold;
-        color: $color_black;
+      &[type="submit"]
+      {
+        background-color: $color_gold !important;
+        color: $color_black !important;
       }
     }
   }

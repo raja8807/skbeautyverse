@@ -1,0 +1,15 @@
+.booking {
+  td {
+    &.Pending {
+      color: orange !important;
+    }
+
+    &.Cancelled {
+      color: red !important;
+    }
+
+    &.Confirmed {
+      color: rgb(2, 208, 2) !important;
+    }
+  }
+}

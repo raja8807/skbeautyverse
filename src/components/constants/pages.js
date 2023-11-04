@@ -4,6 +4,10 @@ const pagesList = [
         href:'/'
     },
     {
+        name:'Bookings',
+        href:'/book'
+    },
+    {
         name:'About',
         href:'/about'
     },

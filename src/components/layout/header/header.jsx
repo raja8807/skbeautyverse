@@ -71,6 +71,17 @@ const Header = ({ customer }) => {
                 </li>
               );
             })}
+            {/* {session?.data && (
+              <li>
+                <CustomButton
+                  clickHandler={() => {
+                    signOut();
+                  }}
+                >
+                  Logout
+                </CustomButton>
+              </li>
+            )} */}
           </ul>
         </nav>
 

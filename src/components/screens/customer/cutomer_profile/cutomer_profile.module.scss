@@ -1,0 +1,43 @@
+.customerProfile {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin: 10px 0;
+  .top {
+    text-align: center;
+    p {
+      font-weight: 600;
+      font-size: 17px;
+      color: $color_gold;
+    }
+  }
+  input,
+  textarea {
+    background-color: $color_grey;
+    border: none !important;
+    color: white;
+    outline-color: $color_gold;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+    &:disabled {
+      opacity: 0.7;
+    }
+
+    &[type="submit"] {
+      &:hover {
+        background-color: $color_gold;
+        color: black;
+      }
+    }
+  }
+
+  form {
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0;
+    }
+  }
+}

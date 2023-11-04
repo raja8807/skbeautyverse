@@ -2,7 +2,6 @@ const { getApps } = require("firebase/app");
 import { getAuth } from "firebase/auth";
 import firebase from "firebase/compat/app";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAsIZTUloiZFea0cZiYQ_vfjAR6oHhNOHQ",
   authDomain: "sk-beautyverse.firebaseapp.com",
@@ -18,6 +17,10 @@ let firebase_app =
     ? firebase.initializeApp(firebaseConfig)
     : getApps()[0];
 
+// const adminApp = initializeApp();
+
 const fireBaseCustomerAuth = getAuth(firebase_app);
 
-export default fireBaseCustomerAuth
+// Start listing users from the beginning, 1000 at a time.
+
+export default fireBaseCustomerAuth;
