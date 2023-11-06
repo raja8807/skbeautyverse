@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
     console.log(firebase.auth().currentUser);
     const res = await fetch(`http://${context.req.headers.host}/api/booking`);
     const bookings = await res.json();
-    return { props: { bookings } };
+    return { props: { bookings:bookings.bookings } };
   } catch (err) {
     console.log("errr--->", err);
     return { props: { images: "errr-->" + err.message } };

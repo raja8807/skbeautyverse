@@ -13,10 +13,22 @@ const AllBookings = ({ bookingData: data = [] }) => {
 
   const updateBooking = async () => {
     setLoading(true);
+    const messages = {
+      Confirmed: `Hi ${showPopupFor.customer.name}, We are happy to inform you that we have confirmed your booking on ${showPopupFor.date}. Thank You.`,
+      Cancelled: `Hi ${showPopupFor.customer.name}, We are sorry to inform you that we have cancelled your booking on ${showPopupFor.date}. Thank You.`,
+      Pending: `Hi ${showPopupFor.customer.name}, We are sorry to inform you that we have marked your booking for ${showPopupFor.date} as pending. We will get back soon as possible. Thank You.`,
+    };
     try {
       const res = await axios.put("/api/booking", { ...showPopupFor, status });
       setLoading(false);
-      console.log(res.data);
+      console.log(showPopupFor.customer);
+      const a = document.createElement("a");
+      a.setAttribute(
+        "href",
+        `https://wa.me/91${showPopupFor.customer.phoneNumber}?text=${messages[status]}`
+      );
+      a.setAttribute("target", "_black");
+      a.click();
       setBookingData((prev) => {
         const b = [...prev];
         b[showPopupFor.index] = res.data;
@@ -57,9 +69,14 @@ const AllBookings = ({ bookingData: data = [] }) => {
           </div>
           <div className={styles.bottom}>
             {/* <div> */}
-            <p>Name &nbsp;&nbsp;: {showPopupFor?.customer.name}</p>
-            <p>Phone &nbsp;: {showPopupFor?.customer.phoneNumber}</p>
-            <p>Slot&nbsp; &nbsp;&nbsp;&nbsp; : {showPopupFor?.slot}</p>
+            <p>Name &nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.customer.name}</p>
+            <p>Phone &nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.customer.phoneNumber}</p>
+            <p>Slot&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.slot}</p>
+            <p>Location&nbsp;&nbsp;: {showPopupFor?.location}</p>
+            <p>Package&nbsp;&nbsp;&nbsp;: {showPopupFor?.packageId}</p>
+            <p>
+              Category&nbsp;&nbsp;: {showPopupFor?.categoryId}
+            </p>
             <div className={styles.status}>
               <p>Status</p>
               <select

@@ -9,7 +9,7 @@ import AllBookings from "./all_bookings/all_bookings";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
 
-const BookingScreen = ({ customer, setCustomer, bookingData }) => {
+const BookingScreen = ({ customer, setCustomer, bookingData,packages }) => {
   const [value, setValue] = useState(new Date());
   const [showPopupFor, setShowPopupFor] = useState(null);
   const session = useSession();
@@ -116,6 +116,7 @@ const BookingScreen = ({ customer, setCustomer, bookingData }) => {
           setCustomer={setCustomer}
           setBookedDates={setBookedDates}
           alter={alter}
+          packages={packages}
           //   setBookingSamples={setBookingSamples}
         />
       )}

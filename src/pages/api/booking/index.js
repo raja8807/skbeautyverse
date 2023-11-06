@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import Booking from "@/components/models/BookingModal";
+import Package from "@/components/models/PackageModel";
 import { connectMongoDB } from "@/libs/mongoConnect";
 // import Test from "@/components/models/ChatModel";
 
@@ -18,7 +19,8 @@ export default async function handler(req, res) {
     try {
       await connectMongoDB();
       const allBooking = await Booking.find();
-      res.status(200).send(allBooking);
+      const packages =await  Package.find();
+      res.status(200).send({ bookings: allBooking, packages });
     } catch (err) {
       console.log(err.message);
       res.status(500).send({ err: err.message });
@@ -27,7 +29,10 @@ export default async function handler(req, res) {
   if (req.method === "PUT") {
     try {
       await connectMongoDB();
-      const allBooking = await Booking.updateOne(req.body);
+      const x = { ...req.body };
+      delete x._id;
+
+      const allBooking = await Booking.updateOne({ _id: req.body._id }, x);
       res.status(200).send(req.body);
     } catch (err) {
       console.log(err.message);

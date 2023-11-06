@@ -3,12 +3,30 @@
   padding: 40px 0;
   .calander {
     background-color: rgba(0, 0, 0, 0.5) !important;
+    // background-color: red !important;
+    border: 1px solid $color_gold;
 
     button {
       &:disabled {
         background-color: rgba(0, 0, 0, 0.5) !important;
         opacity: 0.5;
       }
+    }
+
+    button[class*="react-calendar__tile"] {
+      // background-color: red;
+      border: 1px solid $color_gold;
+      border-radius: 5px;
+
+      &:hover{
+        background-color: $color_gold;
+        transform: scale(1.2);
+        abbr{
+          color: $color_black !important;
+          font-weight: 600;
+        }
+      }
+      // margin: 2px;
     }
 
     button[class*="react-calendar__navigation"] {

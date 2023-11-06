@@ -10,11 +10,17 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 const BookPopup = (props) => {
-  const { showPopupFor, setShowPopupFor, customer, setCustomer } = props;
+  const { showPopupFor, setShowPopupFor, customer, setCustomer, packages } =
+    props;
 
   const [selected, setSelected] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
   const [apiStatus, setApiStatus] = useState("idle");
+  const [bookingValues, setBookingValues] = useState({
+    package: null,
+    category: null,
+    location: "",
+  });
   const router = useRouter();
 
   const makeBooking = async () => {
@@ -24,9 +30,9 @@ const BookPopup = (props) => {
         date: showPopupFor.date,
         slot: selected.id.toString(),
         status: "Pending",
-        packageId: "1",
-        categoryId: "2",
-        location: "chennai",
+        packageId: bookingValues.package,
+        categoryId: bookingValues.category,
+        location: bookingValues.location,
         customer: {
           name: customer?.displayName,
           phoneNumber: customer.photoURL,
@@ -111,19 +117,37 @@ const BookPopup = (props) => {
                       e.preventDefault();
                     }}
                   >
-                    <select>
+                    <select
+                      value={bookingValues.package}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          package: value,
+                        }));
+                      }}
+                    >
                       <option value={null}>Select Package</option>
-                      {categories.map((c, i) => {
+                      {packages.map((c, i) => {
                         if (i !== 3) {
                           return (
-                            <option key={c.id} value={c.name}>
-                              {c.name}
+                            <option key={c.id} value={c.head}>
+                              {c.head} - Rs.{c.price}
                             </option>
                           );
                         }
                       })}
                     </select>
-                    <select>
+                    <select
+                      value={bookingValues.category}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          category: value,
+                        }));
+                      }}
+                    >
                       <option value={null}>Select Category</option>
                       {categories.map((c, i) => {
                         if (i !== 3) {
@@ -136,10 +160,25 @@ const BookPopup = (props) => {
                       })}
                     </select>
 
-                    <input placeholder="Location" />
+                    <input
+                      placeholder="Location"
+                      value={bookingValues.location}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          location: value,
+                        }));
+                      }}
+                    />
                     {apiStatus === "idle" && (
                       <input
                         type="submit"
+                        disabled={
+                          !bookingValues.package ||
+                          !bookingValues.category ||
+                          !bookingValues.location
+                        }
                         onClick={async () => {
                           if (
                             !customer ||

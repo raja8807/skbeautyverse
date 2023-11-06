@@ -1,3 +1,8 @@
+.cont{
+  height: 80vh;
+  @include flexCenter;
+}
+
 .loginBox {
   width: 100%;
   @include flexCenter;
