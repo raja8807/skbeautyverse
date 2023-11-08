@@ -118,27 +118,6 @@ const BookPopup = (props) => {
                     }}
                   >
                     <select
-                      value={bookingValues.package}
-                      onChange={(e) => {
-                        const { value } = e.target;
-                        setBookingValues((prev) => ({
-                          ...prev,
-                          package: value,
-                        }));
-                      }}
-                    >
-                      <option value={null}>Select Package</option>
-                      {packages.map((c, i) => {
-                        if (i !== 3) {
-                          return (
-                            <option key={c.id} value={c.head}>
-                              {c.head} - Rs.{c.price}
-                            </option>
-                          );
-                        }
-                      })}
-                    </select>
-                    <select
                       value={bookingValues.category}
                       onChange={(e) => {
                         const { value } = e.target;
@@ -159,6 +138,99 @@ const BookPopup = (props) => {
                         }
                       })}
                     </select>
+
+                    
+                    <select
+                      value={bookingValues.package}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          package: value,
+                        }));
+                      }}
+                    >
+                  
+                          <option value={null}>Select Package</option>
+                      {packages.map((c, i) => {
+                        if (i !== 3) {
+                          return (
+                            <option key={c.id} value={c.head}>
+                              {c.head} - Rs.{c.price}
+                            </option>
+                          );
+                        }
+                      })}
+                      <option>{'Any Other Occasion'.toUpperCase()}</option>
+                    </select>
+                    {/* 
+                    <select
+                      value={bookingValues.package}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          package: value,
+                        }));
+                      }}
+                    >
+                      <option value={null}>Select Package</option>
+                      {packages.map((c, i) => {
+                        if (i !== 3) {
+                          return (
+                            <option key={c.id} value={c.head}>
+                              {c.head} - Rs.{c.price}
+                            </option>
+                          );
+                        }
+                      })}
+                    </select> */}
+
+                    {/* {
+                      bookingValues.package && <div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          width: "fit-content",
+                        }}
+                      >
+                        <input type="checkbox" />
+                        <label>Waxing</label>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          width: "fit-content",
+                        }}
+                      >
+                        <input type="checkbox" />
+                        <label>Waxing</label>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          width: "fit-content",
+                        }}
+                      >
+                        <input type="checkbox" />
+                        <label>Waxing</label>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          width: "fit-content",
+                        }}
+                      >
+                        <input type="checkbox" />
+                        <label>Waxing</label>
+                      </div>
+                      
+                    </div>
+                    } */}
 
                     <input
                       placeholder="Location"

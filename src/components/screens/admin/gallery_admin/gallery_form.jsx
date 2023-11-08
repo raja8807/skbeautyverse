@@ -121,7 +121,7 @@ const BannerForm = ({ galleryImages = [] }) => {
         value={selectedCategory}
         options={allCategories}
         onChange={(v) => {
-          router.push(`/account/g/${v}`);
+          router.push(`/account/admin/g/${v}`);
           setSelectedCategory(v);
         }}
       />
@@ -145,8 +145,8 @@ const BannerForm = ({ galleryImages = [] }) => {
                   setError("Not Valid File");
                   return;
                 }
-                if (file.size > 512000 * 4) {
-                  setError("File Size More Than 2MB");
+                if (file.size > 512000 * 10) {
+                  setError("File Size More Than 5MB");
                   return;
                 }
                 setNewImage(file);
