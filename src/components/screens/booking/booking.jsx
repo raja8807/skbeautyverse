@@ -66,8 +66,6 @@ const BookingScreen = ({ bookingData, packages }) => {
         }
       });
 
-      console.log(newArr);
-
     return newArr;
   };
 
@@ -146,6 +144,7 @@ const BookingScreen = ({ bookingData, packages }) => {
             }}
           />
         </div>
+        <p style={{textAlign:'center'}}>Have Boooking Id? Check status.</p>
         <div className={styles.booked}>
           <input
             placeholder="Booking Id"

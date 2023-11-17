@@ -1,4 +1,4 @@
-const { Table, Modal, Spinner } = require("react-bootstrap");
+const { Table, Modal, Spinner, Image } = require("react-bootstrap");
 import { useEffect, useState } from "react";
 import styles from "./all_booking.module.scss";
 import { X } from "react-bootstrap-icons";
@@ -46,6 +46,8 @@ const AllBookings = ({ bookingData: data = [] }) => {
     setStatus(showPopupFor?.status);
   }, [showPopupFor]);
 
+  console.log(showPopupFor);
+
   return (
     <>
       <Modal
@@ -69,6 +71,7 @@ const AllBookings = ({ bookingData: data = [] }) => {
           </div>
           <div className={styles.bottom}>
             {/* <div> */}
+            <p>Booking Id &nbsp;&nbsp;: {showPopupFor?.bookingId}</p>
             <p>Name &nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.customer.name}</p>
             <p>
               Phone &nbsp;&nbsp;&nbsp;&nbsp;:{" "}
@@ -81,6 +84,14 @@ const AllBookings = ({ bookingData: data = [] }) => {
             <p>Location&nbsp;&nbsp;: {showPopupFor?.location}</p>
             <p>Package&nbsp;&nbsp;&nbsp;: {showPopupFor?.packageId}</p>
             <p>Category&nbsp;&nbsp;: {showPopupFor?.categoryId}</p>
+            <p>Message&nbsp;&nbsp;: {showPopupFor?.customer?.email}</p>
+            {showPopupFor?.screenshotUrl && (
+              <Image
+                alt="screenshot"
+                src={showPopupFor?.screenshotUrl}
+                width={100}
+              />
+            )}
             <div className={styles.status}>
               <p>Status</p>
               <select
