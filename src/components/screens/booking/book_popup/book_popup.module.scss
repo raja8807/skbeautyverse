@@ -73,6 +73,7 @@
         gap: 10px;
         input,
         textarea,
+        button,
         select {
           background-color: $color_grey;
           border: none !important;
@@ -93,6 +94,10 @@
           //     }
           //   }
         }
+        .control {
+          display: flex;
+          gap: 10px;
+        }
       }
 
       .message {
@@ -100,5 +105,14 @@
         color: black;
       }
     }
+  }
+}
+
+.body {
+  span {
+    font-weight: bold;
+  }
+  * {
+    color: $color_black;
   }
 }

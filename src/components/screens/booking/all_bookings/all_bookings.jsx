@@ -70,13 +70,17 @@ const AllBookings = ({ bookingData: data = [] }) => {
           <div className={styles.bottom}>
             {/* <div> */}
             <p>Name &nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.customer.name}</p>
-            <p>Phone &nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.customer.phoneNumber}</p>
-            <p>Slot&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {showPopupFor?.slot}</p>
+            <p>
+              Phone &nbsp;&nbsp;&nbsp;&nbsp;:{" "}
+              {showPopupFor?.customer.phoneNumber}
+            </p>
+            <p>
+              Slot&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{" "}
+              {showPopupFor?.slot}
+            </p>
             <p>Location&nbsp;&nbsp;: {showPopupFor?.location}</p>
             <p>Package&nbsp;&nbsp;&nbsp;: {showPopupFor?.packageId}</p>
-            <p>
-              Category&nbsp;&nbsp;: {showPopupFor?.categoryId}
-            </p>
+            <p>Category&nbsp;&nbsp;: {showPopupFor?.categoryId}</p>
             <div className={styles.status}>
               <p>Status</p>
               <select
@@ -112,7 +116,7 @@ const AllBookings = ({ bookingData: data = [] }) => {
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Id</th>
             <th>Date</th>
             <th>Slot</th>
             <th>Customer</th>
@@ -129,7 +133,7 @@ const AllBookings = ({ bookingData: data = [] }) => {
                   setShowPopupFor({ ...booking, index: i });
                 }}
               >
-                <td>{i + 1}</td>
+                <td>{booking.bookingId}</td>
                 <td>{booking.date}</td>
                 <td>{booking.slot}</td>
                 <td>{booking.customer.name}</td>

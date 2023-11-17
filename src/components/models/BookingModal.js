@@ -51,8 +51,14 @@ const bookingSchema = new Schema(
     location: {
       type: String,
     },
+    bookingId: {
+      type: Number,
+    },
     customer: {
       type: customerSchema,
+    },
+    screenshotUrl: {
+      type: String,
     },
   },
   {

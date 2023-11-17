@@ -8,65 +8,72 @@ import "react-calendar/dist/Calendar.css";
 import AllBookings from "./all_bookings/all_bookings";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
 
-const BookingScreen = ({ customer, setCustomer, bookingData,packages }) => {
+const BookingScreen = ({ bookingData, packages }) => {
   const [value, setValue] = useState(new Date());
   const [showPopupFor, setShowPopupFor] = useState(null);
   const session = useSession();
 
-  console.log(session);
-
   const alter = (slotsData) => {
+    // console.log(slotsData);
     const newArr = [];
-    slotsData.forEach((book) => {
-      const isExistIndex = newArr.findIndex((e) => e.date === book.date);
-      if (isExistIndex !== -1) {
-        newArr[isExistIndex] = {
-          date: book.date,
-          slots: ["1", "2", "3"].map((slotId) => {
-            const slot = slotsData.find(
-              (sl) => sl.date === book.date && sl.slot === slotId
-            );
-            if (slot) {
-              return {
-                id: slotId,
-                bookingData: slot.status === "Confirmed",
-              };
-            } else {
-              return {
-                id: slotId,
-                bookingData: null,
-              };
-            }
-          }),
-        };
-      } else {
-        newArr.push({
-          date: book.date,
-          slots: ["1", "2", "3"].map((slotId) => {
-            const slot = slotsData.find(
-              (sl) => sl.date === book.date && sl.slot === slotId
-            );
-            if (slot) {
-              return {
-                id: slotId,
-                bookingData: slot.status === "Confirmed",
-              };
-            } else {
-              return {
-                id: slotId,
-                bookingData: null,
-              };
-            }
-          }),
-        });
-      }
-    });
+    slotsData
+      // .filter((slot) => slot.status === "Confirmed")
+      .forEach((book) => {
+        const isExistIndex = newArr.findIndex((e) => e.date === book.date);
+        if (isExistIndex !== -1) {
+          newArr[isExistIndex] = {
+            date: book.date,
+            slots: ["1", "2", "3"].map((slotId) => {
+              const slot = slotsData.find(
+                (sl) => sl.date === book.date && sl.slot === slotId
+              );
+              if (slot) {
+                return {
+                  id: slotId,
+                  bookingData: slot.status === "Confirmed",
+                };
+              } else {
+                return {
+                  id: slotId,
+                  bookingData: null,
+                };
+              }
+            }),
+          };
+        } else {
+          newArr.push({
+            date: book.date,
+            slots: ["1", "2", "3"].map((slotId) => {
+              const slot = slotsData.find(
+                (sl) => sl.date === book.date && sl.slot === slotId
+              );
+              if (slot) {
+                return {
+                  id: slotId,
+                  bookingData: slot.status === "Confirmed",
+                };
+              } else {
+                return {
+                  id: slotId,
+                  bookingData: null,
+                };
+              }
+            }),
+          });
+        }
+      });
+
+      console.log(newArr);
 
     return newArr;
   };
 
   const [bookedDates, setBookedDates] = useState(alter(bookingData));
+
+  const [bookingId, setBookingId] = useState(null);
 
   const onChange = (x, y) => {
     setValue(x, y);
@@ -106,17 +113,18 @@ const BookingScreen = ({ customer, setCustomer, bookingData,packages }) => {
     }
   };
 
+  const [bookignData, setBookingData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
   return (
     <>
       {showPopupFor && (
         <BookPopup
           showPopupFor={showPopupFor}
           setShowPopupFor={setShowPopupFor}
-          customer={customer}
-          setCustomer={setCustomer}
-          setBookedDates={setBookedDates}
-          alter={alter}
           packages={packages}
+          currentBookingData={bookignData}
+          setcurrentBookingData={setBookingData}
           //   setBookingSamples={setBookingSamples}
         />
       )}
@@ -138,6 +146,58 @@ const BookingScreen = ({ customer, setCustomer, bookingData,packages }) => {
             }}
           />
         </div>
+        <div className={styles.booked}>
+          <input
+            placeholder="Booking Id"
+            value={bookingId}
+            onChange={(e) => {
+              setBookingId(e.target.value);
+            }}
+          />
+          <button
+            onClick={async () => {
+              setIsLoading(true);
+              setMessage("");
+              try {
+                const res = await axios.get(`/api/booking/${bookingId}`);
+                if (res.data === "") {
+                  setMessage("No booking data found for " + bookingId);
+                }
+                if (res.data) {
+                  const { data } = res;
+                  setBookingData(data);
+                  setShowPopupFor({
+                    date: data.date,
+                    slots: [
+                      {
+                        id: 1,
+                        bookingData: null,
+                      },
+                      {
+                        id: 2,
+                        bookingData: null,
+                      },
+                      {
+                        id: 3,
+                        bookingData: null,
+                      },
+                    ],
+                  });
+                }
+              } catch (error) {
+                setMessage("Someting went wrong");
+              }
+              setIsLoading(false);
+            }}
+          >
+            {isLoading ? (
+              <Spinner style={{ width: "20px", height: "20px" }} />
+            ) : (
+              "Submit"
+            )}
+          </button>
+        </div>
+        <p>{message}</p>
         {session.data && (
           <CustomSection head="Manage Bookings">
             <AllBookings bookingData={bookingData} />

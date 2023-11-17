@@ -1,53 +1,137 @@
 "use client";
 import styles from "./book_popup.module.scss";
-import { Modal, Spinner } from "react-bootstrap";
+import { Image, Modal, Spinner } from "react-bootstrap";
 import "firebase/compat/auth";
 import { X } from "react-bootstrap-icons";
-import { useState } from "react";
-import categories from "@/components/constants/categories";
-import CustomerLogin from "../../admin/login/customer_login/customer_login";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import contactDetails from "@/components/constants/contact";
 
 const BookPopup = (props) => {
-  const { showPopupFor, setShowPopupFor, customer, setCustomer, packages } =
-    props;
+  const {
+    showPopupFor,
+    setShowPopupFor,
+    packages,
+    currentBookingData,
+    setcurrentBookingData,
+  } = props;
 
-  const [selected, setSelected] = useState(null);
-  const [showLogin, setShowLogin] = useState(false);
+  const [bookingData, setBookingData] = useState(currentBookingData || null);
+  const [currentPage, setCurrentPage] = useState(currentBookingData ? 3 : 1);
+
+  const [selected, setSelected] = useState(
+    currentBookingData
+      ? {
+          id: parseInt(currentBookingData.slot),
+          bookingData: currentBookingData,
+        }
+      : null
+  );
   const [apiStatus, setApiStatus] = useState("idle");
   const [bookingValues, setBookingValues] = useState({
     package: null,
     category: null,
     location: "",
+    name: "",
+    phoneNumber: "",
+    message: "",
   });
-  const router = useRouter();
+
+  // console.log(selected);
 
   const makeBooking = async () => {
     setApiStatus("loading");
+    const newBookingId = Math.floor(1000 + Math.random() * 9000);
     try {
       const newBooking = {
         date: showPopupFor.date,
         slot: selected.id.toString(),
-        status: "Pending",
+        status: "Payment Pending",
         packageId: bookingValues.package,
         categoryId: bookingValues.category,
         location: bookingValues.location,
+        bookingId: newBookingId,
         customer: {
-          name: customer?.displayName,
-          phoneNumber: customer.photoURL,
-          customerId: customer.uid,
-          email: customer.email,
+          name: bookingValues.name,
+          phoneNumber: bookingValues.phoneNumber,
+          customerId: "customer.uid",
+          email: bookingValues.message,
         },
       };
-      await axios.post("/api/booking", newBooking);
-      router.replace("/account/customer");
+      const res = await axios.post("/api/booking", newBooking);
+      if (res) {
+        setBookingData(res.data);
+      }
       setApiStatus("success");
+      setCurrentPage(3);
     } catch (err) {
       console.log(err);
       setApiStatus("error");
     }
   };
+
+  const btnNames = ["", "Next", "Book", "Upload"];
+  const [file, setFile] = useState(null);
+
+  const updateBooking = async () => {
+    // screenshotUrl
+    try {
+      setApiStatus("loading");
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "gallery_image");
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dm0mza7qt/image/upload",
+        formData
+      );
+      console.log(uploadRes);
+      const res = await axios.put("/api/booking", {
+        ...bookingData,
+        screenshotUrl: uploadRes.data.url,
+        status: "Pending",
+      });
+      // console.log(res);
+      setBookingData(res.data);
+      setApiStatus("idle");
+    } catch (err) {
+      setApiStatus("error");
+      console.log(err);
+    }
+  };
+
+  const services = {
+    Makeup: [...packages.map((p) => p.head), "ANY OTHER OCASSION"],
+    Skin: [
+      "Waxing",
+      "Manicure",
+      "Pedicure",
+      "Cleanup",
+      "Facial",
+      "Skin detoxification treatment",
+      "Anti aging treatment",
+      "Anti acne treatment",
+      "De tan treatment",
+      "Advance Facial",
+      "OTHER",
+    ],
+    Hair: [
+      "Haircut",
+      "Hairwash",
+      "Hair spa",
+      "Anti dandruff treatment",
+      "Anti hairfall treatment",
+      "Highlights",
+      "Hair color treatments",
+      "Straightening treatment",
+      "Smoothing treatment",
+      "Keratin treatment",
+      "OTHER",
+    ],
+  };
+
+  useEffect(() => {
+    return () => setcurrentBookingData(null);
+  }, []);
 
   return (
     <Modal
@@ -72,168 +156,88 @@ const BookPopup = (props) => {
           </div>
 
           <div className={styles.bottom}>
-            <div className={styles.slots}>
-              {showPopupFor.slots.map((slot) => {
-                return (
-                  <div
-                    key={`slot_${slot.id}`}
-                    className={`${styles.slot} ${
-                      slot.bookingData && styles.booked
-                    }
-                ${selected && selected.id === slot.id && styles.selected}
-                `}
-                    onClick={() => {
-                      if (!slot.bookingData) {
-                        if (selected) {
-                          if (selected.id === slot.id) {
-                            setSelected(null);
+            {!bookingData && (
+              <div className={styles.slots}>
+                {showPopupFor.slots.map((slot) => {
+                  return (
+                    <div
+                      key={`slot_${slot.id}`}
+                      className={`${styles.slot} ${
+                        slot.bookingData && styles.booked
+                      }
+              ${selected && selected.id === slot.id && styles.selected}
+              `}
+                      onClick={() => {
+                        if (!slot.bookingData) {
+                          if (selected) {
+                            if (selected.id === slot.id) {
+                              setSelected(null);
+                            } else {
+                              setSelected(slot);
+                            }
                           } else {
                             setSelected(slot);
                           }
-                        } else {
-                          setSelected(slot);
                         }
-                      }
-                    }}
-                  >
-                    <p>Slot {slot.id}</p>
-                    <small>{slot.bookingData ? "Booked" : "Available"}</small>
-                  </div>
-                );
-              })}
-            </div>
-            {selected ? (
-              <>
-                {showLogin ? (
-                  <div>
-                    <CustomerLogin
-                      customer={customer}
-                      setCustomer={setCustomer}
-                    />
-                  </div>
-                ) : (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                    }}
-                  >
-                    <select
-                      value={bookingValues.category}
-                      onChange={(e) => {
-                        const { value } = e.target;
-                        setBookingValues((prev) => ({
-                          ...prev,
-                          category: value,
-                        }));
                       }}
                     >
-                      <option value={null}>Select Category</option>
-                      {categories.map((c, i) => {
-                        if (i !== 3) {
-                          return (
-                            <option key={c.id} value={c.name}>
-                              {c.name}
-                            </option>
-                          );
-                        }
-                      })}
-                    </select>
-
-                    
-                    <select
-                      value={bookingValues.package}
-                      onChange={(e) => {
-                        const { value } = e.target;
-                        setBookingValues((prev) => ({
-                          ...prev,
-                          package: value,
-                        }));
-                      }}
-                    >
-                  
-                          <option value={null}>Select Package</option>
-                      {packages.map((c, i) => {
-                        if (i !== 3) {
-                          return (
-                            <option key={c.id} value={c.head}>
-                              {c.head} - Rs.{c.price}
-                            </option>
-                          );
-                        }
-                      })}
-                      <option>{'Any Other Occasion'.toUpperCase()}</option>
-                    </select>
-                    {/* 
-                    <select
-                      value={bookingValues.package}
-                      onChange={(e) => {
-                        const { value } = e.target;
-                        setBookingValues((prev) => ({
-                          ...prev,
-                          package: value,
-                        }));
-                      }}
-                    >
-                      <option value={null}>Select Package</option>
-                      {packages.map((c, i) => {
-                        if (i !== 3) {
-                          return (
-                            <option key={c.id} value={c.head}>
-                              {c.head} - Rs.{c.price}
-                            </option>
-                          );
-                        }
-                      })}
-                    </select> */}
-
-                    {/* {
-                      bookingValues.package && <div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          width: "fit-content",
-                        }}
-                      >
-                        <input type="checkbox" />
-                        <label>Waxing</label>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          width: "fit-content",
-                        }}
-                      >
-                        <input type="checkbox" />
-                        <label>Waxing</label>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          width: "fit-content",
-                        }}
-                      >
-                        <input type="checkbox" />
-                        <label>Waxing</label>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          width: "fit-content",
-                        }}
-                      >
-                        <input type="checkbox" />
-                        <label>Waxing</label>
-                      </div>
-                      
+                      <p>Slot {slot.id}</p>
+                      <small>{slot.bookingData ? "Booked" : "Available"}</small>
                     </div>
-                    } */}
+                  );
+                })}
+              </div>
+            )}
+            {selected ? (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                {currentPage === 1 && (
+                  <>
+                    <select
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          category: value === "false" ? null : value,
+                          package: null,
+                        }));
+                      }}
+                    >
+                      <option value={false}>Select Category</option>
+                      <option value="Makeup">Makeup</option>
+                      <option value="Skin">Skin</option>
+                      <option value="Hair">Hair</option>
+                    </select>
+
+                    <select
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          package: value === "false" ? null : value,
+                        }));
+                      }}
+                      disabled={!bookingValues.category}
+                    >
+                      <option value={false}>Select Service</option>
+
+                      {services[bookingValues.category] &&
+                        services[bookingValues.category].map((s) => (
+                          <option key={s} value={s}>
+                            {s && s.toUpperCase()}
+                          </option>
+                        ))}
+                    </select>
 
                     <input
-                      placeholder="Location"
+                      type="text"
+                      placeholder="Loaction"
+                      disabled={
+                        !bookingValues.package || !bookingValues.category
+                      }
                       value={bookingValues.location}
                       onChange={(e) => {
                         const { value } = e.target;
@@ -243,32 +247,142 @@ const BookPopup = (props) => {
                         }));
                       }}
                     />
-                    {apiStatus === "idle" && (
-                      <input
-                        type="submit"
-                        disabled={
-                          !bookingValues.package ||
-                          !bookingValues.category ||
-                          !bookingValues.location
-                        }
-                        onClick={async () => {
-                          if (
-                            !customer ||
-                            !customer?.displayName ||
-                            !customer?.photoURL
-                          ) {
-                            setShowLogin(true);
-                          } else {
-                            await makeBooking();
-                            setShowPopupFor;
-                          }
-                        }}
-                        value={`Book Slot ${selected.id}`}
-                      />
-                    )}
-                  </form>
+                  </>
                 )}
-              </>
+                {currentPage === 2 && (
+                  <>
+                    <input
+                      placeholder="Your Name"
+                      value={bookingValues.name}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          name: value,
+                        }));
+                      }}
+                    />
+                    <input
+                      placeholder="Your Phone Number"
+                      value={bookingValues.phoneNumber}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          phoneNumber: value,
+                        }));
+                      }}
+                    />
+                    <textarea
+                      placeholder="Your Message"
+                      value={bookingValues.message}
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setBookingValues((prev) => ({
+                          ...prev,
+                          message: value,
+                        }));
+                      }}
+                    />
+                  </>
+                )}
+                {currentPage === 3 && bookingData && (
+                  <div className={styles.body}>
+                    <p>
+                      Hi {bookingData.customer.name}, You booking on{" "}
+                      {bookingData.date} for slot {bookingData.slot} has been
+                      successful
+                    </p>
+                    <p>
+                      Your booking Id : <span>{bookingData.bookingId}</span>
+                    </p>
+                    <p>Use this bookingId to track your booking status</p>
+                    <p>Current Status : {bookingData.status}</p>
+
+                    {bookingData.status === "Payment Pending" && (
+                      <div>
+                        <Image
+                          src="/images/qr.png"
+                          alt="qr"
+                          fluid
+                          height={100}
+                          width={250}
+                        />
+                        <p>
+                          Please scan this QR with your upi app to make payment
+                          of Rs.{" "}
+                          {
+                            packages.find(
+                              (pack) => pack.head === bookingData.packageId
+                            )?.price
+                          }
+                          /- and upload payment screenshot to comfirm your
+                          booking or contact {contactDetails.mobile}
+                        </p>
+                        <div>
+                          <input
+                            type="file"
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              setFile(file);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {bookingData.status !== "Payment Pending" &&
+                      bookingData.screenshotUrl && (
+                        <div>
+                          <Image
+                            src={bookingData.screenshotUrl}
+                            fluid
+                            width={100}
+                            alt="screenshot"
+                          />
+                        </div>
+                      )}
+                  </div>
+                )}
+                <div className={styles.control}>
+                  <input
+                    type="button"
+                    value="Back"
+                    disabled={
+                      currentPage === 1 ||
+                      apiStatus === "loading" ||
+                      currentPage === 3
+                    }
+                    onClick={() => {
+                      setCurrentPage(currentPage - 1);
+                    }}
+                  />
+                  <button
+                    disabled={
+                      bookingData
+                        ? bookingData.status !== "Payment Pending"
+                        : !bookingValues.package ||
+                          !bookingValues.category ||
+                          !bookingValues.location ||
+                          apiStatus === "loading"
+                    }
+                    onClick={() => {
+                      if (currentPage === 1) {
+                        setCurrentPage(currentPage + 1);
+                      } else if (currentPage === 2) {
+                        makeBooking();
+                      } else if (currentPage === 3) {
+                        updateBooking();
+                      }
+                    }}
+                  >
+                    {apiStatus === "loading" ? (
+                      <Spinner style={{ width: "20px", height: "20px" }} />
+                    ) : (
+                      btnNames[currentPage]
+                    )}
+                  </button>
+                </div>
+              </form>
             ) : (
               <p className={styles.message}>Please select a slot </p>
             )}
