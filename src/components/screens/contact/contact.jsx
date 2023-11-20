@@ -31,7 +31,7 @@ const ContactScreen = () => {
       <CustomSection head="Contact Us">
         <div className={styles.top}>
           <Info
-            head="Loaction"
+            head="Location"
             text={
               <p>
                 Chennai, <br />

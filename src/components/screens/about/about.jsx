@@ -14,9 +14,11 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 const AboutScreen = () => {
   return (
     <CustomContainer>
-      <CustomSection head="About Us" noPadding>
+      <CustomSection head="About Us" noPadding bg="textGold">
         <div className={styles.top} data-aos="fade-up">
-          <h2 className={fonts.lora}>Welcome To Sk Beautyverse</h2>
+          <h2 className={fonts.lora}>
+            Welcome To <span style={{ color: "#d8b74b" }}>SK Beauty-Verse</span>
+          </h2>
           <p>More Than Just Makeup &quot;A Universe of Beauty&quot;</p>
         </div>
         <div className={styles.content}>
@@ -32,8 +34,7 @@ const AboutScreen = () => {
                 <span>Sushmitha Karthik</span>
               </p>
               <p className={fonts.montserrat} data-aos="fade-up">
-              Designation :{" "}
-                <span>proprietor & Senior Makeup Artist</span>
+                Designation : <span>Proprietor & Senior Makeup Artist</span>
               </p>
               <p className={fonts.montserrat} data-aos="fade-up">
                 Certifed By &nbsp;&nbsp;: <span>Lakme Academy & Scissors</span>
@@ -45,11 +46,11 @@ const AboutScreen = () => {
             <br />
             <p className={fonts.montserrat}>
               I am a passionate Makeup artist, who specialized in Skin, Hair and
-              Bridal Makeup. I am the creative force behind SK Beautyverse. With
-              a passion for transforming faces, I specialize in hair, skin, and
-              bridal makeup. With years of expertise and a keen eye for detail,
-              I bring out your natural beauty. Let us make your special moments
-              truly unforgettable, one brushstroke at a time.
+              Bridal Makeup. I am the creative force behind SK Beauty-Verse.
+              With a passion for transforming faces, I specialize in hair, skin,
+              and bridal makeup. With years of expertise and a keen eye for
+              detail, I bring out your natural beauty. Let us make your special
+              moments truly unforgettable, one brushstroke at a time.
             </p>
 
             {/* <br /> */}
@@ -110,7 +111,7 @@ const AboutScreen = () => {
                   </div>
                   <p className={fonts.montserrat}>
                     Meet Karthik, the dynamic force shaping digital marketing
-                    and cosmetology at SK Beautyverse. With a keen eye for
+                    and cosmetology at SK Beauty-Verse. With a keen eye for
                     market trends and a flair for beauty, I seamlessly blend
                     expertise in online strategies with the art of cosmetology.
                     Dedicated to enhancing your online presence and your natural
@@ -121,7 +122,6 @@ const AboutScreen = () => {
                 </Col>
               </Row>
             </div>
-        
           </div>
         </div>
 
@@ -133,8 +133,8 @@ const AboutScreen = () => {
             <h2>Premium Quality Products</h2>
             <hr />
             <p className={fonts.montserrat}>
-              At SK Beautyverse, quality is our top priority. We understand that
-              makeup is an art, and just like any artist needs high-quality
+              At SK Beauty-Verse, quality is our top priority. We understand
+              that makeup is an art, and just like any artist needs high-quality
               paints, we rely on branded and top-tier products to create our
               masterpieces. We use only the finest makeup products that are
               gentle on the skin, ensuring a flawless finish that lasts
@@ -169,7 +169,7 @@ const AboutScreen = () => {
             </h2>
             <hr />
             <p className={fonts.montserrat} data-aos="fade-up">
-              SK Beautyverse is not just a makeup service; it is an experience.
+              SK Beauty-Verse is not just a makeup service; it is an experience.
               We believe in the power of makeup to enhance confidence and bring
               out the best in everyone. Our dedication to our craft and our
               clients has earned us the reputation of being a universe of

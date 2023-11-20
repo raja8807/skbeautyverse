@@ -100,7 +100,7 @@ const GalleryScreen = (props) => {
                       />
                     </Col>
                     <Col>
-                      <h3>{data.id}</h3>
+                      <h3>{data.id.toUpperCase()}</h3>
                       <p>{data.data}</p>
                     </Col>
                   </Row>

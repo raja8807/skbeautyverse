@@ -14,7 +14,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <title>SK BeautyVerse</title>
+      <title>SK Beauty-Verse</title>
       <meta name="google-site-verification" content="EtiaVHchwxdgY4Yjyls8SzpUMeiIzGVw-1a4ChPzfxY" />
       <Script
         async

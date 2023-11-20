@@ -26,8 +26,8 @@ const Footer = () => {
               <div className={styles.overlay}>
                 <Image src="/images/logo/logo.png" fluid alt="logo" />
                 <p>
-                  I am Sushmitha Karthik, your dedicated makeup artist,
-                  Certified by &quot;Lakme Academy&quot; specializing in hair,
+                  I am <span className={styles.name}>SUSHMITHA KARTHIK</span>, your dedicated makeup artist,
+                  Certified by <span className={styles.name}>&quot;Lakme Academy&quot;</span> specializing in hair,
                   skin, and bridal makeup. Discover personalized beauty
                   experiences crafted with premium products, which does not
                   cause damage to skin & hair. &quot;Make your beautyful day,

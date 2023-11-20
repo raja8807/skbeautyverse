@@ -29,7 +29,7 @@ const ReviewsScreen = ({ reviews: reviewsData = [] }) => {
 
   return (
     <CustomContainer>
-      <CustomSection head="Reviews" caption="Look what our customer says">
+      <CustomSection head="Reviews" caption="Look what our customer says" bg='textGold'>
         {!isSubmitted && (
           <NewReviewForm
             setIsSubmitted={setIsSubmitted}

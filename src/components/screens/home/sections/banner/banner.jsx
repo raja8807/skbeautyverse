@@ -8,8 +8,10 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 import fonts from "@/components/fonts/fonts";
 import { Image } from "react-bootstrap";
 import { GeoAlt, GeoAltFill } from "react-bootstrap-icons";
+import { useRouter } from "next/router";
 
 const Banner = ({ bannerImages = [], setShowPopup }) => {
+  const router = useRouter()
   const images = bannerImages
     .map((image) => ({
       ...image,
@@ -44,37 +46,41 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
           <h1 className={fonts.head} data-aos="fade-left">
             SUSHMITHA KARTHIK
           </h1>
-          <h3 className={fonts.petit} data-aos="fade-right" style={{color:'#d8b74b'}}>
+          <h3
+            className={fonts.petit}
+            data-aos="fade-right"
+            style={{ color: "#d8b74b" }}
+          >
             Makeup Artist & Cosmotologist
           </h3>
           <hr />
         </div>
         <div data-aos="zoom-in" className={styles.text}>
-          <p style={{color:'#d8b74b'}}>
-            Welcome to SK Beautyverse, where Sushmitha Karthik crafts a{" "}
+          <p style={{ color: "#d8b74b" }}>
+            Welcome to SK Beauty-Verse, where Sushmitha Karthik crafts a{" "}
             <b>universe of beauty! </b> Immerse yourself in a world where
             artistry meets elegance. With a passion for perfection, we
             specialize in creating enchanting bridal makeup experiences. Our
             brushes weave dreams, enhancing your natural beauty for your special
             day. Trust us to make you look and feel like a celestial bride.
-            Enter our Beautyverse, where dreams blend seamlessly with reality.
+            Enter our Beauty-Verse, where dreams blend seamlessly with reality.
           </p>
           <br />
           <div className={styles.bottom}>
             <div>
-              <p>Certified By</p>
+              <p style={{ color: "#d8b74b" }}>Certified By</p>
               <Image fluid alt="lakme" src="/images/logo/Lakme-Logo.png" />
             </div>
             <CustomButton
               clickHandler={() => {
-                setShowPopup(true);
+                router.replace('./book')
               }}
-              type='gold'
+              type="gold"
             >
               Book Now
             </CustomButton>
           </div>
-          <div className={styles.x} style={{color:'#d8b74b'}}>
+          <div className={styles.x} style={{ color: "#d8b74b" }}>
             <GeoAltFill /> All Over Tamilnadu
           </div>
         </div>
@@ -96,6 +102,22 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
           />
         </div>
       </div>
+      {/* <div>
+        <iframe
+          src="https://www.instagram.com/reel/Cz3w58tPxXu/embed/captioned/?rd=https%3A%2F%2Fembedinstagramfeed.com"
+          name="myIFrame"
+          style="border: solid #000000;"
+          
+        ></iframe>
+      </div>
+      <div style="visibility:hidden !important;">
+        Powered by{" "}
+        <a href="https://embedfbvideo.com">
+          how to embed facebook video on wordpress
+        </a>{" "}
+        and <a href="https://yatzyregler.com/no/">yatzy ark</a>
+      </div> */}
+      
     </CustomContainer>
   );
 };

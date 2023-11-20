@@ -12,7 +12,7 @@
   input,
   textarea {
     background-color: $color_grey;
-    border: none !important;
+    border: 1px solid $color_gold2;
     color: white;
     outline-color: $color_gold;
     width: 100%;
@@ -32,7 +32,7 @@
   }
 
   &.black {
-    background-color: $color_black;
+    // background-color: $color_black;
     width: 700px;
 
     @include respond-below(md) {

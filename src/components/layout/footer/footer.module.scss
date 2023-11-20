@@ -3,6 +3,11 @@
   // height: 400px;
   @include flexCenter;
 
+  .name{
+    color: $color_gold2;
+    font-weight: 600;
+  }
+
   .img {
     position: relative;
     // margin-bottom: 50px;
