@@ -27,7 +27,7 @@ const Category = (props) => {
           </div>
         </div>
         <Image src={data.imgSrc} alt="xx" fluid />
-        <p>{data.name}</p>
+        <p>{data.name.toUpperCase()}</p>
       </div>
     </Col>
   );

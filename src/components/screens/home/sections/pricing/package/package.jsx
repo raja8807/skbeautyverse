@@ -6,7 +6,7 @@ const Package = (props) => {
   return (
     <div className={styles.package} data-aos="flip-left">
       <div className={styles.top}>
-        <p>{head}</p>
+        <p style={{color:'#d8b74b'}}>{head}</p>
       </div>
       <div className={`${styles.body} ${idx === 1 && styles.center}`}>
         {body.map((p, i) => (
