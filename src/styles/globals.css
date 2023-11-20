@@ -6,8 +6,10 @@
 } */
 
 body {
-  background-image: url("/images/bg/1 (2).jpg");
+  /* background-image: url("/images/bg/1 (2).jpg"); */
+  background-image: url("/images/bg/a4.JPG");
   background-size: 100vw auto;
+  /* background-size: 100vw 100px; */
   /* max-width: 100; */
   /* overflow-x: hidden; */
   /* width: 100vw;
