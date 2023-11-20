@@ -133,7 +133,7 @@ const BookingScreen = ({ bookingData, packages }) => {
             onChange={onChange}
             value={value}
             minDate={new Date()}
-            maxDate={new Date(new Date().getTime() + 86400000 * (365 / 2))}
+            // maxDate={new Date(new Date().getTime() + 86400000 * (365 / 2))}
             minDetail="month"
             formatLongDate={(locale, date) => {
               return new Intl.DateTimeFormat("en-IN", {

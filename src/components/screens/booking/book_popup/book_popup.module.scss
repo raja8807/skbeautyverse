@@ -108,6 +108,15 @@
   }
 }
 
+.img{
+  @include flexCenter;
+  // border: 1px solid red;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 10px;
+  // display: none;
+}
+
 .body {
   span {
     font-weight: bold;

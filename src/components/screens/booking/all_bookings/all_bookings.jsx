@@ -14,14 +14,13 @@ const AllBookings = ({ bookingData: data = [] }) => {
   const updateBooking = async () => {
     setLoading(true);
     const messages = {
-      Confirmed: `Hi ${showPopupFor.customer.name}, We are happy to inform you that we have confirmed your booking on ${showPopupFor.date}. Thank You.`,
-      Cancelled: `Hi ${showPopupFor.customer.name}, We are sorry to inform you that we have cancelled your booking on ${showPopupFor.date}. Thank You.`,
-      Pending: `Hi ${showPopupFor.customer.name}, We are sorry to inform you that we have marked your booking for ${showPopupFor.date} as pending. We will get back soon as possible. Thank You.`,
+      Confirmed: `Hi ${showPopupFor.customer.name}, We are happy to inform you that we have confirmed your booking on ${showPopupFor.date}. Your booking Id is : ${showPopupFor.bookingId}. Thank You for choosing *SK BEAUTY-VERSE*.`,
+      Cancelled: `Hi ${showPopupFor.customer.name}, We are sorry to inform you that we have cancelled your booking on ${showPopupFor.date}. Your booking Id is : ${showPopupFor.bookingId}. Thank You for choosing *SK BEAUTY-VERSE*.`,
+      Pending: `Hi ${showPopupFor.customer.name}, We are sorry to inform you that we have marked your booking for ${showPopupFor.date} as pending. We will get back soon as possible. Your booking Id is : ${showPopupFor.bookingId}. Thank You for choosing *SK BEAUTY-VERSE*.`,
     };
     try {
       const res = await axios.put("/api/booking", { ...showPopupFor, status });
       setLoading(false);
-      console.log(showPopupFor.customer);
       const a = document.createElement("a");
       a.setAttribute(
         "href",

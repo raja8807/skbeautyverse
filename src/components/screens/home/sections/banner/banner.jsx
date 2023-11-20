@@ -44,13 +44,13 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
           <h1 className={fonts.head} data-aos="fade-left">
             SUSHMITHA KARTHIK
           </h1>
-          <h3 className={fonts.petit} data-aos="fade-right">
+          <h3 className={fonts.petit} data-aos="fade-right" style={{color:'#d8b74b'}}>
             Makeup Artist & Cosmotologist
           </h3>
           <hr />
         </div>
         <div data-aos="zoom-in" className={styles.text}>
-          <p>
+          <p style={{color:'#d8b74b'}}>
             Welcome to SK Beautyverse, where Sushmitha Karthik crafts a{" "}
             <b>universe of beauty! </b> Immerse yourself in a world where
             artistry meets elegance. With a passion for perfection, we
@@ -74,7 +74,7 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
               Book Now
             </CustomButton>
           </div>
-          <div className={styles.x}>
+          <div className={styles.x} style={{color:'#d8b74b'}}>
             <GeoAltFill /> All Over Tamilnadu
           </div>
         </div>

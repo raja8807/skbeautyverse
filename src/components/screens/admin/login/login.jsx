@@ -3,7 +3,7 @@ import { Spinner } from "react-bootstrap";
 import styles from "./login.module.scss";
 import { signIn } from "next-auth/react";
 import CustomerLogin from "./customer_login/customer_login";
-import CustomContainer from "@/components/ui/custom_container/custom_container";
+// import CustomContainer from "@/components/ui/custom_container/custom_container";
 
 const LoginBox = ({ setCustomer, customer }) => {
   const [values, setValues] = useState({
@@ -30,7 +30,7 @@ const LoginBox = ({ setCustomer, customer }) => {
     setIsLoading(false);
   };
 
-  const [isAdminLogin, setIsAdminLogin] = useState(false);
+  const [isAdminLogin, setIsAdminLogin] = useState(true);
 
   return (
     <div className={styles.cont}>
@@ -69,13 +69,13 @@ const LoginBox = ({ setCustomer, customer }) => {
             ) : (
               <input type="submit" value="login" />
             )}
-            <small
+            {/* <small
               onClick={() => {
                 setIsAdminLogin(false);
               }}
             >
               <span>Customer Login</span>
-            </small>
+            </small> */}
           </form>
           {/* <p>Admin Login</p> */}
         </div>

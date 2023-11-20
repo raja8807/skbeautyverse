@@ -111,16 +111,17 @@
     .image {
       width: fit-content;
       height: fit-content;
+      border: 8px solid white;
       //   border-radius: 10px;
-      border-width: 8px;
-      border-style: solid;
-      border-image: linear-gradient(
-          to right,
-          $color_gold,
-          rgb(249, 223, 190),
-          $color_gold
-        )
-        1;
+      // border-width: 8px;
+      // border-style: solid;
+      // border-image: linear-gradient(
+      //     to right,
+      //     $color_gold,
+      //     rgb(249, 223, 190),
+      //     $color_gold
+      //   )
+      //   1;
     }
   }
 

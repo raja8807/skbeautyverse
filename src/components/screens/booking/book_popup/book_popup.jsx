@@ -73,6 +73,8 @@ const BookPopup = (props) => {
   const btnNames = ["", "Next", "Book", "Upload"];
   const [file, setFile] = useState(null);
 
+  console.log(bookingData);
+
   const updateBooking = async () => {
     // screenshotUrl
     try {
@@ -84,7 +86,6 @@ const BookPopup = (props) => {
         "https://api.cloudinary.com/v1_1/dm0mza7qt/image/upload",
         formData
       );
-      console.log(uploadRes);
       const res = await axios.put("/api/booking", {
         ...bookingData,
         screenshotUrl: uploadRes.data.url,
@@ -93,6 +94,13 @@ const BookPopup = (props) => {
       // console.log(res);
       setBookingData(res.data);
       setApiStatus("idle");
+      const a = document.createElement("a");
+      a.setAttribute(
+        "href",
+        `https://wa.me/918610030499?text=Hi, I've made advance payment for ${bookingData.packageId} - ${bookingData.categoryId} on ${bookingData.date} at slot ${bookingData.slot}`
+      );
+      a.setAttribute("target", "_black");
+      a.click();
     } catch (err) {
       setApiStatus("error");
       console.log(err);
@@ -132,6 +140,8 @@ const BookPopup = (props) => {
   useEffect(() => {
     return () => setcurrentBookingData(null);
   }, []);
+
+  console.log(file);
 
   return (
     <Modal
@@ -289,35 +299,30 @@ const BookPopup = (props) => {
                 {currentPage === 3 && bookingData && (
                   <div className={styles.body}>
                     <p>
-                      Hi {bookingData.customer.name}, You booking on{" "}
+                      Hi {bookingData.customer.name}, Your booking on{" "}
                       {bookingData.date} for slot {bookingData.slot} has been
                       successful
                     </p>
                     <p>
                       Your booking Id : <span>{bookingData.bookingId}</span>
                     </p>
-                    <p>Use this bookingId to track your booking status</p>
+                    <p>(Use this booking id to track your booking status)</p>
                     <p>Current Status : {bookingData.status}</p>
 
                     {bookingData.status === "Payment Pending" && (
-                      <div>
+                      <div className={styles.img}>
                         <Image
                           src="/images/qr.png"
                           alt="qr"
                           fluid
                           height={100}
-                          width={250}
+                          width={220}
                         />
                         <p>
-                          Please scan this QR with your upi app to make payment
-                          of Rs.{" "}
-                          {
-                            packages.find(
-                              (pack) => pack.head === bookingData.packageId
-                            )?.price
-                          }
-                          /- and upload payment screenshot to comfirm your
-                          booking or contact {contactDetails.mobile}
+                          Please scan this QR with your upi app to make advance
+                          payment and upload payment
+                          screenshot to confirm your booking or contact{" "}
+                          {contactDetails.whatsapp} for any queries.
                         </p>
                         <div>
                           <input
@@ -332,7 +337,7 @@ const BookPopup = (props) => {
                     )}
                     {bookingData.status !== "Payment Pending" &&
                       bookingData.screenshotUrl && (
-                        <div>
+                        <div className={styles.img}>
                           <Image
                             src={bookingData.screenshotUrl}
                             fluid
@@ -359,7 +364,9 @@ const BookPopup = (props) => {
                   <button
                     disabled={
                       bookingData
-                        ? bookingData.status !== "Payment Pending"
+                        ? bookingData.status !== "Payment Pending" ||
+                          !file ||
+                          !file.type.includes("image")
                         : !bookingValues.package ||
                           !bookingValues.category ||
                           !bookingValues.location ||
