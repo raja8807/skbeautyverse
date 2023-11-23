@@ -77,6 +77,13 @@ const BannerForm = ({ galleryImages = [] }) => {
       setIsSaveLoading(false);
     }
   };
+  const [selectedCategory, setSelectedCategory] = useState(
+    router?.query?.category || allCategories[0].text
+  );
+
+  const [subCategory, setSubCategory] = useState(
+    selectedCategory === "products" ? "Jewels" : null
+  );
 
   const uploadImage = async (file) => {
     setIsSaveLoading(true);
@@ -94,7 +101,12 @@ const BannerForm = ({ galleryImages = [] }) => {
       const uploadData = await uploadRes.json();
       const newImgs = images.map((i) => ({ ...i, index: i.index + 1 }));
       const toSave = [
-        { url: uploadData.url, index: 0, category: router.query.category },
+        {
+          url: uploadData.url,
+          index: 0,
+          category: router.query.category,
+          subCategory : subCategory,
+        },
         ...newImgs,
       ];
       await saveImages(toSave);
@@ -111,9 +123,24 @@ const BannerForm = ({ galleryImages = [] }) => {
     ...categories.map((c) => ({ text: c.name, value: c.id })),
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState(
-    router?.query?.category || allCategories[0].text
-  );
+  const subCategories = [
+    {
+      text: "Jewels",
+      value: "Jewels",
+    },
+    {
+      text: "Makeup",
+      value: "Makeup",
+    },
+    {
+      text: "Skin",
+      value: "Skin",
+    },
+    {
+      text: "Hair",
+      value: "Hair",
+    },
+  ];
 
   return (
     <div className={styles.bannerForm}>
@@ -125,6 +152,15 @@ const BannerForm = ({ galleryImages = [] }) => {
           setSelectedCategory(v);
         }}
       />
+      {selectedCategory === "products" && (
+        <CustomSelect
+          value={subCategory}
+          options={subCategories}
+          onChange={(v) => {
+            setSubCategory(v);
+          }}
+        />
+      )}
       {isSaveLoading && (
         <div className={styles.loading}>
           <Spinner />
@@ -176,6 +212,13 @@ const BannerForm = ({ galleryImages = [] }) => {
       <div className={styles.imageWrapper}>
         {images &&
           images
+            .filter((img) => {
+              if (selectedCategory === "products") {
+                return img.subCategory === subCategory;
+              } else {
+                return true;
+              }
+            })
             .sort((a, b) => {
               return a.index - b.index;
             })

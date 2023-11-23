@@ -11,6 +11,9 @@ const galleryImageScheme = new Schema(
     category: {
       type: String,
     },
+    subCategory: {
+      type: String,
+    },
   },
   {
     timestamps: true,

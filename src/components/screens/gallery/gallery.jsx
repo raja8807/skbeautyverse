@@ -8,6 +8,7 @@ import { Eye } from "react-bootstrap-icons";
 import CustomSelect from "@/components/ui/custom_select/custom_select";
 import categories from "@/components/constants/categories";
 import { useRouter } from "next/router";
+import Products from "./products/products";
 
 const GalleryScreen = (props) => {
   const { images = [] } = props;
@@ -71,8 +72,11 @@ const GalleryScreen = (props) => {
     // },
   ];
 
+  // console.log(images);
+
   return (
     <>
+     
       <CustomContainer>
         <br />
         <CustomSection head="Our Gallery" noPadding />
@@ -88,7 +92,7 @@ const GalleryScreen = (props) => {
         <br />
         {selectedCategory === "skin" && (
           <>
-            <Row >
+            <Row>
               {skinData.map((data) => (
                 <Col key={data.data} xs={12} md={6} className={styles.col}>
                   <Row>
@@ -111,28 +115,35 @@ const GalleryScreen = (props) => {
             <br />
           </>
         )}
-        <div className={styles.wrapper}>
-          {images
-            ?.sort((a, b) => {
-              return a.index - b.index;
-            })
-            ?.map((img, i) => (
-              <div key={i} className={styles.img_holder}>
-                <div
-                  onClick={() => {
-                    SetCurrentFullViewImageIndex(i);
-                  }}
-                >
-                  <Eye />
+        {selectedCategory !== "products" ? (
+          <div className={styles.wrapper}>
+            {images
+              ?.sort((a, b) => {
+                return a.index - b.index;
+              })
+              ?.map((img, i) => (
+                <div key={i} className={styles.img_holder}>
+                  <div
+                    onClick={() => {
+                      SetCurrentFullViewImageIndex(i);
+                    }}
+                  >
+                    <Eye />
+                  </div>
+                  <Image
+                    src={img.url.replace("upload", "upload/w_400,f_auto")}
+                    alt="a"
+                    fluid
+                  />
                 </div>
-                <Image
-                  src={img.url.replace("upload", "upload/w_400,f_auto")}
-                  alt="a"
-                  fluid
-                />
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
+        ) : (
+          <Products
+            images={images}
+            SetCurrentFullViewImageIndex={SetCurrentFullViewImageIndex}
+          />
+        )}
       </CustomContainer>
       {currentFullViewImageIndex !== null && (
         <FullViewImage
