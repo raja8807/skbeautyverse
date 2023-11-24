@@ -28,12 +28,13 @@
       width: 90%;
     }
   }
+  h2 {
+    color: $color_gold2;
+  }
+
   .text {
     margin: 10px 0 16px 0;
     text-align: center;
-    h2 {
-      color: $color_gold2;
-    }
     p {
       font-size: 14px;
 

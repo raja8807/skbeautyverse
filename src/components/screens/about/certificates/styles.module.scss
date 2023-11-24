@@ -1,0 +1,28 @@
+.App {
+    overflow: hidden;
+  }
+  .card {
+    // width: 200px !important;
+    // height: 200px;
+    // background: #ffffff;
+    // box-shadow: 0px 1px 4px 1px rgba(158, 151, 151, 0.25);
+    border-radius: 15px;
+    margin: 12px;
+    padding: 12px;
+  }
+  .dflex {
+    display: flex;
+    // transform: translateX(calc(100vw));
+    overflow: visible;
+    animation: animateContainer 60s linear forwards infinite;
+    animation-play-state: paused;
+  }
+  @keyframes animateContainer {
+    from {
+      transform: translateX(calc(100vw));
+    }
+    to {
+      transform: translateX(calc(-100%));
+    }
+  }
+  

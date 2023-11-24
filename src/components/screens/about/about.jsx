@@ -10,6 +10,7 @@ import styles from "./about.module.scss";
 
 import fonts from "@/components/fonts/fonts";
 import CustomButton from "@/components/ui/custom_button/custom_button";
+import Certificates from "./certificates/certificates";
 
 const AboutScreen = () => {
   return (
@@ -59,6 +60,10 @@ const AboutScreen = () => {
             </div> */}
           </div>
         </div>
+
+          <Certificates />
+        
+
         <div className={styles.content}>
           <div className={styles.img} data-aos="fade-up">
             <Image src="/images/logo/Lakme-Logo.png" alt="logo" />
