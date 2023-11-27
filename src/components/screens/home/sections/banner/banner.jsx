@@ -15,13 +15,14 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
   const images = bannerImages
     .map((image) => ({
       ...image,
-      url: image.url.replace("upload", "upload/w_500,f_auto"),
+      url: image.url.replace("upload", "upload"),
     }))
     .sort((a, b) => {
       return a.index - b.index;
     });
 
   const [width, setShowWidth] = useState(400);
+
   useEffect(() => {
     if (window) {
       if (window.innerWidth < 420) {
@@ -43,7 +44,7 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
     <CustomContainer className={styles.banner}>
       <div className={styles.left}>
         <div className={styles.head}>
-          <h1 className={fonts.head} data-aos="fade-left">
+          <h1 className={fonts.head} >
             SUSHMITHA KARTHIK
           </h1>
           <h3

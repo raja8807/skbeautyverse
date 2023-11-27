@@ -63,17 +63,19 @@
         display: none;
       }
       ul {
-        border-width: 2px;
-        border-style: solid;
-        border-image: linear-gradient(
-            to right,
-            $color_gold,
-            rgb(249, 223, 190),
-            $color_gold,
-            rgb(249, 223, 190),
-            $color_gold
-          )
-          1;
+        // border-width: 2px;
+        // border-style: solid;
+        // border-image: linear-gradient(
+        //     to right,
+        //     $color_gold,
+        //     rgb(249, 223, 190),
+        //     $color_gold,
+        //     rgb(249, 223, 190),
+        //     $color_gold
+        //   )
+        //   1;
+        border: 2px solid white;
+        border-radius: 8px;
         padding: 7px 50px;
         display: flex;
         align-items: center;

@@ -2,9 +2,21 @@
   background-color: transparent;
   border: 2px solid $color_gold;
   padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 
   option {
     color: $color_black;
     cursor: pointer;
+  }
+
+  &:hover {
+    background-color: $color_gold2;
+    color: $color_black;
+    border-color: $color_black;
+
+    option {
+      background-color: white;
+    }
   }
 }

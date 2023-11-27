@@ -197,11 +197,11 @@ const BookingScreen = ({ bookingData, packages }) => {
           </button>
         </div>
         <p>{message}</p>
-        {session.data && (
-          <CustomSection head="Manage Bookings">
+        {/* {session.data && ( */}
+          <CustomSection head={session.data ? "Manage Bookings" : "Bookings"}>
             <AllBookings bookingData={bookingData} />
           </CustomSection>
-        )}
+        {/* )} */}
       </CustomContainer>
 
       <style>

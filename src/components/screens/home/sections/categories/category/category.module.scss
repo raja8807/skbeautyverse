@@ -1,13 +1,16 @@
 .category_box {
   // background-color: rgb(83, 83, 83);
-  background-color: $color_gold2;
+  background-color: $color_black;
   margin: 10px 0;
   padding: 10px;
   position: relative;
+  border-radius: 12px;
   // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-
+  img {
+    border-radius: 12px;
+  }
 
   .overlay {
     position: absolute;
@@ -22,8 +25,6 @@
     transform-origin: bottom;
     cursor: pointer;
 
-   
-
     > div {
       border: 1px solid white;
       height: 38px;
@@ -32,7 +33,7 @@
       border-radius: 50%;
       background-color: rgba(0, 0, 0, 0.2);
       margin: 0px 10px;
-     
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.7);
         transform: scale(1.1);
@@ -52,8 +53,9 @@
   }
 
   p {
-    color: black !important;
-    font-weight: 600;
+    // color: black !important;
+    color: $color_gold2 !important;
+    font-weight: 800;
     font-style: italic;
     text-align: center;
     @include respond-above(sm) {

@@ -25,7 +25,6 @@ const GalleryScreen = (props) => {
     router?.query?.category || allCategories[0].text
   );
 
-  console.log(selectedCategory);
 
   const skinData = {
     hair: [
@@ -143,7 +142,7 @@ const GalleryScreen = (props) => {
           <>
             <Row>
               {skinData[selectedCategory].map((data) => (
-                <Col key={data.data} xs={6} md={6} className={styles.col}>
+                <Col key={data.data} xs={6} md={4} className={styles.col}>
                   <Row>
                     <Col xs={12}>
                       <Image

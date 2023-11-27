@@ -76,3 +76,25 @@
     }
   }
 }
+.table {
+  border-radius: 10px !important;
+  thead {
+    border: 1px solid white;
+    border-radius: 10px 10px 0 0 !important;
+    // border: none;
+  }
+  th {
+    text-align: center;
+    color: $color_gold2;
+    &:first-child {
+      border-radius: 10px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 10px 0px 0;
+    }
+  }
+
+  td {
+    text-align: center;
+  }
+}

@@ -6,6 +6,7 @@ import {
   EnvelopeAtFill,
   GeoAltFill,
   TelephoneFill,
+  Whatsapp,
 } from "react-bootstrap-icons";
 import styles from "./contact.module.scss";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
@@ -45,6 +46,11 @@ const ContactScreen = () => {
             head="Phone"
             text={<p>{contactDetails.whatsapp}</p>}
             icon={<TelephoneFill />}
+          />
+          <Info
+            head="Phone"
+            text={<p>{contactDetails.mobile}</p>}
+            icon={<Whatsapp />}
           />
           <Info
             head="Email"

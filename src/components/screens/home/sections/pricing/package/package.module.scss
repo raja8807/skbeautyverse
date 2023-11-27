@@ -3,6 +3,7 @@
   // height: 500px;
   width: 300px;
   border: 1px solid $color_gold;
+  border-bottom: 2px solid $color_gold;
   border-radius: 14px;
 
   @include flexCenter;

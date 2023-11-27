@@ -13,11 +13,8 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 import Certificates from "./certificates/certificates";
 import { useRouter } from "next/router";
 
-
-
 const AboutScreen = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <CustomContainer>
@@ -36,18 +33,18 @@ const AboutScreen = () => {
             <h2 data-aos="fade-up">Who Am I?</h2>
             <hr data-aos="fade-up" />
             <div className={styles.detail}>
-              <p className={fonts.montserrat} data-aos="fade-up">
-                Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :{" "}
-                <span>Sushmitha Karthik</span>
+              <p data-aos="fade-up" className={styles.title}>
+                Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; {" "}
+                <span style={{fontWeight:'600'}}>Sushmitha Karthik</span>
               </p>
-              <p className={fonts.montserrat} data-aos="fade-up">
-                Designation : <span>Proprietor & Senior Makeup Artist</span>
+              <p className={styles.title} data-aos="fade-up">
+                Designation  &nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span>Proprietor & Senior Makeup Artist</span>
               </p>
-              <p className={fonts.montserrat} data-aos="fade-up">
-                Certifed By &nbsp;&nbsp;: <span>Lakme Academy & Scissors</span>
+              <p className={styles.title} data-aos="fade-up">
+                Certifed By &nbsp;&nbsp;:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Lakme Academy & Scissors</span>
               </p>
-              <p className={fonts.montserrat} data-aos="fade-up">
-                Experience &nbsp;&nbsp;: <span>7 Years</span>
+              <p className={styles.title} data-aos="fade-up">
+                Experience &nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>7 Years</span>
               </p>
             </div>
             <br />
@@ -67,8 +64,7 @@ const AboutScreen = () => {
           </div>
         </div>
 
-          <Certificates />
-        
+        <Certificates />
 
         <div className={styles.content}>
           <div className={styles.img} data-aos="fade-up">
@@ -88,10 +84,12 @@ const AboutScreen = () => {
             <br />
             <div data-aos="fade-up">
               <CustomButton
-              clickHandler={()=>{
-                router.replace('reviews')
-              }}
-              >View Our Customer&apos;s Reviews</CustomButton>
+                clickHandler={() => {
+                  router.replace("reviews");
+                }}
+              >
+                View Our Customer&apos;s Reviews
+              </CustomButton>
             </div>
           </div>
         </div>
@@ -105,21 +103,26 @@ const AboutScreen = () => {
             <hr data-aos="fade-up" />
             <div className={styles.teamItem}>
               <Row>
-                <Col xs={12} md={4} >
-                  <Image src="/images/categories/team1.jpeg" alt="logo" fluid />
+                <Col xs={12} md={4}>
+                  <Image
+                    style={{ borderRadius: "10px" }}
+                    src="/images/categories/team1.jpeg"
+                    alt="logo"
+                    fluid
+                  />
                 </Col>
                 <Col xs={12} style={{ padding: "10px" }} md={8}>
                   <div className={styles.detail}>
-                    <div className={fonts.montserrat}>
-                      <p>Name : </p>
-                      <span>Karthik (founder)</span>
+                    <div>
+                      <p className={styles.title}>Name : </p>
+                      <span className={styles.val}>Karthik (founder)</span>
                     </div>
-                    <div className={fonts.montserrat}>
-                      <p>Designation : </p>
+                    <div>
+                      <p className={styles.title}>Designation : </p>
                       <span>Digital Marketer & Cosmetologist</span>
                     </div>
-                    <div className={fonts.montserrat}>
-                      <p>Experience : </p>
+                    <div>
+                      <p className={styles.title}>Experience : </p>
                       <span>2 Years</span>
                     </div>
                     <br />
@@ -157,20 +160,22 @@ const AboutScreen = () => {
             </p>
             <br />
             <CustomButton
-            clickHandler={()=>{
-              router.replace('reviews')
-            }}
-            >View Our Customer&apos;s Reviews</CustomButton>
+              clickHandler={() => {
+                router.replace("reviews");
+              }}
+            >
+              View Our Customer&apos;s Reviews
+            </CustomButton>
           </div>
         </div>
         <div className={`${styles.content} `} data-aos="fade-up">
-          <div className={styles.img} >
+          <div className={styles.img}>
             <Image src="/images/gallery/1 (1).jpg" alt="image" />
           </div>
           <div className={styles.text}>
-            <h2 >Your Special Day, Our Expertise</h2>
-            <hr  />
-            <p className={fonts.montserrat} >
+            <h2>Your Special Day, Our Expertise</h2>
+            <hr />
+            <p className={fonts.montserrat}>
               We specialize in <span className={fonts.petit}>bridal</span>
               makeup and have the expertise to bring out the natural beauty of
               brides. Our goal is to make you feel confident, radiant, and
@@ -180,14 +185,16 @@ const AboutScreen = () => {
               complements their personality and style.
             </p>
             <br />
-            <CustomButton clickHandler={()=>{
-                router.replace('gallery/bridal')
-              }}>View Our Gallery</CustomButton>
+            <CustomButton
+              clickHandler={() => {
+                router.replace("gallery/bridal");
+              }}
+            >
+              View Our Gallery
+            </CustomButton>
             <br />
             <br />
-            <h2 >
-              More Than Just Makeup - A Universe of Beauty
-            </h2>
+            <h2>More Than Just Makeup - A Universe of Beauty</h2>
             <hr />
             <p className={fonts.montserrat}>
               SK Beauty-Verse is not just a makeup service; it is an experience.
@@ -204,10 +211,12 @@ const AboutScreen = () => {
             </p>
             <br />
             <CustomButton
-            clickHandler={()=>{
-              router.replace('contact')
-            }}
-            >Contact Us Now</CustomButton>
+              clickHandler={() => {
+                router.replace("contact");
+              }}
+            >
+              Contact Us Now
+            </CustomButton>
           </div>
         </div>
       </CustomSection>

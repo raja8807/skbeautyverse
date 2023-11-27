@@ -117,7 +117,7 @@ const BannerForm = ({ galleryImages = [] }) => {
     setIsSaveLoading(false);
   };
 
-  const maxImages = 100;
+  const maxImages = 500;
 
   const allCategories = [
     ...categories.map((c) => ({ text: c.name, value: c.id })),

@@ -119,8 +119,8 @@ const BannerForm = ({ bannerImages }) => {
               setError("Not Valid File");
               return;
             }
-            if (file.size > 512000 * 4) {
-              setError("File Size More Than 2MB");
+            if (file.size > 512000 * 10) {
+              setError("File Size More Than 5 MB");
               return;
             }
             setNewImage(file);
