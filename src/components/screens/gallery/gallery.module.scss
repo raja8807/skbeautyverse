@@ -87,4 +87,16 @@
   p{
     color: $color_gold2;
   }
+
+  @include respond-below(md){
+    h3{
+      font-size: 16px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    p{
+      font-size: 12px;
+    }
+  }
 }

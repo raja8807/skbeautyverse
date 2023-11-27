@@ -73,7 +73,7 @@ const BookPopup = (props) => {
   const btnNames = ["", "Next", "Book", "Upload"];
   const [file, setFile] = useState(null);
 
-  console.log(bookingData);
+  // console.log(bookingData);
 
   const updateBooking = async () => {
     // screenshotUrl
@@ -95,6 +95,11 @@ const BookPopup = (props) => {
       setBookingData(res.data);
       setApiStatus("idle");
       const a = document.createElement("a");
+      await axios.post("https://formspree.io/f/xleyzzwa", {
+      // await axios.post("https://formspree.io/f/maygjegz", {
+        email: `${bookingValues.phoneNumber}@skbeautyverse.com`,
+        message: bookingValues,
+      });
       a.setAttribute(
         "href",
         `https://wa.me/918610030499?text=Hi, I've made advance payment for ${bookingData.packageId} - ${bookingData.categoryId} on ${bookingData.date} at slot ${bookingData.slot}`
@@ -141,7 +146,7 @@ const BookPopup = (props) => {
     return () => setcurrentBookingData(null);
   }, []);
 
-  console.log(file);
+  // console.log(file);
 
   return (
     <Modal
@@ -320,9 +325,9 @@ const BookPopup = (props) => {
                         />
                         <p>
                           Please scan this QR with your upi app to make advance
-                          payment and upload payment
-                          screenshot to confirm your booking or contact{" "}
-                          {contactDetails.whatsapp} for any queries.
+                          payment and upload payment screenshot to confirm your
+                          booking or contact {contactDetails.whatsapp} for any
+                          queries.
                         </p>
                         <div>
                           <input

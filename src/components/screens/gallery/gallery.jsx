@@ -143,9 +143,9 @@ const GalleryScreen = (props) => {
           <>
             <Row>
               {skinData[selectedCategory].map((data) => (
-                <Col key={data.data} xs={12} md={6} className={styles.col}>
+                <Col key={data.data} xs={6} md={6} className={styles.col}>
                   <Row>
-                    <Col>
+                    <Col xs={12}>
                       <Image
                         src={`/images/gallery/${selectedCategory}/${data.id}.jpg`}
                         fluid

@@ -11,8 +11,14 @@ import styles from "./about.module.scss";
 import fonts from "@/components/fonts/fonts";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import Certificates from "./certificates/certificates";
+import { useRouter } from "next/router";
+
+
 
 const AboutScreen = () => {
+
+  const router = useRouter()
+
   return (
     <CustomContainer>
       <CustomSection head="About Us" noPadding bg="textGold">
@@ -81,12 +87,16 @@ const AboutScreen = () => {
             </p>
             <br />
             <div data-aos="fade-up">
-              <CustomButton>View Our Customer&apos;s Reviews</CustomButton>
+              <CustomButton
+              clickHandler={()=>{
+                router.replace('reviews')
+              }}
+              >View Our Customer&apos;s Reviews</CustomButton>
             </div>
           </div>
         </div>
 
-        <div className={styles.content}>
+        <div className={styles.content} data-aos="fade-up">
           {/* <div className={styles.img} data-aos="fade-up">
             <Image src="/images/logo/Lakme-Logo.png" alt="logo" />
           </div> */}
@@ -95,7 +105,7 @@ const AboutScreen = () => {
             <hr data-aos="fade-up" />
             <div className={styles.teamItem}>
               <Row>
-                <Col xs={12} md={4}>
+                <Col xs={12} md={4} >
                   <Image src="/images/categories/team1.jpeg" alt="logo" fluid />
                 </Col>
                 <Col xs={12} style={{ padding: "10px" }} md={8}>
@@ -146,17 +156,21 @@ const AboutScreen = () => {
               throughout the day and night.
             </p>
             <br />
-            <CustomButton>View Our Customer&apos;s Reviews</CustomButton>
+            <CustomButton
+            clickHandler={()=>{
+              router.replace('reviews')
+            }}
+            >View Our Customer&apos;s Reviews</CustomButton>
           </div>
         </div>
-        <div className={`${styles.content} `}>
-          <div className={styles.img} data-aos="fade-up">
+        <div className={`${styles.content} `} data-aos="fade-up">
+          <div className={styles.img} >
             <Image src="/images/gallery/1 (1).jpg" alt="image" />
           </div>
           <div className={styles.text}>
-            <h2 data-aos="fade-up">Your Special Day, Our Expertise</h2>
-            <hr data-aos="fade-up" />
-            <p className={fonts.montserrat} data-aos="fade-up">
+            <h2 >Your Special Day, Our Expertise</h2>
+            <hr  />
+            <p className={fonts.montserrat} >
               We specialize in <span className={fonts.petit}>bridal</span>
               makeup and have the expertise to bring out the natural beauty of
               brides. Our goal is to make you feel confident, radiant, and
@@ -166,14 +180,16 @@ const AboutScreen = () => {
               complements their personality and style.
             </p>
             <br />
-            <CustomButton>View Our Gallery</CustomButton>
+            <CustomButton clickHandler={()=>{
+                router.replace('gallery/bridal')
+              }}>View Our Gallery</CustomButton>
             <br />
             <br />
-            <h2 data-aos="fade-up">
+            <h2 >
               More Than Just Makeup - A Universe of Beauty
             </h2>
             <hr />
-            <p className={fonts.montserrat} data-aos="fade-up">
+            <p className={fonts.montserrat}>
               SK Beauty-Verse is not just a makeup service; it is an experience.
               We believe in the power of makeup to enhance confidence and bring
               out the best in everyone. Our dedication to our craft and our
@@ -187,7 +203,11 @@ const AboutScreen = () => {
               , embodies this philosophy.
             </p>
             <br />
-            <CustomButton>Contact Us Now</CustomButton>
+            <CustomButton
+            clickHandler={()=>{
+              router.replace('contact')
+            }}
+            >Contact Us Now</CustomButton>
           </div>
         </div>
       </CustomSection>
