@@ -45,7 +45,7 @@ const AboutScreen = () => {
               </p>
             </div>
             <br />
-            <p className={fonts.montserrat}>
+            <p className={fonts.montserrat} data-aos="fade-up">
               I am a passionate Makeup artist, who specialized in Skin, Hair and
               Bridal Makeup. I am the creative force behind SK Beauty-Verse.
               With a passion for transforming faces, I specialize in hair, skin,

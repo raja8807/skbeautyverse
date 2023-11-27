@@ -93,12 +93,11 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
             autoPlayDelay={5}
             navStyle={1}
             width={width}
-            height={550}
+            height={width === 400 ? 500 : 380}
             images={images}
             showBullets={true}
             showNavs={true}
             navSize={25}
-            navMargin={10}
           />
         </div>
       </div>

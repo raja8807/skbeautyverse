@@ -15,11 +15,15 @@
     // transform: translateX(calc(100vw));
     overflow: visible;
     animation: animateContainer 60s linear forwards infinite;
+    @include respond-below(md){
+      animation: animateContainer 30s linear forwards infinite;
+
+    }
     animation-play-state: paused;
   }
   @keyframes animateContainer {
     from {
-      transform: translateX(calc(100vw));
+      transform: translateX(calc(0vw));
     }
     to {
       transform: translateX(calc(-100%));

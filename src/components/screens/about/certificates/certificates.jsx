@@ -3,7 +3,41 @@ import Card from "./Card.js";
 import styles from "./styles.module.scss";
 // import "./styles.scss";
 
-let data = [
+let data = [{
+    id: "1",
+  },
+  {
+    id: "2",
+  },
+  {
+    id: "3",
+  },
+  {
+    id: "4",
+  },
+  {
+    id: "5",
+  },
+  {
+    id: "6",
+  },{
+    id: "1",
+  },
+  {
+    id: "2",
+  },
+  {
+    id: "3",
+  },
+  {
+    id: "4",
+  },
+  {
+    id: "5",
+  },
+  {
+    id: "6",
+  },
   {
     id: "1",
   },
@@ -20,19 +54,7 @@ let data = [
     id: "5",
   },
   {
-    id: "1",
-  },
-  {
-    id: "2",
-  },
-  {
-    id: "3",
-  },
-  {
-    id: "4",
-  },
-  {
-    id: "5",
+    id: "6",
   },
   {
     id: "1",
@@ -50,54 +72,27 @@ let data = [
     id: "5",
   },
   {
-    id: "1",
-  },
-  {
-    id: "2",
-  },
-  {
-    id: "3",
-  },
-  {
-    id: "4",
-  },
-  {
-    id: "5",
-  },
-  {
-    id: "1",
-  },
-  {
-    id: "2",
-  },
-  {
-    id: "3",
-  },
-  {
-    id: "4",
-  },
-  {
-    id: "5",
-  },
-];
+    id: "6",
+  },]
 
 export default function Certificates() {
   const ref = useRef(null);
   const [containerWidth, setWidth] = useState(100 + "%");
   const [animationState, setPlay] = useState("paused");
+
   useEffect(() => {
     if (ref.current) {
       setWidth(ref.current.scrollWidth + "px");
       setPlay("running");
     }
   }, []);
-  //   console.log(containerWidth);
+
   const renderCards = data.map((el, index) => {
     return <Card key={index} id={el.id} />;
   });
 
   return (
-    <div className={styles.App}>
+    <div className={styles.App} data-aos="fade-left">
       <div
         className={styles.dflex}
         onMouseEnter={() => {
