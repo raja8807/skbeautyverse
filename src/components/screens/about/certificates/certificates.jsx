@@ -92,7 +92,7 @@ export default function Certificates() {
   });
 
   return (
-    <div className={styles.App} data-aos="fade-left">
+    <div className={styles.App}>
       <div
         className={styles.dflex}
         onMouseEnter={() => {
