@@ -23,6 +23,7 @@ const Products = (props) => {
     },
   ];
 
+
   const [currentTab, setCurrentTab] = useState(tabs[0]);
 
   return (
@@ -57,7 +58,7 @@ const Products = (props) => {
               <div key={i} className={styles.img_holder}>
                 <div
                   onClick={() => {
-                    SetCurrentFullViewImageIndex(i);
+                    SetCurrentFullViewImageIndex(img);
                   }}
                 >
                   <Eye />

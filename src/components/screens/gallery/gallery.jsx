@@ -25,7 +25,6 @@ const GalleryScreen = (props) => {
     router?.query?.category || allCategories[0].text
   );
 
-
   const skinData = {
     hair: [
       {
@@ -117,6 +116,10 @@ const GalleryScreen = (props) => {
     ],
   };
 
+  const x = images?.sort((a, b) => {
+    return a.index - b.index;
+  });
+
   // console.log(images);
 
   return (
@@ -134,10 +137,7 @@ const GalleryScreen = (props) => {
         />
         <br />
         <br />
-        {/* {selectedCategory === "skin" ||
-          (selectedCategory === "hair" && (
-           
-          ))} */}
+
         {(selectedCategory === "skin" || selectedCategory === "hair") && (
           <>
             <Row>
@@ -165,26 +165,22 @@ const GalleryScreen = (props) => {
         )}
         {selectedCategory !== "products" ? (
           <div className={styles.wrapper}>
-            {images
-              ?.sort((a, b) => {
-                return a.index - b.index;
-              })
-              ?.map((img, i) => (
-                <div key={i} className={styles.img_holder}>
-                  <div
-                    onClick={() => {
-                      SetCurrentFullViewImageIndex(i);
-                    }}
-                  >
-                    <Eye />
-                  </div>
-                  <Image
-                    src={img.url.replace("upload", "upload/w_400,f_auto")}
-                    alt="a"
-                    fluid
-                  />
+            {x?.map((img, i) => (
+              <div key={i} className={styles.img_holder}>
+                <div
+                  onClick={() => {
+                    SetCurrentFullViewImageIndex(img);
+                  }}
+                >
+                  <Eye />
                 </div>
-              ))}
+                <Image
+                  src={img.url.replace("upload", "upload/w_400,f_auto")}
+                  alt="a"
+                  fluid
+                />
+              </div>
+            ))}
           </div>
         ) : (
           <Products
@@ -197,7 +193,7 @@ const GalleryScreen = (props) => {
         <FullViewImage
           currentFullViewImageIndex={currentFullViewImageIndex}
           SetCurrentFullViewImageIndex={SetCurrentFullViewImageIndex}
-          allImages={images}
+          allImages={x}
         />
       )}
     </>

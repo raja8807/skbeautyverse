@@ -14,7 +14,7 @@ const FullViewImage = ({
         <X onClick={() => SetCurrentFullViewImageIndex(null)} />
       </div>
       <div className={styles.img}>
-        {
+        {/* {
             currentFullViewImageIndex != 0 && <ChevronLeft
             className={styles.left}
             onClick={() => {
@@ -23,9 +23,9 @@ const FullViewImage = ({
               }
             }}
           />
-        }
-        <Image src={allImages[currentFullViewImageIndex].url.replace("upload", "upload")} alt="xx" fluid />
-        {
+        } */}
+        <Image src={currentFullViewImageIndex.url.replace("upload", "upload")} alt="xx" fluid />
+        {/* {
             currentFullViewImageIndex !== allImages.length - 1 && <ChevronRight
             className={styles.right}
             onClick={() => {
@@ -34,7 +34,7 @@ const FullViewImage = ({
               }
             }}
           />
-        }
+        } */}
       </div>
       {/* </CustomContainer> */}
     </div>
