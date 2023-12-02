@@ -87,9 +87,10 @@ const HomeScreen = (props) => {
         </CustomSection>
       </CustomContainer>
 
-      <Collection setShowPopup={setShowPopup} />
+      
 
       <ContactForm />
+<Collection setShowPopup={setShowPopup} />
     </>
   );
 };
