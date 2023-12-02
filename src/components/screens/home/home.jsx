@@ -12,6 +12,7 @@ import Review from "../reviews/review/review";
 import { Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import { useRouter } from "next/router";
+import ContactForm from "../contact/contact_form";
 
 const HomeScreen = (props) => {
   const { packages, bannerImages, reviews } = props;
@@ -87,6 +88,8 @@ const HomeScreen = (props) => {
       </CustomContainer>
 
       <Collection setShowPopup={setShowPopup} />
+
+      <ContactForm />
     </>
   );
 };
