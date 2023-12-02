@@ -59,11 +59,11 @@
 
     img {
       width: auto;
-      // height: 90%;
+      height: 90%;
       padding: 10px;
       @include respond-below(sm) {
         width: 90%;
-        // height:auto;
+        height: initial;
         padding: 0;
       }
     }

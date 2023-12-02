@@ -9,9 +9,10 @@ import fonts from "@/components/fonts/fonts";
 import { Image } from "react-bootstrap";
 import { GeoAlt, GeoAltFill } from "react-bootstrap-icons";
 import { useRouter } from "next/router";
+import EnquirePopup from "@/components/enquire_popup/enquire_popup";
 
 const Banner = ({ bannerImages = [], setShowPopup }) => {
-  const router = useRouter()
+  const router = useRouter();
   const images = bannerImages
     .map((image) => ({
       ...image,
@@ -40,13 +41,15 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
     }
   }, []);
 
+  // const [showPopup,setShowPopup]=useState('')
+
   return (
     <CustomContainer className={styles.banner}>
+      {/* <EnquirePopup show={!!showPopup} setShow={setShowPopup} initialMessage={showPopup}/> */}
+
       <div className={styles.left}>
         <div className={styles.head}>
-          <h1 className={fonts.head} >
-            SUSHMITHA KARTHIK
-          </h1>
+          <h1 className={fonts.head}>SUSHMITHA KARTHIK</h1>
           <h3
             className={fonts.petit}
             data-aos="fade-right"
@@ -74,11 +77,11 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
             </div>
             <CustomButton
               clickHandler={() => {
-                router.replace('./book')
+                setShowPopup("Hi. I want to know more about your services..");
               }}
               type="gold"
             >
-              Book Now
+              Enquire Now
             </CustomButton>
           </div>
           <div className={styles.x} style={{ color: "#d8b74b" }}>
@@ -102,22 +105,6 @@ const Banner = ({ bannerImages = [], setShowPopup }) => {
           />
         </div>
       </div>
-      {/* <div>
-        <iframe
-          src="https://www.instagram.com/reel/Cz3w58tPxXu/embed/captioned/?rd=https%3A%2F%2Fembedinstagramfeed.com"
-          name="myIFrame"
-          style="border: solid #000000;"
-          
-        ></iframe>
-      </div>
-      <div style="visibility:hidden !important;">
-        Powered by{" "}
-        <a href="https://embedfbvideo.com">
-          how to embed facebook video on wordpress
-        </a>{" "}
-        and <a href="https://yatzyregler.com/no/">yatzy ark</a>
-      </div> */}
-      
     </CustomContainer>
   );
 };

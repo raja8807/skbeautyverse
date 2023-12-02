@@ -10,6 +10,10 @@
     }
 
     &.Confirmed {
+      color: rgb(37, 190, 37) !important;
+    }
+
+    &.Completed {
       color: rgb(2, 208, 2) !important;
     }
   }

@@ -6,16 +6,31 @@ import Pricing from "./sections/pricing/pricing";
 import EnquirePopup from "@/components/enquire_popup/enquire_popup";
 import { useState } from "react";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
+import Certificates from "../about/certificates/certificates";
+import CustomSection from "@/components/ui/custom_section/custom_section";
+import Review from "../reviews/review/review";
+import { Row } from "react-bootstrap";
+import CustomButton from "@/components/ui/custom_button/custom_button";
+import { useRouter } from "next/router";
 
 const HomeScreen = (props) => {
-  const { packages, bannerImages } = props;
+  const { packages, bannerImages, reviews } = props;
 
   const [showPopup, setShowPopup] = useState(false);
 
+  const router = useRouter();
+
   return (
     <>
-      <EnquirePopup show={showPopup} setShow={setShowPopup} />
-      <Banner bannerImages={bannerImages} setShowPopup={setShowPopup} />
+      <EnquirePopup
+        show={!!showPopup}
+        setShow={setShowPopup}
+        initialMessage={showPopup}
+      />
+      <CustomContainer>
+        <Banner bannerImages={bannerImages} setShowPopup={setShowPopup} />
+      </CustomContainer>
+      <Certificates />
       <Categories />
       <Pricing packages={packages} />
       <CustomContainer>
@@ -26,7 +41,7 @@ const HomeScreen = (props) => {
           style={{
             width: "100%",
             // padding: "50px 0",
-            margin:'50px 0',
+            margin: "50px 0",
             height: "600px",
             overflow: "auto",
             borderRadius: "12px",
@@ -38,6 +53,39 @@ const HomeScreen = (props) => {
           allowtransparency="true"
         ></iframe>
       </CustomContainer>
+
+      <CustomContainer>
+        <CustomSection head="Customer Reviews">
+          <Row>
+            {reviews
+              .sort(function (a, b) {
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              })
+              .map((review) => {
+                return (
+                  <Review
+                    key={review._id}
+                    review={review}
+                    deleteReview={() => {}}
+                    reviews={reviews}
+                  />
+                );
+              })}
+          </Row>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <CustomButton
+              clickHandler={() => {
+                router.replace("/reviews");
+              }}
+            >
+              View More Reviews
+            </CustomButton>
+          </div>
+        </CustomSection>
+      </CustomContainer>
+
       <Collection setShowPopup={setShowPopup} />
     </>
   );
