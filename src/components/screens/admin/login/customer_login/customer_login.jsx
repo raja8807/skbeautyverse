@@ -1,10 +1,7 @@
 const { useState, useEffect } = require("react");
 import { Spinner } from "react-bootstrap";
 import styles from "../login.module.scss";
-// import { signIn } from "next-auth/react";
 import CustomerSignup from "./custtomer_signup/custtomer_signup";
-
-// import { getApps } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -16,7 +13,6 @@ import EmailVerification from "./email_verification/email_verification";
 import fireBaseCustomerAuth from "@/components/constants/firebase_config";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { Google } from "react-bootstrap-icons";
 
 const CustomerLogin = (props) => {
   const { setIsAdminLogin, setCustomer, customer, isLoginPage } = props;
@@ -28,6 +24,7 @@ const CustomerLogin = (props) => {
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const signOut = () => {
     setVerified(null);
@@ -35,33 +32,45 @@ const CustomerLogin = (props) => {
   };
 
   const router = useRouter();
+
   const updateCustomer = async (displayName, phoneNumber) => {
+    setMessage(null);
     setIsLoading(true);
     setError(false);
     try {
-      await firebase.auth().currentUser.updateProfile({
-        displayName,
-        photoURL: phoneNumber,
-      });
-      const res = await axios.post("/api/customer", {
-        name: displayName,
-        phoneNumber,
-        email: customer.email,
-        customerId: customer.uid,
-      });
-      //   console.log(res);
+      if (customer.uid) {
+        await axios.put("/api/customer", {
+          name: displayName,
+          phoneNumber,
+          email: customer.email,
+          customerId: customer.uid,
+          userName: updateValues.userName,
+        });
+
+        await firebase.auth().currentUser.updateProfile({
+          displayName:updateValues.userName,
+          photoURL: phoneNumber,
+        });
+      }
+
+      // setCustomer((prev) => ({ ...prev, userName: updateValues.userName }));
       setError(false);
       setIsLoading(false);
       if (isLoginPage) {
-        router.reload();
+        router.replace(`/account/customer?user=${updateValues.userName}`);
       } else {
         setCustomer((prev) => ({
           ...prev,
           displayName,
           photoURL: phoneNumber,
+          userName: updateValues.userName,
         }));
       }
     } catch (err) {
+      console.log(err);
+      if (err?.response?.data === "already exist") {
+        setMessage("User name already exist please choose another name");
+      }
       setIsLoading(false);
       setError(true);
     }
@@ -94,17 +103,23 @@ const CustomerLogin = (props) => {
     setError(false);
 
     try {
-      result = await createUserWithEmailAndPassword(
+      const result = await createUserWithEmailAndPassword(
         fireBaseCustomerAuth,
         email,
         password
       );
+
+      const x = await axios.post("/api/customer", {
+        email: result.user.email,
+        customerId: result.user.uid,
+      });
+
       await sendVerificationEmail();
-      setIsLoading(false);
     } catch (e) {
-      setIsLoading(false);
+      console.log(e);
       setError(true);
     }
+    setIsLoading(false);
   };
 
   const reloadUser = async () => {
@@ -154,177 +169,181 @@ const CustomerLogin = (props) => {
     phoneNumber: "",
   });
 
-  const auth = firebase.auth();
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
-  const signInWithGoogle = () => {
-    auth
-      .signInWithPopup(googleProvider)
-      .then((res) => {
-        console.log(res.user);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
   return isLogin ? (
     <div className={styles.loginBox}>
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          await signIn(values.email, values.password);
-        }}
-      >
-        <p>Customer Login</p>
-        {customer ? (
-          <>
-            {verified === "no" ? (
-              <EmailVerification
-                sendVerificationEmail={sendVerificationEmail}
-                isLoading={isLoading}
-                signOut={signOut}
-                customer={customer}
-                setCustomer={setCustomer}
-                reloadUser={reloadUser}
-              />
-            ) : (
-              <>
-                <small>Welcome {customer.displayName}</small>
-                {!customer.displayName && (
-                  <>
-                    <small>Please update your profile to continue</small>
-                    <input
-                      placeholder="Name"
-                      value={updateValues.name}
-                      onChange={(e) => {
-                        const { value } = e.target;
-                        setUpdateValues((prev) => ({ ...prev, name: value }));
-                      }}
-                    />
-                    <input
-                      placeholder="Pnone Number"
-                      value={updateValues.phoneNumber}
-                      onChange={(e) => {
-                        const { value } = e.target;
+      <p>MUA Login</p>
+      {customer ? (
+        <>
+          {verified === "no" ? (
+            <EmailVerification
+              sendVerificationEmail={sendVerificationEmail}
+              isLoading={isLoading}
+              signOut={signOut}
+              customer={customer}
+              setCustomer={setCustomer}
+              reloadUser={reloadUser}
+            />
+          ) : (
+            <form
+              className={styles.x}
+              name="xx"
+              id="xx"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                await updateCustomer(
+                  updateValues.name,
+                  updateValues.phoneNumber
+                );
+              }}
+            >
+              <small>Welcome {customer.displayName}</small>
+              {!customer.displayName && (
+                <>
+                  <small>Please update your profile to continue</small>
+                  <input
+                    placeholder="User Name (eg : your_name)"
+                    value={updateValues.userName}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      const valid = /^[a-z0-9_\.]+$/.exec(value);
+                      if (!!valid || value === "") {
+                        setUpdateValues((prev) => ({
+                          ...prev,
+                          userName: value,
+                        }));
+                      }
+                    }}
+                    required
+                    minLength="5"
+                    maxLength="20"
+                  />
+                  {message && <small>{message}</small>}
+                  <input
+                    placeholder="Name"
+                    value={updateValues.name}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      setUpdateValues((prev) => ({ ...prev, name: value }));
+                    }}
+                    required
+                    minLength="5"
+                    maxLength="100"
+                  />
+                  <input
+                    placeholder="Phone Number"
+                    value={updateValues.phoneNumber}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      const valid = /^[0-9_\.]+$/.exec(value);
+                      if ((valid && value.length !== 11) || value === "") {
                         setUpdateValues((prev) => ({
                           ...prev,
                           phoneNumber: value,
                         }));
-                      }}
-                    />
+                      }
+                    }}
+                    required
+                    minLength="10"
+                    maxLength="10"
+                  />
 
-                    {isLoading ? (
-                      <Spinner style={{ margin: "auto" }} />
-                    ) : (
-                      <input
-                        onClick={async () => {
-                          await updateCustomer(
-                            updateValues.name,
-                            updateValues.phoneNumber
-                          );
-                        }}
-                        type="button"
-                        value="Update"
-                      />
-                    )}
-                  </>
-                )}
-                <input
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  value="logout"
-                />
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            {verified == "no" ? (
-              <EmailVerification
-                sendVerificationEmail={sendVerificationEmail}
-                isLoading={isLoading}
-                signOut={signOut}
-                customer={customer}
-                reloadUser={reloadUser}
+                  {isLoading ? (
+                    <Spinner style={{ margin: "auto" }} />
+                  ) : (
+                    <input
+                      type="submit"
+                      value="Update" 
+                      name="xx"
+                    />
+                  )}
+                </>
+              )}
+              <input
+                onClick={() => {
+                  signOut();
+                }}
+                type="button"
+                value="logout"
               />
-            ) : (
-              <>
-                <input
-                  className={error ? styles.error : ""}
-                  placeholder="email"
-                  //   type="email"
-                  value={values.email}
-                  onChange={(e) => {
-                    const { value } = e.target;
-
-                    setValues((prev) => ({ ...prev, email: value }));
-                  }}
-                />
-                <input
-                  className={error ? styles.error : ""}
-                  placeholder="Password"
-                  type="password"
-                  value={values.password}
-                  onChange={(e) => {
-                    const { value } = e.target;
-                    setValues((prev) => ({ ...prev, password: value }));
-                  }}
-                />
-                {isLoading ? (
-                  <Spinner style={{ margin: "auto" }} />
-                ) : (
-                  <input type="submit" value="login" />
-                )}
-                <button type="button" onClick={signInWithGoogle}>
-                  <Google /> &nbsp; Login With Google{" "}
-                </button>
-                {/* <div className="login-buttons">
-                  <button
-                    className="login-provider-button"
-                    onClick={signInWithGoogle}
-                    type="button"
-                  >
-                    <img
-                      src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
-                      alt="google icon"
-                    />
-                    <span> Continue with Google</span>
-                  </button>
-                </div> */}
-              </>
-            )}
-          </>
-        )}
-
-        {!customer && (
-          <small>
-            {isLoginPage && (
-              <>
-                <span
-                  onClick={() => {
-                    setError(false);
-
-                    setIsAdminLogin(true);
-                  }}
-                >
-                  Admin Login
-                </span>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              </>
-            )}
-            <span
-              onClick={() => {
-                setError(false);
-                setIsLogin(false);
+              {/* <small>{error}</small> */}
+            </form>
+          )}
+        </>
+      ) : (
+        <>
+          {verified == "no" ? (
+            <EmailVerification
+              sendVerificationEmail={sendVerificationEmail}
+              isLoading={isLoading}
+              signOut={signOut}
+              customer={customer}
+              reloadUser={reloadUser}
+            />
+          ) : (
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                await signIn(values.email, values.password);
               }}
             >
-              Create Account
-            </span>
-          </small>
-        )}
-      </form>
+              <input
+                className={error ? styles.error : ""}
+                placeholder="email"
+                //   type="email"
+                value={values.email}
+                onChange={(e) => {
+                  const { value } = e.target;
+
+                  setValues((prev) => ({ ...prev, email: value }));
+                }}
+              />
+              <input
+                className={error ? styles.error : ""}
+                placeholder="Password"
+                type="password"
+                value={values.password}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  setValues((prev) => ({ ...prev, password: value }));
+                }}
+              />
+              {isLoading ? (
+                <Spinner style={{ margin: "auto" }} />
+              ) : (
+                <input type="submit" value="login" />
+              )}
+            </form>
+          )}
+        </>
+      )}
+
+      {!customer && (
+        <small>
+          {isLoginPage && (
+            <>
+              <span
+                onClick={() => {
+                  setError(false);
+                  setIsAdminLogin(true);
+                }}
+              >
+                Admin Login
+              </span>
+              &nbsp; &nbsp;
+            </>
+          )}
+          |
+          <span
+            onClick={() => {
+              setError(false);
+              setIsLogin(false);
+            }}
+          >
+            &nbsp; &nbsp; Create Account
+          </span>
+        </small>
+      )}
+      {/* </form> */}
     </div>
   ) : (
     <CustomerSignup

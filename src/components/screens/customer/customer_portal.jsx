@@ -3,16 +3,16 @@ import CustomerProfile from "./cutomer_profile/cutomer_profile";
 
 const { Row, Col } = require("react-bootstrap");
 
-const CustomerPortal = ({ customer, customerBookings=[] }) => {
+const CustomerPortal = ({ customer, user }) => {
   //   console.log(customer);
 
   return (
     <Row>
       <Col md={4}>
-        <CustomerProfile customer={customer} />
+        <CustomerProfile customer={customer} user={user} />
       </Col>
       <Col>
-        <CustomerBookings customerBookings={customerBookings}/>
+        {/* <CustomerBookings customerBookings={customerBookings}/> */}
       </Col>
     </Row>
   );

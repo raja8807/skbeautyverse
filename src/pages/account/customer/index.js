@@ -13,9 +13,8 @@ const {
 
 import CustomerPortal from "@/components/screens/customer/customer_portal";
 
-const CustomerPortalScreen = ({ customer, bookings }) => {
+const CustomerPortalScreen = ({ customer, user }) => {
   const router = useRouter();
-
   useEffect(() => {
     if (
       !customer ||
@@ -26,10 +25,6 @@ const CustomerPortalScreen = ({ customer, bookings }) => {
       router.replace("/account/login");
     }
   }, [customer, router]);
-
-  const customerBookings = bookings.filter((booking) => {
-    return booking.customer?.customerId === customer?.uid;
-  });
 
   if (
     customer &&
@@ -46,9 +41,7 @@ const CustomerPortalScreen = ({ customer, bookings }) => {
         >
           Logout
         </CustomButton>
-        <CustomSection head="Customer">
-          <CustomerPortal customer={customer} customerBookings={customerBookings}/>
-        </CustomSection>
+        <CustomerPortal customer={customer} user={user} />
       </CustomContainer>
     );
   } else {
@@ -60,12 +53,13 @@ export default CustomerPortalScreen;
 
 export async function getServerSideProps(context) {
   try {
-    console.log(firebase.auth().currentUser);
-    const res = await fetch(`http://${context.req.headers.host}/api/booking`);
-    const bookings = await res.json();
-    return { props: { bookings:bookings.bookings } };
+    const res = await fetch(
+      `http://${context.req.headers.host}/api/customer?user=${context.query.user}`
+    );
+    const user = await res.json();
+    return { props: { user: user } };
   } catch (err) {
     console.log("errr--->", err);
-    return { props: { images: "errr-->" + err.message } };
+    return { props: { user: "errr-->" + err.message } };
   }
 }

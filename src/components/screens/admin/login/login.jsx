@@ -30,7 +30,7 @@ const LoginBox = ({ setCustomer, customer }) => {
     setIsLoading(false);
   };
 
-  const [isAdminLogin, setIsAdminLogin] = useState(true);
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
 
   return (
     <div className={styles.cont}>
@@ -69,13 +69,13 @@ const LoginBox = ({ setCustomer, customer }) => {
             ) : (
               <input type="submit" value="login" />
             )}
-            {/* <small
+            <small
               onClick={() => {
                 setIsAdminLogin(false);
               }}
             >
-              <span>Customer Login</span>
-            </small> */}
+              <span>MUA Login</span>
+            </small>
           </form>
           {/* <p>Admin Login</p> */}
         </div>

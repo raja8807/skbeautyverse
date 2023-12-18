@@ -7,11 +7,21 @@ const customerSchema = new Schema(
     },
     email: {
       type: String,
+      required: true,
+      unique: true,
+    },
+    userName: {
+      type: String,
+      unique: true,
     },
     phoneNumber: {
       type: String,
     },
     customerId: {
+      required: true,
+      type: String,
+    },
+    imageUrl: {
       type: String,
     },
   },

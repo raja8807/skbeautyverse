@@ -10,14 +10,14 @@ const Admin = ({ customer }) => {
   // console.log(customer);
 
   useEffect(() => {
-
     if (session?.data) {
       router.replace("/account/admin");
       return;
     }
 
     if (customer) {
-      router.replace("/account/customer");
+      console.log(customer);
+      router.replace(`/account/customer?user=${customer.displayName}`);
       return;
     }
 

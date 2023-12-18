@@ -17,8 +17,8 @@ const LoginPage = ({ setCustomer, customer }) => {
       customer.emailVerified &&
       customer.displayName &&
       customer.photoURL
-      ) {
-      router.replace("/account/customer");
+    ) {
+      router.replace(`/account/customer?user=${customer.displayName}`);
     }
   }, [customer, router, session]);
 

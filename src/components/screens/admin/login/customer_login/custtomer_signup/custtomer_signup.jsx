@@ -98,15 +98,17 @@ const CustomerSinup = (props) => {
                 >
                   Admin Login
                 </span>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; 
               </>
             )}
+            |
             <span
               onClick={() => {
                 setError(false);
                 setIsLogin(true);
               }}
             >
+              &nbsp; &nbsp;
               Customer Login
             </span>
           </small>
