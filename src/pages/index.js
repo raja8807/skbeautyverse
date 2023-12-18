@@ -3,7 +3,7 @@ import HomeScreen from "@/components/screens/home/home";
 
 const Home = ({ homeData }) => {
 
-  // console.log(homeData);
+  console.log(homeData);
 
   return (
     <HomeScreen

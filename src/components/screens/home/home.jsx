@@ -58,7 +58,7 @@ const HomeScreen = (props) => {
       <CustomContainer>
         <CustomSection head="Customer Reviews">
           <Row>
-            {reviews
+            {reviews && reviews
               .sort(function (a, b) {
                 // Turn your strings into dates, and then subtract them
                 // to get a value that is either negative, positive, or zero.

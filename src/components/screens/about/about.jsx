@@ -13,6 +13,59 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 import Certificates from "./certificates/certificates";
 import { useRouter } from "next/router";
 
+// const team = ()=>{
+//   return (
+//     <div className={styles.content} data-aos="fade-up">
+//           {/* <div className={styles.img} data-aos="fade-up">
+//             <Image src="/images/logo/Lakme-Logo.png" alt="logo" />
+//           </div> */}
+//           <div className={styles.text}>
+//             <h2 data-aos="fade-up">Our Team</h2>
+//             <hr data-aos="fade-up" />
+//             <div className={styles.teamItem}>
+//               <Row>
+//                 <Col xs={12} md={4}>
+//                   <Image
+//                     style={{ borderRadius: "10px" }}
+//                     src="/images/categories/team1.jpeg"
+//                     alt="logo"
+//                     fluid
+//                   />
+//                 </Col>
+//                 <Col xs={12} style={{ padding: "10px" }} md={8}>
+//                   <div className={styles.detail}>
+//                     <div>
+//                       <p className={styles.title}>Name : </p>
+//                       <span className={styles.val}>Karthik (founder)</span>
+//                     </div>
+//                     <div>
+//                       <p className={styles.title}>Designation : </p>
+//                       <span>Digital Marketer & Cosmetologist</span>
+//                     </div>
+//                     <div>
+//                       <p className={styles.title}>Experience : </p>
+//                       <span>2 Years</span>
+//                     </div>
+//                     <br />
+//                   </div>
+//                   <p className={fonts.montserrat}>
+//                     Meet Karthik, the dynamic force shaping digital marketing
+//                     and cosmetology at SK Beauty-Verse. With a keen eye for
+//                     market trends and a flair for beauty, I seamlessly blend
+//                     expertise in online strategies with the art of cosmetology.
+//                     Dedicated to enhancing your online presence and your natural
+//                     charm, I transform businesses and faces with passion and
+//                     precision. Let us elevate your brand and beauty to new
+//                     heights.
+//                   </p>
+//                 </Col>
+//               </Row>
+//             </div>
+//           </div>
+//         </div>
+//   )
+// }
+
 const AboutScreen = () => {
   const router = useRouter();
 
@@ -94,54 +147,7 @@ const AboutScreen = () => {
           </div>
         </div>
 
-        <div className={styles.content} data-aos="fade-up">
-          {/* <div className={styles.img} data-aos="fade-up">
-            <Image src="/images/logo/Lakme-Logo.png" alt="logo" />
-          </div> */}
-          <div className={styles.text}>
-            <h2 data-aos="fade-up">Our Team</h2>
-            <hr data-aos="fade-up" />
-            <div className={styles.teamItem}>
-              <Row>
-                <Col xs={12} md={4}>
-                  <Image
-                    style={{ borderRadius: "10px" }}
-                    src="/images/categories/team1.jpeg"
-                    alt="logo"
-                    fluid
-                  />
-                </Col>
-                <Col xs={12} style={{ padding: "10px" }} md={8}>
-                  <div className={styles.detail}>
-                    <div>
-                      <p className={styles.title}>Name : </p>
-                      <span className={styles.val}>Karthik (founder)</span>
-                    </div>
-                    <div>
-                      <p className={styles.title}>Designation : </p>
-                      <span>Digital Marketer & Cosmetologist</span>
-                    </div>
-                    <div>
-                      <p className={styles.title}>Experience : </p>
-                      <span>2 Years</span>
-                    </div>
-                    <br />
-                  </div>
-                  <p className={fonts.montserrat}>
-                    Meet Karthik, the dynamic force shaping digital marketing
-                    and cosmetology at SK Beauty-Verse. With a keen eye for
-                    market trends and a flair for beauty, I seamlessly blend
-                    expertise in online strategies with the art of cosmetology.
-                    Dedicated to enhancing your online presence and your natural
-                    charm, I transform businesses and faces with passion and
-                    precision. Let us elevate your brand and beauty to new
-                    heights.
-                  </p>
-                </Col>
-              </Row>
-            </div>
-          </div>
-        </div>
+        
 
         <div className={`${styles.content} ${styles.left}`}>
           <div className={styles.img} data-aos="fade-up">
@@ -225,3 +231,6 @@ const AboutScreen = () => {
 };
 
 export default AboutScreen;
+
+
+

@@ -8,7 +8,12 @@ import { Outfit as BaseFont } from "next/font/google";
 import { useRouter } from "next/router";
 import { Image, Spinner } from "react-bootstrap";
 import { SessionProvider } from "next-auth/react";
-import firebase from "firebase/compat/app";
+
+// import firebase from "firebase/compat/app";
+
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import Router from "next/router";
 
 // Kaushan_Script
 
@@ -23,9 +28,15 @@ export default function App({ Component, pageProps }) {
   const [load, setLoad] = useState(true);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    Router.events.on("routeChangeStart", (...params) => {
+      NProgress.start(params);
+    });
+    Router.events.on("routeChangeComplete", NProgress.done);
+    Router.events.on("routeChangeError", NProgress.done);
+
     Aos.init({
-      // easing: "ease-out-cubic",
       duration: 1000,
       once: false,
     });
@@ -33,12 +44,17 @@ export default function App({ Component, pageProps }) {
     setTimeout(() => {
       setLoad(false);
     }, 2000);
+
+    return () => {
+      Router.events.off("routeChangeStart", NProgress.start);
+      Router.events.off("routeChangeComplete", NProgress.done);
+      Router.events.off("routeChangeError", NProgress.done);
+    };
   }, []);
 
   useEffect(() => {
     const handleChangeStart = (url) => {
       if (url === "/" || url.includes("gallery") || url.includes("admin")) {
-        console.log(url, "adeaefef------------>>");
         setIsLoading(true);
       }
     };
