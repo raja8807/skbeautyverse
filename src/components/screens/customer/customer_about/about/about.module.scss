@@ -1,0 +1,26 @@
+.editAbout {
+  input,
+  textarea {
+    background-color: $color_grey;
+    border: none !important;
+    color: white;
+    outline-color: $color_gold;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+    &:disabled {
+      opacity: 1;
+      background-color: transparent !important;
+    }
+
+    &[type="submit"] {
+      &:hover {
+        background-color: $color_gold;
+        color: black;
+      }
+      width: 200px;
+      
+    }
+  }
+}

@@ -18,7 +18,7 @@
     // height: 100px;
     height: 90px;
     // width: 100vw;
-    max-width: 1920px;
+    max-width: 1350px;
     // width: 100% !important;
     // border: 1px solid red;
 
@@ -51,6 +51,38 @@
         .name {
           height: 20px;
           margin-bottom: 5px;
+          display: none;
+        }
+      }
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid $color_gold2;
+      background-color: $color_grey;
+      padding: 0px 10px;
+      width: 60%;
+      border-radius: 4px;
+      
+      @include respond-above(md){
+        width: 40%;
+
+      }
+
+      input {
+        width: 100%;
+        background-color: $color_grey;
+        outline: none !important;
+        border: none !important;
+        color: $color_white;
+        padding: 5px 10px;
+
+
+        &:active,
+        &:focus {
+          border: 1px solid $color_gold;
         }
       }
     }
@@ -58,10 +90,10 @@
     nav {
       border-radius: 2px;
       overflow: hidden;
+      display: none;
 
-      @include respond-below(xl) {
-        display: none;
-      }
+      // @include respond-below(xl) {
+      // }
       ul {
         // border-width: 2px;
         // border-style: solid;
@@ -80,7 +112,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 60px;
+        gap: 25px;
         margin: 0;
 
         li {
@@ -97,7 +129,7 @@
     }
 
     .menu {
-      display: none;
+      // display: none;
       color: $color_gold !important;
       height: 38px;
       width: 38px;
@@ -107,10 +139,9 @@
         transform: scale(1.1);
       }
 
-      @include respond-below(xl) {
-        display: initial;
-      }
+      // @include respond-below(xl) {
+      //   display: initial;
+      // }
     }
   }
-
 }

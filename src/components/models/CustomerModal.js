@@ -24,6 +24,9 @@ const customerSchema = new Schema(
     imageUrl: {
       type: String,
     },
+    about: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -1,0 +1,83 @@
+.customerProfile {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin: 10px 0;
+  .top {
+    text-align: center;
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      color: $color_gold;
+    }
+  }
+
+  input,
+  textarea {
+    background-color: $color_grey;
+    border: none !important;
+    color: white;
+    outline-color: $color_gold;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+    &[type="submit"] {
+        background-color: $color_gold2;
+        color: black;
+      &:hover {
+        background-color: $color_gold;
+        // color: black;
+      }
+    }
+  }
+
+  form {
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    label {
+      width: 150px !important;
+    }
+
+    .clip {
+      cursor: pointer;
+      font-size: 30px;
+    }
+  }
+
+  .imgHolder {
+    width: 250px;
+    position: relative;
+    margin: auto;
+    padding: 20px 0;
+    .edit {
+      position: absolute;
+      bottom: 40px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    .placeholder {
+      height: 250px;
+      width: 100%;
+      padding: 20px;
+      path {
+        color: $color_grey;
+      }
+      border: 5px solid $color_grey;
+      border-radius: 20px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

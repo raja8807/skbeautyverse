@@ -1,0 +1,19 @@
+.customerAbout {
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    gap: 1px;
+    border: 2px solid $color_gold2;
+    .tab {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      cursor: pointer;
+
+      &.active,
+      &:hover {
+        background-color: $color_gold2;
+      }
+    }
+  }
+}

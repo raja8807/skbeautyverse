@@ -3,7 +3,7 @@ import pagesList from "../../constants/pages";
 import Link from "next/link";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import { Image } from "react-bootstrap";
-import { List } from "react-bootstrap-icons";
+import { List, Search } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import HeaderDrawer from "./header-drawer/header-drawer";
 import { useRouter } from "next/router";
@@ -47,43 +47,11 @@ const Header = ({ customer }) => {
             className={styles.name}
           />
         </div>
-        <nav>
-          <ul>
-            {pagesList.map((page) => {
-              const getIsActive = () => {
-                if (page.name !== "Gallery") {
-                  return router.asPath === page.href;
-                } else {
-                  return router.asPath.includes("gallery");
-                }
-              };
-              const isActive = getIsActive();
-              return (
-                <li key={page.name}>
-                  <Link
-                    href={page.href}
-                    className={isActive ? styles.active : ""}
-                  >
-                    {page.name === "Login" && (session?.data || customer)
-                      ? "My Account"
-                      : page.name}
-                  </Link>
-                </li>
-              );
-            })}
-            {/* {session?.data && (
-              <li>
-                <CustomButton
-                  clickHandler={() => {
-                    signOut();
-                  }}
-                >
-                  Logout
-                </CustomButton>
-              </li>
-            )} */}
-          </ul>
-        </nav>
+
+        <div className={styles.search}>
+          <input type="search" placeholder="Search here.."/>
+          <Search />
+        </div>
 
         <List
           className={styles.menu}
@@ -93,7 +61,11 @@ const Header = ({ customer }) => {
         />
       </CustomContainer>
 
-      <HeaderDrawer show={ShowHeaer} setShow={setShowHeader} customer={customer}/>
+      <HeaderDrawer
+        show={ShowHeaer}
+        setShow={setShowHeader}
+        customer={customer}
+      />
     </header>
   );
 };
