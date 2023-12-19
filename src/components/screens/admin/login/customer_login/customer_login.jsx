@@ -68,7 +68,7 @@ const CustomerLogin = (props) => {
         }));
       }
     } catch (err) {
-      setMessage(err.message);
+      setMessage(JSON.stringify(err));
       if (err?.response?.data === "already exist") {
         setMessage("User name already exist please choose another name");
       }
