@@ -40,6 +40,7 @@ const CustomerLogin = (props) => {
     try {
       if (customer.uid) {
         await axios.put("/api/customer", {
+          ... customer,
           name: displayName,
           phoneNumber,
           email: customer.email,
@@ -67,7 +68,7 @@ const CustomerLogin = (props) => {
         }));
       }
     } catch (err) {
-      console.log(err);
+      setMessage(JSON.stringify(err));
       if (err?.response?.data === "already exist") {
         setMessage("User name already exist please choose another name");
       }
