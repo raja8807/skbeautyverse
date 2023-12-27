@@ -4,23 +4,15 @@ import CustomerAbout from "../customer/customer_about/customer_about";
 
 const { Row, Col } = require("react-bootstrap");
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, images }) => {
   return (
     <CustomContainer>
       <Row>
         <Col md={4}>
           <ProfileDetails profile={profile} />
-          {/* <CustomerProfile
-     customer={customer}
-     user={user}
-     updateCustomer={updateCustomer}
-     isLoading={isLoading}
-     error={error}
-     setFile={setFile}
-   /> */}
         </Col>
         <Col>
-          <CustomerAbout user={profile} readOnly={true} />
+          <CustomerAbout user={profile} readOnly={true} images={images} />
         </Col>
       </Row>
     </CustomContainer>

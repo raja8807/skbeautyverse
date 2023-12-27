@@ -25,7 +25,7 @@ const EditAbout = ({ user, updateCustomer, readOnly }) => {
           <textarea
             value={value}
             placeholder="Say About Yourself.."
-            rows={6}
+            rows={10}
             onChange={(e) => {
               const { value } = e.target;
               setValue(value);

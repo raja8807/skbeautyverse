@@ -1,18 +1,22 @@
 import { useState } from "react";
 import styles from "./customer_about.module.scss";
 import EditAbout from "./about/about";
-const CustomerAbout = ({ user, updateCustomer,readOnly }) => {
-
-    // console.log(readOnly);
-
+import CustomerGallery from "./customer_gallery/customer_gallery";
+const CustomerAbout = ({ user, updateCustomer, readOnly,images }) => {
   const tabs = [
     {
       title: "About",
-      component: <EditAbout user={user} updateCustomer={updateCustomer} readOnly={readOnly}/>,
+      component: (
+        <EditAbout
+          user={user}
+          updateCustomer={updateCustomer}
+          readOnly={readOnly}
+        />
+      ),
     },
     {
       title: "Gallery",
-      component: <p>Galley</p>,
+      component: <CustomerGallery profile={user} images={images} readOnly={readOnly}/>,
     },
   ];
 

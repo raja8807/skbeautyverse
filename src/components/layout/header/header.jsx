@@ -18,6 +18,8 @@ const Header = ({ customer }) => {
 
   const [scrolled, setScrolled] = useState(false);
 
+  console.log(router);
+
   useEffect(() => {
     const getIsScrolled = () => {
       setScrolled(window.scrollY > 0);
@@ -27,6 +29,8 @@ const Header = ({ customer }) => {
   }, []);
 
   const session = useSession();
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <header className={`${styles.header} ${scrolled && styles.scrolled}`}>
@@ -48,10 +52,27 @@ const Header = ({ customer }) => {
           />
         </div>
 
-        <div className={styles.search}>
-          <input type="search" placeholder="Search here.."/>
-          <Search />
-        </div>
+        {router.pathname !== "/search" && (
+          <div className={styles.search}>
+            <input
+              type="search"
+              placeholder="Search here.."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  router.replace(`/search?q=${searchTerm}`);
+                }
+              }}
+            />
+            <Search
+              onClick={() => {
+                router.replace(`/search?q=${searchTerm}`);
+              }}
+            />
+          </div>
+        )}
 
         <List
           className={styles.menu}

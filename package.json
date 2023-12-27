@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@coffeebeanslabs/country_state_district": "^1.0.1",
     "aos": "^2.3.4",
     "axios": "^1.5.1",
     "bootstrap": "^5.2.3",

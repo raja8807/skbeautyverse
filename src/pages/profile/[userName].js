@@ -1,10 +1,10 @@
 import Profile from "@/components/screens/profile/profile";
 
-const UserProfile = ({ profile }) => {
+const UserProfile = ({ profile,images }) => {
   return (
     <div>
       {profile ? (
-        <Profile profile={profile} />
+        <Profile profile={profile} images={images}/>
       ) : (
         <div
           style={{
@@ -31,9 +31,9 @@ export async function getServerSideProps(context) {
     const res = await fetch(
       `http://${context.req.headers.host}/api/customer/${context.query.userName}`
     );
-    const profile = await res.json();
-    console.log(profile);
-    return { props: { profile } };
+    const { user, images } = await res.json();
+
+    return { props: { profile: user, images } };
   } catch (err) {
     console.log("errr--->", err);
     return { props: { err: "errr-->" + err.message } };

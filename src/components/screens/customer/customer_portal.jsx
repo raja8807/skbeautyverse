@@ -7,14 +7,20 @@ import axios from "axios";
 
 const { Row, Col } = require("react-bootstrap");
 
-const CustomerPortal = ({ customer, user }) => {
+const CustomerPortal = ({ customer, user, images }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [file, setFile] = useState(null);
 
   const router = useRouter();
 
-  const updateCustomer = async (displayName, phoneNumber, imageUrl, about) => {
+  const updateCustomer = async (
+    displayName,
+    phoneNumber,
+    imageUrl,
+    about,
+    location
+  ) => {
     setIsLoading(true);
     setError(false);
     try {
@@ -43,6 +49,7 @@ const CustomerPortal = ({ customer, user }) => {
           customerId: customer.uid,
           imageUrl: newUrl,
           about: about ? about : user.about ? user.about : null,
+          location,
         });
 
         if (user.phoneNumber !== phoneNumber) {
@@ -74,7 +81,11 @@ const CustomerPortal = ({ customer, user }) => {
         />
       </Col>
       <Col>
-        <CustomerAbout user={user} updateCustomer={updateCustomer}/>
+        <CustomerAbout
+          images={images}
+          user={user}
+          updateCustomer={updateCustomer}
+        />
       </Col>
     </Row>
   );

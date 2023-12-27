@@ -13,8 +13,9 @@ const {
 
 import CustomerPortal from "@/components/screens/customer/customer_portal";
 
-const CustomerPortalScreen = ({ customer, user }) => {
+const CustomerPortalScreen = ({ customer, user, images }) => {
   const router = useRouter();
+
   useEffect(() => {
     if (
       !customer ||
@@ -41,7 +42,7 @@ const CustomerPortalScreen = ({ customer, user }) => {
         >
           Logout
         </CustomButton>
-        <CustomerPortal customer={customer} user={user} />
+        <CustomerPortal customer={customer} user={user} images={images}/>
       </CustomContainer>
     );
   } else {
@@ -56,8 +57,8 @@ export async function getServerSideProps(context) {
     const res = await fetch(
       `http://${context.req.headers.host}/api/customer?user=${context.query.user}`
     );
-    const user = await res.json();
-    return { props: { user: user } };
+    const { user, images } = await res.json();
+    return { props: { user: user, images } };
   } catch (err) {
     console.log("errr--->", err);
     return { props: { user: "errr-->" + err.message } };

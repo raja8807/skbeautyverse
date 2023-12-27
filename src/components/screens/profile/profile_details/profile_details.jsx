@@ -1,6 +1,6 @@
 import { Image } from "react-bootstrap";
 import styles from "./profile_details.module.scss";
-import { Clipboard, Telephone, Whatsapp } from "react-bootstrap-icons";
+import { Clipboard, GeoAlt, Telephone, Whatsapp } from "react-bootstrap-icons";
 
 const ProfileDetails = ({ profile }) => {
   return (
@@ -36,6 +36,11 @@ const ProfileDetails = ({ profile }) => {
               );
             }}
           />
+        </div>
+        <div>
+          <label>Location</label>
+          <input placeholder="Phone" value={profile.location} disabled />
+          <GeoAlt className={styles.clip} />
         </div>
         <div>
           <label>User Name</label>

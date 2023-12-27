@@ -65,10 +65,9 @@
       padding: 0px 10px;
       width: 60%;
       border-radius: 4px;
-      
-      @include respond-above(md){
-        width: 40%;
 
+      @include respond-above(md) {
+        width: 40%;
       }
 
       input {
@@ -79,11 +78,14 @@
         color: $color_white;
         padding: 5px 10px;
 
-
         &:active,
         &:focus {
           border: 1px solid $color_gold;
         }
+      }
+
+      svg {
+        cursor: pointer;
       }
     }
 

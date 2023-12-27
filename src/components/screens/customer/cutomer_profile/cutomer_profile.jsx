@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./cutomer_profile.module.scss";
-import axios from "axios";
-import firebase from "firebase/compat/app";
-import { useRouter } from "next/router";
 import { Clipboard, PencilSquare, PersonFill } from "react-bootstrap-icons";
 import { Image } from "react-bootstrap";
+let country_state_district = require("@coffeebeanslabs/country_state_district");
 
 const CustomerProfile = ({
   customer,
@@ -17,69 +15,20 @@ const CustomerProfile = ({
   const [values, setValues] = useState({
     displayName: user.name,
     phone: customer.photoURL,
+    location: user.location,
   });
 
   useEffect(() => {
     setValues({
       displayName: user.name,
       phone: customer.photoURL,
+      location: user.location,
     });
   }, [customer, user.name]);
 
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(false);
   const [imageUrl, setImageUrl] = useState(user.imageUrl);
   const [editImageMode, setEditImageMode] = useState(false);
-  // const [file, setFile] = useState(null);
-
-  const router = useRouter();
-
-  // const updateCustomer = async (displayName, phoneNumber) => {
-  //   setIsLoading(true);
-  //   setError(false);
-  //   try {
-  //     if (customer.uid) {
-  //       let newUrl = imageUrl;
-  //       if (file) {
-  //         const formData = new FormData();
-  //         formData.append("file", file);
-  //         formData.append("upload_preset", "user_image");
-  //         const uploadRes = await fetch(
-  //           "https://api.cloudinary.com/v1_1/dm0mza7qt/image/upload",
-  //           {
-  //             method: "POST",
-  //             body: formData,
-  //           }
-  //         );
-
-  //         const uploadData = await uploadRes.json();
-  //         newUrl = uploadData.url;
-  //       }
-
-  //       await axios.put("/api/customer", {
-  //         name: displayName,
-  //         phoneNumber,
-  //         email: customer.email,
-  //         customerId: customer.uid,
-  //         imageUrl: newUrl,
-  //       });
-
-  //       if (user.phoneNumber !== phoneNumber) {
-  //         await firebase.auth().currentUser.updateProfile({
-  //           photoURL: phoneNumber,
-  //         });
-  //       }
-  //     }
-  //     setError(false);
-  //     setIsLoading(false);
-  //     router.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //     setIsLoading(false);
-  //     setError(true);
-  //   }
-  // };
-
+  let districts = country_state_district.getDistrictsByStateId(32);
   return (
     <div className={styles.customerProfile}>
       <div className={styles.top}>
@@ -89,7 +38,14 @@ const CustomerProfile = ({
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await updateCustomer(values.displayName, values.phone,imageUrl);
+
+          await updateCustomer(
+            values.displayName,
+            values.phone,
+            imageUrl,
+            undefined,
+            values.location
+          );
         }}
       >
         <div className={styles.imgHolder}>
@@ -117,7 +73,7 @@ const CustomerProfile = ({
                 const newImg = e.target.files[0];
                 if (newImg.type.includes("image")) {
                   setImageUrl(URL.createObjectURL(newImg));
-                  setFile(newImg)
+                  setFile(newImg);
                 } else {
                   document.getElementById("img").value = "";
                 }
@@ -163,6 +119,23 @@ const CustomerProfile = ({
           />
         </div>
         <div>
+          <label>Location</label>
+          <select
+            value={values.location}
+            onChange={(e) => {
+              const { value } = e.target;
+              setValues((prev) => ({ ...prev, location: value }));
+            }}
+          >
+            <option value="">Select location</option>
+            {districts.map((d) => (
+              <option key={d.id} value={d.name}>
+                {d.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
           <label>User Name</label>
           <input placeholder="Phone" value={user.userName} disabled />
         </div>
@@ -182,6 +155,7 @@ const CustomerProfile = ({
             }}
           />
         </div>
+
         <input type="submit" value="Update" />
       </form>
     </div>

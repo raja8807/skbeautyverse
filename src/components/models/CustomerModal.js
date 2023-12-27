@@ -27,6 +27,9 @@ const customerSchema = new Schema(
     about: {
       type: String,
     },
+    location: {
+      type: String,
+    },
   },
   {
     timestamps: true,
