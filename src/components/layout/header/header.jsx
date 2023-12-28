@@ -18,8 +18,6 @@ const Header = ({ customer }) => {
 
   const [scrolled, setScrolled] = useState(false);
 
-  console.log(router);
-
   useEffect(() => {
     const getIsScrolled = () => {
       setScrolled(window.scrollY > 0);

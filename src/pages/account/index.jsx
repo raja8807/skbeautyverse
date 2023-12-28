@@ -6,9 +6,6 @@ const Admin = ({ customer }) => {
   const session = useSession();
   const router = useRouter();
 
-  // console.log(customer);
-  // console.log(customer);
-
   useEffect(() => {
     if (session?.data) {
       router.replace("/account/admin");
@@ -16,7 +13,6 @@ const Admin = ({ customer }) => {
     }
 
     if (customer) {
-      console.log(customer);
       router.replace(`/account/customer?user=${customer.displayName}`);
       return;
     }

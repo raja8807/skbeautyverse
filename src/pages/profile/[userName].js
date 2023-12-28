@@ -1,10 +1,10 @@
 import Profile from "@/components/screens/profile/profile";
 
-const UserProfile = ({ profile,images }) => {
+const UserProfile = ({ profile, images }) => {
   return (
     <div>
       {profile ? (
-        <Profile profile={profile} images={images}/>
+        <Profile profile={profile} images={images} />
       ) : (
         <div
           style={{
@@ -24,10 +24,7 @@ const UserProfile = ({ profile,images }) => {
 export default UserProfile;
 
 export async function getServerSideProps(context) {
-  //   console.log("aeoaen-------------------------->>>>");
-  // const limit = Math.floor(Math.random() * 40);
   try {
-    // console.log(context.query.userName);
     const res = await fetch(
       `http://${context.req.headers.host}/api/customer/${context.query.userName}`
     );

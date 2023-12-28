@@ -54,7 +54,6 @@ const AllBookings = ({ bookingData: data = [] }) => {
     setStatus(showPopupFor?.status);
   }, [showPopupFor]);
 
-  // console.log(bookingData);
 
   return (
     <>

@@ -40,7 +40,7 @@ const CustomerLogin = (props) => {
     try {
       if (customer.uid) {
         await axios.put("/api/customer", {
-          ... customer,
+          // ... customer,
           name: displayName,
           phoneNumber,
           email: customer.email,
@@ -157,7 +157,6 @@ const CustomerLogin = (props) => {
       );
       setIsLoading(false);
     } catch (e) {
-      //   console.log("err--> ", e);
       setIsLoading(false);
       setError(true);
     }

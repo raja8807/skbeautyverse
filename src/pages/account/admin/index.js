@@ -46,7 +46,6 @@ export async function getServerSideProps(context) {
     }
     return { props: { homeData: null } };
   } catch (err) {
-    console.log("errr--->", err);
     return { props: { images: "errr-->" + err.message } };
   }
 }

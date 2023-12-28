@@ -11,8 +11,6 @@ const CustomerGallery = ({ profile, images, readOnly }) => {
   const [imageData, setImagesData] = useState(images);
   const [isLoading, setILoading] = useState(false);
 
-  // console.log();
-
   const handleUpload = async () => {
     setILoading(true);
     try {

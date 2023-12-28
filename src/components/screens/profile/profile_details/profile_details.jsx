@@ -14,7 +14,12 @@ const ProfileDetails = ({ profile }) => {
         }}
       >
         <div className={styles.imgHolder}>
-          <Image src={profile.imageUrl} alt="xx" fluid className={styles.img} />
+          <Image
+            src={profile.imageUrl || "/images/user.jpg"}
+            alt="xx"
+            fluid
+            className={styles.img}
+          />
         </div>
 
         <div>
@@ -39,7 +44,7 @@ const ProfileDetails = ({ profile }) => {
         </div>
         <div>
           <label>Location</label>
-          <input placeholder="Phone" value={profile.location} disabled />
+          <input placeholder="Not assigned" value={profile.location} disabled />
           <GeoAlt className={styles.clip} />
         </div>
         <div>

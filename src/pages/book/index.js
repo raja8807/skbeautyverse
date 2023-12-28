@@ -1,7 +1,6 @@
 import BookingScreen from "@/components/screens/booking/booking";
 
 const Booking = ({ customer, setCustomer, bookingData = [],packages }) => {
-  //   console.log();
   return (
     <BookingScreen
       customer={customer}

@@ -28,10 +28,7 @@ export default async function handler(req, res) {
     const { q } = req.query;
     try {
       await connectMongoDB();
-      // const x = await GalleryImage.updateMany(
-      //   { category: "products" },
-      //   { $set: { subCategory: "Jewels" } }
-      // );
+
       const newImages = await GalleryImage.find({ category: q });
       res.status(200).send(newImages);
     } catch (err) {

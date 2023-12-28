@@ -1,13 +1,13 @@
 .cont {
   
   @include flexCenter;
+ min-height: 80vh;
 }
 
 .loginBox {
   width: 100%;
   @include flexCenter;
   flex-direction: column;
-  // height: 80vh;
   p {
     text-align: center;
     color: $color_gold;

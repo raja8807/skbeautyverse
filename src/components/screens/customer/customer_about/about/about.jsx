@@ -2,10 +2,7 @@ import { useState } from "react";
 import styles from "./about.module.scss";
 
 const EditAbout = ({ user, updateCustomer, readOnly }) => {
-  console.log(readOnly);
-
   const [value, setValue] = useState(user.about);
-
   return (
     <div className={styles.editAbout}>
       <form

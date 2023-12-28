@@ -4,6 +4,7 @@ import { GeoAlt, Search, Telephone } from "react-bootstrap-icons";
 import styles from "./search.module.scss";
 import { Col, Image, Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
+import Link from "next/link";
 const {
   default: CustomContainer,
 } = require("@/components/ui/custom_container/custom_container");
@@ -12,26 +13,32 @@ let country_state_district = require("@coffeebeanslabs/country_state_district");
 const SearchScreen = ({ profiles }) => {
   const router = useRouter();
 
-  const [searchTerm, setSearchTerm] = useState(router.query.q);
-  console.log(searchTerm);
+  const [searchTerm, setSearchTerm] = useState(router.query.q || "");
   const [profilesData, setProfilesData] = useState(profiles || []);
 
   useEffect(() => {
-    setProfilesData(() => {
-      const fil = profiles.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.userName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    if (profiles[0]) {
+      setProfilesData(() => {
+        const fil = profiles.filter((p) => {
+          if (p.name && p.userName) {
+            return (
+              p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              (p.location &&
+                p.location.toLowerCase().includes(searchTerm.toLowerCase())) ||
+              p.userName.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+          }
+        });
 
-      return fil;
-    });
+        return fil;
+      });
+    }
   }, [searchTerm]);
+
   let districts = country_state_district.getDistrictsByStateId(32);
 
   return (
-    <CustomContainer>
+    <CustomContainer className={styles.cont}>
       <br />
       <div className={styles.top}>
         <div className={styles.search}>
@@ -68,11 +75,11 @@ const SearchScreen = ({ profiles }) => {
       <br />
       <Row>
         {profilesData.map((p) => (
-          <Col key={p._id} xs={6} md={4}>
+          <Col key={p._id} xs={12} md={6} lg={4}>
             <div className={styles.profile}>
               <div className={styles.top}>
                 <Image
-                  src={p.imageUrl}
+                  src={p.imageUrl || "/images/user.jpg"}
                   width={50}
                   height={50}
                   alt={p.userName}
@@ -88,13 +95,10 @@ const SearchScreen = ({ profiles }) => {
                   <Telephone />
                   <p>{p.phoneNumber}</p>
                 </div>
-                <CustomButton
-                  type="black2"
-                  clickHandler={() => {
-                    router.replace(`/profile/${p.userName}`);
-                  }}
-                >
-                  View Profile
+                <CustomButton type="black2">
+                  <Link href={`/profile/${p.userName}`} target="_blank">
+                    View Profile
+                  </Link>
                 </CustomButton>
               </div>
             </div>

@@ -37,7 +37,6 @@ const BookPopup = (props) => {
     message: "",
   });
 
-  // console.log(selected);
 
   const makeBooking = async () => {
     setApiStatus("loading");
@@ -73,10 +72,8 @@ const BookPopup = (props) => {
   const btnNames = ["", "Next", "Book", "Upload"];
   const [file, setFile] = useState(null);
 
-  // console.log(bookingData);
 
   const updateBooking = async () => {
-    // screenshotUrl
     try {
       setApiStatus("loading");
       const formData = new FormData();
@@ -91,12 +88,10 @@ const BookPopup = (props) => {
         screenshotUrl: uploadRes.data.url,
         status: "Pending",
       });
-      // console.log(res);
       setBookingData(res.data);
       setApiStatus("idle");
       const a = document.createElement("a");
       await axios.post("https://formspree.io/f/xleyzzwa", {
-      // await axios.post("https://formspree.io/f/maygjegz", {
         email: `${bookingValues.phoneNumber}@skbeautyverse.com`,
         message: bookingValues,
       });
@@ -145,8 +140,6 @@ const BookPopup = (props) => {
   useEffect(() => {
     return () => setcurrentBookingData(null);
   }, []);
-
-  // console.log(file);
 
   return (
     <Modal

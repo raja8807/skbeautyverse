@@ -13,7 +13,6 @@ export default async function handler(req, res) {
       const newCustomer = await Customer.create(req.body);
       res.status(200).send(newCustomer);
     } catch (err) {
-      console.log(err);
       res.status(500).send({ err: err });
     }
   }
@@ -29,11 +28,15 @@ export default async function handler(req, res) {
         }
       }
 
-      console.log(req.body);
-
-      const newCustomer = await Customer.updateOne(req.body);
+      const newCustomer = await Customer.updateOne(
+        { customerId: req.body.customerId },
+        {
+          $set: req.body,
+        }
+      );
       res.status(200).send(newCustomer);
     } catch (err) {
+      console.log(err);
       res.status(500).send({ err: err.message });
     }
   }
@@ -45,6 +48,7 @@ export default async function handler(req, res) {
       const images = await MuaImage.find({ userName: req.query.user });
       res.status(200).send({ user, images });
     } catch (err) {
+      console.log(err);
       res.status(500).send({ err: err.message });
     }
   }

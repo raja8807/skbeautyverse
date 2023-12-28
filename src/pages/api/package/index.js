@@ -4,7 +4,6 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 // import Test from "@/components/models/ChatModel";
 
 export default async function handler(req, res) {
-  // console.log(typeof req.body);
   if (req.method === "PUT") {
     try {
       await connectMongoDB();

@@ -1,3 +1,7 @@
+.cont {
+  min-height: 80vh;
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -72,6 +76,21 @@
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+  }
+
+  button {
+    a {
+      color: white;
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    &:hover {
+      a {
+        color: black;
+      }
     }
   }
 }

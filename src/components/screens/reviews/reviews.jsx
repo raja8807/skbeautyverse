@@ -17,7 +17,6 @@ const ReviewsScreen = ({ reviews: reviewsData = [] }) => {
   );
 
   const deleteReview = async (id) => {
-    // console.log(id);
     const res = await fetch(`/api/review?q=${id}`, {
       method: "DELETE",
     });

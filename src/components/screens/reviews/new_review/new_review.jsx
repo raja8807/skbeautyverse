@@ -24,7 +24,6 @@ const NewReviewForm = ({ setIsSubmitted, setReviews }) => {
         body: JSON.stringify(newReview),
       });
       const postedReview = await res.json();
-      console.log(postedReview);
       localStorage.setItem("reviewId", postedReview._id);
       setReviews((prev) => [postedReview, ...prev]);
       setIsLoading(false);

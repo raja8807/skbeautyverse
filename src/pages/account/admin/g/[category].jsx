@@ -28,7 +28,6 @@ const GalleryAdmin = ({ galleyImages }) => {
 export default GalleryAdmin;
 
 export async function getServerSideProps(context) {
-  //   console.log("aeoaen-------------------------->>>>");
   const session = await getSession(context);
 
   try {
@@ -42,7 +41,6 @@ export async function getServerSideProps(context) {
     }
     return { props: { galleyImages: null } };
   } catch (err) {
-    console.log("errr--->", err);
     return { props: { images: "errr-->" + err.message } };
   }
 }

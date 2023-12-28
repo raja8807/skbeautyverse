@@ -109,18 +109,12 @@ const GalleryScreen = (props) => {
         id: "Advance Facial",
         data: "Advance Facial treatments use cutting-edge technologies and high-performance skincare products to address specific skin concerns. These innovative procedures often incorporate techniques like microcurrents, LED therapy, and advanced ingredients, delivering enhanced results for rejuvenated, radiant skin.",
       },
-      // {
-      //   id: "OTHER",
-      //   data: "",
-      // },
     ],
   };
 
   const x = images?.sort((a, b) => {
     return a.index - b.index;
   });
-
-  // console.log(images);
 
   return (
     <>

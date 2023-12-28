@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     try {
       await connectMongoDB();
       const allBooking = await Booking.find();
-      const packages =await  Package.find();
+      const packages = await Package.find();
       res.status(200).send({ bookings: allBooking, packages });
     } catch (err) {
       console.log(err.message);
@@ -39,15 +39,4 @@ export default async function handler(req, res) {
       res.status(500).send({ err: err.message });
     }
   }
-  //   if (req.method === "GET") {
-  //     const { q } = req.query;
-  //     try {
-  //       await connectMongoDB();
-  //       const newImages = await GalleryImage.find({ category: q });
-  //       res.status(200).send(newImages);
-  //     } catch (err) {
-  //       console.log(err.message);
-  //       res.status(500).send({ err: err.message });
-  //     }
-  //   }
 }

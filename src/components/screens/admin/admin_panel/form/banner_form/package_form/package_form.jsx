@@ -7,53 +7,7 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 const { useState } = require("react");
 
 const PackageForm = ({ packages: packagesData }) => {
-  const [packages, setPackages] = useState(
-    packagesData || []
-
-    //   [
-    //   {
-    //     head: "BEAUTY-WORLD",
-    //     price: "5,999",
-    //     body: [
-    //       "BASIC MAKEUP",
-    //       "BASIC HAIRSTYLES",
-    //       "1 SAREE DRAPPING",
-    //       "MAKEUP FOR GROOM",
-    //       "SINGLE SESSION",
-    //     ],
-    //   },
-    //   {
-    //     head: "BEAUTY-VERSE",
-    //     price: "19,999",
-    //     body: [
-    //       "UHD MAKEUP",
-    //       "SWEAT PROOF",
-    //       "WATER PROOF",
-    //       "ADVANCE HAIRSTYLES",
-    //       "SAREE DRAPPING",
-    //       "MEHANDHI",
-    //       "MAKEUP FOR GROOM",
-    //       "JEWELS FOR 2 SESSION",
-    //       "MAKEUP FOR SIBLING",
-    //       "GUEST MAKEUP",
-    //     ],
-    //   },
-    //   {
-    //     head: "BEAUTY-PLANET",
-    //     price: "11,999",
-    //     body: [
-    //       "HD MAKEUP",
-    //       "HAIRSTYLES",
-    //       "JEWELS",
-    //       "2 SESSION",
-    //       "SAREE DRAPPING",
-    //       "MAKEUP FOR GROOM",
-    //     ],
-    //   },
-    // ]
-  );
-
-  // console.log(packagesData);
+  const [packages, setPackages] = useState(packagesData || []);
 
   const setPackValue = (index, key, value) => {
     setPackages((prev) => {
@@ -66,7 +20,6 @@ const PackageForm = ({ packages: packagesData }) => {
   const [loadingIdx, setLoadingIdx] = useState(null);
 
   const savePackage = async (pack, index) => {
-    // console.log(pack);
     setLoadingIdx(index);
     try {
       const res = await fetch("/api/package", {

@@ -17,54 +17,51 @@ const BookingScreen = ({ bookingData, packages }) => {
   const session = useSession();
 
   const alter = (slotsData) => {
-    // console.log(slotsData);
     const newArr = [];
-    slotsData
-      // .filter((slot) => slot.status === "Confirmed")
-      .forEach((book) => {
-        const isExistIndex = newArr.findIndex((e) => e.date === book.date);
-        if (isExistIndex !== -1) {
-          newArr[isExistIndex] = {
-            date: book.date,
-            slots: ["1", "2", "3"].map((slotId) => {
-              const slot = slotsData.find(
-                (sl) => sl.date === book.date && sl.slot === slotId
-              );
-              if (slot) {
-                return {
-                  id: slotId,
-                  bookingData: slot.status === "Confirmed",
-                };
-              } else {
-                return {
-                  id: slotId,
-                  bookingData: null,
-                };
-              }
-            }),
-          };
-        } else {
-          newArr.push({
-            date: book.date,
-            slots: ["1", "2", "3"].map((slotId) => {
-              const slot = slotsData.find(
-                (sl) => sl.date === book.date && sl.slot === slotId
-              );
-              if (slot) {
-                return {
-                  id: slotId,
-                  bookingData: slot.status === "Confirmed",
-                };
-              } else {
-                return {
-                  id: slotId,
-                  bookingData: null,
-                };
-              }
-            }),
-          });
-        }
-      });
+    slotsData.forEach((book) => {
+      const isExistIndex = newArr.findIndex((e) => e.date === book.date);
+      if (isExistIndex !== -1) {
+        newArr[isExistIndex] = {
+          date: book.date,
+          slots: ["1", "2", "3"].map((slotId) => {
+            const slot = slotsData.find(
+              (sl) => sl.date === book.date && sl.slot === slotId
+            );
+            if (slot) {
+              return {
+                id: slotId,
+                bookingData: slot.status === "Confirmed",
+              };
+            } else {
+              return {
+                id: slotId,
+                bookingData: null,
+              };
+            }
+          }),
+        };
+      } else {
+        newArr.push({
+          date: book.date,
+          slots: ["1", "2", "3"].map((slotId) => {
+            const slot = slotsData.find(
+              (sl) => sl.date === book.date && sl.slot === slotId
+            );
+            if (slot) {
+              return {
+                id: slotId,
+                bookingData: slot.status === "Confirmed",
+              };
+            } else {
+              return {
+                id: slotId,
+                bookingData: null,
+              };
+            }
+          }),
+        });
+      }
+    });
 
     return newArr;
   };
@@ -144,7 +141,7 @@ const BookingScreen = ({ bookingData, packages }) => {
             }}
           />
         </div>
-        <p style={{textAlign:'center'}}>Have Boooking Id? Check status.</p>
+        <p style={{ textAlign: "center" }}>Have Boooking Id? Check status.</p>
         <div className={styles.booked}>
           <input
             placeholder="Booking Id"
@@ -198,9 +195,9 @@ const BookingScreen = ({ bookingData, packages }) => {
         </div>
         <p>{message}</p>
         {/* {session.data && ( */}
-          <CustomSection head={session.data ? "Manage Bookings" : "Bookings"}>
-            <AllBookings bookingData={bookingData} />
-          </CustomSection>
+        <CustomSection head={session.data ? "Manage Bookings" : "Bookings"}>
+          <AllBookings bookingData={bookingData} />
+        </CustomSection>
         {/* )} */}
       </CustomContainer>
 

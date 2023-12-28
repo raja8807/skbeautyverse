@@ -9,7 +9,6 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      //   console.log(req.query.userName);
       await connectMongoDB();
       const user = await Customer.findOne({ userName: req.query.userName });
       const images = await MuaImage.find({ userName: req.query.userName });
@@ -18,32 +17,4 @@ export default async function handler(req, res) {
       res.status(500).send({ err: err.message });
     }
   }
-  //   if (req.method === "POST") {
-  //     try {
-  //       await connectMongoDB();
-  //       const newCustomer = await Customer.create(req.body);
-  //       res.status(200).send(newCustomer);
-  //     } catch (err) {
-  //       console.log(err);
-  //       res.status(500).send({ err: err });
-  //     }
-  //   }
-  //   if (req.method === "PUT") {
-  //     try {
-  //       await connectMongoDB();
-  //       const customers = (await Customer.find()) || [];
-  //       const user = customers.find((c) => c.userName == req.body.userName);
-
-  //       if (user) {
-  //         if (user.customerId !== req.body.customerId) {
-  //           res.status(403).send("already exist");
-  //         }
-  //       }
-
-  //       const newCustomer = await Customer.updateOne(req.body);
-  //       res.status(200).send(newCustomer);
-  //     } catch (err) {
-  //       res.status(500).send({ err: err.message });
-  //     }
-  //   }
 }
