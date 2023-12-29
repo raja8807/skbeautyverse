@@ -19,7 +19,9 @@ const CustomerPortal = ({ customer, user, images }) => {
     phoneNumber,
     imageUrl,
     about,
-    location
+    location,
+    profession,
+    designations
   ) => {
     setIsLoading(true);
     setError(false);
@@ -50,6 +52,8 @@ const CustomerPortal = ({ customer, user, images }) => {
           imageUrl: newUrl,
           about: about ? about : user.about ? user.about : null,
           location,
+          profession,
+          designations,
         });
 
         if (user.phoneNumber !== phoneNumber) {
@@ -70,7 +74,7 @@ const CustomerPortal = ({ customer, user, images }) => {
 
   return (
     <Row>
-      <Col md={4}>
+      <Col xs={12}>
         <CustomerProfile
           customer={customer}
           user={user}

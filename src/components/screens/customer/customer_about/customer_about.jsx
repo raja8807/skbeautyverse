@@ -5,6 +5,10 @@ import CustomerGallery from "./customer_gallery/customer_gallery";
 const CustomerAbout = ({ user, updateCustomer, readOnly,images }) => {
   const tabs = [
     {
+      title: "Gallery",
+      component: <CustomerGallery profile={user} images={images} readOnly={readOnly}/>,
+    },
+    {
       title: "About",
       component: (
         <EditAbout
@@ -14,10 +18,7 @@ const CustomerAbout = ({ user, updateCustomer, readOnly,images }) => {
         />
       ),
     },
-    {
-      title: "Gallery",
-      component: <CustomerGallery profile={user} images={images} readOnly={readOnly}/>,
-    },
+    
   ];
 
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -41,6 +42,8 @@ const CustomerAbout = ({ user, updateCustomer, readOnly,images }) => {
       </div>
       <br />
       <div>{currentTab.component}</div>
+      <br/>
+      <br/>
     </div>
   );
 };

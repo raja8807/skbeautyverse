@@ -2,6 +2,10 @@
   min-height: 80vh;
 }
 
+.desRow {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
 .search {
   display: flex;
   align-items: center;
@@ -28,16 +32,16 @@
 }
 
 .top {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
   gap: 10px;
 }
 
 .select {
   background-color: $color_grey;
-  border: none !important;
+  border: 1px solid $color_gold2;
   color: white;
   outline-color: $color_gold;
-  width: 100%;
   padding: 10px 10px;
   border-radius: 5px;
 

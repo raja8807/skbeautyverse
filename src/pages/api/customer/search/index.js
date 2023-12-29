@@ -10,9 +10,18 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       await connectMongoDB();
-      const profiles = await Customer.find();
+      const profiles = await Customer.find(
+        {
+          profession : {
+            $not : {
+              $regex: "^Student*"
+            }
+          }
+        }
+      );
       res.status(200).send(profiles);
     } catch (err) {
+      console.log(err);
       res.status(500).send({ err: err.message });
     }
   }

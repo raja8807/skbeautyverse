@@ -8,7 +8,7 @@ const Profile = ({ profile, images }) => {
   return (
     <CustomContainer>
       <Row>
-        <Col md={4}>
+        <Col xs={12}>
           <ProfileDetails profile={profile} />
         </Col>
         <Col>

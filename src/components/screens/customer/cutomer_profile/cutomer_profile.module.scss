@@ -14,28 +14,30 @@
   input,
   textarea,
   select {
-    background-color: $color_grey;
-    border: none !important;
-    color: white;
-    outline-color: $color_gold;
-    width: 100%;
-    padding: 10px 10px;
-    border-radius: 5px;
+    &:not([type="checkBox"]) {
+      background-color: $color_grey;
+      border: none !important;
+      color: white;
+      outline-color: $color_gold;
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 5px;
 
-    &:disabled {
-      opacity: 0.7;
-    }
+      &:disabled {
+        opacity: 0.7;
+      }
 
-    &[type="submit"] {
-      &:hover {
-        background-color: $color_gold;
-        color: black;
+      &[type="submit"] {
+        &:hover {
+          background-color: $color_gold;
+          color: black;
+        }
       }
     }
   }
 
   form {
-    > div {
+    .detRow {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -50,6 +52,31 @@
       cursor: pointer;
       font-size: 30px;
     }
+
+    .desHolder {
+      display: grid;
+      grid-template-columns: repeat(4, 25%);
+      gap: 10px;
+      width: 100%;
+
+      @include respond-below(md) {
+        grid-template-columns: 50% 50%;
+      }
+      @include respond-below(sm) {
+        grid-template-columns: 100%;
+      }
+      .designation {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    // .designation {
+    //   * {
+    //     display: inline;
+    //   }
+    // }
   }
 
   .imgHolder {

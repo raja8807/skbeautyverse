@@ -22,17 +22,16 @@
     border-radius: 5px;
 
     &[type="submit"] {
-        background-color: $color_gold2;
-        color: black;
+      background-color: $color_gold2;
+      color: black;
       &:hover {
         background-color: $color_gold;
-        // color: black;
       }
     }
   }
 
   form {
-    > div {
+    .detRow {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -45,7 +44,22 @@
 
     .clip {
       cursor: pointer;
-      font-size: 30px;
+      font-size: 20px;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(4, 25%);
+      gap: 10px;
+      width: 100%;
+      // border: 1px solid red;
+      margin: auto;
+      @include respond-below(md) {
+        grid-template-columns: 50% 50%;
+      }
+      @include respond-below(sm) {
+        grid-template-columns: 100%;
+      }
     }
   }
 

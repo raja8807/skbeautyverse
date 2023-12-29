@@ -2,11 +2,15 @@ import HomeScreen from "@/components/screens/home/home";
 // import CustomContainer from "@/components/ui/custom_container/custom_container";
 
 const Home = ({ homeData }) => {
+
+  console.log(homeData);
+
   return (
     <HomeScreen
       packages={homeData.packages}
       bannerImages={homeData.bannerImages}
       reviews={homeData.reviews}
+      profileData={homeData.profileData}
     />
   );
 };

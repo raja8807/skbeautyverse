@@ -13,9 +13,10 @@ import { Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import { useRouter } from "next/router";
 import ContactForm from "../contact/contact_form";
+import Profiles from "./profiles/profiles";
 
 const HomeScreen = (props) => {
-  const { packages, bannerImages, reviews } = props;
+  const { packages, bannerImages, reviews = [], profileData = [] } = props;
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -31,6 +32,7 @@ const HomeScreen = (props) => {
       <CustomContainer>
         <Banner bannerImages={bannerImages} setShowPopup={setShowPopup} />
       </CustomContainer>
+      <Profiles profileData={profileData}/>
       <Certificates />
       <Categories />
       <Pricing packages={packages} />
@@ -58,22 +60,23 @@ const HomeScreen = (props) => {
       <CustomContainer>
         <CustomSection head="Customer Reviews">
           <Row>
-            {reviews && reviews
-              .sort(function (a, b) {
-                // Turn your strings into dates, and then subtract them
-                // to get a value that is either negative, positive, or zero.
-                return new Date(b.createdAt) - new Date(a.createdAt);
-              })
-              .map((review) => {
-                return (
-                  <Review
-                    key={review._id}
-                    review={review}
-                    deleteReview={() => {}}
-                    reviews={reviews}
-                  />
-                );
-              })}
+            {reviews &&
+              reviews
+                .sort(function (a, b) {
+                  // Turn your strings into dates, and then subtract them
+                  // to get a value that is either negative, positive, or zero.
+                  return new Date(b.createdAt) - new Date(a.createdAt);
+                })
+                .map((review) => {
+                  return (
+                    <Review
+                      key={review._id}
+                      review={review}
+                      deleteReview={() => {}}
+                      reviews={reviews}
+                    />
+                  );
+                })}
           </Row>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CustomButton
@@ -87,10 +90,8 @@ const HomeScreen = (props) => {
         </CustomSection>
       </CustomContainer>
 
-      
-
       <ContactForm />
-<Collection setShowPopup={setShowPopup} />
+      <Collection setShowPopup={setShowPopup} />
     </>
   );
 };

@@ -30,6 +30,12 @@ const customerSchema = new Schema(
     location: {
       type: String,
     },
+    profession: {
+      type: String,
+    },
+    designations: {
+      type: Array,
+    },
   },
   {
     timestamps: true,
