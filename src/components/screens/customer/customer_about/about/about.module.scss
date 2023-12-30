@@ -21,7 +21,16 @@
         color: black;
       }
       width: 200px;
-      
+    }
+  }
+
+  .abt {
+    position: relative;
+
+    p {
+      position: absolute;
+      right: 0;
+      opacity: 0.7;
     }
   }
 }

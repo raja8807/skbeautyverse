@@ -98,3 +98,16 @@
     }
   }
 }
+
+.bubble {
+  background-color: rgb(249, 22, 22);
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 10px;
+
+  &.active {
+    background-color: rgb(10, 189, 10);
+  }
+}

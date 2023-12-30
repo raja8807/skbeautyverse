@@ -74,7 +74,7 @@ const LoginBox = ({ setCustomer, customer }) => {
                 setIsAdminLogin(false);
               }}
             >
-              <span>MUA Login</span>
+              <span>Not admin?</span>
             </small>
           </form>
           {/* <p>Admin Login</p> */}

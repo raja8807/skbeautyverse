@@ -5,7 +5,6 @@ import CustomerGallery from "./customer_gallery/customer_gallery";
 import { InstagramEmbed } from "react-social-media-embed";
 // import InstagramEmbed from "@/components/instagramEmbed/instagramEmbed";
 const CustomerAbout = ({ user, updateCustomer, readOnly, images }) => {
-  console.log(user.instaUrl);
 
   const tabs = [
     {
@@ -17,19 +16,21 @@ const CustomerAbout = ({ user, updateCustomer, readOnly, images }) => {
             updateCustomer={updateCustomer}
             readOnly={readOnly}
           />
-          <iframe
-            src={`${user.instaUrl}/embed`}
-            style={{
-              width: "100%",
-              margin: "50px 0",
-              height: "600px",
-              overflow: "auto",
-              borderRadius: "12px",
-            }}
-            frameborder="0"
-            scrolling="no"
-            allowtransparency="true"
-          ></iframe>
+          {user.instaUrl && (
+            <iframe
+              src={`${user.instaUrl}/embed`}
+              style={{
+                width: "100%",
+                margin: "50px 0",
+                height: "600px",
+                overflow: "auto",
+                borderRadius: "12px",
+              }}
+              frameborder="0"
+              scrolling="no"
+              allowtransparency="true"
+            ></iframe>
+          )}
         </>
       ),
     },

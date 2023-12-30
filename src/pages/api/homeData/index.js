@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       const packages = await Package.find();
       const bannerImages = await BannerImage.find();
       const reviews = await ReviewModal.find().limit(4);
-      const profiles = await Customer.find();
+      const profiles = await Customer.find({isActive:true});
       let profileData = [];
       const professions = ["Makeup Artist", "Photographer", "Student"];
 

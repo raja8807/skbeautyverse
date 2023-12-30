@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./cutomer_profile.module.scss";
-import { Clipboard, PencilSquare, PersonFill } from "react-bootstrap-icons";
+import {
+  Clipboard,
+  Link45deg,
+  PencilSquare,
+  PersonFill,
+} from "react-bootstrap-icons";
 import { Col, Image, Row } from "react-bootstrap";
+import Link from "next/link";
 let country_state_district = require("@coffeebeanslabs/country_state_district");
 
 const CustomerProfile = ({
@@ -224,12 +230,12 @@ const CustomerProfile = ({
             <div className={styles.detRow}>
               <label>Instagram</label>
               <input
-                placeholder="Phone"
+                placeholder="Instagram profile link"
                 value={values.instaUrl}
                 onChange={(e) => {
                   const { value } = e.target;
                   let url = value.split("?")[0];
-                  if (url[url.length - 1]) {
+                  if (url[url.length - 1] === "/") {
                     url = url.slice(0, -1);
                   }
                   setValues((prev) => ({
@@ -250,18 +256,21 @@ const CustomerProfile = ({
             <div className={styles.detRow}>
               <label>Profile URL</label>
               <input
-                placeholder="Phone"
+                placeholder="Profile"
                 value={`www.skbeautyverse.com/profile/${user.userName}`}
                 disabled
               />
-              <Clipboard
-                className={styles.clip}
-                onClick={() => {
-                  navigator.clipboard.writeText(
-                    `www.skbeautyverse.com/mua/${user.userName}`
-                  );
-                }}
-              />
+              <Link
+                href={`https://www.skbeautyverse.com/profile/${user.userName}`}
+                target="_blank"
+              >
+                <Link45deg className={styles.clip} />
+              </Link>
+            </div>
+            <div className={styles.detRow}>
+              <label>Email</label>
+              <input placeholder="Email" value={`${user.email}`} disabled />
+              <Clipboard className={styles.clip} />
             </div>
 
             <div className={styles.detRow}>

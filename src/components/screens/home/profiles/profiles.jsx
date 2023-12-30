@@ -17,12 +17,19 @@ const Profiles = ({ profileData }) => {
                 key={pro.profession}
                 data-aos="fade-up"
               >
-                <Link href={`/search?p=${pro.profession}`}>
+                {pro.profession !== 'Student' ? (
+                  <Link href={`/search?p=${pro.profession}`}>
+                    <div className={styles.profile}>
+                      <p className={styles.number}>{pro.count}</p>
+                      <p className={styles.pro}>{pro.profession}</p>
+                    </div>
+                  </Link>
+                ) : (
                   <div className={styles.profile}>
                     <p className={styles.number}>{pro.count}</p>
                     <p className={styles.pro}>{pro.profession}</p>
                   </div>
-                </Link>
+                )}
               </Col>
             );
           }

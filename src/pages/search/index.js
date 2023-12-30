@@ -10,7 +10,6 @@ export default SearchPage;
 export async function getServerSideProps(context) {
   try {
     const session = await getSession(context);
-    // console.log(session);
     const res = await fetch(
       `http://${context.req.headers.host}/api/customer/search`,
       {

@@ -1,4 +1,5 @@
 import Profile from "@/components/screens/profile/profile";
+import { getSession } from "next-auth/react";
 
 const UserProfile = ({ profile, images }) => {
   return (
@@ -25,8 +26,14 @@ export default UserProfile;
 
 export async function getServerSideProps(context) {
   try {
+    const session = await getSession(context);
+
     const res = await fetch(
-      `http://${context.req.headers.host}/api/customer/${context.query.userName}`
+      `http://${context.req.headers.host}/api/customer/${context.query.userName}`,
+      {
+        method: "POST",
+        body: session ? JSON.stringify(session) : null,
+      }
     );
     const { user, images } = await res.json();
 

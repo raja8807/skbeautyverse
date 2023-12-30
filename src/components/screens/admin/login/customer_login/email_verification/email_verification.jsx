@@ -6,25 +6,25 @@ const EmailVerification = ({
   isLoading,
   signOut,
   customer,
-  setCheckVefied,
-  reloadUser
+  reloadUser,
 }) => {
   return (
     <>
-      <small>Verification Email Has been sent to {customer.email}</small>
+      <small>Verification email has been sent to {customer.email}</small>
       <small
         onClick={async () => {
           await sendVerificationEmail();
         }}
       >
-        Resend Email
+        Resend email
       </small>
       <small
         onClick={async () => {
-            reloadUser()
+          reloadUser();
         }}
       >
-        Verified
+        Verified? &nbsp;&nbsp;
+        <span style={{ textDecoration: "underLine" }}>Click here</span>
       </small>
       {isLoading ? (
         <Spinner style={{ margin: "auto" }} />

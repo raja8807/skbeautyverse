@@ -46,10 +46,11 @@ const CustomerLogin = (props) => {
           email: customer.email,
           customerId: customer.uid,
           userName: updateValues.userName,
+          isActive: true,
         });
 
         await firebase.auth().currentUser.updateProfile({
-          displayName:updateValues.userName,
+          displayName: updateValues.userName,
           photoURL: phoneNumber,
         });
       }
@@ -171,7 +172,7 @@ const CustomerLogin = (props) => {
 
   return isLogin ? (
     <div className={styles.loginBox}>
-      <p>MUA Login</p>
+      <p>Login</p>
       {customer ? (
         <>
           {verified === "no" ? (
@@ -250,11 +251,7 @@ const CustomerLogin = (props) => {
                   {isLoading ? (
                     <Spinner style={{ margin: "auto" }} />
                   ) : (
-                    <input
-                      type="submit"
-                      value="Update" 
-                      name="xx"
-                    />
+                    <input type="submit" value="Update" name="xx" />
                   )}
                 </>
               )}

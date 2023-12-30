@@ -4,7 +4,6 @@ import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    // console.log(!!req.body);
     try {
       await connectMongoDB();
       const profiles = await Customer.find(

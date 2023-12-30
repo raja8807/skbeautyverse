@@ -1,10 +1,17 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Bag, GeoAlt, Search, Telephone } from "react-bootstrap-icons";
+import {
+  Bag,
+  Briefcase,
+  GeoAlt,
+  Search,
+  Telephone,
+} from "react-bootstrap-icons";
 import styles from "./search.module.scss";
 import { Col, Image, Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 const {
   default: CustomContainer,
 } = require("@/components/ui/custom_container/custom_container");
@@ -21,11 +28,7 @@ const SearchScreen = ({ profiles = [] }) => {
 
   const professions = ["Makeup Artist", "Photographer"];
 
-  const desgnations = {
-    "Makeup Artist": ["Makeup artist", "Assistant", "Hair Stylist", "Skin"],
-    Photographer: ["Photographer", "Videographer"],
-    Student: null,
-  };
+  const session = useSession();
 
   useEffect(() => {
     if (profiles[0]) {
@@ -125,7 +128,7 @@ const SearchScreen = ({ profiles = [] }) => {
             </option>
           ))}
         </select>
-        <select
+        {/* <select
           value={designation}
           disabled={!profession}
           onChange={(e) => {
@@ -134,14 +137,18 @@ const SearchScreen = ({ profiles = [] }) => {
           }}
           className={styles.select}
         >
-          <option value="">All Designation</option>
+          <option value=""
+          onChange={(e)=>{
+            setDesignation(e.target.value)
+          }}
+          >All Designation</option>
           {desgnations[profession] &&
             desgnations[profession].map((d) => (
               <option key={d} value={d}>
                 {d}
               </option>
             ))}
-        </select>
+        </select> */}
       </div>
       <br />
       <Row>
@@ -155,7 +162,15 @@ const SearchScreen = ({ profiles = [] }) => {
                   height={50}
                   alt={p.userName}
                 />
-                <p>{p.name}</p>-<small>{p.userName}</small>
+                <p>
+                  <span
+                    className={`${styles.bubble} ${
+                      p.isActive && styles.active
+                    }`}
+                  />
+                  {p.name}
+                </p>
+                -<small>{p.userName}</small>
               </div>
               <div className={styles.bottom}>
                 <div className={styles.row}>
@@ -164,26 +179,16 @@ const SearchScreen = ({ profiles = [] }) => {
                 </div>
                 <div className={styles.row}>
                   <Telephone />
-                  <p>{p.phoneNumber}</p>
+                  <Link href={`tel:${p.phoneNumber}`}>
+                    <p style={{ textDecoration: "underLine" }}>
+                      {p.phoneNumber}
+                    </p>
+                  </Link>
                 </div>
                 {p.profession && (
                   <div className={styles.row}>
-                    <Bag />
-                    <p>
-                      {p.profession}{" "}
-                      {/* {p.designations && p.designations[0] && (
-                        -
-                        <small>({' '}
-                          {p.designations.map((d, idx) => (
-                            <span key={d}>
-                              {d}
-                              {idx !== p.designations.length - 1 && ", "}
-                            </span>
-                          ))}{' '}
-                        )
-                        </small>
-                      )} */}
-                    </p>
+                    <Briefcase />
+                    <p>{p.profession} </p>
                   </div>
                 )}
                 {p.designations && p.designations[0] && (
