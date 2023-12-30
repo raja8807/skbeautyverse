@@ -2,29 +2,50 @@ import { useState } from "react";
 import styles from "./customer_about.module.scss";
 import EditAbout from "./about/about";
 import CustomerGallery from "./customer_gallery/customer_gallery";
-const CustomerAbout = ({ user, updateCustomer, readOnly,images }) => {
+import { InstagramEmbed } from "react-social-media-embed";
+// import InstagramEmbed from "@/components/instagramEmbed/instagramEmbed";
+const CustomerAbout = ({ user, updateCustomer, readOnly, images }) => {
+  console.log(user.instaUrl);
+
   const tabs = [
-    {
-      title: "Gallery",
-      component: <CustomerGallery profile={user} images={images} readOnly={readOnly}/>,
-    },
     {
       title: "About",
       component: (
-        <EditAbout
-          user={user}
-          updateCustomer={updateCustomer}
-          readOnly={readOnly}
-        />
+        <>
+          <EditAbout
+            user={user}
+            updateCustomer={updateCustomer}
+            readOnly={readOnly}
+          />
+          <iframe
+            src={`${user.instaUrl}/embed`}
+            style={{
+              width: "100%",
+              margin: "50px 0",
+              height: "600px",
+              overflow: "auto",
+              borderRadius: "12px",
+            }}
+            frameborder="0"
+            scrolling="no"
+            allowtransparency="true"
+          ></iframe>
+        </>
       ),
     },
-    
+    {
+      title: "Gallery",
+      component: (
+        <CustomerGallery profile={user} images={images} readOnly={readOnly} />
+      ),
+    },
   ];
 
   const [currentTab, setCurrentTab] = useState(tabs[0]);
 
   return (
     <div className={styles.customerAbout}>
+      <br />
       <div className={styles.tabs}>
         {tabs.map((tab) => (
           <div
@@ -42,8 +63,8 @@ const CustomerAbout = ({ user, updateCustomer, readOnly,images }) => {
       </div>
       <br />
       <div>{currentTab.component}</div>
-      <br/>
-      <br/>
+      <br />
+      <br />
     </div>
   );
 };

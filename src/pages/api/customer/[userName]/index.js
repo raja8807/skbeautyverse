@@ -6,6 +6,7 @@ export default async function handler(req, res) {
     try {
       await connectMongoDB();
       const user = await Customer.findOne({
+        isActive: true,
         userName: req.query.userName,
         profession: {
           $not: {
@@ -13,7 +14,7 @@ export default async function handler(req, res) {
           },
         },
       });
-      let images = null
+      let images = null;
       if (user) {
         images = await MuaImage.find({ userName: req.query.userName });
       }

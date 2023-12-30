@@ -17,9 +17,9 @@ const CustomerProfile = ({
     location: user.location,
     profession: user.profession,
     designations: user.designations || [],
+    instaUrl: user.instaUrl,
+    isActive: user.isActive,
   });
-
-  console.log(values);
 
   useEffect(() => {
     setValues({
@@ -28,8 +28,12 @@ const CustomerProfile = ({
       location: user.location,
       profession: user.profession,
       designations: user.designations || [],
+      instaUrl: user.instaUrl,
+      isActive: user.isActive,
     });
   }, [customer, user.name]);
+
+  console.log(values);
 
   const professions = ["Makeup Artist", "Photographer", "Student"];
 
@@ -58,7 +62,9 @@ const CustomerProfile = ({
             undefined,
             values.location,
             values.profession,
-            values.designations
+            values.designations,
+            values.instaUrl,
+            values.isActive
           );
         }}
       >
@@ -196,6 +202,7 @@ const CustomerProfile = ({
                 maxLength="10"
               />
             </div>
+
             <div className={styles.detRow}>
               <label>Location</label>
               <select
@@ -213,6 +220,29 @@ const CustomerProfile = ({
                 ))}
               </select>
             </div>
+
+            <div className={styles.detRow}>
+              <label>Instagram</label>
+              <input
+                placeholder="Phone"
+                value={values.instaUrl}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  let url = value.split("?")[0];
+                  if (url[url.length - 1]) {
+                    url = url.slice(0, -1);
+                  }
+                  setValues((prev) => ({
+                    ...prev,
+                    instaUrl: url,
+                  }));
+                }}
+                required
+                minLength="20"
+                pattern="^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]{1,30}\/?$"
+              />
+            </div>
+
             <div className={styles.detRow}>
               <label>User Name</label>
               <input placeholder="Phone" value={user.userName} disabled />
@@ -232,6 +262,23 @@ const CustomerProfile = ({
                   );
                 }}
               />
+            </div>
+
+            <div className={styles.detRow}>
+              <label>Status</label>
+              <div className={styles.desHolder}>
+                <div className={styles.designation}>
+                  <input
+                    checked={values.isActive}
+                    type="checkBox"
+                    onChange={(e) => {
+                      const { checked } = e.target;
+                      setValues((prev) => ({ ...prev, isActive: checked }));
+                    }}
+                  />
+                  <p>Active</p>
+                </div>
+              </div>
             </div>
 
             <input type="submit" value="Update" />

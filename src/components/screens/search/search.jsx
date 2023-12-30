@@ -19,7 +19,7 @@ const SearchScreen = ({ profiles = [] }) => {
   const [profession, setProfession] = useState(router.query.p || null);
   const [designation, setDesignation] = useState(null);
 
-  const professions = ["Makeup Artist", "Photographer", "Student"];
+  const professions = ["Makeup Artist", "Photographer"];
 
   const desgnations = {
     "Makeup Artist": ["Makeup artist", "Assistant", "Hair Stylist", "Skin"],

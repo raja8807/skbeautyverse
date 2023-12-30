@@ -21,7 +21,9 @@ const CustomerPortal = ({ customer, user, images }) => {
     about,
     location,
     profession,
-    designations
+    designations,
+    instaUrl,
+    isActive
   ) => {
     setIsLoading(true);
     setError(false);
@@ -54,6 +56,8 @@ const CustomerPortal = ({ customer, user, images }) => {
           location,
           profession,
           designations,
+          instaUrl,
+          isActive,
         });
 
         if (user.phoneNumber !== phoneNumber) {

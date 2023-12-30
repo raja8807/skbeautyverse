@@ -115,7 +115,7 @@ const ProfileDetails = ({ profile }) => {
                 <Clipboard className={styles.clip} />
               </Link>
             </div>
-            <input type="submit" value="Talk to me" />
+            {/* <input type="submit" value="Talk to me" /> */}
           </Col>
         </Row>
       </form>

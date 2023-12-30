@@ -36,6 +36,12 @@ const customerSchema = new Schema(
     designations: {
       type: Array,
     },
+    instaUrl: {
+      type: String,
+    },
+    isActive: {
+      type: Boolean,
+    },
   },
   {
     timestamps: true,
