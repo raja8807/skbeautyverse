@@ -18,28 +18,28 @@ const CustomerProfile = ({
   setFile,
 }) => {
   const [values, setValues] = useState({
-    displayName: user.name,
+    displayName: user?.name,
     phone: customer.photoURL,
-    location: user.location,
-    profession: user.profession,
-    designations: user.designations || [],
-    instaUrl: user.instaUrl,
-    isActive: user.isActive,
+    location: user?.location,
+    profession: user?.profession,
+    designations: user?.designations || [],
+    instaUrl: user?.instaUrl,
+    isActive: user?.isActive,
   });
 
   useEffect(() => {
     setValues({
-      displayName: user.name,
+      displayName: user?.name,
       phone: customer.photoURL,
-      location: user.location,
-      profession: user.profession,
-      designations: user.designations || [],
-      instaUrl: user.instaUrl,
-      isActive: user.isActive,
+      location: user?.location,
+      profession: user?.profession,
+      designations: user?.designations || [],
+      instaUrl: user?.instaUrl,
+      isActive: user?.isActive,
     });
-  }, [customer, user.name]);
+  }, [customer, user?.name]);
 
-  console.log(values);
+  // console.log(values);
 
   const professions = ["Makeup Artist", "Photographer", "Student"];
 
@@ -49,7 +49,7 @@ const CustomerProfile = ({
     Student: null,
   };
 
-  const [imageUrl, setImageUrl] = useState(user.imageUrl);
+  const [imageUrl, setImageUrl] = useState(user?.imageUrl);
   const [editImageMode, setEditImageMode] = useState(false);
   let districts = country_state_district.getDistrictsByStateId(32);
   return (
@@ -111,7 +111,7 @@ const CustomerProfile = ({
                   type="button"
                   value="Cancel"
                   onClick={() => {
-                    setImageUrl(user.photoUrl);
+                    setImageUrl(user?.photoUrl);
                     setEditImageMode(false);
                   }}
                 />
@@ -243,7 +243,7 @@ const CustomerProfile = ({
                     instaUrl: url,
                   }));
                 }}
-                required
+                // required
                 minLength="20"
                 pattern="^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]{1,30}\/?$"
               />
@@ -251,17 +251,17 @@ const CustomerProfile = ({
 
             <div className={styles.detRow}>
               <label>User Name</label>
-              <input placeholder="Phone" value={user.userName} disabled />
+              <input placeholder="Phone" value={user?.userName} disabled />
             </div>
             <div className={styles.detRow}>
               <label>Profile URL</label>
               <input
                 placeholder="Profile"
-                value={`www.skbeautyverse.com/profile/${user.userName}`}
+                value={`www.skbeautyverse.com/profile/${user?.userName}`}
                 disabled
               />
               <Link
-                href={`https://www.skbeautyverse.com/profile/${user.userName}`}
+                href={`https://www.skbeautyverse.com/profile/${user?.userName}`}
                 target="_blank"
               >
                 <Link45deg className={styles.clip} />
@@ -269,7 +269,7 @@ const CustomerProfile = ({
             </div>
             <div className={styles.detRow}>
               <label>Email</label>
-              <input placeholder="Email" value={`${user.email}`} disabled />
+              <input placeholder="Email" value={`${user?.email}`} disabled />
               <Clipboard className={styles.clip} />
             </div>
 
@@ -280,6 +280,11 @@ const CustomerProfile = ({
                   <input
                     checked={values.isActive}
                     type="checkBox"
+                    disabled={!values.displayName || !values.phone}
+                    title={
+                      (!values.displayName || !values.phone) &&
+                      "Please fill Name and Phone"
+                    }
                     onChange={(e) => {
                       const { checked } = e.target;
                       setValues((prev) => ({ ...prev, isActive: checked }));
@@ -290,7 +295,11 @@ const CustomerProfile = ({
               </div>
             </div>
 
-            <input type="submit" value="Update" />
+            <input
+              type="submit"
+              value="Update"
+              disabled={!values.displayName || !values.phone}
+            />
           </Col>
         </Row>
       </form>

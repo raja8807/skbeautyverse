@@ -19,14 +19,14 @@ export default async function handler(req, res) {
   if (req.method === "PUT") {
     try {
       await connectMongoDB();
-      const customers = (await Customer.find()) || [];
-      const user = customers.find((c) => c.userName == req.body.userName);
+      // const customers = (await Customer.find()) || [];
+      // const user = customers.find((c) => c.userName == req.body.userName);
 
-      if (user) {
-        if (user.customerId !== req.body.customerId) {
-          res.status(403).send("already exist");
-        }
-      }
+      // if (user) {
+      //   if (user.customerId !== req.body.customerId) {
+      //     res.status(403).send("already exist");
+      //   }
+      // }
 
       const newCustomer = await Customer.updateOne(
         { customerId: req.body.customerId },

@@ -12,6 +12,7 @@ import { Col, Image, Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import axios from "axios";
 const {
   default: CustomContainer,
 } = require("@/components/ui/custom_container/custom_container");
@@ -29,11 +30,18 @@ const SearchScreen = ({ profiles = [] }) => {
   const professions = ["Makeup Artist", "Photographer"];
 
   const session = useSession();
+  // console.log(session);
 
   useEffect(() => {
     if (profiles[0]) {
       setProfilesData(() => {
         let pros = [...profiles];
+
+        if (!session.data) {
+          pros = profiles.filter((p) => {
+            return p.profession !== "Student" && p.isActive && p.isApproved;
+          });
+        }
 
         if (location) {
           pros = profiles.filter((p) => {
@@ -197,6 +205,20 @@ const SearchScreen = ({ profiles = [] }) => {
                       <li key={d}>{d}</li>
                     ))}
                   </ul>
+                )}
+                {session.data && (
+                  <CustomButton
+                    type="black2"
+                    clickHandler={async () => {
+                      const res = await axios.post("/api/customer/approval", {
+                        ...p,
+                        isApproved: p.isApproved ? false : true,
+                      });
+                      console.log(res);
+                    }}
+                  >
+                    {p.isApproved ? "Disapprove" : "Approve"}
+                  </CustomButton>
                 )}
                 <CustomButton type="black2">
                   <Link href={`/profile/${p.userName}`} target="_blank">

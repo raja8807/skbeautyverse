@@ -14,6 +14,9 @@ const customerSchema = new Schema(
       type: String,
       unique: true,
     },
+    isApproved: {
+      type: Boolean,
+    },
     phoneNumber: {
       type: String,
     },

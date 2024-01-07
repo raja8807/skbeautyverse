@@ -31,15 +31,15 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   try {
-    if (session) {
+    // if (session) {
       const q = context.query.category;
       const res = await fetch(
         `http://${context.req.headers.host}/api/galleryImage?q=${q}`
       );
       const galleyImages = await res.json();
       return { props: { galleyImages } };
-    }
-    return { props: { galleyImages: null } };
+    // }
+    // return { props: { galleyImages: null } };
   } catch (err) {
     return { props: { images: "errr-->" + err.message } };
   }

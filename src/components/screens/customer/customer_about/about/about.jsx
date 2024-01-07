@@ -2,9 +2,10 @@ import { useState } from "react";
 import styles from "./about.module.scss";
 
 const EditAbout = ({ user, updateCustomer, readOnly }) => {
-  const [value, setValue] = useState(user.about);
+  const [value, setValue] = useState(user?.about);
+  
   const [length, setLenght] = useState(() => {
-    if (user.about) {
+    if (user?.about) {
       const { about } = user;
       const splitted = about.split(" ");
       return splitted.filter((s) => s !== "").length;
@@ -20,9 +21,9 @@ const EditAbout = ({ user, updateCustomer, readOnly }) => {
         onSubmit={async (e) => {
           e.preventDefault();
           await updateCustomer(
-            user.displayName,
-            user.phoneNumber,
-            user.imageUrl,
+            user?.displayName,
+            user?.phoneNumber,
+            user?.imageUrl,
             value
           );
         }}

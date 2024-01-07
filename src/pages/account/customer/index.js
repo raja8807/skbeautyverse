@@ -16,12 +16,14 @@ import CustomerPortal from "@/components/screens/customer/customer_portal";
 const CustomerPortalScreen = ({ customer, user, images }) => {
   const router = useRouter();
 
+  console.log(user);
+
   useEffect(() => {
     if (
       !customer ||
       !customer.emailVerified ||
-      !customer.displayName ||
-      !customer.photoURL
+      !customer.displayName 
+      // !customer.photoURL
     ) {
       router.replace("/account/login");
     }
@@ -30,8 +32,8 @@ const CustomerPortalScreen = ({ customer, user, images }) => {
   if (
     customer &&
     customer.emailVerified &&
-    customer.displayName &&
-    customer.photoURL
+    customer.displayName 
+    // customer.photoURL
   ) {
     return (
       <CustomContainer>

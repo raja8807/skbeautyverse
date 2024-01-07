@@ -8,6 +8,8 @@ const LoginPage = ({ setCustomer, customer }) => {
   const session = useSession();
   const router = useRouter();
 
+  console.log(customer);
+
   useEffect(() => {
     if (session.data) {
       router.replace("/account/admin");
@@ -15,8 +17,8 @@ const LoginPage = ({ setCustomer, customer }) => {
     if (
       customer &&
       customer.emailVerified &&
-      customer.displayName &&
-      customer.photoURL
+      customer.displayName 
+      // customer.photoURL
     ) {
       router.replace(`/account/customer?user=${customer.displayName}`);
     }

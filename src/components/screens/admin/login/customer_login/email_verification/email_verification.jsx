@@ -20,7 +20,7 @@ const EmailVerification = ({
       </small>
       <small
         onClick={async () => {
-          reloadUser();
+         await reloadUser();
         }}
       >
         Verified? &nbsp;&nbsp;

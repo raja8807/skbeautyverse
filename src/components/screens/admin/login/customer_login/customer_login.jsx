@@ -40,12 +40,10 @@ const CustomerLogin = (props) => {
     try {
       if (customer.uid) {
         await axios.put("/api/customer", {
-          // ... customer,
           name: displayName,
           phoneNumber,
           email: customer.email,
           customerId: customer.uid,
-          userName: updateValues.userName,
           isActive: true,
         });
 
@@ -55,7 +53,6 @@ const CustomerLogin = (props) => {
         });
       }
 
-      // setCustomer((prev) => ({ ...prev, userName: updateValues.userName }));
       setError(false);
       setIsLoading(false);
       if (isLoginPage) {
@@ -65,14 +62,13 @@ const CustomerLogin = (props) => {
           ...prev,
           displayName,
           photoURL: phoneNumber,
-          userName: updateValues.userName,
         }));
       }
     } catch (err) {
       setMessage(JSON.stringify(err));
-      if (err?.response?.data === "already exist") {
-        setMessage("User name already exist please choose another name");
-      }
+      // if (err?.response?.data === "already exist") {
+      //   setMessage("User name already exist please choose another name");
+      // }
       setIsLoading(false);
       setError(true);
     }
@@ -95,31 +91,43 @@ const CustomerLogin = (props) => {
       await firebase.auth().currentUser.sendEmailVerification();
       setIsLoading(false);
     } catch (err) {
+      console.log(err);
       setIsLoading(false);
       setError(true);
     }
   };
 
-  const signUp = async (email, password) => {
+  const signUp = async (email, userName, password) => {
     setIsLoading(true);
     setError(false);
 
     try {
-      const result = await createUserWithEmailAndPassword(
-        fireBaseCustomerAuth,
-        email,
-        password
+      const { data: isExist } = await axios.get(
+        `/api/customer/checkUserName?user=${userName}`
       );
+      if (!isExist) {
+        const result = await createUserWithEmailAndPassword(
+          fireBaseCustomerAuth,
+          email,
+          password
+        );
+        const x = await axios.post("/api/customer", {
+          email: result.user.email,
+          userName,
+          customerId: result.user.uid,
+        });
 
-      const x = await axios.post("/api/customer", {
-        email: result.user.email,
-        customerId: result.user.uid,
-      });
+        await firebase.auth().currentUser.updateProfile({
+          displayName: userName,
+        });
 
-      await sendVerificationEmail();
+        await sendVerificationEmail();
+      } else {
+        setError("Username already exist");
+      }
     } catch (e) {
-      console.log(e);
-      setError(true);
+      console.log(e.message);
+      setError(e.message);
     }
     setIsLoading(false);
   };
@@ -201,23 +209,7 @@ const CustomerLogin = (props) => {
               {!customer.displayName && (
                 <>
                   <small>Please update your profile to continue</small>
-                  <input
-                    placeholder="User Name (eg : your_name)"
-                    value={updateValues.userName}
-                    onChange={(e) => {
-                      const { value } = e.target;
-                      const valid = /^[a-z0-9_\.]+$/.exec(value);
-                      if (!!valid || value === "") {
-                        setUpdateValues((prev) => ({
-                          ...prev,
-                          userName: value,
-                        }));
-                      }
-                    }}
-                    required
-                    minLength="5"
-                    maxLength="20"
-                  />
+
                   {message && <small>{message}</small>}
                   <input
                     placeholder="Name"
@@ -261,6 +253,14 @@ const CustomerLogin = (props) => {
                 }}
                 type="button"
                 value="logout"
+              />
+              <input
+                onClick={() => {
+                  // signOut();
+                  router.reload()
+                }}
+                type="button"
+                value="Go to profile"
               />
               {/* <small>{error}</small> */}
             </form>

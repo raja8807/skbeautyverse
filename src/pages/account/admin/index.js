@@ -14,6 +14,8 @@ const Admin = ({ homeData }) => {
   const session = useSession();
   const router = useRouter();
 
+  // console.log(session);
+
   useEffect(() => {
     if (!session.data) {
       router.replace("/account/login");
@@ -37,14 +39,15 @@ export default Admin;
 export async function getServerSideProps(context) {
   try {
     const session = await getSession(context);
-    if (session) {
+    // console.log(session);
+    // if (session) {
       const res = await fetch(
         `http://${context.req.headers.host}/api/homeData`
       );
       const homeData = await res.json();
       return { props: { homeData } };
-    }
-    return { props: { homeData: null } };
+    // }
+    // return { props: { homeData: null } };
   } catch (err) {
     return { props: { images: "errr-->" + err.message } };
   }

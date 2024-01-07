@@ -16,9 +16,9 @@ const CustomerAbout = ({ user, updateCustomer, readOnly, images }) => {
             updateCustomer={updateCustomer}
             readOnly={readOnly}
           />
-          {user.instaUrl && (
+          {user?.instaUrl && (
             <iframe
-              src={`${user.instaUrl}/embed`}
+              src={`${user?.instaUrl}/embed`}
               style={{
                 width: "100%",
                 margin: "50px 0",

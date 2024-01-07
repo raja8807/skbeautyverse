@@ -22,6 +22,7 @@ const CustomerSinup = (props) => {
 
   const [values, setValues] = useState({
     email: "",
+    userName: "",
     password: "",
     confirmPassword: "",
   });
@@ -31,7 +32,7 @@ const CustomerSinup = (props) => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await signUp(values.email, values.password);
+          await signUp(values.email, values.userName, values.password);
         }}
       >
         <p>Create Account</p>
@@ -56,7 +57,29 @@ const CustomerSinup = (props) => {
 
                 setValues((prev) => ({ ...prev, email: value }));
               }}
+              required
+              type="email"
             />
+
+            <input
+              placeholder="User Name (eg : your_name)"
+              value={values.userName}
+              className={error ? styles.error : ""}
+              onChange={(e) => {
+                const { value } = e.target;
+                const valid = /^[a-z0-9_\.]+$/.exec(value);
+                if (!!valid || value === "") {
+                  setValues((prev) => ({
+                    ...prev,
+                    userName: value,
+                  }));
+                }
+              }}
+              required
+              minLength="5"
+              maxLength="20"
+            />
+            {error && <small>{error}</small>}
             <input
               className={error ? styles.error : ""}
               id="signup_pwd"
@@ -67,6 +90,7 @@ const CustomerSinup = (props) => {
                 const { value } = e.target;
                 setValues((prev) => ({ ...prev, password: value }));
               }}
+              required
             />
             <input
               className={error ? styles.error : ""}
@@ -78,6 +102,7 @@ const CustomerSinup = (props) => {
                 const { value } = e.target;
                 setValues((prev) => ({ ...prev, confirmPassword: value }));
               }}
+              required
             />
             {isLoading ? (
               <Spinner style={{ margin: "auto" }} />
@@ -98,7 +123,7 @@ const CustomerSinup = (props) => {
                 >
                   Admin Login
                 </span>
-                &nbsp; &nbsp; 
+                &nbsp; &nbsp;
               </>
             )}
             |
@@ -108,8 +133,7 @@ const CustomerSinup = (props) => {
                 setIsLogin(true);
               }}
             >
-              &nbsp; &nbsp;
-              Customer Login
+              &nbsp; &nbsp; Customer Login
             </span>
           </small>
         )}
