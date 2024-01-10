@@ -87,7 +87,7 @@ export default function App({ Component, pageProps }) {
             <div class="layer"></div>
             <Image
               className="logo"
-              src="/images/logo/logo.png"
+              src="/images/logo/logo1.png"
               width={100}
               alt="logo"
             />
@@ -104,7 +104,7 @@ export default function App({ Component, pageProps }) {
             <div class="layer"></div>
             <Image
               className="logo"
-              src="/images/logo/logo.png"
+              src="/images/logo/logo1.png"
               width={120}
               alt="logo"
             />
