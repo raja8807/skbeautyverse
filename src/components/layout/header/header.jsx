@@ -36,18 +36,18 @@ const Header = ({ customer }) => {
         <div className={styles.logo}>
           <Link href="/">
             <Image
-              src="/images/logo/logo.png"
+              src="/images/logo/logo1.png"
               fluid
               alt="logo"
               className={styles.sk}
             />
           </Link>
-          <Image
+          {* <Image
             src="/images/logo/name.png"
             fluid
             alt="logo"
             className={styles.name}
-          />
+          /> *}
         </div>
 
         {router.pathname !== "/search" && (
