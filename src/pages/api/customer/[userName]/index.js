@@ -6,16 +6,10 @@ export default async function handler(req, res) {
     try {
       await connectMongoDB();
       const user = await Customer.findOne(
-        !!req.body
-          ? {}
-          : {
+           {
               isActive: true,
               userName: req.query.userName,
-              profession: {
-                $not: {
-                  $regex: "^Student*",
-                },
-              },
+              
             }
       );
       let images = null;
