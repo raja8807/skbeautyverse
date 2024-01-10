@@ -21,7 +21,7 @@ const HeaderDrawer = (props) => {
         <Offcanvas.Header closeButton className={styles.head}>
           <Offcanvas.Title>
             <Image
-              src="/images/logo/logo.png"
+              src="/images/logo/logo1.png"
               fluid
               alt="logo"
               className={styles.logo}
