@@ -42,12 +42,7 @@ const Header = ({ customer }) => {
               className={styles.sk}
             />
           </Link>
-          {* <Image
-            src="/images/logo/name.png"
-            fluid
-            alt="logo"
-            className={styles.name}
-          /> *}
+        
         </div>
 
         {router.pathname !== "/search" && (
