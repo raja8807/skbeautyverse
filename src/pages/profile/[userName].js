@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
       `http://${context.req.headers.host}/api/customer/${context.query.userName}`,
       {
         method: "POST",
-        body: session ? JSON.stringify(session) : null,
+       
       }
     );
     const { user, images } = await res.json();
