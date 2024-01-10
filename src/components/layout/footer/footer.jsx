@@ -24,7 +24,7 @@ const Footer = () => {
             <div className={styles.img}>
               <Image src="/images/categories/bg.jpeg" alt="bg" fluid />
               <div className={styles.overlay}>
-                <Image src="/images/logo/logo.png" fluid alt="logo" />
+                <Image src="/images/logo/logo1.png" fluid alt="logo" />
                 <p>
                   I am <span className={styles.name}>SUSHMITHA KARTHIK</span>, your dedicated makeup artist,
                   Certified by <span className={styles.name}>&quot;Lakme Academy&quot;</span> specializing in hair,
