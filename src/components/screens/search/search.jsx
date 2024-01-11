@@ -44,7 +44,7 @@ const SearchScreen = ({ profiles = [] }) => {
         }
 
         if (location) {
-          pros = profiles.filter((p) => {
+          pros = pros.filter((p) => {
             if (p.location) {
               return p.location === location;
             }
