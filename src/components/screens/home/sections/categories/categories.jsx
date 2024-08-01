@@ -28,7 +28,7 @@ const Categories = () => {
           </Row>
           <div className={styles.btn}>
             <CustomButton
-              type="black"
+              variant={1}
               clickHandler={() => {
                 router.push("/gallery/bridal");
               }}

@@ -8,6 +8,16 @@
     opacity: 0.7;
   }
 
+  &.v_1 {
+    background-color: $color_p3;
+    border: 2px solid black;
+    color: black;
+
+    &:hover {
+      background-color: white;
+    }
+  }
+
   &.primary {
     background-color: transparent;
     border: 2px solid $color_gold;
@@ -67,7 +77,7 @@
   &.black2 {
     background-color: $color_black;
     color: $color_gold;
-    border:1px solid $color_gold2;
+    border: 1px solid $color_gold2;
     &:not(:disabled) {
       &:hover {
         background-color: white;

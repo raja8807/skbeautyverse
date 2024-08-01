@@ -6,11 +6,12 @@ const CustomButton = ({
   clickHandler = () => {},
   disabled,
   btnType = "button",
+  variant,
 }) => {
   return (
     <button
       type={btnType}
-      className={`${styles.custom_button} ${styles[type]}`}
+      className={`${styles.custom_button} ${styles[`v_${variant}`]}`}
       onClick={(e) => {
         clickHandler(e);
       }}

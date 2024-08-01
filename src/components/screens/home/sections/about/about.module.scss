@@ -1,0 +1,59 @@
+.AboutSection {
+  .left {
+    position: relative;
+    // height: 500px;
+    .bg {
+      position: absolute;
+      background-image: url("/images/img.jpeg");
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(3px);
+      z-index: -1;
+    }
+
+    .img {
+      padding: 70px;
+
+      img {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .right {
+    padding: 70px 0 0 0;
+    h2 {
+      color: $color_p3;
+    }
+
+    p {
+      color: $color_mb;
+    }
+
+    img {
+      width: 200px;
+    }
+  }
+
+  @include respond-below(md) {
+    .left {
+      .bg {
+        width: 100%;
+      }
+      .img {
+        padding: 20px;
+        text-align: center;
+      }
+    }
+
+    .right {
+      padding: 40px 0 50px 0;
+      // text-align: center;
+    }
+  }
+}

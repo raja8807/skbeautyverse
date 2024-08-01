@@ -6,15 +6,7 @@
 } */
 
 body {
-  background-image: url("/images/bg/a4.JPG");
-  background-size: 100vw auto;
-  /* background-size: 100vw 100px; */
-  /* max-width: 100; */
-  /* overflow-x: hidden; */
-  /* width: 100vw;
-  overflow: hidden; */
-  /* background-size: cover; */
-  /* background-color: #040504; */
+  background-color: #FEFBD8;
 }
 
 .loading {
@@ -171,4 +163,3 @@ p {
   scroll-behavior: smooth !important;
   color: white;
 }
-

@@ -50,7 +50,7 @@ const Header = ({ customer }) => {
           />
         </div>
 
-        {router.pathname !== "/search" && (
+        {/* {router.pathname !== "/search" && (
           <div className={styles.search}>
             <input
               type="search"
@@ -70,7 +70,7 @@ const Header = ({ customer }) => {
               }}
             />
           </div>
-        )}
+        )} */}
 
         <List
           className={styles.menu}

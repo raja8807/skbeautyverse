@@ -3,12 +3,19 @@
   //   width: 100vw;
   //   width: 100vw;
   //   overflow: hidden;
-  position: sticky;
-  top: 0;
+  background-color: #171717;
+  border-radius: 10px;
+  position: fixed;
+  width: 90%;
+  top: 20px;
+  left: 0;
+  transform: translate(5%,0,);
   z-index: 1000;
   &.scrolled {
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(6px);
+    top: 0;
+    width: 100%;
+    transform: translate(0,0);
+    border-radius: 0;
   }
 
   .container {
@@ -36,7 +43,7 @@
         height: 65px;
         width: auto;
       }
-
+      
       .name {
         height: 35px;
         margin-bottom: 4px;
@@ -51,7 +58,7 @@
         .name {
           height: 20px;
           margin-bottom: 5px;
-          display: none;
+          // display: none;
         }
       }
     }
@@ -131,8 +138,8 @@
     }
 
     .menu {
-      // display: none;
-      color: $color_gold !important;
+     
+      color: red;
       height: 38px;
       width: 38px;
       cursor: pointer;
