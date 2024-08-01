@@ -18,7 +18,22 @@ import "react-slideshow-image/dist/styles.css";
 const Slideshow = ({ images }) => {
   return (
     <div className="slide-container">
-      <Fade arrows={false} canSwipe={false}>
+      <div
+        className={styles.bgImg}
+        style={{
+          backgroundImage: `url(/bg1.jpg)`,
+        }}
+      >
+        <h2>
+          Welcome To
+          <br />
+          SK Beauty-Verse
+        </h2>
+
+        <CustomButton variant={1}>Know More</CustomButton>
+      </div>
+
+      {/* <Fade arrows={false} canSwipe={false}>
         {images.map((fadeImage, index) => (
           <div key={fadeImage._id}>
             <div
@@ -29,7 +44,7 @@ const Slideshow = ({ images }) => {
             ></div>
           </div>
         ))}
-      </Fade>
+      </Fade> */}
     </div>
   );
 };
