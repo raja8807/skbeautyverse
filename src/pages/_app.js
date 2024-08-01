@@ -75,28 +75,34 @@ export default function App({ Component, pageProps }) {
 
   const [customer, setCustomer] = useState(null);
 
-
   return (
     <SessionProvider session={pageProps.session}>
       {load && (
-        <div className="loading">
-          <div class="bg"></div>
+        <div className="admm">
+          {/* <div class="bg"></div>
           <div class="star-field">
             <div class="layer"></div>
             <div class="layer"></div>
             <div class="layer"></div>
-            <Image
-              className="logo"
-              src="/images/logo/logo.png"
-              width={100}
-              alt="logo"
-            />
-          </div>
+          
+          </div> */}
+          <Image
+            className="logo"
+            src="/images/logo/logo.png"
+            width={100}
+            alt="logo"
+          />
         </div>
       )}
       {isLoading || load ? (
-        <div className="loading">
-          <div class="bg"></div>
+        <div className="jbj">
+          <Image
+            className="logo"
+            src="/images/logo/logo.png"
+            width={100}
+            alt="logo"
+          />
+          {/* <div class="bg"></div>
 
           <div class="star-field">
             <div class="layer"></div>
@@ -108,7 +114,7 @@ export default function App({ Component, pageProps }) {
               width={120}
               alt="logo"
             />
-          </div>
+          </div> */}
         </div>
       ) : (
         <main className={roboto.className}>
