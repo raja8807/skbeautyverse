@@ -15,9 +15,12 @@ import { useRouter } from "next/router";
 import ContactForm from "../contact/contact_form";
 import Profiles from "./profiles/profiles";
 import AboutSection from "./sections/about/about";
+import CustomersSection from "./sections/v2/customers/customers";
+import LearnFromUsSection from "./sections/v2/learn/learn";
+import ServicesSection from "./sections/v2/services/services";
 
 const HomeScreen = (props) => {
-  const { packages, bannerImages, reviews = [], profileData = [] } = props;
+  const {} = props;
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -25,9 +28,12 @@ const HomeScreen = (props) => {
 
   return (
     <>
-      <Banner bannerImages={bannerImages} setShowPopup={setShowPopup} />
+      <Banner setShowPopup={setShowPopup} />
       <AboutSection />
-      <Categories />
+      <ServicesSection />
+      <CustomersSection />
+      <LearnFromUsSection />
+      {/* <Categories /> */}
     </>
   );
 };

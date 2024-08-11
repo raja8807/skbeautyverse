@@ -1,8 +1,8 @@
 import fonts from "@/components/fonts/fonts";
 import styles from "./custom_section.module.scss";
 
-const CustomSection = (props) => {
-  const { children, head, bg = "trans", caption,noPadding } = props;
+const CustomSection = ({ children, head, bg = "trans", caption,noPadding }) => {
+
 
   return (
     <section className={`${styles.customContainer} ${styles[bg]}`}>

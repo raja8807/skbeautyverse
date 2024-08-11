@@ -1,4 +1,5 @@
 .AboutSection {
+    background-image: linear-gradient(#DCDCDC , white);
   .left {
     position: relative;
     // height: 500px;
@@ -12,7 +13,7 @@
       background-size: cover;
       background-position: center;
       filter: blur(3px);
-      z-index: -1;
+    //   z-index: -1;
     }
 
     .img {
@@ -41,6 +42,7 @@
   }
 
   @include respond-below(md) {
+    text-align: center;
     .left {
       .bg {
         width: 100%;

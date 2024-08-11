@@ -1,15 +1,13 @@
 const { Container } = require("react-bootstrap");
-import styles from './custom_container.module.scss'
+import styles from "./custom_container.module.scss";
 
-const CustomContainer = (props) => {
-  const { children, className } = props;
-
+const CustomContainer = ({ children, className, ...props }) => {
   return (
-  <div className={styles.wrap}>
+    <div className={styles.wrap} {...props}>
       <Container className={`${className} ${styles.custom_container}`}>
-      {children}
-    </Container>
-  </div>
+        {children}
+      </Container>
+    </div>
   );
 };
 

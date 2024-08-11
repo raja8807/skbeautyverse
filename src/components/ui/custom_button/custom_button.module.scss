@@ -17,6 +17,18 @@
       background-color: white;
     }
   }
+  &.v_2 {
+    background-color: $color_p4;
+    border: none;
+    color: white !important;
+    padding: 8px 30px;
+    border-radius: 20px 0px 20px 0;
+
+    &:hover {
+      border-radius: 0 20px 0px 20px;
+      box-shadow: 1px 1px 10px 1px $color_p3;
+    }
+  }
 
   &.primary {
     background-color: transparent;

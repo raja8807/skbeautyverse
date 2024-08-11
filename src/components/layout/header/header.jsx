@@ -20,7 +20,7 @@ const Header = ({ customer }) => {
 
   useEffect(() => {
     const getIsScrolled = () => {
-      setScrolled(window.scrollY > 0);
+      setScrolled(window.scrollY > 150);
     };
 
     window.addEventListener("scroll", getIsScrolled);
@@ -33,7 +33,7 @@ const Header = ({ customer }) => {
   return (
     <header className={`${styles.header} ${scrolled && styles.scrolled}`}>
       <CustomContainer className={styles.container}>
-        <div className={styles.logo}>
+        <div className={styles.logo} data-aos="fade-left">
           <Link href="/">
             <Image
               src="/images/logo/logo.png"
@@ -50,34 +50,23 @@ const Header = ({ customer }) => {
           />
         </div>
 
-        {/* {router.pathname !== "/search" && (
-          <div className={styles.search}>
-            <input
-              type="search"
-              placeholder="Search here.."
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  router.replace(`/search?q=${searchTerm}`);
-                }
-              }}
-            />
-            <Search
-              onClick={() => {
-                router.replace(`/search?q=${searchTerm}`);
-              }}
-            />
+        <nav data-aos="fade-right">
+          <div className={styles.navItems}>
+            {pagesList.map((p) => {
+              return (
+                <Link key={p.href} href={p.href}>
+                  {p.name}
+                </Link>
+              );
+            })}
           </div>
-        )} */}
-
-        <List
-          className={styles.menu}
-          onClick={() => {
-            setShowHeader(true);
-          }}
-        />
+          <List
+            className={styles.menu}
+            onClick={() => {
+              setShowHeader(true);
+            }}
+          />
+        </nav>
       </CustomContainer>
 
       <HeaderDrawer

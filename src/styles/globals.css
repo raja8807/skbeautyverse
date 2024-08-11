@@ -6,7 +6,8 @@
 } */
 
 body {
-  background-color: #FEFBD8;
+  /* background-color: #FEFBD8; */
+  /* background-color: #DCDCDC; */
 }
 
 .loading {
@@ -161,5 +162,4 @@ p {
   box-sizing: border-box;
   transition: 0.2s;
   scroll-behavior: smooth !important;
-  color: white;
 }

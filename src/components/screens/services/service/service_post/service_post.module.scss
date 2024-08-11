@@ -1,0 +1,44 @@
+.ServicePostScreen {
+  .wrap {
+    .row {
+      display: flex;
+      margin-bottom: 60px;
+
+      .left {
+        width: 50%;
+      }
+      .right {
+        margin-right: 120px;
+        background-color: rgb(244, 244, 244);
+        padding: 70px 30px;
+        width: 50%;
+      }
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+
+        .right {
+          margin-right: 0;
+          margin-left: 120px;
+        }
+      }
+    }
+  }
+
+  @include respond-below(md) {
+    .wrap {
+      .row {
+        flex-direction: column !important;
+
+        .left {
+          width: 100%;
+        }
+
+        .right {
+          width: 100%;
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+}

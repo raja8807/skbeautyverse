@@ -14,6 +14,7 @@ import { SessionProvider } from "next-auth/react";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Router from "next/router";
+import fonts from "@/styles/fonts/fonts";
 
 // Kaushan_Script
 
@@ -86,22 +87,12 @@ export default function App({ Component, pageProps }) {
             <div class="layer"></div>
           
           </div> */}
-          <Image
-            className="logo"
-            src="/images/logo/logo.png"
-            width={100}
-            alt="logo"
-          />
+          <Image className="logo" src="/load.gif" width={100} alt="logo" />
         </div>
       )}
       {isLoading || load ? (
         <div className="jbj">
-          <Image
-            className="logo"
-            src="/images/logo/logo.png"
-            width={100}
-            alt="logo"
-          />
+          <Image className="logo" src="/load.gif" width={100} alt="logo" />
           {/* <div class="bg"></div>
 
           <div class="star-field">
@@ -117,7 +108,7 @@ export default function App({ Component, pageProps }) {
           </div> */}
         </div>
       ) : (
-        <main className={roboto.className}>
+        <main className={fonts.mainFont}>
           <Layout customer={customer}>
             <Component
               {...pageProps}

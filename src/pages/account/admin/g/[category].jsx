@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { getSession } from "next-auth/react";
+import PageHead from "@/components/ui/page_head/page_head";
 
 const {
   default: CustomContainer,
@@ -19,9 +20,12 @@ const GalleryAdmin = ({ galleyImages }) => {
   }, [router, session]);
 
   return (
-    <CustomContainer>
-      {galleyImages && <GalleryForm galleryImages={galleyImages} />}
-    </CustomContainer>
+    <>
+      <PageHead head="Admin" />
+      <CustomContainer>
+        {galleyImages && <GalleryForm galleryImages={galleyImages} />}
+      </CustomContainer>
+    </>
   );
 };
 
@@ -32,12 +36,12 @@ export async function getServerSideProps(context) {
 
   try {
     // if (session) {
-      const q = context.query.category;
-      const res = await fetch(
-        `http://${context.req.headers.host}/api/galleryImage?q=${q}`
-      );
-      const galleyImages = await res.json();
-      return { props: { galleyImages } };
+    const q = context.query.category;
+    const res = await fetch(
+      `http://${context.req.headers.host}/api/galleryImage?q=${q}`
+    );
+    const galleyImages = await res.json();
+    return { props: { galleyImages } };
     // }
     // return { props: { galleyImages: null } };
   } catch (err) {

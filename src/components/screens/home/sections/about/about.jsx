@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./about.module.scss";
 import { Col, Image, Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
+import { customFont1 } from "@/styles/fonts/fonts";
 
 const AboutSection = () => {
   return (
@@ -28,8 +29,10 @@ const AboutSection = () => {
             </Col>
             <Col xs={12} lg={6}>
               <div className={styles.right}>
-                <h2 data-aos="fade-left">Who Am I?</h2>
-                <p data-aos="fade-right">
+                <h2 data-aos="fade-left" className={customFont1}>
+                  Who Am I?
+                </h2>
+                <p data-aos="fade-right" >
                   I am a passionate Makeup artist, who specialized in Skin, Hair
                   and Bridal Makeup. I am the creative force behind SK
                   Beauty-Verse. With a passion for transforming faces, I
@@ -40,7 +43,7 @@ const AboutSection = () => {
                 </p>
                 <br />
                 <br />
-                <h2 data-aos="fade-left">Expert Training from Lakme Academy</h2>
+                <h2 data-aos="fade-left" className={customFont1}>Expert Training from Lakme Academy</h2>
                 <p data-aos="fade-right">
                   Our expertise is not just a result of experience. it is also
                   backed by professional training. We are proud alumni of the
@@ -55,7 +58,7 @@ const AboutSection = () => {
                   alt="lakme-logo"
                 />
                 <br />
-                <CustomButton data-aos="fade-up" variant={1}>
+                <CustomButton data-aos="fade-up" variant={2}>
                   Know More
                 </CustomButton>
               </div>
