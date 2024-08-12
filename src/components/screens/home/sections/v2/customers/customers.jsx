@@ -21,19 +21,25 @@ const Box = ({ data }) => {
 
   const startCounter = () => {
     let int = null;
-    int = setInterval(() => {
-      if (count < number) {
-        setCount((prev) => {
-          if (prev < number) {
-            return prev + 1;
-          } else {
-            return prev;
-          }
-        });
-      } else {
-        clearInterval(int);
-      }
-    }, calculateX(number));
+    setTimeout(() => {
+      int = setInterval(() => {
+        if (count < number) {
+          setCount((prev) => {
+            if (prev < number) {
+              if (number > 100) {
+                return prev + 4;
+              } else {
+                return prev + 1;
+              }
+            } else {
+              return prev;
+            }
+          });
+        } else {
+          clearInterval(int);
+        }
+      }, calculateX(number));
+    }, 100);
   };
 
   useEffect(() => {
@@ -44,7 +50,12 @@ const Box = ({ data }) => {
 
   return (
     <Col xs={12} lg={4}>
-      <div className={styles.Box} id={`box_${id}`} ref={triggerRef}>
+      <div
+        className={styles.Box}
+        id={`box_${id}`}
+        ref={triggerRef}
+        data-aos="fade-left"
+      >
         <div className={styles.right}>
           <h3>{count}+</h3>
           <p>{title}</p>
@@ -59,17 +70,17 @@ const CustomersSection = () => {
     {
       id: "ex",
       title: "Years of Experience",
-      number: 10,
+      number: 3,
     },
     {
       id: "cl",
       title: "Clients",
-      number: 340,
+      number: 487,
     },
     {
       id: "aw",
-      title: "Awards",
-      number: 37,
+      title: "Certificates",
+      number: 15,
     },
   ];
 

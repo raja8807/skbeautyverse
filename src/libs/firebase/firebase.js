@@ -10,6 +10,7 @@ import {
   collection,
   query,
   where,
+  select,
 } from "firebase/firestore";
 import {
   getStorage,
@@ -139,6 +140,34 @@ export const getAllData = async (collectionName) => {
     throw new Error(err);
   }
 };
+export const getAllDataBySelect = async (collectionName) => {
+  try {
+    // const res = null;
+    const q = query(
+      collection(db, collectionName),
+      // where("phone_number", "==", "7904236030")
+      where("name", "!=", "x"),
+      select()
+    );
+
+    // Execute the query and get the documents
+    const querySnapshot = await getDocs(q);
+
+    const res = [];
+    querySnapshot.forEach((doc) => {
+      res.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+
+    return res;
+  } catch (err) {
+    console.log(err);
+
+    // throw new Error(err);
+  }
+};
 
 export const getData = async (collectionName, queryArray) => {
   try {
@@ -189,7 +218,6 @@ export const getDataByQuery = async (collectionName, queryArray) => {
     return res;
   } catch (err) {
     console.log(err);
-
     throw new Error(err);
   }
 };

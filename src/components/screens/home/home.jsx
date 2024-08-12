@@ -1,38 +1,26 @@
-// import About from "./sections/collection/collection";
-import Collection from "./sections/collection/collection";
 import Banner from "./sections/banner/banner";
-import Categories from "./sections/categories/categories";
-import Pricing from "./sections/pricing/pricing";
-import EnquirePopup from "@/components/enquire_popup/enquire_popup";
 import { useState } from "react";
-import CustomContainer from "@/components/ui/custom_container/custom_container";
-import Certificates from "../about/certificates/certificates";
-import CustomSection from "@/components/ui/custom_section/custom_section";
-import Review from "../reviews/review/review";
-import { Row } from "react-bootstrap";
-import CustomButton from "@/components/ui/custom_button/custom_button";
 import { useRouter } from "next/router";
-import ContactForm from "../contact/contact_form";
-import Profiles from "./profiles/profiles";
 import AboutSection from "./sections/about/about";
 import CustomersSection from "./sections/v2/customers/customers";
 import LearnFromUsSection from "./sections/v2/learn/learn";
 import ServicesSection from "./sections/v2/services/services";
+import TestimonialsSection from "./sections/v2/testimonials/testimonials";
+import { ImageGallery } from "react-image-grid-gallery";
+import CustomContainer from "@/components/ui/custom_container/custom_container";
+import GallerySection from "./sections/v2/galery/galery";
 
 const HomeScreen = (props) => {
-  const {} = props;
-
-  const [showPopup, setShowPopup] = useState(false);
-
-  const router = useRouter();
-
+  const { reviews, galleryImages } = props;
   return (
     <>
-      <Banner setShowPopup={setShowPopup} />
+      <Banner />
       <AboutSection />
       <ServicesSection />
       <CustomersSection />
+      <TestimonialsSection reviews={reviews} />
       <LearnFromUsSection />
+      <GallerySection galleryImages={galleryImages} />
       {/* <Categories /> */}
     </>
   );

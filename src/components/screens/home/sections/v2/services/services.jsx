@@ -25,12 +25,12 @@ const ServicesSection = () => {
   const categories = SERVICE_CATEGORIES;
 
   return (
-    <div>
+    <div className={styles.ServicesSection}>
       <br />
       <CustomSection
         head="Services by SK Beauty-Verse"
         bg="gold"
-        caption="Explore our beauty realms! From enchanting bridal transformations to glamorous evening looks, discover the perfect makeup artistry for every occasion. Dive into elegance today!"
+        // caption="Explore our beauty realms! From enchanting bridal transformations to glamorous evening looks, discover the perfect makeup artistry for every occasion. Dive into elegance today!"
       >
         <CustomContainer>
           <br />

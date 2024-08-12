@@ -1,7 +1,12 @@
 .AboutSection {
-    background-image: linear-gradient(#DCDCDC , white);
+    // background-image: linear-gradient(#BEADFA , white);
+    background-image: linear-gradient(#FFF3DA , white);
   .left {
     position: relative;
+    color: white;
+    p{
+      font-weight: bold;
+    }
     // height: 500px;
     .bg {
       position: absolute;
@@ -29,7 +34,8 @@
   .right {
     padding: 70px 0 0 0;
     h2 {
-      color: $color_p3;
+      // color: $color_p3;
+      color: $color_r1;
     }
 
     p {

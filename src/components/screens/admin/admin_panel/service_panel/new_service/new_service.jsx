@@ -1,5 +1,10 @@
 import CustomButton from "@/components/ui/custom_button/custom_button";
-import { addData, deletFile, uploadFile } from "@/libs/firebase/firebase";
+import {
+  addData,
+  deletFile,
+  updateData,
+  uploadFile,
+} from "@/libs/firebase/firebase";
 import React, { useState } from "react";
 import { Form, Image } from "react-bootstrap";
 import {
@@ -12,32 +17,68 @@ import {
   BtnNumberedList,
 } from "react-simple-wysiwyg";
 
-const NewService = ({ service }) => {
-  const [rows, setRows] = useState([]);
+const NewService = ({
+  service,
+  setShowForm,
+  currentPost,
+  setServices,
+  setCurrentPost,
+}) => {
+  const [rows, setRows] = useState(currentPost?.rows || []);
   const [values, setValues] = useState({
-    title: "",
-    price: "",
+    title: currentPost?.title || "",
+    price: currentPost?.price || "",
     service: service.id,
-    description: "",
+    description: currentPost?.description || "",
   });
 
   const postProject = async (e) => {
     e.preventDefault();
 
-    const id = values.title.replace(" ", "-").toLowerCase();
     try {
-      const res = await addData(
-        "service_post",
-        {
-          id,
-          ...values,
-          rows,
-        },
-        id
-      );
+      if (rows.some((r) => !r.isUploaded)) {
+        throw new Error("upload all images before submitting");
+      }
+      if (currentPost) {
+        const res = updateData(
+          "service_post",
+          {
+            ...currentPost,
+            ...values,
+            rows,
+          },
+          currentPost?.id
+        );
+        setServices((prev) => {
+          const allPosts = [...prev];
+          const postIdx = prev.findIndex((p) => p.id === currentPost.id);
+          allPosts[postIdx] = {
+            ...currentPost,
+            ...values,
+            rows,
+          };
+          return allPosts;
+        });
+      } else {
+        const id = values.title.replace(" ", "-").toLowerCase();
+        const res = await addData(
+          "service_post",
+          {
+            id,
+            ...values,
+            rows,
+          },
+          id
+        );
 
-      console.log(res);
+        setServices((prev) => [...prev, res]);
+      }
+
+      alert("success");
+      setCurrentPost(null);
+      setShowForm(null);
     } catch (error) {
+      alert(error.message);
       console.log(error);
     }
   };
@@ -198,11 +239,11 @@ const NewService = ({ service }) => {
         <CustomButton
           clickHandler={() => {
             setRows((prev) => [
+              ...prev,
               {
                 img: "",
                 text: "",
               },
-              ...prev,
             ]);
           }}
         >
@@ -211,6 +252,7 @@ const NewService = ({ service }) => {
         <br />
         <br />
         <Form.Control type="submit" />
+        <br />
       </form>
     </div>
   );

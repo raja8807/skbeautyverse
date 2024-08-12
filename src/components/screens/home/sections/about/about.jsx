@@ -52,11 +52,11 @@ const AboutSection = () => {
                   nuances of makeup application, ensuring that our clients
                   receive nothing but the best.
                 </p>
-                <Image
+                {/* <Image
                   data-aos="fade-left"
                   src="/images/logo/1Lakme-Logo.png"
                   alt="lakme-logo"
-                />
+                /> */}
                 <br />
                 <CustomButton data-aos="fade-up" variant={2}>
                   Know More
