@@ -89,7 +89,7 @@ const ContactForm = ({
           <Link
             ref={linkRef}
             target="_blank"
-            href={`https://wa.me/918610030499?text=${values.message}`}
+            href={`https://wa.me/918610345830?text=${values.message}`}
           />
         </>
       )}

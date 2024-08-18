@@ -107,7 +107,7 @@ const BookPopup = (props) => {
       });
       a.setAttribute(
         "href",
-        `https://wa.me/918610030499?text=Hi, I've made advance payment for ${bookingData.packageId} - ${bookingData.categoryId} on ${bookingData.date} at slot ${bookingData.slot}`
+        `https://wa.me/918610345830?text=Hi, I've made advance payment for ${bookingData.packageId} - ${bookingData.categoryId} on ${bookingData.date} at slot ${bookingData.slot}`
       );
       a.setAttribute("target", "_black");
       a.click();

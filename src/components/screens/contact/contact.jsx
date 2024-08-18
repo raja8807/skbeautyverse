@@ -37,7 +37,6 @@ const ContactScreen = () => {
               <p>
                 Chennai, <br />
                 Tamilnadu <br />
-            
               </p>
             }
             icon={<GeoAltFill />}
@@ -45,12 +44,12 @@ const ContactScreen = () => {
           <Info
             head="Phone"
             text={<p>{contactDetails.whatsapp}</p>}
-            icon={<TelephoneFill />}
+            icon={<Whatsapp />}
           />
           <Info
             head="Phone"
             text={<p>{contactDetails.mobile}</p>}
-            icon={<Whatsapp />}
+            icon={<TelephoneFill />}
           />
           <Info
             head="Email"
@@ -58,8 +57,8 @@ const ContactScreen = () => {
             icon={<EnvelopeAtFill />}
           />
         </div>
-        <br/>
-        <ContactForm/>
+        <br />
+        <ContactForm />
       </CustomSection>
     </CustomContainer>
   );
