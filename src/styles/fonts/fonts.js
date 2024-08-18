@@ -2,11 +2,15 @@ import {
   Dancing_Script,
   Courgette,
   Marcellus as MainFont,
+  Oswald,
 } from "next/font/google";
 
-// console.log(Dancing_Script.name);
-
 const font1 = Dancing_Script({
+  weight: ["variable"],
+  subsets: ["latin"],
+  fallback: ["sans-serif"],
+});
+const oswaldFont = Oswald({
   weight: ["variable"],
   subsets: ["latin"],
   fallback: ["sans-serif"],
@@ -24,3 +28,4 @@ const fonts = {
 
 export default fonts;
 export const customFont1 = font1.className;
+export const oswald = oswaldFont.className;

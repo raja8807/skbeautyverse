@@ -32,16 +32,12 @@
       padding: 0;
       li {
         list-style: none;
-        border-bottom: 1px solid $color_gold;
         text-align: center;
         cursor: pointer;
-        &.active,
-        &:hover {
-          background-color: $color_gold;
-          border-bottom: 1px solid black;
-          a {
-            color: $color_black;
-          }
+
+        .services {
+          padding: 10px;
+          color: white;
         }
 
         a {
@@ -50,8 +46,26 @@
           padding: 10px;
           display: block;
           color: white;
+
+          &.active,
+          &:hover {
+            border-bottom: 1px solid $color_gold;
+            background-color: $color_gold;
+            border-bottom: 1px solid black;
+            color: $color_black !important;
+          }
         }
       }
     }
   }
+}
+.cat {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.ser {
+  margin-left: 80px;
 }

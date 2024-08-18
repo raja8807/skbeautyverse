@@ -6,6 +6,7 @@ import { X } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import contactDetails from "@/components/constants/contact";
+import SERVICE_CATEGORIES from "@/components/constants/service_categories";
 
 const BookPopup = (props) => {
   const {
@@ -14,6 +15,7 @@ const BookPopup = (props) => {
     packages,
     currentBookingData,
     setcurrentBookingData,
+    services: allServices,
   } = props;
 
   const [bookingData, setBookingData] = useState(currentBookingData || null);
@@ -37,7 +39,6 @@ const BookPopup = (props) => {
     message: "",
   });
 
-
   const makeBooking = async () => {
     setApiStatus("loading");
     const newBookingId = Math.floor(1000 + Math.random() * 9000);
@@ -58,10 +59,20 @@ const BookPopup = (props) => {
         },
       };
       const res = await axios.post("/api/booking", newBooking);
+
       if (res) {
         setBookingData(res.data);
       }
       setApiStatus("success");
+      await axios.post("/api/mail", {
+        to: "yora8807@gmail.com",
+        subject: "Submission Successful",
+        text: "Your submission has been successful",
+        html: ` <p>
+    ${newBooking}
+        </p>
+        `,
+      });
       setCurrentPage(3);
     } catch (err) {
       console.log(err);
@@ -71,7 +82,6 @@ const BookPopup = (props) => {
 
   const btnNames = ["", "Next", "Book", "Upload"];
   const [file, setFile] = useState(null);
-
 
   const updateBooking = async () => {
     try {
@@ -107,35 +117,18 @@ const BookPopup = (props) => {
     }
   };
 
-  const services = {
-    Makeup: [...packages.map((p) => p.head), "ANY OTHER OCASSION"],
-    Skin: [
-      "Waxing",
-      "Manicure",
-      "Pedicure",
-      "Cleanup",
-      "Facial",
-      "Skin detoxification treatment",
-      "Anti aging treatment",
-      "Anti acne treatment",
-      "De tan treatment",
-      "Advance Facial",
-      "OTHER",
-    ],
-    Hair: [
-      "Haircut",
-      "Hairwash",
-      "Hair spa",
-      "Anti dandruff treatment",
-      "Anti hairfall treatment",
-      "Highlights",
-      "Hair color treatments",
-      "Straightening treatment",
-      "Smoothing treatment",
-      "Keratin treatment",
-      "OTHER",
-    ],
-  };
+  const [services, setServices] = useState({});
+
+  useEffect(() => {
+    const x = {};
+    allServices.forEach((service) => {
+      x[service.category] = service.services.map(
+        (s) => `${s.id.toUpperCase()} - ${s.price}/-`
+      );
+    });
+
+    setServices(x);
+  }, [allServices]);
 
   useEffect(() => {
     return () => setcurrentBookingData(null);
@@ -190,6 +183,8 @@ const BookPopup = (props) => {
                       }}
                     >
                       <p>Slot {slot.id}</p>
+                      <p className={styles.time}>{slot.time}</p>
+
                       <small>{slot.bookingData ? "Booked" : "Available"}</small>
                     </div>
                   );
@@ -215,9 +210,16 @@ const BookPopup = (props) => {
                       }}
                     >
                       <option value={false}>Select Category</option>
-                      <option value="Makeup">Makeup</option>
+                      {SERVICE_CATEGORIES.map((sc) => {
+                        return (
+                          <option key={sc.title} value={sc.id}>
+                            {sc.title.toUpperCase()}
+                          </option>
+                        );
+                      })}
+                      {/* <option value="Makeup">Makeup</option>
                       <option value="Skin">Skin</option>
-                      <option value="Hair">Hair</option>
+                      <option value="Hair">Hair</option> */}
                     </select>
 
                     <select
@@ -242,7 +244,7 @@ const BookPopup = (props) => {
 
                     <input
                       type="text"
-                      placeholder="Loaction"
+                      placeholder="Location"
                       disabled={
                         !bookingValues.package || !bookingValues.category
                       }

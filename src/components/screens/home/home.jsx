@@ -11,7 +11,7 @@ import CustomContainer from "@/components/ui/custom_container/custom_container";
 import GallerySection from "./sections/v2/galery/galery";
 
 const HomeScreen = (props) => {
-  const { reviews, galleryImages } = props;
+  const { reviews, galleryImages, blogs } = props;
   return (
     <>
       <Banner />
@@ -19,7 +19,7 @@ const HomeScreen = (props) => {
       <ServicesSection />
       <CustomersSection />
       <TestimonialsSection reviews={reviews} />
-      <LearnFromUsSection />
+      <LearnFromUsSection blogs={blogs} />
       <GallerySection galleryImages={galleryImages} />
       {/* <Categories /> */}
     </>

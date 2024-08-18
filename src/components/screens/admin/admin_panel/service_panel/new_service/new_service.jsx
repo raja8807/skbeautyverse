@@ -15,6 +15,9 @@ import {
   Toolbar,
   BtnBulletList,
   BtnNumberedList,
+  BtnClearFormatting,
+  BtnStyles
+  ,HtmlButton
 } from "react-simple-wysiwyg";
 
 const NewService = ({
@@ -23,12 +26,13 @@ const NewService = ({
   currentPost,
   setServices,
   setCurrentPost,
+  isBlog,
 }) => {
   const [rows, setRows] = useState(currentPost?.rows || []);
   const [values, setValues] = useState({
     title: currentPost?.title || "",
     price: currentPost?.price || "",
-    service: service.id,
+    service: isBlog ? "Blogs" : service.id,
     description: currentPost?.description || "",
   });
 
@@ -40,8 +44,8 @@ const NewService = ({
         throw new Error("upload all images before submitting");
       }
       if (currentPost) {
-        const res = updateData(
-          "service_post",
+        await updateData(
+          isBlog ? "blog_post" : "service_post",
           {
             ...currentPost,
             ...values,
@@ -62,7 +66,7 @@ const NewService = ({
       } else {
         const id = values.title.replace(" ", "-").toLowerCase();
         const res = await addData(
-          "service_post",
+          isBlog ? "blog_post" : "service_post",
           {
             id,
             ...values,
@@ -97,19 +101,27 @@ const NewService = ({
           value={values.title}
         />
         <br />
-        <Form.Control
-          placeholder="Price"
-          onChange={(e) => {
-            setValues((prev) => ({ ...prev, price: e.target.value }));
-          }}
-          value={values.price}
-        />
-        <br />
+        {!isBlog && (
+          <>
+            <Form.Control
+              placeholder="Price"
+              onChange={(e) => {
+                setValues((prev) => ({ ...prev, price: e.target.value }));
+              }}
+              value={values.price}
+            />
+            <br />
+          </>
+        )}
+
         <textarea
           placeholder="Description"
           rows={3}
           onChange={(e) => {
             setValues((prev) => ({ ...prev, description: e.target.value }));
+          }}
+          style={{
+            width: "100%",
           }}
           value={values.description}
         />
@@ -222,12 +234,15 @@ const NewService = ({
                     });
                   }}
                   aria-required
+                  
                 >
                   <Toolbar>
                     <BtnBold />
                     <BtnItalic />
                     <BtnBulletList />
                     <BtnNumberedList />
+                    <BtnClearFormatting/>
+                    <BtnStyles/>
                   </Toolbar>
                 </Editor>
               </EditorProvider>

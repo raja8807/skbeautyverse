@@ -1,14 +1,12 @@
 import HomeScreen from "@/components/screens/home/home";
 // import CustomContainer from "@/components/ui/custom_container/custom_container";
 
-const Home = ({ homeData={} }) => {
-  
+const Home = ({ homeData = {}, blogs }) => {
   return (
     <HomeScreen
-     
       reviews={homeData.reviews}
       galleryImages={homeData.galleryImages || []}
-      
+      blogs={blogs}
     />
   );
 };

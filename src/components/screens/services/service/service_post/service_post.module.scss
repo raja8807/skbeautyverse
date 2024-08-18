@@ -12,6 +12,13 @@
         background-color: rgb(244, 244, 244);
         padding: 70px 30px;
         width: 50%;
+
+        h3,
+        h2,
+        h1,
+        h4 {
+          color: $color_r1;
+        }
       }
 
       &:nth-child(even) {

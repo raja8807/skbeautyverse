@@ -36,7 +36,7 @@ const WhatsappButton = () => {
       >
         <Image 
         style={{margin:'14px 0 0 6px'}}
-        src="/images/logo/Youtube.png" width={40} fluid alt="insta" />
+        src="/images/logo/Youtube.png" width={40} fluid alt="youtube" />
       </Link>
     </div>
   );

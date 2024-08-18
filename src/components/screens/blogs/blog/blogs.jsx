@@ -1,24 +1,20 @@
 import CustomSection from "@/components/ui/custom_section/custom_section";
 import React from "react";
-import styles from "./service_post.module.scss";
+import styles from "./blog.module.scss";
 import { Image } from "react-bootstrap";
 import PageHead from "@/components/ui/page_head/page_head";
 
-const ServicePostScreen = ({ service: service_post }) => {
-
+const BlogScreen = ({ blog }) => {
   return (
-    <div className={styles.ServicePostScreen}>
-      <PageHead
-        head={service_post.title}
-        caption={<h2>&#8377;{service_post.price}/-</h2>}
-      />
+    <div className={styles.BlogScreen}>
+      <PageHead head={blog.title} />
       <CustomSection>
         <div className={styles.wrap}>
-          {service_post.rows.map((row, idx) => {
+          {blog.rows.map((row, idx) => {
             return (
               <div className={styles.row} key={`row_${idx}`}>
                 <div className={styles.left} data-aos="fade-right">
-                  <Image src={row.img} fluid alt="img.jpeg" />
+                  <Image src={row.img} fluid alt={`${blog?.title}_${idx}`} />
                 </div>
                 <div
                   className={styles.right}
@@ -36,4 +32,4 @@ const ServicePostScreen = ({ service: service_post }) => {
   );
 };
 
-export default ServicePostScreen;
+export default BlogScreen;

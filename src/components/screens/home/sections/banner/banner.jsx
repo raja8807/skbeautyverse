@@ -1,7 +1,7 @@
 const {
   default: CustomContainer,
 } = require("@/components/ui/custom_container/custom_container");
-import { customFont1 } from "@/styles/fonts/fonts";
+import { customFont1, oswald } from "@/styles/fonts/fonts";
 import styles from "./banner.module.scss";
 import { useRouter } from "next/router";
 
@@ -15,20 +15,23 @@ const Slideshow = () => {
     {
       _id: "adsdv",
       url: "url(/bg1.jpg)",
+      color: "black",
     },
     {
       _id: "divms",
       url: "url(/bg2.jpg)",
+      color: "black",
     },
     {
       _id: "aplpa",
       url: "url(/bg3.jpg)",
+      color: "white",
     },
   ];
 
   return (
     <div className="slide-container">
-      <Fade arrows={false} canSwipe={false}>
+      <Fade arrows={false} canSwipe={false} duration={2000}>
         {images.map((fadeImage, index) => (
           <div key={fadeImage._id}>
             <div
@@ -37,12 +40,22 @@ const Slideshow = () => {
                 backgroundImage: fadeImage.url,
               }}
             >
-              <div className={styles.wrap}>
-                <h1 className={customFont1} data-aos='fade-up'>
-                  Immerse yourself in a world where artistry meets elegance.{" "}
-                </h1>
-                <CustomButton variant={2}>Book Now</CustomButton>
-              </div>
+              <CustomContainer>
+                <div className={styles.wrap}>
+                  <h1
+                    className={oswald}
+                    data-aos="fade-up"
+                    style={{
+                      color: fadeImage.color,
+                    }}
+                  >
+                    Immerse yourself in a world where artistry meets elegance.
+                  </h1>
+                  <CustomButton variant={2} href="/book">
+                    Book Now
+                  </CustomButton>
+                </div>
+              </CustomContainer>
             </div>
           </div>
         ))}

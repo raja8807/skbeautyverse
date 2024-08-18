@@ -1,6 +1,4 @@
 import CustomButton from "@/components/ui/custom_button/custom_button";
-import BannerForm from "./form/banner_form/banner_form";
-import PackageForm from "./form/banner_form/package_form/package_form";
 import { signOut } from "next-auth/react";
 import { Col, Image, Row } from "react-bootstrap";
 import SERVICE_CATEGORIES from "@/components/constants/service_categories";
@@ -9,7 +7,7 @@ import { useState } from "react";
 import ServicesPanel from "./service_panel/service_panel";
 
 const Service = ({ data, setCurrentCategory }) => {
-  const { title, img, id } = data;
+  const { title, img } = data;
 
   return (
     <Col xs={6} md={6} lg={3}>
@@ -55,6 +53,14 @@ const AdminPanel = () => {
               setCurrentCategory={setCurrentCategory}
             />
           ))}
+          <Service
+            data={{
+              title: "Blogs",
+              img: "blog.png",
+              isBlog: true,
+            }}
+            setCurrentCategory={setCurrentCategory}
+          />
         </Row>
       )}
     </div>

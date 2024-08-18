@@ -3,22 +3,33 @@ import React, { useEffect, useState } from "react";
 import NewService from "./new_service/new_service";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { deletData, getData } from "@/libs/firebase/firebase";
+import { deletData, getAllData, getData } from "@/libs/firebase/firebase";
 import { Col, Image, Row } from "react-bootstrap";
 
 const ServicesPanel = ({ service, setCurrentCategory }) => {
   const [showForm, setShowForm] = useState(null);
   const [services, setServices] = useState([]);
 
+  const isBlog = service.isBlog;
+
   const [currentPost, setCurrentPost] = useState(null);
 
   const fetchService = async () => {
-    const services = await getData("service_post", [
-      "service",
-      "==",
-      service?.id,
-    ]);
-    setServices(services);
+    try {
+      let serviceRes = [];
+      if (isBlog) {
+        serviceRes = await getAllData("blog_post");
+      } else {
+        serviceRes = await getData("service_post", [
+          "service",
+          "==",
+          service?.id,
+        ]);
+      }
+      setServices(serviceRes);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -40,7 +51,7 @@ const ServicesPanel = ({ service, setCurrentCategory }) => {
           setShowForm(service);
         }}
       >
-        New Service
+        New {isBlog ? "Blog" : "Service"}
       </CustomButton>
       <br />
       <br />
@@ -51,6 +62,7 @@ const ServicesPanel = ({ service, setCurrentCategory }) => {
           currentPost={currentPost}
           setCurrentPost={setCurrentPost}
           setServices={setServices}
+          isBlog={isBlog}
         />
       ) : (
         <Row>
@@ -64,7 +76,10 @@ const ServicesPanel = ({ service, setCurrentCategory }) => {
                   <CustomButton
                     clickHandler={async () => {
                       try {
-                        await deletData("service_post", s.id);
+                        await deletData(
+                          isBlog ? "blog_post" : "service_post",
+                          s.id
+                        );
                         alert("Deleted");
                         setServices((prev) =>
                           prev.filter((sp) => sp.id !== s.id)

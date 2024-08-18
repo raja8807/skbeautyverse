@@ -4,21 +4,25 @@ const pagesList = [
     href: "/",
   },
   {
+    name: "Services",
+    href: "/",
+  },
+  {
     name: "Bookings",
     href: "/book",
   },
   {
-    name: "About",
-    href: "/about",
+    name: "Blogs",
+    href: "/blogs",
   },
   {
     name: "Gallery",
     href: "/gallery/bridal",
   },
-  {
-    name: "Reviews",
-    href: "/reviews",
-  },
+  // {
+  //   name: "Reviews",
+  //   href: "/reviews",
+  // },
   {
     name: "Contact",
     href: "/contact",

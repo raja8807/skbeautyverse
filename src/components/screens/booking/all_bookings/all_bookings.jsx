@@ -1,7 +1,7 @@
 const { Table, Modal, Spinner, Image } = require("react-bootstrap");
 import { useEffect, useState } from "react";
 import styles from "./all_booking.module.scss";
-import { X } from "react-bootstrap-icons";
+import { Trash, X } from "react-bootstrap-icons";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
@@ -54,6 +54,20 @@ const AllBookings = ({ bookingData: data = [] }) => {
     setStatus(showPopupFor?.status);
   }, [showPopupFor]);
 
+  const deleteBooking = async (booking) => {
+    try {
+      const res = await fetch(`/api/booking/${booking?._id}`, {
+        method: "DELETE",
+      });
+
+      if (res?.status === 204) {
+        setBookingData((prev) => prev.filter((b) => b._id != booking?._id));
+      }
+    } catch (err) {
+      alert("Error");
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -140,6 +154,7 @@ const AllBookings = ({ bookingData: data = [] }) => {
             <th>SLOT</th>
             <th>CUSTOMER</th>
             <th>STATUS</th>
+            {/* <th>ACTION</th> */}
           </tr>
         </thead>
         <tbody>
@@ -158,6 +173,14 @@ const AllBookings = ({ bookingData: data = [] }) => {
                     <td>{booking.slot}</td>
                     <td>{booking.customer.name}</td>
                     <td className={styles[booking.status]}>{booking.status}</td>
+                    <td>
+                      <Trash
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          await deleteBooking(booking);
+                        }}
+                      />
+                    </td>
                   </tr>
                 );
               })

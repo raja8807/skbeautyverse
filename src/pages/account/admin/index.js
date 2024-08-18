@@ -40,18 +40,3 @@ const Admin = ({ homeData }) => {
 };
 
 export default Admin;
-
-// export async function getServerSideProps(context) {
-//   try {
-//     const session = await getSession(context);
-//     // console.log(session);
-//     // if (session) {
-//     const res = await fetch(`http://${context.req.headers.host}/api/homeData`);
-//     const homeData = await res.json();
-//     return { props: { homeData } };
-//     // }
-//     // return { props: { homeData: null } };
-//   } catch (err) {
-//     return { props: { images: "errr-->" + err.message } };
-//   }
-// }

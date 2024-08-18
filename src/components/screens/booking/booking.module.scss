@@ -1,17 +1,17 @@
 .booking {
   @include flexCenter;
-  padding: 40px 0;
+  padding:  40px 0;
 
 
   .calander {
-    background-color: rgba(0, 0, 0, 0.5) !important;
+    // background-color: rgba(0, 0, 0, 0.5) !important;
     // background-color: red !important;
-    border: 1px solid $color_gold2;
-    border-radius: 10px;
+    // border: 1px solid $color_gold2;
+    // border-radius: 10px;
 
     button {
       &:disabled {
-        background-color: rgba(0, 0, 0, 0.5) !important;
+        // background-color: rgba(0, 0, 0, 0.5) !important;
         opacity: 0.5;
       }
     }
@@ -19,7 +19,7 @@
     button[class*="react-calendar__tile"] {
       // background-color: red;
       border: 1px solid $color_gold2;
-      border-radius: 5px;
+      // border-radius: 5px;
 
       &:hover {
         background-color: $color_gold;

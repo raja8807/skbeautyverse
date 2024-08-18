@@ -15,13 +15,13 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Router from "next/router";
 import fonts from "@/styles/fonts/fonts";
+import { getAllData } from "@/libs/firebase/firebase";
 
 // Kaushan_Script
 
 const roboto = BaseFont({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   weight: ["400", "500", "600", "700"],
-  // weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -29,6 +29,42 @@ export default function App({ Component, pageProps }) {
   const [load, setLoad] = useState(true);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [services, setServices] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const fetchServices = async () => {
+    setIsLoading(true);
+    try {
+      const res = await getAllData("service_post");
+      const blogRes = await getAllData("blog_post");
+      const servicesByCategory = [];
+      res.forEach((doc) => {
+        const serIdx = servicesByCategory.findIndex((sc) => {
+          return sc.category === doc.service;
+        });
+
+        if (serIdx != -1) {
+          if (servicesByCategory[serIdx].services) {
+            servicesByCategory[serIdx].services.push(doc);
+          } else {
+            servicesByCategory[serIdx].services = [];
+            servicesByCategory[serIdx].services.push(doc);
+          }
+        } else {
+          servicesByCategory.push({
+            category: doc.service,
+            services: [{ ...doc }],
+          });
+        }
+      });
+
+      setServices(servicesByCategory || []);
+      setBlogs(blogRes || []);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     Router.events.on("routeChangeStart", (...params) => {
@@ -45,6 +81,8 @@ export default function App({ Component, pageProps }) {
     setTimeout(() => {
       setLoad(false);
     }, 2000);
+
+    fetchServices();
 
     return () => {
       Router.events.off("routeChangeStart", NProgress.start);
@@ -80,40 +118,22 @@ export default function App({ Component, pageProps }) {
     <SessionProvider session={pageProps.session}>
       {load && (
         <div className="admm">
-          {/* <div class="bg"></div>
-          <div class="star-field">
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-          
-          </div> */}
           <Image className="logo" src="/load.gif" width={100} alt="logo" />
         </div>
       )}
       {isLoading || load ? (
         <div className="jbj">
           <Image className="logo" src="/load.gif" width={100} alt="logo" />
-          {/* <div class="bg"></div>
-
-          <div class="star-field">
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <Image
-              className="logo"
-              src="/images/logo/logo.png"
-              width={120}
-              alt="logo"
-            />
-          </div> */}
         </div>
       ) : (
         <main className={fonts.mainFont}>
-          <Layout customer={customer}>
+          <Layout customer={customer} services={services}>
             <Component
               {...pageProps}
               customer={customer}
               setCustomer={setCustomer}
+              blogs={blogs}
+              services={services}
             />
           </Layout>
         </main>

@@ -8,6 +8,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Service = ({ service, data }) => {
+
+  console.log(data);
+  
+
   const { rows, title, price, id, description } = data;
   return (
     <Col xs={12} md={6} lg={4} data-aos="fade-up">
@@ -16,7 +20,7 @@ const Service = ({ service, data }) => {
           <div
             className={styles.img}
             style={{
-              backgroundImage: `url(${rows[0].img})`,
+              backgroundImage: `url(${rows?.[0]?.img})`,
             }}
           />
           <h4>{title}</h4>
