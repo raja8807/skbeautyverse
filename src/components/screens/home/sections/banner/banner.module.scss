@@ -3,6 +3,7 @@
   background-size: cover;
   position: relative;
   background-position: center;
+
   flex-direction: column;
   // @include flexCenter;
 
@@ -22,7 +23,7 @@
       font-size: 60px;
       // color: $color_p2;
       margin-bottom: 20px;
-      color: white;
+      // color: $color_r1;
     }
 
     @include respond-below(sm) {
@@ -50,17 +51,33 @@
     height: 100%;
     top: 0;
     left: 0;
-    // background-color: rgba(0, 0, 0, 0.5);
   }
 
   @include respond-below(sm) {
-    height: 90vh;
+    height: 70vh;
+    background-position: -500px;
 
     .wrap {
-      padding-top: 150px;
+      display: none;
+      padding-top: 250px;
       h1 {
         font-size: 35px;
       }
     }
+  }
+}
+
+.btmWrap {
+  padding: 50px 0;
+  display: none;
+  background-color: rgb(240, 240, 240);
+  text-align: center;
+  h1 {
+    font-size: 35px;
+    margin-bottom: 24px;
+  }
+
+  @include respond-below(sm) {
+    display: block;
   }
 }

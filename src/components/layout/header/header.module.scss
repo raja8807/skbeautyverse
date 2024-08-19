@@ -65,7 +65,7 @@
       .name {
         height: 35px;
         margin-bottom: 4px;
-        margin-left: -25px;
+        margin-left: 0px;
       }
 
       @include respond-below(md) {

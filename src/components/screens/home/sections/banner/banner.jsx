@@ -14,24 +14,55 @@ const Slideshow = () => {
   const images = [
     {
       _id: "adsdv",
-      url: "url(/bg1.jpg)",
+      url: "url(/banner/t1.jpeg)",
       color: "black",
     },
     {
       _id: "divms",
-      url: "url(/bg2.jpg)",
+      url: "url(/banner/2.png)",
+
       color: "black",
     },
     {
       _id: "aplpa",
-      url: "url(/bg3.jpg)",
-      color: "white",
+      url: "url(/banner/3.png)",
+      color: "black",
+    },
+    {
+      _id: "advmamldv",
+      url: "url(/banner/4.png)",
+      color: "black",
+    },
+    {
+      _id: "ladvml",
+      url: "url(/banner/5.png)",
+      color: "black",
+    },
+    {
+      _id: "ladmlvad",
+      url: "url(/banner/6.png)",
+      color: "black",
+    },
+    {
+      _id: "ladmla",
+      url: "url(/banner/7.png)",
+      color: "black",
+    },
+    {
+      _id: "alvda",
+      url: "url(/banner/8.png)",
+      color: "black",
+    },
+    {
+      _id: "sfkpgpvs",
+      url: "url(/banner/9.png)",
+      color: "black",
     },
   ];
 
   return (
     <div className="slide-container">
-      <Fade arrows={false} canSwipe={false} duration={2000}>
+      <Fade arrows={false} canSwipe={false} indicators={false} duration={1000}>
         {images.map((fadeImage, index) => (
           <div key={fadeImage._id}>
             <div
@@ -49,7 +80,9 @@ const Slideshow = () => {
                       color: fadeImage.color,
                     }}
                   >
-                    Immerse yourself in a world where artistry meets elegance.
+                    One solution for all your Skin, Hair, Courses and Makeup
+                    concerns - <br />
+                    SK Beauty-Verse
                   </h1>
                   <CustomButton variant={2} href="/book">
                     Book Now
@@ -60,6 +93,17 @@ const Slideshow = () => {
           </div>
         ))}
       </Fade>
+      <div className={styles.btmWrap}>
+        <CustomContainer>
+          <h1 className={oswald} data-aos="fade-up">
+            One solution for all your Skin, Hair, Courses and Makeup concerns -
+            SK Beauty-Verse
+          </h1>
+          <CustomButton variant={2} href="/book">
+            Book Now
+          </CustomButton>
+        </CustomContainer>
+      </div>
     </div>
   );
 };

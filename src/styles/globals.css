@@ -10,6 +10,10 @@ body {
   /* background-color: #DCDCDC; */
 }
 
+.react-multi-carousel-dot-list {
+  display: none !important;
+}
+
 .loading {
   position: fixed;
   top: 0;

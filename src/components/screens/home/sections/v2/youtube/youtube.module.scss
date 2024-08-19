@@ -1,0 +1,9 @@
+.YoutubeSection {
+  .insta {
+    height: 620px;
+
+    @include respond-below(sm) {
+      height: 500px;
+    }
+  }
+}

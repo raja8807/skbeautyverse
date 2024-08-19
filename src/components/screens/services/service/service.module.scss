@@ -24,7 +24,7 @@
     // border-radius: 10px;
   }
   .img {
-    border: 5px solid $color_p3;
+    border: 5px solid $color_r1;
     width: 250px;
     height: 250px;
     border-radius: 50%;
@@ -36,6 +36,17 @@
     img {
       box-shadow: 0 0 50px 1px rgb(218, 218, 218);
       transform: scale(1.05);
+    }
+  }
+
+  @include respond-below(md) {
+    .img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .desc {
+      font-size: 14px;
     }
   }
 }

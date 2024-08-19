@@ -8,10 +8,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Service = ({ service, data }) => {
-
-  console.log(data);
-  
-
   const { rows, title, price, id, description } = data;
   return (
     <Col xs={12} md={6} lg={4} data-aos="fade-up">
@@ -24,7 +20,7 @@ const Service = ({ service, data }) => {
             }}
           />
           <h4>{title}</h4>
-          <p>{description}</p>
+          <p className={styles.desc}>{description}</p>
           <p className={styles.price}> &#8377;{price}/-</p>
           <CustomButton variant={2}>Know More</CustomButton>
         </div>

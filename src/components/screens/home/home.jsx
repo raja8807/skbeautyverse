@@ -9,6 +9,7 @@ import TestimonialsSection from "./sections/v2/testimonials/testimonials";
 import { ImageGallery } from "react-image-grid-gallery";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import GallerySection from "./sections/v2/galery/galery";
+import YoutubeSection from "./sections/v2/youtube/youtube";
 
 const HomeScreen = (props) => {
   const { reviews, galleryImages, blogs } = props;
@@ -20,6 +21,7 @@ const HomeScreen = (props) => {
       <CustomersSection />
       <TestimonialsSection reviews={reviews} />
       <LearnFromUsSection blogs={blogs} />
+      <YoutubeSection/>
       <GallerySection galleryImages={galleryImages} />
       {/* <Categories /> */}
     </>
