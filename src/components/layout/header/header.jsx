@@ -77,44 +77,44 @@ const Header = ({ customer, services }) => {
         <nav data-aos="fade-right">
           <div className={styles.navItems}>
             {pagesList.map((p) => {
-              if (p.name === "Services") {
-                return (
-                  <div
-                    key="xx"
-                    className={styles.services}
-                    onMouseEnter={() => {
-                      setShowCategories(true);
-                    }}
-                    onMouseLeave={() => {
-                      setShowCategories(true);
-                    }}
-                  >
-                    <p>{p.name}</p>
-{/* 
-                    <Dropdown>
-                      <Dropdown.Toggle>sfs</Dropdown.Toggle>
-                      <Dropdown.Menu style={{
-                        zIndex:'20000'
-                      }}>
-                        <Dropdown.Item>skfrgksnrkgnks</Dropdown.Item>
-                        <Dropdown.Item>skfrgksnrkgnks</Dropdown.Item>
-                        <Dropdown.Item>skfrgksnrkgnks</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown> */}
+//               if (p.name === "Services") {
+//                 return (
+//                   <div
+//                     key="xx"
+//                     className={styles.services}
+//                     onMouseEnter={() => {
+//                       setShowCategories(true);
+//                     }}
+//                     onMouseLeave={() => {
+//                       setShowCategories(true);
+//                     }}
+//                   >
+//                     <p>{p.name}</p>
+// {/* 
+//                     <Dropdown>
+//                       <Dropdown.Toggle>sfs</Dropdown.Toggle>
+//                       <Dropdown.Menu style={{
+//                         zIndex:'20000'
+//                       }}>
+//                         <Dropdown.Item>skfrgksnrkgnks</Dropdown.Item>
+//                         <Dropdown.Item>skfrgksnrkgnks</Dropdown.Item>
+//                         <Dropdown.Item>skfrgksnrkgnks</Dropdown.Item>
+//                       </Dropdown.Menu>
+//                     </Dropdown> */}
 
-                    {/* <div className={styles.abs}>
-                      {showCategories &&
-                        services.map((category, ci) => {
-                          return (
-                            <div key={`cat_${ci}`}>
-                              <Category category={category} />
-                            </div>
-                          );
-                        })}
-                    </div> */}
-                  </div>
-                );
-              }
+//                     {/* <div className={styles.abs}>
+//                       {showCategories &&
+//                         services.map((category, ci) => {
+//                           return (
+//                             <div key={`cat_${ci}`}>
+//                               <Category category={category} />
+//                             </div>
+//                           );
+//                         })}
+//                     </div> */}
+//                   </div>
+//                 );
+//               }
               return (
                 <Link key={p.href} href={p.href}>
                   {p.name}

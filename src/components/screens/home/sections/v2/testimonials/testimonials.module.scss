@@ -20,12 +20,9 @@
   text-align: center;
 
   .img {
-    height: 120px;
-    width: 120px;
-    margin: 0 auto 24px auto;
-    background-size: contain;
     border-radius: 50%;
-    background-position: center;
+    border: 2px solid $color_r1;
+    margin-bottom: 16px;
   }
 
   h2 {
@@ -37,4 +34,17 @@
     font-size: 18px;
     font-style: italic;
   }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn {
+  position: relative;
+  z-index: 10;
+  width: fit-content;
+  margin: auto;
 }

@@ -65,11 +65,11 @@ const BookPopup = (props) => {
       }
       setApiStatus("success");
       await axios.post("/api/mail", {
-        to: "yora8807@gmail.com",
+        to: "skbeautyverse@gmail.com",
         subject: "Submission Successful",
         text: "Your submission has been successful",
         html: ` <p>
-    ${newBooking}
+    ${newBooking.customer.name} Booked
         </p>
         `,
       });

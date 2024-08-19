@@ -24,7 +24,11 @@ const Footer = () => {
             <div className={styles.img}>
               {/* <Image src="/images/categories/bg.jpeg" alt="bg" fluid /> */}
               <div className={styles.overlay}>
-                <Image src="/images/logo/logo.png" fluid alt="sk_beautyverse_logo" />
+                <Image
+                  src="/images/logo/logo.png"
+                  fluid
+                  alt="sk_beautyverse_logo"
+                />
                 <p>
                   I am <span className={styles.name}>SUSHMITHA KARTHIK</span>,
                   your dedicated makeup artist, Certified by{" "}
@@ -70,6 +74,7 @@ const Footer = () => {
                         {l.name}
                       </Link>
                     ))}
+                    <Link href={"/account"}>Admin</Link>
                   </div>
                 </Col>
 

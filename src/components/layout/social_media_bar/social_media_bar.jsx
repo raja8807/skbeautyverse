@@ -8,7 +8,7 @@ const SocialMediaBar = () => {
   const socialMedias = [
     {
       id: "insta",
-      href: "/",
+      href: "https://www.instagram.com/skbeautyverse",
       icon: <Instagram />,
       color: "#FD1D1D",
     },
@@ -20,13 +20,13 @@ const SocialMediaBar = () => {
     },
     {
       id: "yt",
-      href: "/",
+      href: "https://youtube.com/@skbeauty-verse",
       icon: <Youtube />,
       color: "#FF0000",
     },
     {
       id: "wa",
-      href: "/",
+      href: "https://wa.me/918610345830?text=Hi, I want more details..",
       icon: <Whatsapp />,
       color: "#25D366",
     },

@@ -5,7 +5,7 @@ const pagesList = [
   },
   {
     name: "Services",
-    href: "/",
+    href: "/services",
   },
   {
     name: "Bookings",
