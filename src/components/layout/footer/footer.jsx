@@ -74,7 +74,7 @@ const Footer = () => {
                         {l.name}
                       </Link>
                     ))}
-                    <Link href={"/account"}>Admin</Link>
+                    <Link href={"/account"}>Login</Link>
                   </div>
                 </Col>
 

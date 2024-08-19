@@ -16,6 +16,7 @@ import "nprogress/nprogress.css";
 import Router from "next/router";
 import fonts from "@/styles/fonts/fonts";
 import { getAllData } from "@/libs/firebase/firebase";
+import LoadingScreen from "@/components/ui/loading/loading";
 
 // Kaushan_Script
 
@@ -116,15 +117,9 @@ export default function App({ Component, pageProps }) {
 
   return (
     <SessionProvider session={pageProps.session}>
-      {load && (
-        <div className="admm">
-          <Image className="logo" src="/load.gif" width={100} alt="logo" />
-        </div>
-      )}
+      {load && <LoadingScreen />}
       {isLoading || load ? (
-        <div className="jbj">
-          <Image className="logo" src="/load.gif" width={100} alt="logo" />
-        </div>
+        <LoadingScreen />
       ) : (
         <main className={fonts.mainFont}>
           <Layout customer={customer} services={services}>

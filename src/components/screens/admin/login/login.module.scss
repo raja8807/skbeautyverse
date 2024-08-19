@@ -7,24 +7,23 @@
   width: 100%;
   @include flexCenter;
   flex-direction: column;
+  background-color: $color_p3;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  padding: 24px;
   p {
     text-align: center;
     color: $color_gold;
     font-size: 30px;
   }
   // background-color: $color_p2;
-  width: 300px;
+  max-width: 400px;
   padding: 20px;
   gap: 16px;
   small {
     text-align: center;
     cursor: pointer;
-
-    span {
-      &:hover {
-        color: $color_gold2;
-      }
-    }
   }
 
   form {
@@ -37,11 +36,11 @@
     input,
     button {
       padding: 5px 10px;
-      color: $color_white;
+      // color: $color_white;
       // background-color: $color_grey;
 
       // border: none;
-      border: 1px solid black;
+      border: none;
       border-radius: 10px;
       outline: none;
       height: 40px;
@@ -52,6 +51,7 @@
       &[type="submit"] {
         background-color: $color_gold !important;
         color: $color_black !important;
+        // border: 1px solid $color_r1;
       }
     }
   }
