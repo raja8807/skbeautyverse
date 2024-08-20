@@ -117,7 +117,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <SessionProvider session={pageProps.session}>
-      {load && <LoadingScreen />}
+     
       {isLoading || load ? (
         <LoadingScreen />
       ) : (

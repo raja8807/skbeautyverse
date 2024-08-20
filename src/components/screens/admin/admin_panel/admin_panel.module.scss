@@ -19,3 +19,16 @@
     transform: scale(1.1);
   }
 }
+
+
+.review{
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+
+  .left{
+    width: 100px;
+  }
+
+
+}

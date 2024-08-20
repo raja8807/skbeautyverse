@@ -49,6 +49,7 @@ const TestimonialsSection = ({ reviews }) => {
           id,
           ...values,
           img: url,
+          isApproved: false,
         },
         id
       );
@@ -83,6 +84,7 @@ const TestimonialsSection = ({ reviews }) => {
                 setFile(e.target.files[0]);
               }}
             />
+
             <Image
               src={file ? URL.createObjectURL(file) : "/images/user.jpg"}
               width={100}
@@ -136,12 +138,10 @@ const TestimonialsSection = ({ reviews }) => {
             {reviews.map((review) => {
               return (
                 <div className={styles.item} key={review?._id}>
-                  <Image
-                    src={review.img}
-                    fluid
-                    width={150}
-                    height={150}
-                    alt="img"
+                  <div
+                    style={{
+                      backgroundImage: `url(${review.img})`,
+                    }}
                     className={styles.img}
                   />
 

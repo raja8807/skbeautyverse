@@ -3,45 +3,34 @@
   background-color: black;
   height: 100dvh;
   width: 100dvw;
-  position: absolute;
+  @include flexCenter;
 
-  .left {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: 1s left;
-    animation-fill-mode: forwards;
-  }
-  .right {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-20%, -20%);
-    opacity: 0;
-    animation: 1s rightAnim;
-    animation-delay: 0.5s;
-    animation-fill-mode: forwards;
+  .box {
+    display: flex;
+    align-items: center;
+
+    .right {
+      width: 0px;
+      overflow: hidden;
+      animation: 1s anim ease-in-out;
+      animation-fill-mode: forwards;
+      opacity: 0;
+      margin-top: 16px;
+      // background-color: red;
+    }
   }
 }
 
-@keyframes left {
+@keyframes anim {
   0% {
-    transform: translate(-50%, -50%);
-  }
-
-  100% {
-    transform: translate(-130%, -50%);
-  }
-}
-@keyframes rightAnim {
-  0% {
+    width: 0px;
     opacity: 0;
-    // transform: translate(-50%, -50%);
   }
 
+ 
+
   100% {
+    width: 200px;
     opacity: 1;
-    // transform: translate(-120%, -50%);
   }
 }
