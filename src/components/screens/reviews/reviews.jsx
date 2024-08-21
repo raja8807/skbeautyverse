@@ -9,9 +9,7 @@ import Review from "./review/review";
 import { useState } from "react";
 import PageHead from "@/components/ui/page_head/page_head";
 
-const ReviewsScreen = ({ reviews}) => {
-
-
+const ReviewsScreen = ({ reviews }) => {
   return (
     <div>
       <PageHead head="Reviews" />
@@ -24,13 +22,9 @@ const ReviewsScreen = ({ reviews}) => {
               //   // to get a value that is either negative, positive, or zero.
               //   return new Date(b.createdAt) - new Date(a.createdAt);
               // })
-              .map((review) => {
+              .map((review,i) => {
                 return (
-                  <Review
-                    key={review._id}
-                    review={review}
-                    reviews={reviews}
-                  />
+                  <Review key={`review_${i}`} review={review} reviews={reviews} />
                 );
               })}
           </Row>
