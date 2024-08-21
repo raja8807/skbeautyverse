@@ -1,12 +1,13 @@
 .footer {
-  // background-color: black;
-  background-color: $color_pk1;
+  background-color: black;
+  // background-color: $color_pk1;
+  // background-image: linear-gradient(rgb(223, 223, 223), $color_mb);
 
   // height: 400px;
   @include flexCenter;
 
   .name {
-    color: black;
+    color: #F9E400;
     font-weight: 600;
   }
 
@@ -25,7 +26,7 @@
       gap: 30px;
 
       p {
-        color: $color_mb;
+        color: white;
       }
       img {
         width: 100px;
@@ -53,13 +54,12 @@
       h2 {
         font-size: 22px;
         margin-bottom: 20px;
-        color: $color_p3;
-
+        color: #F9E400;
       }
 
       svg {
         path {
-          color: $color_p3;
+          color: #F9E400;
         }
       }
 
@@ -70,7 +70,8 @@
 
         p {
           margin-top: -5px;
-          color: $color_mb;
+          color: white;
+          font-size: 14px;
           @include respond-below(sm) {
             font-size: 14px;
           }
@@ -85,7 +86,7 @@
           margin: 0;
           padding: 0;
           // background-color: red;
-          color: $color_mb;
+          color: white;
           text-decoration: none;
           @include respond-below(sm) {
             font-size: 14px;
@@ -122,8 +123,14 @@
     justify-content: space-between;
     background-color: $color_gold;
     font-size: 14px;
-    padding: 5px 40px;
+    padding: 5px 20px;
     margin-bottom: 10px;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
     p {
       color: $color_black;
@@ -141,6 +148,11 @@
       padding: 5px;
       // align-items: center;
       text-align: center;
+
+      > div {
+        flex-direction: column;
+        justify-content: center;
+      }
       p {
         font-size: 12px;
       }

@@ -35,7 +35,7 @@ const NewService = ({
     price: currentPost?.price || "",
     service: isBlog ? "Blogs" : service.id,
     description: currentPost?.description || "",
-    headImg: currentPost?.headImg || "",
+    headImg: "",
   });
 
   const postProject = async (e) => {
@@ -78,7 +78,6 @@ const NewService = ({
         );
 
         console.log(res.headImg);
-        
 
         setServices((prev) => [...prev, res]);
       }
@@ -95,7 +94,6 @@ const NewService = ({
   const headImages = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   // console.log(values.headImg);
-  
 
   return (
     <div>
@@ -103,7 +101,39 @@ const NewService = ({
       <form onSubmit={postProject}>
         <p>Category: {service.title}</p>
         <br />
-        <div className={`${styles.headerImages}`}>
+        <p>Head image</p>
+
+        {values.headImg ? (
+          <>
+            <Image
+              width={300}
+              src={
+                values?.headImg?.isUploaded
+                  ? values?.headImg?.img
+                  : URL.createObjectURL(values?.headImg?.img)
+              }
+            />
+            <CustomButton>Upload</CustomButton>
+          </>
+        ) : (
+          <Form.Control
+            type="file"
+            max={1}
+            accept=".png"
+            onChange={(e) => {
+              setValues((prev) => {
+                return {
+                  ...prev,
+                  headImg: {
+                    img: e.target.files[0],
+                    isUploaded: false,
+                  },
+                };
+              });
+            }}
+          />
+        )}
+        {/* <div className={`${styles.headerImages}`}>
           {headImages.map((hi) => {
             return (
               <div
@@ -117,7 +147,7 @@ const NewService = ({
               </div>
             );
           })}
-        </div>
+        </div> */}
         <br />
         <Form.Control
           placeholder="Title"

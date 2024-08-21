@@ -3,7 +3,6 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./blogs.module.scss";
 import Link from "next/link";
-import CustomSection from "@/components/ui/custom_section/custom_section";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import PageHead from "@/components/ui/page_head/page_head";
 
@@ -31,7 +30,12 @@ const BlogCard = ({ data }) => {
 const BlogsScreen = ({ blogs }) => {
   return (
     <div>
-      <PageHead head="Blogs" />
+      <PageHead
+        head="BLOGS"
+        img="/images/png/blog.PNG"
+        rightImg="/images/png/blog.PNG"
+        variant={3}
+      />
       <br />
       <br />
       <br />

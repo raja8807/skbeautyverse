@@ -1,42 +1,42 @@
 .BlogCard {
-    margin: 20px;
-    padding: 20px;
-    @include flexCenter;
-    flex-direction: column;
-    gap: 12px;
-    cursor: pointer;
-    text-align: center;
-  
-    p {
-      color: black;
-    }
-  
-    h4 {
-      color: black;
-      margin: 0;
-    }
-  
-    .price {
-      // color: $color_p4;
-      font-size: 20px;
-      // background-color: $color_p4;
-      // padding: 4px 8px;
-      // border-radius: 10px;
-    }
-    .img {
-      border: 5px solid $color_p3;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-    }
-  
-    &:hover {
-      img {
-        box-shadow: 0 0 50px 1px rgb(218, 218, 218);
-        transform: scale(1.05);
-      }
+  margin: 20px;
+  padding: 20px;
+  @include flexCenter;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  text-align: center;
+
+  p {
+    color: black;
+    font-size: 15px;
+  }
+
+  h4 {
+    color: $color_r1;
+    margin: 0;
+  }
+
+  .price {
+    // color: $color_p4;
+    font-size: 20px;
+    // background-color: $color_p4;
+    // padding: 4px 8px;
+    // border-radius: 10px;
+  }
+  .img {
+    border: 5px solid black;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &:hover {
+    img {
+      box-shadow: 0 0 50px 1px rgb(218, 218, 218);
+      transform: scale(1.05);
     }
   }
-  
+}

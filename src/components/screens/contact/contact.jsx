@@ -35,14 +35,15 @@ const ContactScreen = () => {
             head="Location"
             text={
               <p>
-                Chennai, <br />
-                Tamilnadu <br />
+                No 50/80, SWAMIBAKTHAN STREET, <br />
+                RAMALINGPURAM, <br />
+                CHENNAI - 600 012.
               </p>
             }
             icon={<GeoAltFill />}
           />
           <Info
-            head="Phone"
+            head="Whatsapp"
             text={<p>{contactDetails.whatsapp}</p>}
             icon={<Whatsapp />}
           />
@@ -53,11 +54,16 @@ const ContactScreen = () => {
           />
           <Info
             head="Email"
-            text={<p>{contactDetails.email}</p>}
+            text={
+              <p>
+                sushmitha@skbeautyverse.com
+                <br />
+                {contactDetails.email}
+              </p>
+            }
             icon={<EnvelopeAtFill />}
           />
         </div>
-        <br />
         <ContactForm />
       </CustomSection>
     </CustomContainer>

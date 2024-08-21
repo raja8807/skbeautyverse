@@ -2,7 +2,7 @@ const whatsappMessage = 'Hello I want more details'
 
 const contactDetails = {
   address: "All Over Tamilnadu",
-  mobile: "+91 90949 53153",
+  mobile: "+91 63853 33115",
   whatsapp: "+91 86103 45830",
   whatsappLink:`https://wa.me/918610345830?text=${whatsappMessage}`,
   instagram: "https://www.instagram.com/skbeautyverse/",

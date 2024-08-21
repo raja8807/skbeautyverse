@@ -45,12 +45,8 @@ const Footer = () => {
           <Col lg={7}>
             <div className={styles.right}>
               <Row>
-                <Col xs={12} md={6} className={styles.box}>
+                <Col xs={12} md={5} className={styles.box}>
                   <h2 className={fonts.lora}>Contact US</h2>
-                  <div>
-                    <Geo />
-                    <p>{contactDetails.address}</p>
-                  </div>
 
                   <div>
                     <Telephone />
@@ -64,9 +60,19 @@ const Footer = () => {
                     <EnvelopeAt />
                     <p>{contactDetails.email}</p>
                   </div>
+                  <div>
+                    <Geo />
+                    <div>
+                      <p>
+                        No 50/80, SWAMIBAKTHAN STREET, <br />
+                        RAMALINGPURAM, <br />
+                        CHENNAI - 600 012.
+                      </p>
+                    </div>
+                  </div>
                 </Col>
 
-                <Col xs={12} md={6} className={styles.box}>
+                <Col xs={12} md={3} className={styles.box}>
                   <h2 className={fonts.lora}>Quick Links</h2>
                   <div className={styles.links}>
                     {pagesList.map((l) => (
@@ -76,6 +82,16 @@ const Footer = () => {
                     ))}
                     <Link href={"/account"}>Login</Link>
                   </div>
+                </Col>
+                <Col xs={12} md={4} className={styles.box}>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120903.97751985744!2d80.11208787386057!3d13.37198609698119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ed4a5a293d%3A0xf1f07094f8c9c50a!2sSK%20Beauty-verse!5e0!3m2!1sen!2sin!4v1724265533121!5m2!1sen!2sin"
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                  />
                 </Col>
 
                 {/* <Col xs={12} md={4} className={styles.box}>
@@ -108,12 +124,23 @@ const Footer = () => {
                 </Col> */}
                 {/* <hr /> */}
                 <div className={styles.bar}>
-                  <p>GST : 33LEVPS8977N1ZR</p>
-                  <p>
-                    UDYAM-TN-02-0245303
-                    <br />
-                    <span>(Government Registered)</span>
-                  </p>
+                  <div>
+                    <Image src="/images/iso-logo.webp" width={35} />
+                    <p>
+                      GST : 33LEVPS8977N1ZR
+                      <br />
+                      ISO Certified &nbsp; 9001 : 2005
+                    </p>
+                  </div>
+
+                  <div>
+                    <Image src="/images/msme-logo.png" width={35} />
+                    <p>
+                      UDYAM-TN-02-0245303
+                      <br />
+                      <span>(Government Registered)</span>
+                    </p>
+                  </div>
                 </div>
                 <small style={{ textAlign: "center" }}>
                   Developed And Maintianed By{" "}

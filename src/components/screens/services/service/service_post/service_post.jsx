@@ -6,6 +6,23 @@ import PageHead from "@/components/ui/page_head/page_head";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 
 const ServicePostScreen = ({ service: service_post }) => {
+  const getVariant = () => {
+    if (service_post.service === "skin") {
+      return 2;
+    }
+    if (service_post.service === "courses") {
+      return 3;
+    }
+    if (service_post.service === "hair") {
+      return 4;
+    }
+    if (service_post.service === "makeup") {
+      return 5;
+    }
+
+    return 1;
+  };
+
   return (
     <div className={styles.ServicePostScreen}>
       <PageHead
@@ -17,6 +34,7 @@ const ServicePostScreen = ({ service: service_post }) => {
             Book Now
           </CustomButton>
         }
+        variant={getVariant()}
       />
       <CustomSection>
         <div className={styles.wrap}>

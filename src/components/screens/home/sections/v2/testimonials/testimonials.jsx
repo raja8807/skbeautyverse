@@ -38,8 +38,10 @@ const TestimonialsSection = ({ reviews }) => {
   });
 
   const [file, setFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitReview = async () => {
+    setIsLoading(true);
     try {
       const url = await uploadFile(file, "review_images");
       const id = v4();
@@ -61,6 +63,8 @@ const TestimonialsSection = ({ reviews }) => {
       );
     } catch {
       alert("Error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -113,10 +117,10 @@ const TestimonialsSection = ({ reviews }) => {
             />
             <CustomButton
               variant={2}
-              disabled={!file || !values.name || !values.message}
+              disabled={!file || !values.name || !values.message || isLoading}
               clickHandler={submitReview}
             >
-              Submit Review
+              {isLoading ? "Please wait..." : "Submit Review"}
             </CustomButton>
           </form>
         </Modal.Body>
@@ -164,10 +168,10 @@ const TestimonialsSection = ({ reviews }) => {
                 setSHowNewReview(true);
               }}
             >
-              Add a Review
+              Give Us a Review
             </CustomButton>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <Link href="/reviews">View More</Link>
           </div>
         </CustomContainer>

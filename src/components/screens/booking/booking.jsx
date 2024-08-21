@@ -128,7 +128,12 @@ const BookingScreen = ({ bookingData, packages, services }) => {
           //   setBookingSamples={setBookingSamples}
         />
       )}
-      <PageHead head='Book'/>
+      <PageHead
+        head="Book"
+        variant={2}
+        img="/images/png/book (1).PNG"
+        rightImg="/images/png/book (2).PNG"
+      />
       <CustomContainer>
         <div className={styles.booking}>
           <Calendar
