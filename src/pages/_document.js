@@ -18,9 +18,9 @@ export default function Document() {
       {/* <meta name="google-site-verification" content="EtiaVHchwxdgY4Yjyls8SzpUMeiIzGVw-1a4ChPzfxY" /> */}
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=GTM-MC9VM5PW"
+        src="https://www.googletagmanager.com/gtag/js?id=G-XZZCW7NNP5"
       ></Script>
-      <script
+      {/* <script
         dangerouslySetInnerHTML={{
           __html: `
           window.dataLayer = window.dataLayer || []; 
@@ -29,7 +29,7 @@ export default function Document() {
           } gtag('js', new Date()); gtag('config', 'GTM-MC9VM5PW'); 
           `,
         }}
-      />
+      /> */}
       <script
         dangerouslySetInnerHTML={{
           __html: `
@@ -43,7 +43,7 @@ export default function Document() {
       <body>
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MC9VM5PW"
+            src="https://www.googletagmanager.com/ns.html?id=G-XZZCW7NNP5"
             height="0"
             width="0"
             style={{
