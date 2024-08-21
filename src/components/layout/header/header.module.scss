@@ -1,14 +1,38 @@
 .header {
-  // background-color: white;
-  //   width: 100vw;
-  //   width: 100vw;
-  //   overflow: hidden;
-  position: sticky;
-  top: 0;
+  background-color: $color_mb;
+  border-radius: 10px;
+  position: fixed;
+  width: 76%;
+  margin: auto;
+  top: 20px;
+  left: 0;
+  transform: translate(14%, 0);
   z-index: 1000;
+  padding: 0 30px;
+
+  @include respond-below(md) {
+    width: 95%;
+    transform: translate(2.5%, 0);
+    padding: 0 16px;
+  }
   &.scrolled {
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(6px);
+    top: 0;
+    width: 100%;
+    transform: translate(0, 0);
+    border-radius: 0;
+    background-color: #171717d1;
+    backdrop-filter: blur(5px);
+
+    .sk {
+      height: 50px !important;
+      width: auto;
+    }
+
+    .name {
+      height: 25px !important;
+      margin-bottom: 4px;
+      margin-left: -25px;
+    }
   }
 
   .container {
@@ -16,8 +40,9 @@
     justify-content: space-between;
     align-items: center;
     // height: 100px;
-    height: 90px;
+    // height: 90px;
     // width: 100vw;
+    padding: 10px 0;
     max-width: 1350px;
     // width: 100% !important;
     // border: 1px solid red;
@@ -40,7 +65,7 @@
       .name {
         height: 35px;
         margin-bottom: 4px;
-        margin-left: -25px;
+        margin-left: 0px;
       }
 
       @include respond-below(md) {
@@ -51,99 +76,51 @@
         .name {
           height: 20px;
           margin-bottom: 5px;
-          display: none;
+          // display: none;
         }
       }
     }
+  }
 
-    .search {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      border: 1px solid $color_gold2;
-      background-color: $color_grey;
-      padding: 0px 10px;
-      width: 60%;
-      border-radius: 4px;
+  .navItems {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 
-      @include respond-above(md) {
-        width: 40%;
-      }
-
-      input {
-        width: 100%;
-        background-color: $color_grey;
-        outline: none !important;
-        border: none !important;
-        color: $color_white;
-        padding: 5px 10px;
-
-        &:active,
-        &:focus {
-          border: 1px solid $color_gold;
-        }
-      }
-
-      svg {
-        cursor: pointer;
+    a,
+    > div {
+      color: white;
+      font-size: 18px;
+      &:hover {
+        color: $color_p2;
       }
     }
+  }
 
-    nav {
-      border-radius: 2px;
-      overflow: hidden;
+  .menu {
+    height: 38px;
+    width: 38px;
+    cursor: pointer;
+    display: none;
+    color: white;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  @include respond-below(md) {
+    .navItems {
       display: none;
-
-      // @include respond-below(xl) {
-      // }
-      ul {
-        // border-width: 2px;
-        // border-style: solid;
-        // border-image: linear-gradient(
-        //     to right,
-        //     $color_gold,
-        //     rgb(249, 223, 190),
-        //     $color_gold,
-        //     rgb(249, 223, 190),
-        //     $color_gold
-        //   )
-        //   1;
-        border: 2px solid white;
-        border-radius: 8px;
-        padding: 7px 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 25px;
-        margin: 0;
-
-        li {
-          list-style: none;
-          a {
-            color: white;
-            &.active,
-            &:hover {
-              color: $color_gold2;
-            }
-          }
-        }
-      }
     }
 
     .menu {
-      // display: none;
-      color: $color_gold !important;
-      height: 38px;
-      width: 38px;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      // @include respond-below(xl) {
-      //   display: initial;
-      // }
+      display: unset;
     }
   }
 }
+
+// .abs{
+//   position: fixed;
+//   background-color: red;
+// }

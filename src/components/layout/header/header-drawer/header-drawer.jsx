@@ -6,11 +6,46 @@ import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import fireBaseCustomerAuth from "@/components/constants/firebase_config";
+import { useState } from "react";
+import { CaretDownFill, CaretUpFill } from "react-bootstrap-icons";
+
+const Category = ({ category, setShow }) => {
+  const [showPosts, setShowPosts] = useState(false);
+
+  return (
+    <div className={styles.cat}>
+      <p
+        onClick={() => {
+          setShowPosts((prev) => !prev);
+        }}
+      >
+        {category.category.toUpperCase()}{" "}
+        {!showPosts ? <CaretDownFill /> : <CaretUpFill />}
+      </p>
+      {showPosts &&
+        category.services.map((service, si) => {
+          return (
+            <Link
+              key={`ser_${si}`}
+              href={`/services/${service.service}/${service.id}`}
+              onClick={() => {
+                setShow(false);
+              }}
+            >
+              <div className={styles.ser}>{service.title}</div>
+            </Link>
+          );
+        })}
+    </div>
+  );
+};
 
 const HeaderDrawer = (props) => {
-  const { show, setShow, customer } = props;
+  const { show, setShow, customer, services } = props;
 
   const handleClose = () => setShow(false);
+
+  const [showCategories, setShowCategories] = useState(false);
 
   const router = useRouter();
   const session = useSession();
@@ -23,7 +58,7 @@ const HeaderDrawer = (props) => {
             <Image
               src="/images/logo/logo1.png"
               fluid
-              alt="logo"
+              alt="sk_beautyverse_logo"
               className={styles.logo}
             />
           </Offcanvas.Title>
@@ -39,15 +74,47 @@ const HeaderDrawer = (props) => {
                 }
               };
               const isActive = getIsActive();
+
+              if (page.name === "Services") {
+                return (
+                  <li key={page.name}>
+                    <div className={styles.services}>
+                      <p
+                        onClick={(e) => {
+                          setShowCategories((prev) => !prev);
+                        }}
+                      >
+                        {page.name}{" "}
+                        {!showCategories ? <CaretDownFill /> : <CaretUpFill />}
+                      </p>
+
+                      {showCategories &&
+                        services.map((category, ci) => {
+                          return (
+                            <Category
+                              key={`cat_${ci}`}
+                              category={category}
+                              router={router}
+                              setShow={setShow}
+                            />
+                          );
+                        })}
+                    </div>
+                  </li>
+                );
+              }
+
               return (
                 <li
                   key={page.name}
-                  className={isActive ? styles.active : ""}
                   onClick={() => {
                     handleClose();
                   }}
                 >
-                  <Link href={page.href}>
+                  <Link
+                    href={page.href}
+                    className={isActive ? styles.active : ""}
+                  >
                     {page.name === "Login" && (session?.data || customer)
                       ? "My Account"
                       : page.name}

@@ -10,8 +10,9 @@ import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
+import PageHead from "@/components/ui/page_head/page_head";
 
-const BookingScreen = ({ bookingData, packages }) => {
+const BookingScreen = ({ bookingData, packages, services }) => {
   const [value, setValue] = useState(new Date());
   const [showPopupFor, setShowPopupFor] = useState(null);
   const session = useSession();
@@ -94,14 +95,17 @@ const BookingScreen = ({ bookingData, packages }) => {
           {
             id: 1,
             bookingData: null,
+            time: "11 AM to 1.30 PM",
           },
           {
             id: 2,
             bookingData: null,
+            time: "2 PM to 4.30 PM",
           },
           {
             id: 3,
             bookingData: null,
+            time: "5 PM to 7.30 PM",
           },
         ],
       });
@@ -120,9 +124,11 @@ const BookingScreen = ({ bookingData, packages }) => {
           packages={packages}
           currentBookingData={bookignData}
           setcurrentBookingData={setBookingData}
+          services={services}
           //   setBookingSamples={setBookingSamples}
         />
       )}
+      <PageHead head='Book'/>
       <CustomContainer>
         <div className={styles.booking}>
           <Calendar

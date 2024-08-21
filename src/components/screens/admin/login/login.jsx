@@ -30,7 +30,7 @@ const LoginBox = ({ setCustomer, customer }) => {
     setIsLoading(false);
   };
 
-  const [isAdminLogin, setIsAdminLogin] = useState(false);
+  const [isAdminLogin, setIsAdminLogin] = useState(true);
 
   return (
     <div className={styles.cont}>

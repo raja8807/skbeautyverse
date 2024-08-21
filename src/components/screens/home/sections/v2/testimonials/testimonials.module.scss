@@ -1,0 +1,56 @@
+.TestimonialsSection {
+  background-color: $color_pk1;
+  position: relative;
+
+  .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("/flower_bg.png");
+    background-size: cover;
+    opacity: 0.5;
+  }
+}
+
+.item {
+  max-width: 720px;
+  margin: 0 auto 36px auto;
+  text-align: center;
+
+  .img {
+    border-radius: 50%;
+    border: 2px solid $color_r1;
+    margin-bottom: 16px;
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    margin-bottom: 16px;
+    background-position: center;
+    background-size: contain;
+  }
+
+  h2 {
+    font-size: 24px;
+    color: $color_r1;
+  }
+
+  p {
+    font-size: 18px;
+    font-style: italic;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn {
+  position: relative;
+  z-index: 10;
+  width: fit-content;
+  margin: auto;
+}

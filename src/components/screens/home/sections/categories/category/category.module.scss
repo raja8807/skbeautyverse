@@ -1,62 +1,67 @@
 .category_box {
   // background-color: rgb(83, 83, 83);
-  background-color: $color_black;
+  // background-color: $color_p2;
   margin: 10px 0;
-  padding: 10px;
+  // padding: 10px;
   position: relative;
-  border-radius: 12px;
+  // border-radius: 12px;
   // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-  img {
-    border-radius: 12px;
-  }
+  cursor: pointer;
 
-  .overlay {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    @include flexCenter;
-    color: white;
-    transform: scaleY(0);
-    transform-origin: bottom;
-    cursor: pointer;
+  // .overlay {
+  //   position: absolute;
+  //   background-color: rgba(0, 0, 0, 0.5);
+  //   height: 100%;
+  //   width: 100%;
+  //   left: 0;
+  //   top: 0;
+  //   @include flexCenter;
+  //   color: white;
+  //   transform: scaleY(0);
+  //   transform-origin: bottom;
+  //   cursor: pointer;
+  //   // border-radius: 12px;
 
-    > div {
-      border: 1px solid white;
-      height: 38px;
-      width: 38px;
-      @include flexCenter;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.2);
-      margin: 0px 10px;
+  //   > div {
+  //     border: 1px solid white;
+  //     height: 38px;
+  //     width: 38px;
+  //     @include flexCenter;
+  //     border-radius: 50%;
+  //     background-color: rgba(0, 0, 0, 0.2);
+  //     margin: 0px 10px;
 
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-        transform: scale(1.1);
-      }
+  //     &:hover {
+  //       background-color: rgba(0, 0, 0, 0.7);
+  //       transform: scale(1.1);
+  //     }
 
-      @include respond-below(md) {
-        margin: 0px 5px;
-      }
-    }
-  }
+  //     @include respond-below(md) {
+  //       margin: 0px 5px;
+  //     }
+  //   }
+  // }
 
   &:hover {
-    .overlay {
-      transform: scaleY(1);
-      z-index: 10;
+    img {
+      // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
+
+    // .overlay {
+    //   transform: scaleY(1);
+    //   z-index: 10;
+
+    // }
   }
 
   p {
     // color: black !important;
-    color: $color_gold2 !important;
-    font-weight: 800;
-    font-style: italic;
+    color: $color_mb !important;
+    // font-weight: 800;
+    // font-style: italic;
     text-align: center;
     @include respond-above(sm) {
       margin: 8px;

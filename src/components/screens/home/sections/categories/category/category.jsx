@@ -17,15 +17,15 @@ const Category = (props) => {
   return (
     <Col xs={6} sm={6} lg={3} data-aos={animations[`a_${index}`]}>
       <div className={styles.category_box}>
-        <div className={styles.overlay}>
+        {/* <div className={styles.overlay}>
           <div
             onClick={() => {
               router.push(`/gallery/${data.id}`);
             }}
           >
-            <Eye />
+            <Eye className={styles.x}/>
           </div>
-        </div>
+        </div> */}
         <Image src={data.imgSrc} alt="xx" fluid />
         <p>{data.name.toUpperCase()}</p>
       </div>

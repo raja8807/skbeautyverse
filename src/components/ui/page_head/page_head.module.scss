@@ -1,0 +1,46 @@
+.pageHead {
+  background-color: $color_p5;
+  //   padding: 100px 0 0px 0;
+  text-align: center;
+  position: relative;
+
+  .bg {
+    background-image: url("/images/page_head_pattern.jpg");
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.1;
+  }
+
+  .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+
+    h1 {
+      padding-top: 250px;
+    }
+  }
+
+  @include respond-below(md) {
+    padding: 200px 0 30px 0;
+
+    .wrap {
+      justify-content: center;
+
+      h1 {
+        padding: 0;
+      }
+    }
+
+    img {
+      display: none;
+    }
+  }
+}

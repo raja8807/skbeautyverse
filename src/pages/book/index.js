@@ -1,12 +1,13 @@
 import BookingScreen from "@/components/screens/booking/booking";
 
-const Booking = ({ customer, setCustomer, bookingData = [],packages }) => {
+const Booking = ({ customer, setCustomer, bookingData = [],packages,services }) => {
   return (
     <BookingScreen
       customer={customer}
       setCustomer={setCustomer}
       bookingData={bookingData}
       packages={packages}
+      services={services}
     />
   );
 };

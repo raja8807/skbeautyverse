@@ -1,0 +1,40 @@
+.SocialMediaBar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 100;
+  transform: translate(0, -50%);
+  //   border: 1px solid white;
+  border-radius: 5px 0 0 5px;
+  overflow: hidden;
+  opacity: 0.8;
+
+  div {
+    color: white;
+    padding: 15px;
+    width: fit-content;
+    margin: 0 0 0 auto;
+
+    // &:first-child {
+    //   border-radius: 8px 0 0 0;
+    // }
+    // &:last-child {
+    //   border-radius: 0px 0 0 8px;
+    // }
+    cursor: pointer;
+
+    &:hover {
+      padding-right: 26px;
+    }
+  }
+  &:hover {
+    opacity: 1;
+  }
+
+  @include respond-below(md) {
+    opacity: 0.8;
+    div {
+      padding: 10px;
+    }
+  }
+}

@@ -22,16 +22,21 @@ const Footer = () => {
         <Row>
           <Col lg={5}>
             <div className={styles.img}>
-              <Image src="/images/categories/bg.jpeg" alt="bg" fluid />
+              {/* <Image src="/images/categories/bg.jpeg" alt="bg" fluid /> */}
               <div className={styles.overlay}>
-                <Image src="/images/logo/logo1.png" fluid alt="logo" />
+                <Image
+                  src="/images/logo/logo.png"
+                  fluid
+                  alt="sk_beautyverse_logo"
+                />
                 <p>
-                  I am <span className={styles.name}>SUSHMITHA KARTHIK</span>, your dedicated makeup artist,
-                  Certified by <span className={styles.name}>&quot;Lakme Academy&quot;</span> specializing in hair,
-                  skin, and bridal makeup. Discover personalized beauty
-                  experiences crafted with premium products, which does not
-                  cause damage to skin & hair. &quot;Make your beautyful day,
-                  More Beutiful with our Makup Services!&quot;
+                  I am <span className={styles.name}>SUSHMITHA KARTHIK</span>,
+                  your dedicated makeup artist, Certified by{" "}
+                  <span className={styles.name}>&quot;Lakme Academy&quot;</span>{" "}
+                  specializing in hair, skin, and bridal makeup. Discover
+                  personalized beauty experiences crafted with premium products,
+                  which does not cause damage to skin & hair. &quot;Make your
+                  beautyful day, More Beutiful with our Makup Services!&quot;
                 </p>
                 <SocialLinks />
               </div>
@@ -69,10 +74,11 @@ const Footer = () => {
                         {l.name}
                       </Link>
                     ))}
+                    <Link href={"/account"}>Login</Link>
                   </div>
                 </Col>
 
-                <Col xs={12} md={4} className={styles.box}>
+                {/* <Col xs={12} md={4} className={styles.box}>
                   <h2 className={fonts.lora}>Categories</h2>
                   <div className={styles.links}>
                     {categories.map((c) => {
@@ -99,7 +105,7 @@ const Footer = () => {
                       tabindex="0"
                     ></iframe>
                   </div>
-                </Col>
+                </Col> */}
                 {/* <hr /> */}
                 <div className={styles.bar}>
                   <p>GST : 33LEVPS8977N1ZR</p>

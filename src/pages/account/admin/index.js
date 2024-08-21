@@ -1,5 +1,8 @@
 import AdminPanel from "@/components/screens/admin/admin_panel/admin_panel";
 import LoginBox from "@/components/screens/admin/login/login";
+import CustomButton from "@/components/ui/custom_button/custom_button";
+import PageHead from "@/components/ui/page_head/page_head";
+import { getAllData } from "@/libs/firebase/firebase";
 import { useSession, getSession } from "next-auth/react";
 
 const {
@@ -14,8 +17,6 @@ const Admin = ({ homeData }) => {
   const session = useSession();
   const router = useRouter();
 
-  // console.log(session);
-
   useEffect(() => {
     if (!session.data) {
       router.replace("/account/login");
@@ -23,32 +24,19 @@ const Admin = ({ homeData }) => {
   }, [router, session]);
 
   return (
-    <CustomContainer>
-      {session?.data ? (
-        <>
-          <Link href="admin/g/bridal">Edit Galley</Link>
-          {homeData && <AdminPanel homeData={homeData} />}
-        </>
-      ) : null}
-    </CustomContainer>
+    <>
+      <PageHead head="Admin" />
+
+      <CustomContainer>
+        {session?.data ? (
+          <>
+            <Link href="admin/g/bridal">Edit Galley</Link>
+            <AdminPanel />
+          </>
+        ) : null}
+      </CustomContainer>
+    </>
   );
 };
 
 export default Admin;
-
-export async function getServerSideProps(context) {
-  try {
-    const session = await getSession(context);
-    // console.log(session);
-    // if (session) {
-      const res = await fetch(
-        `http://${context.req.headers.host}/api/homeData`
-      );
-      const homeData = await res.json();
-      return { props: { homeData } };
-    // }
-    // return { props: { homeData: null } };
-  } catch (err) {
-    return { props: { images: "errr-->" + err.message } };
-  }
-}

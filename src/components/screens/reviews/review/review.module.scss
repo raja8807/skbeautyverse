@@ -1,47 +1,28 @@
 .review {
-  background-color: #141414d6;
+  background-color: white;
   margin: 20px 0;
   padding: 16px;
   border-radius: 10px;
+  @include flexCenter;
+  flex-direction: column;
+  text-align: center;
+  gap: 16px;
 
-  .top {
-    display: flex;
-    margin-bottom: 16px;
-    position: relative;
-
-    .trash {
-      position: absolute;
-      right: 10px;
-      cursor: pointer;
-    }
-
-    .initial {
-      background-color: $color_gold;
-      text-align: center;
-      border-radius: 50%;
-      height: 40px;
-      width: 40px;
-      margin-right: 10px;
-      font-size: 20px;
-      display: block;
-      @include flexCenter;
-      color: $color_black;
-      font-weight: 800;
-    }
-
-    .star {
-      margin-right: 4px;
-      &.rated {
-        path {
-          color: $color_gold2;
-        }
-      }
-    }
+  .img {
+    height: 130px;
+    width: 130px;
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    border: 3px solid $color_r1;
   }
 
-  .bottom {
-    span {
-      font-size: 14px;
-    }
+  strong{
+    color: $color_r1;
+  }
+
+  i{
+    font-size: 24px;
+    color: $color_mb;
   }
 }

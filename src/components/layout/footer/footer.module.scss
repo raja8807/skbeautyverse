@@ -1,10 +1,12 @@
 .footer {
-  background-color: rgba(0, 0, 0, 0.8);
+  // background-color: black;
+  background-color: $color_pk1;
+
   // height: 400px;
   @include flexCenter;
 
-  .name{
-    color: $color_gold2;
+  .name {
+    color: black;
     font-weight: 600;
   }
 
@@ -12,24 +14,22 @@
     position: relative;
     // margin-bottom: 50px;
     .overlay {
-      position: absolute;
-      height: 100%;
+      // position: absolute;
+      // height: 100%;
       width: 100%;
       top: 0;
       left: 0;
-      background-color: rgba(0, 0, 0, 0.6);
       padding: 20px;
       display: flex;
       flex-direction: column;
-      // justify-content: center;
-      gap: 40px;
-      // @include flexCenter;
-      // display: flex;
-      // align-items: center;
+      gap: 30px;
 
+      p {
+        color: $color_mb;
+      }
       img {
         width: 100px;
-        margin-bottom: 100px;
+        // margin-bottom: 100px;
       }
 
       @include respond-below(sm) {
@@ -53,12 +53,13 @@
       h2 {
         font-size: 22px;
         margin-bottom: 20px;
-        color: $color_gold2;
+        color: $color_p3;
+
       }
 
       svg {
         path {
-          //   color: $color_gold;
+          color: $color_p3;
         }
       }
 
@@ -69,6 +70,7 @@
 
         p {
           margin-top: -5px;
+          color: $color_mb;
           @include respond-below(sm) {
             font-size: 14px;
           }
@@ -83,14 +85,14 @@
           margin: 0;
           padding: 0;
           // background-color: red;
+          color: $color_mb;
           text-decoration: none;
-          color: white;
           @include respond-below(sm) {
             font-size: 14px;
           }
 
           &:hover {
-            color: $color_gold;
+            color: $color_p3;
           }
         }
       }
@@ -98,48 +100,48 @@
     small {
       font-size: 13px;
       opacity: 0.7;
-      color: $color_gold;
+      color: grey;
       a {
-        color: white;
+        color: $color_p4;
         margin-left: 5px;
         font-size: 14px;
-    }
-    &:hover{
-        color:white;
+      }
+      &:hover {
+        color: white;
 
-        a{
-            color: $color_gold;
+        a {
+          color: $color_gold;
         }
-    }
+      }
     }
   }
 
-  .bar{
+  .bar {
     width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: $color_gold;
     font-size: 14px;
-    padding:5px 40px;
+    padding: 5px 40px;
     margin-bottom: 10px;
-    
-    p{
+
+    p {
       color: $color_black;
       margin: 0;
       font-weight: 500;
 
-      span{
+      span {
         font-size: 13px;
         color: rgb(51, 51, 51);
         text-align: right;
       }
     }
-    @include respond-below(sm){
+    @include respond-below(sm) {
       flex-direction: column;
       padding: 5px;
       // align-items: center;
       text-align: center;
-      p{
+      p {
         font-size: 12px;
       }
     }

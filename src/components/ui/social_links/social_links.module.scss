@@ -7,23 +7,26 @@
   gap: 10px;
 
   .item {
-    border: 1px solid white;
+    border: 1px solid $color_p4;
     height: 32px;
     width: 32px;
     @include flexCenter;
     border-radius: 50%;
     opacity: 0.7;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: white;
     cursor: pointer;
+
+    path {
+      color: $color_grey;
+    }
     
 
     &:hover {
       opacity: 1;
       transform: scale(1.1);
       path {
-        color: $color_gold;
+        color: $color_p3 !important;
       }
-      border-color: $color_gold;
     }
   }
 }

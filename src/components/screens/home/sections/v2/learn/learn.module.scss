@@ -1,0 +1,18 @@
+.LearnFromUsSection {
+  background-color: white;
+  padding-bottom: 70px;
+
+  .right {
+    h1 {
+      color: $color_p4;
+      font-size: 35px;
+    }
+  }
+
+  @include respond-below(md) {
+    text-align: center;
+    h1 {
+      margin-top: 20px;
+    }
+  }
+}
