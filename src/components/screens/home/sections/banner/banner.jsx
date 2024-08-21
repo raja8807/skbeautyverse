@@ -87,6 +87,11 @@ const Slideshow = () => {
                   <CustomButton variant={2} href="/book">
                     Book Now
                   </CustomButton>
+                  &nbsp;
+                  &nbsp;
+                  <CustomButton variant={2} href="/reviews">
+                    Look What Our Client Says
+                  </CustomButton>
                 </div>
               </CustomContainer>
             </div>

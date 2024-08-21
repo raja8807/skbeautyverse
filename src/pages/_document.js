@@ -15,10 +15,10 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <title>SK Beauty-Verse</title>
-      <meta name="google-site-verification" content="EtiaVHchwxdgY4Yjyls8SzpUMeiIzGVw-1a4ChPzfxY" />
+      {/* <meta name="google-site-verification" content="EtiaVHchwxdgY4Yjyls8SzpUMeiIzGVw-1a4ChPzfxY" /> */}
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=AW-11384016350"
+        src="https://www.googletagmanager.com/gtag/js?id=GTM-MC9VM5PW"
       ></Script>
       <script
         dangerouslySetInnerHTML={{
@@ -26,7 +26,7 @@ export default function Document() {
           window.dataLayer = window.dataLayer || []; 
           function gtag(){
           dataLayer.push(arguments);
-          } gtag('js', new Date()); gtag('config', 'AW-11384016350'); 
+          } gtag('js', new Date()); gtag('config', 'GTM-MC9VM5PW'); 
           `,
         }}
       />

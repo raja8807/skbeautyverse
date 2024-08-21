@@ -54,7 +54,9 @@ const TestimonialsSection = ({ reviews }) => {
         id
       );
 
+      
       setSHowNewReview(false);
+      alert('Your Review has been submitted successfully, We appreciate your feedback on SK BEAUTY-VERSE.')
     } catch {
       alert("Error");
     }
