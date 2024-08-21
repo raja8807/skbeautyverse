@@ -32,7 +32,7 @@ function generateSiteMap(blogs = [], service = []) {
        .map(({ id, service }) => {
          return `
        <url>
-           <loc>${`https://www.skbeautyverse.com/service/${service}/${id}`}</loc>
+           <loc>${`https://www.skbeautyverse.com/services/${service}/${id}`}</loc>
        </url>
      `;
        })
