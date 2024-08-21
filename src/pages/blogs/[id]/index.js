@@ -1,10 +1,26 @@
 import BlogScreen from "@/components/screens/blogs/blog/blogs";
-import ServicePostScreen from "@/components/screens/services/service/service_post/service_post";
 import { getData } from "@/libs/firebase/firebase";
+import Head from "next/head";
 import React from "react";
 
 const BlogPage = ({ blog }) => {
-  return <BlogScreen blog={blog}/>;
+  return (
+    <>
+     <Head>
+        <title>{blog.title}</title>
+        <meta name="description" content={blog.description} />
+        <meta property="og:title" content={blog.title} />
+        <meta property="og:description" content={blog.description} />
+        <meta property="og:image" content={blog?.rows?.[0]?.img} />
+        <meta property="og:url" content={`https://www.skbeautyverse.com/blogs/${blog.id}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={blog.title} />
+        <meta name="twitter:description" content={blog.description} />
+        <meta name="twitter:image" content={blog?.rows?.[0]?.img} />
+      </Head>
+      <BlogScreen blog={blog} />
+    </>
+  );
 };
 
 export default BlogPage;
