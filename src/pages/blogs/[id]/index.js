@@ -6,17 +6,24 @@ import React from "react";
 const BlogPage = ({ blog }) => {
   return (
     <>
-     <Head>
+      <Head>
         <title>{blog.title}</title>
         <meta name="description" content={blog.description} />
         <meta property="og:title" content={blog.title} />
         <meta property="og:description" content={blog.description} />
         <meta property="og:image" content={blog?.rows?.[0]?.img} />
-        <meta property="og:url" content={`https://www.skbeautyverse.com/blogs/${blog.id}`} />
+        <meta
+          property="og:url"
+          content={`https://www.skbeautyverse.com/blogs/${blog.id}`}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={blog.title} />
         <meta name="twitter:description" content={blog.description} />
         <meta name="twitter:image" content={blog?.rows?.[0]?.img} />
+        <link
+          rel="canonical"
+          href={`https://www.skbeautyverse.com/blogs/${blog.id}`}
+        />
       </Head>
       <BlogScreen blog={blog} />
     </>

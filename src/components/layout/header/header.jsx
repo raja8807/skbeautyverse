@@ -60,7 +60,7 @@ const Header = ({ customer, services }) => {
         <div className={styles.logo} data-aos="fade-left">
           <Link href="/">
             <Image
-              src="/images/logo/logo1.png"
+              src="/images/logo/logo.png"
               fluid
               alt="sk_beautyverse_logo"
               className={styles.sk}
