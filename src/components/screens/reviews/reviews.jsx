@@ -12,7 +12,7 @@ import PageHead from "@/components/ui/page_head/page_head";
 const ReviewsScreen = ({ reviews }) => {
   return (
     <div>
-      <PageHead head="Reviews" />
+      <PageHead head="Client Reviews" />
       <CustomContainer>
         <CustomSection bg="textGold">
           <Row>

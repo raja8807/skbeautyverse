@@ -1,0 +1,19 @@
+.headerImages {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  > div {
+    border: 1px solid gray;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.selected {
+      border: 3px solid $color_r1;
+      transform: scale(1.1);
+    }
+  }
+}

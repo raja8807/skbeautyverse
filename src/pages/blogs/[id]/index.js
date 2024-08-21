@@ -7,25 +7,25 @@ const BlogPage = ({ blog }) => {
   return (
     <>
       <Head>
-        <title>{blog.title}</title>
-        <meta name="description" content={blog.description} />
-        <meta property="og:title" content={blog.title} />
-        <meta property="og:description" content={blog.description} />
+        <title>{blog?.title}</title>
+        <meta name="description" content={blog?.description} />
+        <meta property="og:title" content={blog?.title} />
+        <meta property="og:description" content={blog?.description} />
         <meta property="og:image" content={blog?.rows?.[0]?.img} />
         <meta
           property="og:url"
-          content={`https://www.skbeautyverse.com/blogs/${blog.id}`}
+          content={`https://www.skbeautyverse.com/blogs/${blog?.id}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={blog.title} />
-        <meta name="twitter:description" content={blog.description} />
+        <meta name="twitter:title" content={blog?.title} />
+        <meta name="twitter:description" content={blog?.description} />
         <meta name="twitter:image" content={blog?.rows?.[0]?.img} />
         <link
           rel="canonical"
-          href={`https://www.skbeautyverse.com/blogs/${blog.id}`}
+          href={`https://www.skbeautyverse.com/blogs/${blog?.id}`}
         />
       </Head>
-      <BlogScreen blog={blog} />
+      {blog && <BlogScreen blog={blog} />}
     </>
   );
 };
@@ -37,6 +37,6 @@ export async function getServerSideProps(context) {
     const blog = await getData("blog_post", ["id", "==", context.query.id]);
     return { props: { blog: blog[0] || {} } };
   } catch (err) {
-    return { props: { blog: {} } };
+    return { props: { blog: null } };
   }
 }

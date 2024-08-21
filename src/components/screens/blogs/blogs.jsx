@@ -5,6 +5,7 @@ import styles from "./blogs.module.scss";
 import Link from "next/link";
 import CustomSection from "@/components/ui/custom_section/custom_section";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
+import PageHead from "@/components/ui/page_head/page_head";
 
 const BlogCard = ({ data }) => {
   const { rows, title, id, description } = data;
@@ -28,22 +29,19 @@ const BlogCard = ({ data }) => {
 };
 
 const BlogsScreen = ({ blogs }) => {
-  console.log(blogs);
-
   return (
     <div>
+      <PageHead head="Blogs" />
       <br />
       <br />
       <br />
-      <CustomSection head="Blogs">
-        <CustomContainer>
-          <Row>
-            {blogs.map((b) => {
-              return <BlogCard key={b.id} data={b} />;
-            })}
-          </Row>
-        </CustomContainer>
-      </CustomSection>
+      <CustomContainer>
+        <Row>
+          {blogs.map((b) => {
+            return <BlogCard key={b.id} data={b} />;
+          })}
+        </Row>
+      </CustomContainer>
     </div>
   );
 };

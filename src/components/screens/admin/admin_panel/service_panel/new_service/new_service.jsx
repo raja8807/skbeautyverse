@@ -16,9 +16,10 @@ import {
   BtnBulletList,
   BtnNumberedList,
   BtnClearFormatting,
-  BtnStyles
-  ,HtmlButton
+  BtnStyles,
+  HtmlButton,
 } from "react-simple-wysiwyg";
+import styles from "./new_service.module.scss";
 
 const NewService = ({
   service,
@@ -34,6 +35,7 @@ const NewService = ({
     price: currentPost?.price || "",
     service: isBlog ? "Blogs" : service.id,
     description: currentPost?.description || "",
+    headImg: currentPost?.headImg || "",
   });
 
   const postProject = async (e) => {
@@ -75,6 +77,9 @@ const NewService = ({
           id
         );
 
+        console.log(res.headImg);
+        
+
         setServices((prev) => [...prev, res]);
       }
 
@@ -87,11 +92,32 @@ const NewService = ({
     }
   };
 
+  const headImages = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+  // console.log(values.headImg);
+  
+
   return (
     <div>
       <br />
       <form onSubmit={postProject}>
         <p>Category: {service.title}</p>
+        <br />
+        <div className={`${styles.headerImages}`}>
+          {headImages.map((hi) => {
+            return (
+              <div
+                key={`headImg_${hi}`}
+                className={values.headImg === hi ? styles.selected : ""}
+                onClick={() => {
+                  setValues((prev) => ({ ...prev, headImg: hi }));
+                }}
+              >
+                <Image src={`/images/png/${hi}.PNG`} width={80} />
+              </div>
+            );
+          })}
+        </div>
         <br />
         <Form.Control
           placeholder="Title"
@@ -234,15 +260,14 @@ const NewService = ({
                     });
                   }}
                   aria-required
-                  
                 >
                   <Toolbar>
                     <BtnBold />
                     <BtnItalic />
                     <BtnBulletList />
                     <BtnNumberedList />
-                    <BtnClearFormatting/>
-                    <BtnStyles/>
+                    <BtnClearFormatting />
+                    <BtnStyles />
                   </Toolbar>
                 </Editor>
               </EditorProvider>

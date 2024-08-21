@@ -8,6 +8,7 @@ import CustomButton from "@/components/ui/custom_button/custom_button";
 import { Image, Modal } from "react-bootstrap";
 import { addData, uploadFile } from "@/libs/firebase/firebase";
 import { v4 } from "uuid";
+import Link from "next/link";
 
 const TestimonialsSection = ({ reviews }) => {
   const responsive = {
@@ -54,9 +55,10 @@ const TestimonialsSection = ({ reviews }) => {
         id
       );
 
-      
       setSHowNewReview(false);
-      alert('Your Review has been submitted successfully, We appreciate your feedback on SK BEAUTY-VERSE.')
+      alert(
+        "Your Review has been submitted successfully, We appreciate your feedback on SK BEAUTY-VERSE."
+      );
     } catch {
       alert("Error");
     }
@@ -149,7 +151,7 @@ const TestimonialsSection = ({ reviews }) => {
 
                   <div>
                     <h2>{review.name}</h2>
-                    <p>{review.message}</p>
+                    <p>"{review.message}"</p>
                   </div>
                 </div>
               );
@@ -164,6 +166,9 @@ const TestimonialsSection = ({ reviews }) => {
             >
               Add a Review
             </CustomButton>
+            <br/>
+            <br/>
+            <Link href="/reviews">View More</Link>
           </div>
         </CustomContainer>
       </CustomSection>
