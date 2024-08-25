@@ -8,9 +8,26 @@ import ServicesPanel from "./service_panel/service_panel";
 import { deletData, getAllData, updateData } from "@/libs/firebase/firebase";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
+import Link from "next/link";
 
 const Service = ({ data, setCurrentCategory }) => {
-  const { title, img } = data;
+  const { title, img, href } = data;
+
+  if (href) {
+    return (
+      <Col xs={6} md={6} lg={3}>
+        <Link className={styles.cat} href={href}>
+          <Image
+            src={`/images/categories/${img}`}
+            fluid
+            width={150}
+            alt="cat"
+          />
+          <p>{title}</p>
+        </Link>
+      </Col>
+    );
+  }
 
   return (
     <Col xs={6} md={6} lg={3}>
@@ -47,6 +64,7 @@ const AdminPanel = () => {
 
   return (
     <div>
+      <br/>
       <CustomButton
         clickHandler={() => {
           signOut();
@@ -54,9 +72,6 @@ const AdminPanel = () => {
       >
         Logout
       </CustomButton>
-      <br />
-      <br />
-      <br />
       {currentCategory ? (
         <ServicesPanel
           service={currentCategory}
@@ -65,6 +80,25 @@ const AdminPanel = () => {
       ) : (
         <>
           <Row>
+            <Service
+              data={{
+                title: "Clients",
+                img: "client.svg",
+                href: "/account/admin/clients",
+              }}
+              setCurrentCategory={setCurrentCategory}
+            />
+            <Service
+              data={{
+                title: "Gallery",
+                img: "gallery.jpg",
+                href: "admin/g/bridal",
+              }}
+              setCurrentCategory={setCurrentCategory}
+            />
+          </Row>
+          <hr />
+          <Row>
             {SERVICE_CATEGORIES.map((c) => (
               <Service
                 key={c.id}
@@ -72,6 +106,7 @@ const AdminPanel = () => {
                 setCurrentCategory={setCurrentCategory}
               />
             ))}
+            <hr />
             <Service
               data={{
                 title: "Blogs",

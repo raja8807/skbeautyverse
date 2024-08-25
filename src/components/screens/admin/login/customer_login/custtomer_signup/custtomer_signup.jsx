@@ -2,6 +2,7 @@ const { useState, useEffect } = require("react");
 import { Spinner } from "react-bootstrap";
 import styles from "../../login.module.scss";
 import EmailVerification from "../email_verification/email_verification";
+import { useRouter } from "next/router";
 // import { signIn } from "next-auth/react";
 
 const CustomerSinup = (props) => {
@@ -27,6 +28,8 @@ const CustomerSinup = (props) => {
     confirmPassword: "",
   });
 
+  const router = useRouter();
+
   return (
     <div className={styles.loginBox}>
       <form
@@ -40,7 +43,10 @@ const CustomerSinup = (props) => {
           <EmailVerification
             isLoading={isLoading}
             sendVerificationEmail={sendVerificationEmail}
-            signOut={signOut}
+            signOut={async () => {
+              await signOut();
+              router.push("/account");
+            }}
             customer={customer}
             reloadUser={reloadUser}
           />

@@ -15,8 +15,9 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Router from "next/router";
 import fonts from "@/styles/fonts/fonts";
-import { getAllData } from "@/libs/firebase/firebase";
+import { auth, getAllData } from "@/libs/firebase/firebase";
 import LoadingScreen from "@/components/ui/loading/loading";
+import { onAuthStateChanged } from "firebase/auth";
 
 // Kaushan_Script
 
@@ -32,6 +33,8 @@ export default function App({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
   const [services, setServices] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [clientSession, setClientSession] = useState();
+
   const fetchServices = async () => {
     setIsLoading(true);
     try {
@@ -113,22 +116,24 @@ export default function App({ Component, pageProps }) {
     router.events.on("routeChangeError", handleChangeEnd);
   }, [router.events]);
 
-  const [customer, setCustomer] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (session) => {
+      setClientSession(session);
+    });
+  }, []);
 
   return (
     <SessionProvider session={pageProps.session}>
-     
       {isLoading || load ? (
         <LoadingScreen />
       ) : (
         <main className={fonts.mainFont}>
-          <Layout customer={customer} services={services}>
+          <Layout services={services}>
             <Component
               {...pageProps}
-              customer={customer}
-              setCustomer={setCustomer}
               blogs={blogs}
               services={services}
+              clientSession={clientSession}
             />
           </Layout>
         </main>

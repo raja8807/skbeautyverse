@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import CustomerLogin from "./customer_login/customer_login";
 // import CustomContainer from "@/components/ui/custom_container/custom_container";
 
-const LoginBox = ({ setCustomer, customer }) => {
+const LoginBox = ({ setCustomer }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -15,7 +15,6 @@ const LoginBox = ({ setCustomer, customer }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAdminLogin = async () => {
-    //  try{
     setError(null);
     setIsLoading(true);
     const res = await signIn("credentials", {
@@ -30,12 +29,13 @@ const LoginBox = ({ setCustomer, customer }) => {
     setIsLoading(false);
   };
 
-  const [isAdminLogin, setIsAdminLogin] = useState(true);
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
 
   return (
     <div className={styles.cont}>
       {isAdminLogin ? (
         <div className={styles.loginBox}>
+          <div className={styles.img} />
           <form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -43,6 +43,7 @@ const LoginBox = ({ setCustomer, customer }) => {
             }}
           >
             <p>Admin Login</p>
+
             <input
               className={error ? styles.error : ""}
               placeholder="email"
@@ -67,7 +68,9 @@ const LoginBox = ({ setCustomer, customer }) => {
             {isLoading ? (
               <Spinner style={{ margin: "auto" }} />
             ) : (
-              <input type="submit" value="login" />
+              <>
+                <input type="submit" value="login" />
+              </>
             )}
             <small
               onClick={() => {
@@ -83,7 +86,6 @@ const LoginBox = ({ setCustomer, customer }) => {
         <CustomerLogin
           setIsAdminLogin={setIsAdminLogin}
           setCustomer={setCustomer}
-          customer={customer}
           isLoginPage
         />
       )}

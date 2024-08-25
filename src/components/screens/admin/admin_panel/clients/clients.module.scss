@@ -1,0 +1,35 @@
+.ClientCard {
+  display: flex;
+  gap: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 20px;
+  margin: 20px;
+  cursor: pointer;
+  .left {
+    > div {
+      height: 100px;
+      width: 100px;
+      background-size: contain;
+      border-radius: 50%;
+      background-position: center;
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .loc {
+      color: grey;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

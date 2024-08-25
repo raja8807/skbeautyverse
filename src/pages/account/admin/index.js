@@ -30,7 +30,6 @@ const Admin = ({ homeData }) => {
       <CustomContainer>
         {session?.data ? (
           <>
-            <Link href="admin/g/bridal">Edit Galley</Link>
             <AdminPanel />
           </>
         ) : null}

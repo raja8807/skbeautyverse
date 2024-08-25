@@ -4,29 +4,22 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const LoginPage = ({ setCustomer, customer }) => {
+const LoginPage = ({ clientSession }) => {
   const session = useSession();
   const router = useRouter();
-
-  console.log(customer);
 
   useEffect(() => {
     if (session.data) {
       router.replace("/account/admin");
     }
-    if (
-      customer &&
-      customer.emailVerified &&
-      customer.displayName 
-      // customer.photoURL
-    ) {
-      router.replace(`/account/customer?user=${customer.displayName}`);
+    if (clientSession) {
+      router.replace(`/account/client`);
     }
-  }, [customer, router, session]);
+  }, [router, session,clientSession]);
 
   return (
     <CustomContainer>
-      <LoginBox setCustomer={setCustomer} customer={customer} />
+      <LoginBox />
     </CustomContainer>
   );
 };

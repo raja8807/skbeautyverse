@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const Admin = ({ customer }) => {
+const Admin = ({ clientSession }) => {
   const session = useSession();
   const router = useRouter();
 
@@ -11,19 +11,28 @@ const Admin = ({ customer }) => {
       router.replace("/account/admin");
       return;
     }
-
-    if (customer) {
-      router.replace(`/account/customer?user=${customer.displayName}`);
+    if (clientSession) {
+      router.replace("/account/client");
       return;
     }
 
-    if (!(session?.data && customer)) {
-      router.replace("/account/login");
-      return;
-    }
-  }, [customer, router, session]);
+    router.replace("/account/login");
+  }, [router, session]);
 
-  return null;
+  return (
+    <>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </>
+  );
 };
 
 export default Admin;

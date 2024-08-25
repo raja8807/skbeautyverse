@@ -12,21 +12,21 @@ const GallerySection = ({ galleryImages = [] }) => {
       <CustomSection head="Our Gallery">
         <div data-aos="fade-up" className={styles.cont}>
           <CustomContainer>
-           <div className={styles.x}>
-           <div className={styles.wrap}>
-              <ImageGallery
-                imagesInfoArray={galleryImages.map((gi) => {
-                  return {
-                    src: gi.url,
-                    alt: "img",
-                  };
-                })}
-                columnCount={"4"}
-                columnWidth={125}
-                gapSize={24}
-              />
+            <div className={styles.x}>
+              <div className={styles.wrap}>
+                <ImageGallery
+                  imagesInfoArray={galleryImages.map((gi) => {
+                    return {
+                      src: gi.url,
+                      alt: "img",
+                    };
+                  })}
+                  columnCount={"4"}
+                  columnWidth={125}
+                  gapSize={24}
+                />
+              </div>
             </div>
-           </div>
           </CustomContainer>
         </div>
       </CustomSection>
