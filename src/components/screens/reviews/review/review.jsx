@@ -14,7 +14,7 @@ const Review = ({ review }) => {
           }}
         />
         <strong>{review.name}</strong>
-        <i className={customFont1}>"{review.message}"</i>
+        <i className={customFont1}>&quot;{review.message}&quot;</i>
       </div>
     </Col>
   );

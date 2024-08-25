@@ -155,7 +155,7 @@ const TestimonialsSection = ({ reviews }) => {
 
                   <div>
                     <h2>{review.name}</h2>
-                    <p>"{review.message}"</p>
+                    <p>&quot;{review.message}&quot;</p>
                   </div>
                 </div>
               );
