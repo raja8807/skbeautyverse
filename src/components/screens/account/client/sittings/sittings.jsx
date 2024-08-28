@@ -88,11 +88,11 @@ const Sittings = ({ client }) => {
                     <td>{sitting.date}</td>
                     <td>{sitting.paymentStatus}</td>
                     <td>
-                      {sitting.receivedPayment === "Partially Paid"
-                        ? sitting.receivedPayment
+                      {sitting.paymentStatus === "Partially Paid"
+                        ? sitting.pendingPayment
                         : 0}
                     </td>
-                    <td>{sitting.pendingPayment}</td>
+                    <td>{sitting.receivedPayment}</td>
                   </tr>
                 );
               })}

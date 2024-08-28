@@ -11,12 +11,13 @@ const CustomerLogin = (props) => {
     password: "",
   });
 
-
   const signIn = async () => {
     try {
       const user = await signInWithEmailAndPassword(
         auth,
-        values.email,
+        values.email.includes("@")
+          ? values.email
+          : `${values.email}@skbeautyverse.com`,
         values.password
       );
 
@@ -43,7 +44,7 @@ const CustomerLogin = (props) => {
       >
         <p className={customFont2}>Welcome to Sk Beauty-Verse</p>
         <input
-          placeholder="Email"
+          placeholder="Phone"
           value={values.email}
           onChange={(e) => {
             setValues((prev) => ({ ...prev, email: e.target.value }));

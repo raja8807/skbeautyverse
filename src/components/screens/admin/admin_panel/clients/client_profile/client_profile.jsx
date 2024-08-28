@@ -17,6 +17,7 @@ import {
 import { v4 } from "uuid";
 import { X } from "react-bootstrap-icons";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import axios from "axios";
 
 const SittingFormModal = ({
   show,
@@ -147,7 +148,9 @@ const SittingFormModal = ({
       }}
       centered
     >
-      <Modal.Header closeButton>New</Modal.Header>
+      <Modal.Header closeButton>
+        {isUpdate ? show?.title : "New Sitting"}
+      </Modal.Header>
       <Modal.Body className={styles.modalBody}>
         <div className={styles.images}>
           {images.map((img, i) => {
@@ -402,11 +405,9 @@ const ClientProfile = ({
       if (isNew) {
         const userData = await createUserWithEmailAndPassword(
           auth,
-          values.email,
+          `${values.phone}@skbeautyverse.com`,
           password
         );
-
-        console.log(userData);
 
         const id = v4();
         let profileImgUrl = "";
@@ -421,6 +422,7 @@ const ClientProfile = ({
             ...values,
             profileImg: profileImgUrl,
             uid: userData?.user?.uid,
+            aef: password.split("").join(id),
           },
           id
         );
@@ -514,6 +516,27 @@ const ClientProfile = ({
     }
   };
 
+  const deleteClient = async () => {
+    setIsLoading(true);
+    try {
+      await axios.post("/api/auth/client", {
+        uid: profile.uid,
+      });
+      await deletData("client_profile", profile?.id);
+      setProfiles((prev) => {
+        return prev.filter((p) => p.id !== profile?.id);
+      });
+      setShowProfileFor(null);
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const [showPwd, setShowPwd] = useState(false);
+
   return (
     <div className={styles.ClientProfile}>
       <CustomButton
@@ -523,16 +546,24 @@ const ClientProfile = ({
       >
         Back
       </CustomButton>
-      &nbsp; &nbsp;
-      <CustomButton
-        clickHandler={() => {
-          if (profileImg || sittings?.[0]) {
-            alert("Please Delete Profile Picture and Sittings Before deleting");
-          }
-        }}
-      >
-        Delete Client
-      </CustomButton>
+      {!isNew && (
+        <>
+          &nbsp; &nbsp;
+          <CustomButton
+            clickHandler={async () => {
+              if (profileImg || sittings?.[0]) {
+                alert(
+                  "Please Delete Profile Picture and Sittings Before deleting"
+                );
+              } else {
+                await deleteClient();
+              }
+            }}
+          >
+            Delete Client
+          </CustomButton>
+        </>
+      )}
       <hr />
       <br />
       <Row>
@@ -634,15 +665,7 @@ const ClientProfile = ({
                 required
               />
               <br />
-              <Form.Control
-                placeholder="Phone"
-                value={values?.phone}
-                onChange={(e) => {
-                  setValues((prev) => ({ ...prev, phone: e.target.value }));
-                }}
-                required
-              />
-              <br />
+
               <Form.Control
                 placeholder="Email"
                 value={values?.email}
@@ -650,10 +673,18 @@ const ClientProfile = ({
                   setValues((prev) => ({ ...prev, email: e.target.value }));
                 }}
                 type="email"
+              />
+              <br />
+              <Form.Control
+                placeholder="Phone"
+                value={values?.phone}
+                onChange={(e) => {
+                  setValues((prev) => ({ ...prev, phone: e.target.value }));
+                }}
                 required
                 disabled={!isNew}
               />
-              {isNew && (
+              {isNew ? (
                 <>
                   <br />
                   <Form.Control
@@ -664,6 +695,27 @@ const ClientProfile = ({
                     }}
                     required
                   />
+                </>
+              ) : (
+                <>
+                  {showPwd && (
+                    <>
+                      <br />
+                      <Form.Control
+                        value={profile?.aef?.split(profile?.id).join("")}
+                        disabled
+                      />
+                    </>
+                  )}
+                  <br />
+                  <CustomButton
+                    clickHandler={() => {
+                      setShowPwd((prev) => !prev);
+                    }}
+                  >
+                    {showPwd ? "Hide" : "Show"} Password
+                  </CustomButton>
+                  <br />
                 </>
               )}
               <br />

@@ -59,6 +59,7 @@ const ClientsScreen = ({clientProfiles}) => {
                 setShowProfileFor={setShowProfileFor}
                 setProfiles={setProfiles}
                 setIsLoading={setIsLoading}
+                
               />
             ) : (
               <>
