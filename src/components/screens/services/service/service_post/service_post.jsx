@@ -28,7 +28,7 @@ const ServicePostScreen = ({ service: service_post }) => {
       <PageHead
         head={service_post.title}
         caption={<h2>&#8377;{service_post.price}/-</h2>}
-        img={`/images/png/${service_post?.headImg}.PNG`}
+        img={service_post?.headImg?.img}
         btn={
           <CustomButton href="/book" variant={2} isNew>
             Book Now

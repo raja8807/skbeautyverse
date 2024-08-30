@@ -1,8 +1,10 @@
-.SpinnerScreen{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.42);
-    @include flexCenter;
-    z-index: 10000;
+.SpinnerScreen {
+  position: fixed !important;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.42);
+  @include flexCenter;
+  z-index: 10000;
 }

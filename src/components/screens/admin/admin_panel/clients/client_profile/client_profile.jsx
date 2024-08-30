@@ -96,7 +96,7 @@ const SittingFormModal = ({
       }
       alert("Success");
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       alert("Something Went Wrong");
     } finally {
       setIsLoading(false);
@@ -133,8 +133,8 @@ const SittingFormModal = ({
       setImages((prev) => prev.filter((p, i) => i !== idx));
     } catch (error) {
       console.log(error);
-
       alert("Something went wrong");
+
     } finally {
       setIsLoading(false);
     }

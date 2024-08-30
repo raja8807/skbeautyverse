@@ -1,6 +1,7 @@
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import {
   addData,
+  deleteFolder,
   deletFile,
   updateData,
   uploadFile,
@@ -20,6 +21,7 @@ import {
   HtmlButton,
 } from "react-simple-wysiwyg";
 import styles from "./new_service.module.scss";
+import SpinnerScreen from "@/components/ui/spinner_screen/spinner_screen";
 
 const NewService = ({
   service,
@@ -29,20 +31,21 @@ const NewService = ({
   setCurrentPost,
   isBlog,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [rows, setRows] = useState(currentPost?.rows || []);
   const [values, setValues] = useState({
     title: currentPost?.title || "",
     price: currentPost?.price || "",
     service: isBlog ? "Blogs" : service.id,
     description: currentPost?.description || "",
-    headImg: "",
+    headImg: currentPost?.headImg || null,
   });
 
   const postProject = async (e) => {
     e.preventDefault();
 
     try {
-      if (rows.some((r) => !r.isUploaded)) {
+      if (rows.some((r) => !r.isUploaded) || !values?.headImg?.isUploaded) {
         throw new Error("upload all images before submitting");
       }
       if (currentPost) {
@@ -91,49 +94,93 @@ const NewService = ({
     }
   };
 
-  const headImages = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const uploadHeadImage = async () => {
+    setIsLoading(true);
+    try {
+      const res = await uploadFile(
+        values?.headImg?.img,
+        `service_post/${service.id}/headImg`
+      );
 
-  // console.log(values.headImg);
+      setValues((prev) => {
+        return {
+          ...prev,
+          headImg: {
+            img: res,
+            isUploaded: true,
+          },
+        };
+      });
+    } catch (error) {
+      alert("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deleteHeadImg = async () => {
+    setIsLoading(true);
+    try {
+      if (values?.headImg?.isUploaded) {
+        await deleteFolder(`service_post/${service.id}/headImg`);
+      }
+      setValues((prev) => ({ ...prev, headImg: null }));
+    } catch (error) {
+      alert("error");
+      // setValues((prev) => ({ ...prev, headImg: null }));
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div>
-      <br />
-      <form onSubmit={postProject}>
-        <p>Category: {service.title}</p>
+    <>
+      {isLoading && <SpinnerScreen />}
+      <div>
         <br />
-        <p>Head image</p>
+        <form onSubmit={postProject}>
+          <p>Category: {service.title}</p>
+          <br />
+          <p>Head image</p>
 
-        {values.headImg ? (
-          <>
-            <Image
-              width={300}
-              src={
-                values?.headImg?.isUploaded
-                  ? values?.headImg?.img
-                  : URL.createObjectURL(values?.headImg?.img)
-              }
+          {values.headImg?.img ? (
+            <>
+              <Image
+                width={300}
+                src={
+                  values?.headImg?.isUploaded
+                    ? values?.headImg?.img
+                    : URL.createObjectURL(values?.headImg?.img)
+                }
+              />
+              <div>
+                {!values?.headImg?.isUploaded && (
+                  <CustomButton clickHandler={uploadHeadImage}>
+                    Upload
+                  </CustomButton>
+                )}
+                <CustomButton clickHandler={deleteHeadImg}>Delete</CustomButton>
+              </div>
+            </>
+          ) : (
+            <Form.Control
+              type="file"
+              max={1}
+              accept=".png"
+              onChange={(e) => {
+                setValues((prev) => {
+                  return {
+                    ...prev,
+                    headImg: {
+                      img: e.target.files[0],
+                      isUploaded: false,
+                    },
+                  };
+                });
+              }}
             />
-            <CustomButton>Upload</CustomButton>
-          </>
-        ) : (
-          <Form.Control
-            type="file"
-            max={1}
-            accept=".png"
-            onChange={(e) => {
-              setValues((prev) => {
-                return {
-                  ...prev,
-                  headImg: {
-                    img: e.target.files[0],
-                    isUploaded: false,
-                  },
-                };
-              });
-            }}
-          />
-        )}
-        {/* <div className={`${styles.headerImages}`}>
+          )}
+          {/* <div className={`${styles.headerImages}`}>
           {headImages.map((hi) => {
             return (
               <div
@@ -148,183 +195,189 @@ const NewService = ({
             );
           })}
         </div> */}
-        <br />
-        <Form.Control
-          placeholder="Title"
-          onChange={(e) => {
-            setValues((prev) => ({ ...prev, title: e.target.value }));
-          }}
-          value={values.title}
-        />
-        <br />
-        {!isBlog && (
-          <>
-            <Form.Control
-              placeholder="Price"
-              onChange={(e) => {
-                setValues((prev) => ({ ...prev, price: e.target.value }));
-              }}
-              value={values.price}
-            />
-            <br />
-          </>
-        )}
+          <br />
+          <Form.Control
+            placeholder="Title"
+            onChange={(e) => {
+              setValues((prev) => ({ ...prev, title: e.target.value }));
+            }}
+            value={values.title}
+          />
+          <br />
+          {!isBlog && (
+            <>
+              <Form.Control
+                placeholder="Price"
+                onChange={(e) => {
+                  setValues((prev) => ({ ...prev, price: e.target.value }));
+                }}
+                value={values.price}
+              />
+              <br />
+            </>
+          )}
 
-        <textarea
-          placeholder="Description"
-          rows={3}
-          onChange={(e) => {
-            setValues((prev) => ({ ...prev, description: e.target.value }));
-          }}
-          style={{
-            width: "100%",
-          }}
-          value={values.description}
-        />
-        <br />
-        <br />
-        {rows.map((r, i) => {
-          return (
-            <div key={i}>
-              {!r.img && (
-                <Form.Control
-                  type="file"
-                  max={1}
-                  accept=".jpg"
-                  onChange={(e) => {
-                    setRows((prev) => {
-                      const r = [...prev];
-                      r[i].isUploaded = false;
-                      r[i].img = e.target.files[0];
-                      return r;
-                    });
-                  }}
-                />
-              )}
-              {r.img && r.isUploaded && (
-                <div>
-                  <Image src={r.img} width={300} alt="xx" />
-                  <br />
-                  <CustomButton
-                    clickHandler={async () => {
-                      try {
-                        const res = await deletFile(
-                          `service_post/${service.id}`,
-                          r.fileName
-                        );
-                        if (res) {
+          <textarea
+            placeholder="Description"
+            rows={3}
+            onChange={(e) => {
+              setValues((prev) => ({ ...prev, description: e.target.value }));
+            }}
+            style={{
+              width: "100%",
+            }}
+            value={values.description}
+          />
+          <br />
+          <br />
+          {rows.map((r, i) => {
+            return (
+              <div key={i}>
+                {!r.img && (
+                  <Form.Control
+                    type="file"
+                    max={1}
+                    accept=".jpg"
+                    onChange={(e) => {
+                      setRows((prev) => {
+                        const r = [...prev];
+                        r[i].isUploaded = false;
+                        r[i].img = e.target.files[0];
+                        return r;
+                      });
+                    }}
+                  />
+                )}
+                {r.img && r.isUploaded && (
+                  <div>
+                    <Image src={r.img} width={300} alt="xx" />
+                    <br />
+                    <CustomButton
+                      clickHandler={async () => {
+                        try {
+                          const res = await deletFile(
+                            `service_post/${service.id}`,
+                            r.fileName
+                          );
+                          if (res) {
+                            setRows((prev) => {
+                              const r = [...prev];
+                              r[i].isUploaded = false;
+                              r[i].img = "";
+
+                              return r;
+                            });
+                          }
+                        } catch (error) {
                           setRows((prev) => {
                             const r = [...prev];
                             r[i].isUploaded = false;
                             r[i].img = "";
-
                             return r;
                           });
                         }
-                      } catch (error) {
-                        console.log(error);
-                      }
-                    }}
-                  >
-                    Delete
-                  </CustomButton>
-                </div>
-              )}
+                      }}
+                    >
+                      Delete
+                    </CustomButton>
+                  </div>
+                )}
 
-              {r.img && !r.isUploaded && (
-                <div>
-                  <Image
-                    src={URL.createObjectURL(r.img)}
-                    width={300}
-                    alt="xx"
-                  />
-                  <br />
-                  <CustomButton
-                    clickHandler={async () => {
-                      try {
-                        const res = await uploadFile(
-                          r.img,
-                          `service_post/${service.id}`
-                        );
+                {r.img && !r.isUploaded && (
+                  <div>
+                    <Image
+                      src={URL.createObjectURL(r.img)}
+                      width={300}
+                      alt="xx"
+                    />
+                    <br />
+                    <CustomButton
+                      clickHandler={async () => {
+                        try {
+                          const res = await uploadFile(
+                            r.img,
+                            `service_post/${service.id}`
+                          );
+                          setRows((prev) => {
+                            const r = [...prev];
+                            r[i].isUploaded = true;
+                            r[i].fileName = prev[i].img.name;
+                            r[i].img = res;
+                            return r;
+                          });
+                          console.log(res);
+                        } catch (err) {
+                          console.log(err);
+                        }
+                      }}
+                    >
+                      Upload
+                    </CustomButton>
+                    &nbsp; &nbsp;
+                    <CustomButton
+                      clickHandler={() => {
                         setRows((prev) => {
                           const r = [...prev];
-                          r[i].isUploaded = true;
-                          r[i].fileName = prev[i].img.name;
-                          r[i].img = res;
+                          r[i].isUploaded = false;
+                          r[i].img = "";
+
                           return r;
                         });
-                        console.log(res);
-                      } catch (err) {
-                        console.log(err);
-                      }
-                    }}
-                  >
-                    Upload
-                  </CustomButton>
-                  &nbsp; &nbsp;
-                  <CustomButton
-                    clickHandler={() => {
+                      }}
+                    >
+                      Delete
+                    </CustomButton>
+                  </div>
+                )}
+
+                <br />
+                <EditorProvider>
+                  <Editor
+                    value={r.text}
+                    onChange={(e) => {
                       setRows((prev) => {
                         const r = [...prev];
-                        r[i].isUploaded = false;
-                        r[i].img = "";
-
+                        r[i].text = e.target.value;
                         return r;
                       });
                     }}
+                    aria-required
                   >
-                    Delete
-                  </CustomButton>
-                </div>
-              )}
-
-              <br />
-              <EditorProvider>
-                <Editor
-                  value={r.text}
-                  onChange={(e) => {
-                    setRows((prev) => {
-                      const r = [...prev];
-                      r[i].text = e.target.value;
-                      return r;
-                    });
-                  }}
-                  aria-required
-                >
-                  <Toolbar>
-                    <BtnBold />
-                    <BtnItalic />
-                    <BtnBulletList />
-                    <BtnNumberedList />
-                    <BtnClearFormatting />
-                    <BtnStyles />
-                  </Toolbar>
-                </Editor>
-              </EditorProvider>
-              <br />
-            </div>
-          );
-        })}
-        <br />
-        <CustomButton
-          clickHandler={() => {
-            setRows((prev) => [
-              ...prev,
-              {
-                img: "",
-                text: "",
-              },
-            ]);
-          }}
-        >
-          Add Row
-        </CustomButton>
-        <br />
-        <br />
-        <Form.Control type="submit" />
-        <br />
-      </form>
-    </div>
+                    <Toolbar>
+                      <BtnBold />
+                      <BtnItalic />
+                      <BtnBulletList />
+                      <BtnNumberedList />
+                      <BtnClearFormatting />
+                      <BtnStyles />
+                    </Toolbar>
+                  </Editor>
+                </EditorProvider>
+                <br />
+              </div>
+            );
+          })}
+          <br />
+          <CustomButton
+            clickHandler={() => {
+              setRows((prev) => [
+                ...prev,
+                {
+                  img: "",
+                  text: "",
+                },
+              ]);
+            }}
+          >
+            Add Row
+          </CustomButton>
+          <br />
+          <br />
+          <Form.Control type="submit" />
+          <br />
+        </form>
+      </div>
+    </>
   );
 };
 
