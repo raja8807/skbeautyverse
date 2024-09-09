@@ -7,10 +7,7 @@ import PageHead from "@/components/ui/page_head/page_head";
 const BlogScreen = ({ blog }) => {
   return (
     <div className={styles.BlogScreen}>
-      <PageHead
-        head={blog.title}
-        img={`/images/png/${blog?.headImg}.PNG`}
-      />
+      <PageHead head={blog.title} img={`/images/png/${blog?.headImg}.PNG`} />
       <CustomSection>
         <div className={styles.wrap}>
           {blog.rows.map((row, idx) => {

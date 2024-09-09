@@ -1,5 +1,3 @@
-"use client";
-
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
 import React from "react";

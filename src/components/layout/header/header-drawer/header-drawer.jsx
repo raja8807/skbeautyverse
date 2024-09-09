@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import CustomButton from "@/components/ui/custom_button/custom_button";
-import fireBaseCustomerAuth from "@/components/constants/firebase_config";
 import { useState } from "react";
 import { CaretDownFill, CaretUpFill } from "react-bootstrap-icons";
 
@@ -133,15 +132,7 @@ const HeaderDrawer = (props) => {
             </CustomButton>
           )}
 
-          {customer && (
-            <CustomButton
-              clickHandler={() => {
-                fireBaseCustomerAuth.signOut();
-              }}
-            >
-              Logout
-            </CustomButton>
-          )}
+         
         </Offcanvas.Body>
       </div>
     </Offcanvas>

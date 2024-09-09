@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Layout from "@/components/layout/layout";
@@ -18,7 +18,6 @@ import fonts from "@/styles/fonts/fonts";
 import { auth, getAllData } from "@/libs/firebase/firebase";
 import LoadingScreen from "@/components/ui/loading/loading";
 import { onAuthStateChanged } from "firebase/auth";
-import { DefaultSeo } from "next-seo";
 
 // Kaushan_Script
 
@@ -29,9 +28,7 @@ const roboto = BaseFont({
 });
 
 export default function App({ Component, pageProps }) {
-  const [load, setLoad] = useState(true);
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [services, setServices] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [clientSession, setClientSession] = useState();
@@ -67,55 +64,22 @@ export default function App({ Component, pageProps }) {
     } catch (error) {
       console.log(error);
     } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+        startTransition(() => {
+          setIsLoading(false);
+        });
+      }, 1000);
     }
   };
 
   useEffect(() => {
-    Router.events.on("routeChangeStart", (...params) => {
-      NProgress.start(params);
-    });
-    Router.events.on("routeChangeComplete", NProgress.done);
-    Router.events.on("routeChangeError", NProgress.done);
-
     Aos.init({
       duration: 1000,
       once: false,
     });
 
-    setTimeout(() => {
-      setLoad(false);
-    }, 2000);
-
     fetchServices();
-
-    return () => {
-      Router.events.off("routeChangeStart", NProgress.start);
-      Router.events.off("routeChangeComplete", NProgress.done);
-      Router.events.off("routeChangeError", NProgress.done);
-    };
   }, []);
-
-  useEffect(() => {
-    const handleChangeStart = (url) => {
-      if (url === "/" || url.includes("gallery") || url.includes("admin")) {
-        setIsLoading(true);
-      }
-    };
-
-    const handleChangeEnd = (url) => {
-      if (
-        typeof url === "string" &&
-        (url === "/" || url.includes("gallery") || url.includes("account"))
-      ) {
-        setIsLoading(false);
-      }
-    };
-
-    router.events.on("routeChangeStart", handleChangeStart);
-    router.events.on("routeChangeComplete", handleChangeEnd);
-    router.events.on("routeChangeError", handleChangeEnd);
-  }, [router.events]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (session) => {
@@ -124,27 +88,18 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
-      <DefaultSeo
-        title="SK Beauty-Verse - Skin care | Hair Care | Bridal makeup | Courses"
-        description={`I am SUSHMITHA KARTHIK, your dedicated makeup artist, Certified by "Lakme Academy" specializing in hair, skin, and bridal makeup. Discover personalized beauty experiences crafted with premium products, which do not cause damage to skin & hair. "Make your beautyful day, More Beutiful with our Makup Services!"`}
-      />
-      <SessionProvider session={pageProps.session}>
-        {isLoading || load ? (
-          <LoadingScreen />
-        ) : (
-          <main className={fonts.mainFont}>
-            <Layout services={services}>
-              <Component
-                {...pageProps}
-                blogs={blogs}
-                services={services}
-                clientSession={clientSession}
-              />
-            </Layout>
-          </main>
-        )}
-      </SessionProvider>
-    </>
+    <SessionProvider session={pageProps.session}>
+      {isLoading && <LoadingScreen />}
+      <main className={fonts.mainFont}>
+        <Layout services={services}>
+          <Component
+            {...pageProps}
+            blogs={blogs}
+            services={services}
+            clientSession={clientSession}
+          />
+        </Layout>
+      </main>
+    </SessionProvider>
   );
 }

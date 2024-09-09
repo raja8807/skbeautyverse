@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 const { default: Header } = require("./header/header");
 
 const Layout = (props) => {
-  const { children, customer, services } = props;
+  const { children, customer, services = [] } = props;
   const servicesRef = useRef(null);
   const [showPopup, setShowPopup] = useState(false);
   return (

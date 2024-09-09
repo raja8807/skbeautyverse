@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import styles from "./page_head.module.scss";
 import { Image } from "react-bootstrap";
 
-const PageHead = ({ head, caption, img, btn, rightImg, variant = 1 }) => {
+const PageHead = ({
+  head,
+  caption,
+  img,
+  btn,
+  rightImg,
+  variant = 1,
+  bottom,
+}) => {
   const [src, setSrc] = useState(img || "/images/page_head_bg.png");
   const [rightSrc, setRightSrc] = useState(
     rightImg || "/images/page_head_flower2.png"
@@ -27,6 +35,7 @@ const PageHead = ({ head, caption, img, btn, rightImg, variant = 1 }) => {
           <p data-aos="fade-down" className={styles.caption}>
             {caption}
           </p>
+          {bottom && <h2 className={styles.caption}>{bottom}</h2>}
           {btn}
         </div>
         <Image
