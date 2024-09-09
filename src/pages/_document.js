@@ -14,7 +14,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <title>SK Beauty-Verse</title>
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-9BYSH4RK0C"
