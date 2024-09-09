@@ -7,7 +7,7 @@ const BlogPage = ({ blog }) => {
   return (
     <>
       <Head>
-        <title>{blog?.title}</title>
+        <title>{blog?.title} - SK Beauty-Verse</title>
         <meta name="description" content={blog?.description} />
         <meta property="og:title" content={blog?.title} />
         <meta property="og:description" content={blog?.description} />

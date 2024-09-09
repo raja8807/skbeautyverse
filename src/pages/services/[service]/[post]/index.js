@@ -7,7 +7,7 @@ const ServicePost = ({ service }) => {
   return (
     <>
       <Head>
-        <title>{service.title}</title>
+        <title>{`${service.title} - SK Beauty-Verse`}</title>
         <meta name="description" content={service.description} />
         <meta property="og:title" content={service.title} />
         <meta property="og:description" content={service.description} />
@@ -20,8 +20,10 @@ const ServicePost = ({ service }) => {
         <meta name="twitter:title" content={service.title} />
         <meta name="twitter:description" content={service.description} />
         <meta name="twitter:image" content={service?.rows?.[0]?.img} />
-        <link rel="canonical" href={`https://www.skbeautyverse.com/services/${service.service}/${service.id}`}/>
-
+        <link
+          rel="canonical"
+          href={`https://www.skbeautyverse.com/services/${service.service}/${service.id}`}
+        />
       </Head>
       <ServicePostScreen service={service} />
     </>
