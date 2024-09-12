@@ -4,6 +4,7 @@ import styles from "./service_post.module.scss";
 import { Image } from "react-bootstrap";
 import PageHead from "@/components/ui/page_head/page_head";
 import CustomButton from "@/components/ui/custom_button/custom_button";
+import CustomContainer from "@/components/ui/custom_container/custom_container";
 
 const ServicePostScreen = ({ service: service_post }) => {
   const getVariant = () => {
@@ -35,8 +36,9 @@ const ServicePostScreen = ({ service: service_post }) => {
           </CustomButton>
         }
         variant={getVariant()}
+        key={service_post?.id}
       />
-      <CustomSection>
+      <CustomSection head={service_post?.description}>
         <div className={styles.wrap}>
           {service_post.rows.map((row, idx) => {
             return (
@@ -55,6 +57,15 @@ const ServicePostScreen = ({ service: service_post }) => {
             );
           })}
         </div>
+        <CustomContainer>
+          <p
+            style={{
+              opacity: 0,
+            }}
+          >
+            {service_post?.keywords}
+          </p>
+        </CustomContainer>
       </CustomSection>
     </div>
   );

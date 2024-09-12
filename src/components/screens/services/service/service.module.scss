@@ -16,12 +16,23 @@
     margin: 0;
   }
 
+  .desc {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    @supports (-webkit-line-clamp: 2) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+    }
+  }
+
   .price {
-    // color: $color_p4;
     font-size: 20px;
-    // background-color: $color_p4;
-    // padding: 4px 8px;
-    // border-radius: 10px;
   }
   .img {
     border: 5px solid $color_r1;
@@ -33,7 +44,7 @@
   }
 
   &:hover {
-    img {
+    .img {
       box-shadow: 0 0 50px 1px rgb(218, 218, 218);
       transform: scale(1.05);
     }
