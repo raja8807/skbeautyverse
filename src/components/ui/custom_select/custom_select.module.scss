@@ -1,9 +1,10 @@
 .customSelect {
-  background-color: transparent;
-  border: 2px solid $color_gold;
+  background-color: $color_pk1;
+  border: 2px solid $color_r1;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  min-width: 200px;
 
   option {
     color: $color_black;
@@ -11,12 +12,6 @@
   }
 
   &:hover {
-    background-color: $color_gold2;
-    color: $color_black;
     border-color: $color_black;
-
-    option {
-      background-color: white;
-    }
   }
 }

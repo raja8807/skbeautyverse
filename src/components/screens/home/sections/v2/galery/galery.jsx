@@ -3,6 +3,7 @@ import CustomSection from "@/components/ui/custom_section/custom_section";
 import React from "react";
 import { ImageGallery } from "react-image-grid-gallery";
 import styles from "./galery.module.scss";
+import CustomButton from "@/components/ui/custom_button/custom_button";
 
 const GallerySection = ({ galleryImages = [] }) => {
   return (
@@ -24,6 +25,9 @@ const GallerySection = ({ galleryImages = [] }) => {
                   gapSize={24}
                 />
               </div>
+            </div>
+            <div className={styles.btn}>
+              <CustomButton variant={2} href='/gallery/bridal'>View Full Gallery</CustomButton>
             </div>
           </CustomContainer>
         </div>
