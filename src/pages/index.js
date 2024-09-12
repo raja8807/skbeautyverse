@@ -26,7 +26,7 @@ const Home = ({ homeData = {}, blogs = [], reviews = [] }) => {
         />
         <meta
           property="og:image"
-          content="/og.png"
+          content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/www.skbeautyverse.com/SK%20Beauty-Verse%20-%20Skin%20care%20%7C%20Hair%20Care%20%7C%20Bridal%20makeup%20%7C%20Courses/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2F1171157b-250d-48d1-8b38-936992b37a2d.png%3Ftoken%3DXzUkbxrHyuxvdPDF9zQ8f3G7TfuLX8yF4-dG6g82d3g%26height%3D949%26width%3D1200%26expires%3D33262139363/og.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="skbeautyverse.com" />
@@ -41,7 +41,7 @@ const Home = ({ homeData = {}, blogs = [], reviews = [] }) => {
         />
         <meta
           name="twitter:image"
-          content="/og.png"
+          content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/www.skbeautyverse.com/SK%20Beauty-Verse%20-%20Skin%20care%20%7C%20Hair%20Care%20%7C%20Bridal%20makeup%20%7C%20Courses/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2F1171157b-250d-48d1-8b38-936992b37a2d.png%3Ftoken%3DXzUkbxrHyuxvdPDF9zQ8f3G7TfuLX8yF4-dG6g82d3g%26height%3D949%26width%3D1200%26expires%3D33262139363/og.png"
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://www.skbeautyverse.com" />
