@@ -8,9 +8,15 @@ const ServicePost = ({ service }) => {
     <>
       <Head>
         <title>{`${service.title} - SK Beauty-Verse`}</title>
-        <meta name="description" content={service.description} />
+        <meta
+          name="description"
+          content={`${service?.description} ${service?.keywords}`}
+        />
+        {service.keywords && (
+          <meta name="keywords" content={service?.keywords}></meta>
+        )}
         <meta property="og:title" content={service.title} />
-        <meta property="og:description" content={service.description} />
+        <meta property="og:description" content={`${service?.description}`} />
         <meta property="og:image" content={service?.rows?.[0]?.img} />
         <meta
           property="og:url"

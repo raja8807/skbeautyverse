@@ -20,6 +20,7 @@ import LoadingScreen from "@/components/ui/loading/loading";
 import { onAuthStateChanged } from "firebase/auth";
 import DefaultEditor from "react-simple-wysiwyg";
 import { DefaultSeo } from "next-seo";
+import KeywordsSection from "@/components/keywords/keywords";
 
 // Kaushan_Script
 
@@ -93,7 +94,7 @@ export default function App({ Component, pageProps }) {
     <SessionProvider session={pageProps.session}>
       <DefaultSeo
         title="SK Beauty-Verse - Skin care | Hair Care | Bridal makeup | Courses"
-        description='I am SUSHMITHA KARTHIK, your dedicated makeup artist, Certified by "Lakme Academy" specializing in hair, skin, and bridal makeup. Discover personalized beauty experiences crafted with premium products, which do not cause damage to skin & hair. "Make your beautyful day, More Beutiful with our Makup Services!"'
+        // description='I am SUSHMITHA KARTHIK, your dedicated makeup artist, Certified by "Lakme Academy" specializing in hair, skin, and bridal makeup. Discover personalized beauty experiences crafted with premium products, which do not cause damage to skin & hair. "Make your beautyful day, More Beutiful with our Makup Services!"'
       />
       {isLoading && <LoadingScreen />}
       <main className={fonts.mainFont}>
@@ -104,6 +105,7 @@ export default function App({ Component, pageProps }) {
             services={services}
             clientSession={clientSession}
           />
+          <KeywordsSection/>
         </Layout>
       </main>
     </SessionProvider>

@@ -22,6 +22,7 @@ import {
 } from "react-simple-wysiwyg";
 import styles from "./new_service.module.scss";
 import SpinnerScreen from "@/components/ui/spinner_screen/spinner_screen";
+import { v4 } from "uuid";
 
 const NewService = ({
   service,
@@ -39,6 +40,7 @@ const NewService = ({
     service: isBlog ? "Blogs" : service.id,
     description: currentPost?.description || "",
     headImg: currentPost?.headImg || null,
+    keywords: currentPost?.keywords || "",
   });
 
   const postProject = async (e) => {
@@ -80,8 +82,6 @@ const NewService = ({
           id
         );
 
-        console.log(res.headImg);
-
         setServices((prev) => [...prev, res]);
       }
 
@@ -99,7 +99,7 @@ const NewService = ({
     try {
       const res = await uploadFile(
         values?.headImg?.img,
-        `service_post/${service.id}/headImg`
+        `service_post/${v4()}/headImg`
       );
 
       setValues((prev) => {
@@ -152,6 +152,7 @@ const NewService = ({
                     ? values?.headImg?.img
                     : URL.createObjectURL(values?.headImg?.img)
                 }
+                alt="img"
               />
               <div>
                 {!values?.headImg?.isUploaded && (
@@ -229,6 +230,14 @@ const NewService = ({
             value={values.description}
           />
           <br />
+          <br />
+          <Form.Control
+            placeholder="Keywords"
+            onChange={(e) => {
+              setValues((prev) => ({ ...prev, keywords: e.target.value }));
+            }}
+            value={values.keywords}
+          />
           <br />
           {rows.map((r, i) => {
             return (
