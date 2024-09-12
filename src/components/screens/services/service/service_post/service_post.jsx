@@ -38,7 +38,10 @@ const ServicePostScreen = ({ service: service_post }) => {
         variant={getVariant()}
         key={service_post?.id}
       />
-      <CustomSection head={service_post?.description}>
+      <CustomSection>
+        <CustomContainer>
+          <p className={styles.description}>{service_post?.description}</p>
+        </CustomContainer>
         <div className={styles.wrap}>
           {service_post.rows.map((row, idx) => {
             return (
