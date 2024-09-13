@@ -11,7 +11,6 @@ import { SessionProvider } from "next-auth/react";
 
 // import firebase from "firebase/compat/app";
 
-import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Router from "next/router";
 import fonts from "@/styles/fonts/fonts";
@@ -22,6 +21,7 @@ import DefaultEditor from "react-simple-wysiwyg";
 import { DefaultSeo } from "next-seo";
 import KeywordsSection from "@/components/keywords/keywords";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react"
 
 // Kaushan_Script
 
@@ -127,6 +127,7 @@ export default function App({ Component, pageProps }) {
           </Layout>
         </main>
       </SessionProvider>
+      <Analytics/>
     </>
   );
 }
