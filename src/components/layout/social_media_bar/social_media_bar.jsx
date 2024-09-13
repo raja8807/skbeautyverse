@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "./social_media_bar.module.scss";
 import SocialLinks from "@/components/ui/social_links/social_links";
-import { Facebook, Instagram, Whatsapp, Youtube } from "react-bootstrap-icons";
+import {
+  Facebook,
+  Instagram,
+  Phone,
+  TelephoneFill,
+  Whatsapp,
+  Youtube,
+} from "react-bootstrap-icons";
 import Link from "next/link";
 
 const SocialMediaBar = () => {
@@ -29,6 +36,12 @@ const SocialMediaBar = () => {
       href: "https://wa.me/918610345830?text=Hi, I want more details..",
       icon: <Whatsapp />,
       color: "#25D366",
+    },
+    {
+      id: "ph",
+      href: "tel:+918610345830",
+      icon: <TelephoneFill />,
+      color: "#23237c",
     },
   ];
 

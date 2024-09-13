@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./service.module.scss";
 import CustomSection from "@/components/ui/custom_section/custom_section";
-import { Col, Image, Row } from "react-bootstrap";
+import { Col, Form, Image, Row } from "react-bootstrap";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import CustomInput from "@/components/ui/custom_input/custom_input";
 
-const Service = ({ service, data }) => {
+const Service = ({ service, data, searchQuery }) => {
+  const getTitle = () => {
+    if (searchQuery) {
+      const newTitle = title
+        .toLowerCase()
+        .replaceAll(
+          searchQuery.toLowerCase(),
+          `<span>${searchQuery.toUpperCase()}</span>`
+        );
+      return `<h4>${newTitle.toUpperCase()}</h4>`;
+    }
+    return `<h4>${title}</h4>`;
+  };
+
   const { rows, title, price, id, description } = data;
   return (
     <Col xs={12} md={6} lg={4} data-aos="fade-up">
@@ -19,7 +33,7 @@ const Service = ({ service, data }) => {
               backgroundImage: `url(${rows?.[0]?.img})`,
             }}
           />
-          <h4>{title}</h4>
+          <h4 dangerouslySetInnerHTML={{ __html: getTitle() }} />
           <p className={styles.desc}>{description}</p>
           <p className={styles.price}> &#8377;{price}/-</p>
           <CustomButton variant={2}>Know More</CustomButton>
@@ -34,17 +48,39 @@ const ServiceScreen = ({ services }) => {
 
   const service = router.query.service;
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <div className={styles.ServicesSection}>
       <br />
       <br />
       <br />
+
       <CustomSection>
         <CustomContainer>
+          <Form.Control
+            placeholder="Search here.."
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
+          />
           <Row>
-            {services.map((s, i) => {
-              return <Service key={s.id} data={s} service={service} />;
-            })}
+            {services
+              .filter((ser) => {
+                return ser.title
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase());
+              })
+              .map((s, i) => {
+                return (
+                  <Service
+                    key={s.id}
+                    data={s}
+                    service={service}
+                    searchQuery={searchQuery}
+                  />
+                );
+              })}
           </Row>
         </CustomContainer>
       </CustomSection>

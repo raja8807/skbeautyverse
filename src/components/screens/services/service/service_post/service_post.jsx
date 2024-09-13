@@ -5,6 +5,7 @@ import { Image } from "react-bootstrap";
 import PageHead from "@/components/ui/page_head/page_head";
 import CustomButton from "@/components/ui/custom_button/custom_button";
 import CustomContainer from "@/components/ui/custom_container/custom_container";
+import Link from "next/link";
 
 const ServicePostScreen = ({ service: service_post }) => {
   const getVariant = () => {
@@ -60,7 +61,16 @@ const ServicePostScreen = ({ service: service_post }) => {
             );
           })}
         </div>
+
         <CustomContainer>
+          <p>
+            Source :{" "}
+            <Link
+              href={`https://www.skbeautyverse.com/services/${service_post.service}`}
+            >
+              www.skbeautyverse.com/{service_post.service}
+            </Link>
+          </p>
           <p
             style={{
               opacity: 0,

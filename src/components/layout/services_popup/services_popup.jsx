@@ -15,10 +15,10 @@ const Category = ({ category ,setShowPopup}) => {
         setShowServices(false);
       }}
     >
-      <p>
-        {category.category.toUpperCase()} &nbsp;
+      <Link href={`/services/${category.category}`}>
+        <p>{category.category.toUpperCase()} &nbsp;</p>
         <ChevronRight />
-      </p>
+      </Link>
       {showServices && (
         <div
           className={styles.service}
