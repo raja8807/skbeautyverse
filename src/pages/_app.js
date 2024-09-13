@@ -21,6 +21,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import DefaultEditor from "react-simple-wysiwyg";
 import { DefaultSeo } from "next-seo";
 import KeywordsSection from "@/components/keywords/keywords";
+import Script from "next/script";
 
 // Kaushan_Script
 
@@ -91,23 +92,41 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <SessionProvider session={pageProps.session}>
-      <DefaultSeo
-        title="SK Beauty-Verse - Skin care | Hair Care | Bridal makeup | Courses"
-        // description='I am SUSHMITHA KARTHIK, your dedicated makeup artist, Certified by "Lakme Academy" specializing in hair, skin, and bridal makeup. Discover personalized beauty experiences crafted with premium products, which do not cause damage to skin & hair. "Make your beautyful day, More Beutiful with our Makup Services!"'
+    <>
+      <Script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=G-1YXX6P0YZ6`}
       />
-      {isLoading && <LoadingScreen />}
-      <main className={fonts.mainFont}>
-        <Layout services={services}>
-          <Component
-            {...pageProps}
-            blogs={blogs}
-            services={services}
-            clientSession={clientSession}
-          />
-          <KeywordsSection/>
-        </Layout>
-      </main>
-    </SessionProvider>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+      window.dataLayer = window.dataLayer || []; 
+      function gtag(){
+      dataLayer.push(arguments);
+      } gtag('js', new Date()); gtag('config', 'G-1YXX6P0YZ6'); 
+      `,
+        }}
+      />
+
+      <SessionProvider session={pageProps.session}>
+        <DefaultSeo
+          title="SK Beauty-Verse - Skin care | Hair Care | Bridal makeup | Courses"
+          // description='I am SUSHMITHA KARTHIK, your dedicated makeup artist, Certified by "Lakme Academy" specializing in hair, skin, and bridal makeup. Discover personalized beauty experiences crafted with premium products, which do not cause damage to skin & hair. "Make your beautyful day, More Beutiful with our Makup Services!"'
+        />
+        {isLoading && <LoadingScreen />}
+        <main className={fonts.mainFont}>
+          <Layout services={services}>
+            <Component
+              {...pageProps}
+              blogs={blogs}
+              services={services}
+              clientSession={clientSession}
+            />
+            <KeywordsSection />
+          </Layout>
+        </main>
+      </SessionProvider>
+    </>
   );
 }

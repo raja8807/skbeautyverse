@@ -4,7 +4,6 @@ import { getAllData } from "@/libs/firebase/firebase";
 
 function generateSiteMap(blogs = [], service = []) {
 
-  console.log(service);
   
 
   return `<?xml version="1.0" encoding="UTF-8"?>
