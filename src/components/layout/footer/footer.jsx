@@ -144,7 +144,7 @@ const Footer = () => {
                 </div>
                 <small style={{ textAlign: "center" }}>
                   Developed And Maintianed By{" "}
-                  <Link href="https://www.nammaoorudev.online" target="_blank">
+                  <Link href="https://www.instagram.com/namma_ooru_developer/" target="_blank">
                     www.nammoorudev.online
                   </Link>{" "}
                 </small>
