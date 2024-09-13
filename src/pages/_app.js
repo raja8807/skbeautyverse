@@ -22,6 +22,7 @@ import { DefaultSeo } from "next-seo";
 import KeywordsSection from "@/components/keywords/keywords";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Kaushan_Script
 
@@ -128,6 +129,7 @@ export default function App({ Component, pageProps }) {
         </main>
       </SessionProvider>
       <Analytics/>
+      <SpeedInsights/>
     </>
   );
 }
