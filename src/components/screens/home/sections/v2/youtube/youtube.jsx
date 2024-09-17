@@ -9,20 +9,22 @@ const YoutubeSection = () => {
   const [isRemoved, setIsRemoved] = useState(false);
 
   const removeWidget = () => {
-    const yt = document.querySelector("#yt");
-    const widget = yt.querySelector(".yottie-container");
-    if (widget) {
-      const a = widget.getElementsByTagName("a");
-      if (a) {
-        for (let i = 0; i < a.length; i++) {
-          if (a[i].rel === "noreferrer") {
-            a[i].remove();
-            setIsRemoved(true);
+    if (!isRemoved) {
+      const yt = document.querySelector("#yt");
+      const widget = yt.querySelector(".yottie-container");
+      if (widget) {
+        const a = widget.getElementsByTagName("a");
+        if (a) {
+          for (let i = 0; i < a.length; i++) {
+            if (a[i].rel === "noreferrer") {
+              a[i].remove();
+              setIsRemoved(true);
+            }
           }
         }
+      } else {
+        removeWidget();
       }
-    } else {
-      removeWidget();
     }
   };
 
