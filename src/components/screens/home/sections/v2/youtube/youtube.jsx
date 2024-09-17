@@ -1,33 +1,43 @@
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./youtube.module.scss";
 import Script from "next/script";
 
 const YoutubeSection = () => {
-  useEffect(() => {
-    setTimeout(() => {
-      console.log();
-      const yt = document.querySelector("#yt");
-      const widget = yt.querySelector(".yottie-container");
-      if (widget) {
-        const a = widget.getElementsByTagName("a");
-        if (a) {
-          for (let i = 0; i < a.length; i++) {
-            if (a[i].rel === "noreferrer") {
-              a[i].remove();
-            }
+  const [isRemoved, setIsRemoved] = useState(false);
+
+  const removeWidget = () => {
+    const yt = document.querySelector("#yt");
+    const widget = yt.querySelector(".yottie-container");
+    if (widget) {
+      const a = widget.getElementsByTagName("a");
+      if (a) {
+        for (let i = 0; i < a.length; i++) {
+          if (a[i].rel === "noreferrer") {
+            a[i].remove();
+            setIsRemoved(true);
           }
         }
       }
-    }, 1000);
+    } else {
+      removeWidget();
+    }
+  };
+
+  useEffect(() => {
+    if (!isRemoved) {
+      setTimeout(removeWidget, 1000);
+    }
   }, []);
 
   return (
     <div className={styles.YoutubeSection} id="x">
       <Script
         src="https://static.elfsight.com/platform/platform.js"
+        // src="./x.js"
+        defer
         async
       ></Script>
 
