@@ -29,7 +29,7 @@ const ServicePostScreen = ({ service: service_post }) => {
     <div className={styles.ServicePostScreen}>
       <PageHead
         head={service_post.title}
-        bottom={`${service_post.price}/-`}
+        bottom={service_post?.price && `${service_post.price}/-`}
         img={service_post?.headImg?.img}
         btn={
           <CustomButton href="/book" variant={2} isNew>

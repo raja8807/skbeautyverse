@@ -8,8 +8,8 @@ import Script from "next/script";
 const YoutubeSection = () => {
   const [isRemoved, setIsRemoved] = useState(false);
 
-  const removeWidget = () => {
-    if (!isRemoved) {
+  useEffect(() => {
+    if (isRemoved !== 0) {
       const yt = document.querySelector("#yt");
       const widget = yt.querySelector(".yottie-container");
       if (widget) {
@@ -18,21 +18,15 @@ const YoutubeSection = () => {
           for (let i = 0; i < a.length; i++) {
             if (a[i].rel === "noreferrer") {
               a[i].remove();
-              setIsRemoved(true);
+              setIsRemoved(0);
             }
           }
         }
       } else {
-        removeWidget();
+        setIsRemoved(Math.random());
       }
     }
-  };
-
-  useEffect(() => {
-    if (!isRemoved) {
-      setTimeout(removeWidget, 1000);
-    }
-  }, []);
+  }, [isRemoved]);
 
   return (
     <div className={styles.YoutubeSection} id="x">

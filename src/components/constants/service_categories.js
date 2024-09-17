@@ -19,6 +19,11 @@ const SERVICE_CATEGORIES = [
     title: "Courses",
     img: "courses1.PNG",
   },
+  {
+    id: "results",
+    title: "Results",
+    img: "results.png",
+  },
 ];
 
 export default SERVICE_CATEGORIES
