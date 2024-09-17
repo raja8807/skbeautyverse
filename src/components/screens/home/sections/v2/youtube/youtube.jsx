@@ -1,12 +1,36 @@
 import CustomContainer from "@/components/ui/custom_container/custom_container";
 import CustomSection from "@/components/ui/custom_section/custom_section";
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./youtube.module.scss";
+import Script from "next/script";
 
 const YoutubeSection = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      console.log();
+      const yt = document.querySelector("#yt");
+      const widget = yt.querySelector(".yottie-container");
+      if (widget) {
+        const a = widget.getElementsByTagName("a");
+        if (a) {
+          for (let i = 0; i < a.length; i++) {
+            if (a[i].rel === "noreferrer") {
+              a[i].remove();
+            }
+          }
+        }
+      }
+    }, 1000);
+  }, []);
+
   return (
-    <div className={styles.YoutubeSection}>
+    <div className={styles.YoutubeSection} id="x">
+      <Script
+        src="https://static.elfsight.com/platform/platform.js"
+        async
+      ></Script>
+
       <CustomContainer>
         <CustomSection head="Follow Us on">
           <Row>
@@ -60,8 +84,6 @@ const YoutubeSection = () => {
                     width: "100%",
                     height: "100%",
                   }}
-                  frameBorder="0"
-                  scrolling="no"
                   allowTransparency="true"
                   allow="encrypted-media"
                   title="Instagram Profile"
@@ -72,7 +94,13 @@ const YoutubeSection = () => {
         </CustomSection>
 
         <CustomSection head="Subscribe to our channel">
-          <div
+          <div id="yt">
+            <div
+              class="elfsight-app-634ef4ce-2e09-48d4-b6ce-e4457745c3ad"
+              data-elfsight-app-lazy
+            ></div>
+          </div>
+          {/* <div
             style={{
               position: "relative",
               paddingBottom: "56.25%",
@@ -84,7 +112,7 @@ const YoutubeSection = () => {
             }}
           >
             <iframe
-              src="https://www.youtube.com/embed?listType=user_uploads&list=UCXgGY0wkgOzynnHvSEVmE3A"
+              src="https://www.youtube.com/embed?listType=user_uploads&list=UC4cjlhqZl4ujPawXS_P05vQ"
               style={{
                 position: "absolute",
                 top: 0,
@@ -92,12 +120,11 @@ const YoutubeSection = () => {
                 width: "100%",
                 height: "100%",
               }}
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               title="YouTube Channel"
             ></iframe>
-          </div>
+          </div> */}
         </CustomSection>
       </CustomContainer>
     </div>

@@ -125,7 +125,11 @@ const Footer = () => {
                 {/* <hr /> */}
                 <div className={styles.bar}>
                   <div>
-                    <Image src="/images/iso-logo.webp" width={35} />
+                    <Image
+                      src="/images/iso-logo.webp"
+                      width={35}
+                      alt="iso-logo"
+                    />
                     <p>
                       GST : 33LEVPS8977N1ZR
                       <br />
@@ -134,7 +138,11 @@ const Footer = () => {
                   </div>
 
                   <div>
-                    <Image src="/images/msme-logo.png" width={35} />
+                    <Image
+                      src="/images/msme-logo.png"
+                      width={35}
+                      alt="msme-logo"
+                    />
                     <p>
                       UDYAM-TN-02-0245303
                       <br />
@@ -144,7 +152,10 @@ const Footer = () => {
                 </div>
                 <small style={{ textAlign: "center" }}>
                   Developed And Maintianed By{" "}
-                  <Link href="https://www.instagram.com/namma_ooru_developer/" target="_blank">
+                  <Link
+                    href="https://www.instagram.com/namma_ooru_developer/"
+                    target="_blank"
+                  >
                     www.nammoorudev.online
                   </Link>{" "}
                 </small>
