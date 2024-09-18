@@ -9,8 +9,8 @@ const YoutubeSection = () => {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    if (isRemoved !== 0) {
-      const yt = document.querySelector("#yt");
+    setTimeOut(()=>{
+const yt = document.querySelector("#yt");
       const widget = yt.querySelector(".yottie-container");
       if (widget) {
         const a = widget.getElementsByTagName("a");
@@ -22,11 +22,9 @@ const YoutubeSection = () => {
             }
           }
         }
-      } else {
-        setIsRemoved(Math.random());
       }
-    }
-  }, [isRemoved]);
+},1000)
+  }, []);
 
   return (
     <div className={styles.YoutubeSection} id="x">
