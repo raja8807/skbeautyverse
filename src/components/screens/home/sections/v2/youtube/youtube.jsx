@@ -9,7 +9,7 @@ const YoutubeSection = () => {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    setTimeOut(()=>{
+    setTimeout(()=>{
 const yt = document.querySelector("#yt");
       const widget = yt.querySelector(".yottie-container");
       if (widget) {
