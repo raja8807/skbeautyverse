@@ -71,7 +71,7 @@ const NewService = ({
           return allPosts;
         });
       } else {
-        const id = values.title.replace(" ", "-").toLowerCase();
+        const id = values.title.replaceAll(" ", "-").toLowerCase().trim();
         const res = await addData(
           isBlog ? "blog_post" : "service_post",
           {

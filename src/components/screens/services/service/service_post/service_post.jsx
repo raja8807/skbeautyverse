@@ -25,6 +25,8 @@ const ServicePostScreen = ({ service: service_post }) => {
     return 1;
   };
 
+  
+
   return (
     <div className={styles.ServicePostScreen}>
       <PageHead
@@ -44,7 +46,7 @@ const ServicePostScreen = ({ service: service_post }) => {
           <p className={styles.description}>{service_post?.description}</p>
         </CustomContainer>
         <div className={styles.wrap}>
-          {service_post.rows.map((row, idx) => {
+          {service_post?.rows && service_post.rows.map((row, idx) => {
             return (
               <div className={styles.row} key={`row_${idx}`}>
                 <div className={styles.left} data-aos="fade-right">
